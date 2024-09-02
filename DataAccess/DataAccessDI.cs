@@ -19,7 +19,13 @@ namespace DataAccess
             });
             
             services.AddScoped<IComplaintDbContext,ComplaintDbContext>();
+
             services.AddTransient<IRepository<Complaint>, Repository<Complaint>>();
+            services.AddTransient<IRepository<Attachtment>, Repository<Attachtment>>();
+            services.AddTransient<IRepository<ComplaintInvolved>, Repository<ComplaintInvolved>>();
+            services.AddTransient<IRepository<ComplaintReasons>, Repository<ComplaintReasons>>();
+            services.AddTransient<IRepository<ComplaintType>, Repository<ComplaintType>>();
+            services.AddTransient<IRepository<Person>, Repository<Person>>();
           
             return services;
         }
