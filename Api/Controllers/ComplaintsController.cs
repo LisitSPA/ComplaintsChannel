@@ -9,10 +9,10 @@ namespace Api.Controllers
     [Route("api/complaints")]
     public class ComplaintsController: ComplaintControllerBase
     {
-        [HttpGet("All", Name = "GetJComplaints")]
-        public async Task<IActionResult> GetJourney()
+        [HttpGet("types/all", Name = "GetAllComplaintTypes")]
+        public async Task<IActionResult> GetAllComplaintTypes()
         {
-            var result = await Mediator.Send(new GetAllComplaintsQuery {});
+            var result = await Mediator.Send(new GetAllComplaintTypesQuery {});
             return HandleResult(result.Result, result.ErrorProvider);
         }
 
