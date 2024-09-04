@@ -28,7 +28,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\Interfaces\External\" />
-    <Folder Include="Complaints\Commands\Creates\" />
     <Folder Include="Complaints\Commands\Updates\" />
   </ItemGroup>
   <ItemGroup>

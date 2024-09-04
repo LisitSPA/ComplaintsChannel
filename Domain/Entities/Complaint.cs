@@ -17,7 +17,7 @@ namespace Domain.Entities
         public EComplaintStatus EStatus { get; set; }
         public string ModifiedBy { get; set; } = "unknown";
         public DateTime? ModifiedOn { get; set; }
-        public List<Person> Complainant { get; set; }
+        public Person Complainant { get; set; }
         public List<Person> Involved { get; set; }
         public List<ComplaintType> Reasons { get; set; }
         public List<Attachtment> Attachments { get; set; }
