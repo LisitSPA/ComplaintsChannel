@@ -8,11 +8,7 @@ namespace Domain.Enums
         [Description("Femenino")]
         Female = 1,
         [Description("Masculino")]
-        Male = 2,
-        [Description("Ninguno")]
-        None = 3,
-        [Description("Prefiero No Decirlo")]
-        PreferNotSay = 4,
+        Male = 2
 
     }
 }

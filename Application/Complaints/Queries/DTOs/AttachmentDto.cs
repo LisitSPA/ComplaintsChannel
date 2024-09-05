@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,9 @@ using Utility.Mappings;
 
 namespace Application.Complaints.Queries.DTOs
 {
-    public class ComplaintTypeDto : IMapFrom<ComplaintType>
+    public class AttachmentDto 
     {
-        public int Id { get; set; }
+        public IFormFile file { get; set; }
         public string Description { get; set; }
     }
 }

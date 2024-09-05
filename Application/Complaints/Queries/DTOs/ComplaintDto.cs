@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Queries.DTOs
+namespace Application.Complaints.Queries.DTOs
 {
     public class ComplaintDto
     {

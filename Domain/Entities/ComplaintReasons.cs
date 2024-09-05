@@ -14,6 +14,8 @@ namespace Domain.Entities
         public int ComplaintId { get; set; }
         public int ComplaintTypeId { get; set; }
         
+        public ComplaintType Reason { get; set; }
+        public Complaint Complaint { get; set; }
     }
     
 }

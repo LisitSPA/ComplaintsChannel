@@ -21,6 +21,7 @@ namespace Domain.Entities
         public string ContactEmail { get; set; }
 
         public List<Complaint> Complaints { get; set; }
+        public List<ComplaintInvolved> ComplaintInvolveds { get; set; }
     }
     
 }

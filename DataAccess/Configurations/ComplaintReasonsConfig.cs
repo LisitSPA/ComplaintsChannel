@@ -18,7 +18,8 @@ namespace DataAccess.Configurations
                 .UseIdentityColumn();
 
             //Other Columns
-            
+            builder.HasOne(x => x.Complaint).WithMany(x => x.Reasons).HasForeignKey(x => x.ComplaintTypeId);
+            builder.HasOne(x => x.Reason);
 
         }
     }
