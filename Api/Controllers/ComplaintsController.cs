@@ -1,3 +1,4 @@
+using Application.Complaints.Commands.Creates;
 using Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -16,5 +17,11 @@ namespace Api.Controllers
             return HandleResult(result.Result, result.ErrorProvider);
         }
 
+        [HttpPost("", Name = "CreateComplaint")]
+        public async Task<IActionResult> CreateComplaint([FromForm]CreateComplaintCommand command)
+        {
+            var result = await Mediator.Send(command);
+            return HandleResult(result.Result, result.ErrorProvider);
+        }
     }
 }

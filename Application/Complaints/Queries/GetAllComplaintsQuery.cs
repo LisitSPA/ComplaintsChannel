@@ -1,25 +1,25 @@
 ﻿using AutoMapper;
 using Application.Common.Interfaces;
 using Utility.DTOs;
-using Application.Queries.DTOs;
 using MediatR;
 using Domain.Entities;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Linq;
 using AutoMapper.QueryableExtensions;
+using Application.Complaints.Queries.DTOs;
 
 
 namespace Application.Queries;
 
-public record GetAllComplaintsQuery : IRequest<Response<ComplaintsDto>>
+public record GetAllComplaintsQuery : IRequest<Response<ComplaintDto>>
 {
     public int Id { get; init; }
 }
 
 
 //HANDLER
-public class GetAllComplaintsQueryHandler : IRequestHandler<GetAllComplaintsQuery, Response<ComplaintsDto>>
+public class GetAllComplaintsQueryHandler : IRequestHandler<GetAllComplaintsQuery, Response<ComplaintDto>>
 {
     private readonly IRepository<Complaint> _repo;
     private readonly IMapper _mapper;
@@ -30,9 +30,9 @@ public class GetAllComplaintsQueryHandler : IRequestHandler<GetAllComplaintsQuer
         _mapper = mapper;
     }
 
-    public async Task<Response<ComplaintsDto>> Handle(GetAllComplaintsQuery request, CancellationToken cancellationToken)
+    public async Task<Response<ComplaintDto>> Handle(GetAllComplaintsQuery request, CancellationToken cancellationToken)
     {
-        Response<ComplaintsDto> result = new();
+        Response<ComplaintDto> result = new();
         try
         {
 

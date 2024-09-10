@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Application.Common.Interfaces;
 using Utility.DTOs;
-using Application.Queries.DTOs;
 using MediatR;
 using Domain.Entities;
 using System.Threading.Tasks;
@@ -9,6 +8,7 @@ using System.Threading;
 using System.Linq;
 using AutoMapper.QueryableExtensions;
 using System.Collections.Generic;
+using Application.Complaints.Queries.DTOs;
 
 
 namespace Application.Queries;

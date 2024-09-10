@@ -1,5 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using Application.Complaints.Queries.DTOs;
+using Application.Notifications;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Enums;
@@ -7,6 +8,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -25,7 +27,7 @@ public record CreateComplaintCommand : IRequest<Response<bool>>
     public string Description { get; set; }
     public DateTime IncidentDate { get; set; }
     public List<PersonInvolvedDto> PersonInvolveds { get; set; }  
-    public List<AttachmentDto> Attachments { get; set; }
+    public List<IFormFile> Attachments { get; set; }
     public List<string> AttachDescription { get; set; }
     public ComplainantDto Complainant { get; set; }
     public string ContactEmail { get; set; }
@@ -36,18 +38,18 @@ public class CreateComplaintCommandHandler : IRequestHandler<CreateComplaintComm
 {
     private readonly IRepository<Complaint> _repository;
     private readonly IRepository<Person> _repoPerson;
-    private readonly IRepository<ComplaintInvolved> _repoInvolved;
+    private readonly IRepository<Attachtment> _repoAttach;
     private readonly IMapper _mapper;
 
     public CreateComplaintCommandHandler(IRepository<Complaint> repository, 
         IRepository<Person> repoPerson,
-        IRepository<ComplaintInvolved> repoInvolved,
+        IRepository<Attachtment> repoAttach,
         IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
         _repoPerson = repoPerson;
-        _repoInvolved = repoInvolved;
+        _repoAttach = repoAttach;
     }
 
     public async Task<Response<bool>> Handle(CreateComplaintCommand command, CancellationToken cancellationToken)
@@ -60,26 +62,39 @@ public class CreateComplaintCommandHandler : IRequestHandler<CreateComplaintComm
                 Description = command.Description,
                 IncidentDate = command.IncidentDate,
                 EStatus = EComplaintStatus.Registry,
-                
             };
 
-            command.Reasons.ForEach(reason => {
-                complaint.Reasons.Add(new ComplaintReasons
-                {
-                    ComplaintTypeId = reason
-                });
-            });
+            //List<ComplaintReasons> reasons = [];
+            //command.Reasons.ForEach(reason =>
+            //{
+            //    reasons.Add(new ComplaintReasons
+            //    {
+            //        ComplaintTypeId = reason
+            //    });
+            //});
 
-            if (!command.IsAnonimo)
-            {
-                complaint.Complainant = _mapper.Map<Person>(command.Complainant);
-            }
+            //complaint.Reasons = reasons;
 
-            _repository.Save();
+            //if (!command.IsAnonimo)
+            //{
+            //    complaint.Complainant = _mapper.Map<Person>(command.Complainant);
+            //}
 
-           SetAttachments(command.Attachments);
+            complaint.TrackingCode = GenerateCode().ToUpper();
+            complaint.TrackingEmail = command.ContactEmail;
 
-           SetInvolveds(command.PersonInvolveds, complaint.Id);
+            //_repository.Add(complaint);
+
+          
+            //complaint.Attachments = SetAttachments(command.Attachments, command.AttachDescription);
+            //_repository.Save();
+
+
+            //SetInvolveds(command.PersonInvolveds, complaint.Id);
+            //_repository.Save();
+
+            EmailNotificacion.SendEmail(complaint.TrackingEmail, complaint.TrackingCode);
+
 
         }
         catch (Exception ex)
@@ -90,14 +105,30 @@ public class CreateComplaintCommandHandler : IRequestHandler<CreateComplaintComm
     }
 
 
-    private bool SetAttachments(List<AttachmentDto> attachments)
+    private List<Attachtment> SetAttachments(List<IFormFile> attachments, List<string> descriptions)
     {
-        //foreach (var item in attachments)
-        //{
-        //    byte[] bytes = Convert.FromBase64String(item.file);
-        //    String file = Convert.ToBase64String(bytes);
-        //}
-        return true;
+        var attactments = new List<Attachtment>();
+        int index = 0;
+        attachments.ForEach(item =>
+        {
+            string fileBase64 = "";
+            using (var memoryStream = new MemoryStream())
+            {
+                item.CopyTo(memoryStream);
+                byte[] fileBytes = memoryStream.ToArray();
+                fileBase64 = Convert.ToBase64String(fileBytes);
+            }
+
+            attactments.Add(new Attachtment
+            {
+                FileBase64 = fileBase64,
+                Description = descriptions.Count >= index ? descriptions[index] : "",
+                FileName = item.Name,
+                ContentType = item.ContentType
+            });
+            index++;
+        });
+        return attactments;
     }
 
     private bool SetInvolveds(List<PersonInvolvedDto> personInvolvedDtos, int complaintId)
@@ -105,10 +136,7 @@ public class CreateComplaintCommandHandler : IRequestHandler<CreateComplaintComm
         personInvolvedDtos.ForEach(p =>
         {
             var person = _repoPerson.GetAllActive().Where(x => x.Names.Contains(p.Names) && x.LastName.Contains(p.LastName)).FirstOrDefault();
-            if (person == null)
-            {
-                person = _repoPerson.Add(_mapper.Map<Person>(p));
-            }
+            person ??= _repoPerson.Add(_mapper.Map<Person>(p));
 
             person.ComplaintInvolveds.Add(new ComplaintInvolved
             {
@@ -118,5 +146,18 @@ public class CreateComplaintCommandHandler : IRequestHandler<CreateComplaintComm
 
          return true;
     }
+
+    private string GenerateCode()
+    {
+        string code = Guid.NewGuid().ToString("N")[..5];
+        while(_repository.GetAll().Where(x=> x.TrackingCode == code).Any())
+        {
+            GenerateCode();
+        }
+
+        return code;
+    }
+   
+    
 } 
 
