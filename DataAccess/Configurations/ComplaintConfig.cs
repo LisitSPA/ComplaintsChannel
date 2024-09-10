@@ -19,8 +19,8 @@ namespace DataAccess.Configurations
 
             //Other Columns
             builder.HasOne(x => x.Complainant);
-            builder.HasMany(x => x.Involved);
-            builder.HasMany(x => x.Reasons);
+            builder.HasMany(x => x.ComplaintInvolved);
+            builder.HasMany(x => x.ComplaintReasons);
             builder.HasMany(x => x.Attachments);
            
 

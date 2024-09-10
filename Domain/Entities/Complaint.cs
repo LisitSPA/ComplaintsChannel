@@ -19,8 +19,8 @@ namespace Domain.Entities
         public DateTime? ModifiedOn { get; set; }
         public string TrackingEmail { get; set; }
         public Person Complainant { get; set; }
-        public List<ComplaintInvolved> Involved { get; set; }
-        public List<ComplaintReasons> Reasons { get; set; }
+        public List<ComplaintInvolved> ComplaintInvolved { get; set; }
+        public List<ComplaintReasons> ComplaintReasons { get; set; }
         public List<Attachtment> Attachments { get; set; }
 
     }

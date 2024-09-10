@@ -18,8 +18,8 @@ namespace DataAccess.Configurations
                 .UseIdentityColumn();
 
             //Other Columns
-            builder.HasMany(x => x.People);
-            builder.HasMany(x => x.Complaints);
+            builder.HasOne(x => x.People);
+            builder.HasOne(x => x.Complaints);
            
 
         }

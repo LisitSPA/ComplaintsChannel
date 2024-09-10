@@ -12,6 +12,7 @@ namespace Application.Complaints.Queries.DTOs
 {
     public class ComplainantDto : IMapFrom<Person>
     {
+        public string RUT { get; set; }
         public string Names { get; set; }
         public string LastName { get; set; }
         public ECompanyStatus ECompanyStatus { get; set; }
@@ -23,6 +24,7 @@ namespace Application.Complaints.Queries.DTOs
         public void Mapping(Profile profile)
         {
             profile.CreateMap<ComplainantDto, Person>();
+            profile.CreateMap<Person, ComplainantDto>();
         }
     }
 }

@@ -11,8 +11,8 @@ namespace Domain.Entities
         public int Id { get; set; }
         public int ComplaintId { get; set; }
         public int PersonId { get; set; }
-        public List<Complaint> Complaints { get; set; }
-        public List<Person> People { get; set; }
+        public Complaint Complaints { get; set; }
+        public Person People { get; set; }
 
     }
     

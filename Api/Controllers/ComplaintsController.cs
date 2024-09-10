@@ -17,8 +17,22 @@ namespace Api.Controllers
             return HandleResult(result.Result, result.ErrorProvider);
         }
 
+        [HttpGet("getByCode/{code}", Name = "GetComplaintByCode")]
+        public async Task<IActionResult> GetComplaintByCode(string code)
+        {
+            var result = await Mediator.Send(new GetComplaintByCodeQuery { code = code});
+            return HandleResult(result.Result, result.ErrorProvider);
+        }
+
         [HttpPost("", Name = "CreateComplaint")]
-        public async Task<IActionResult> CreateComplaint([FromForm]CreateComplaintCommand command)
+        public async Task<IActionResult> CreateComplaint(CreateComplaintCommand command)
+        {
+            var result = await Mediator.Send(command);
+            return HandleResult(result.Result, result.ErrorProvider);
+        }
+
+        [HttpPost("attachments", Name = "AddAttachments")]
+        public async Task<IActionResult> AddAttachments([FromForm]AddAttachmentsCommand command)
         {
             var result = await Mediator.Send(command);
             return HandleResult(result.Result, result.ErrorProvider);

@@ -12,36 +12,35 @@ using Application.Complaints.Queries.DTOs;
 
 namespace Application.Queries;
 
-public record GetAllComplaintsQuery : IRequest<Response<ComplaintDto>>
+public record GetComplaintByCodeQuery : IRequest<Response<ComplaintDto>>
 {
-    public int Id { get; init; }
+    public string code { get; init; }
 }
 
 
 //HANDLER
-public class GetAllComplaintsQueryHandler : IRequestHandler<GetAllComplaintsQuery, Response<ComplaintDto>>
+public class GetComplaintByCodeQueryHandler : IRequestHandler<GetComplaintByCodeQuery, Response<ComplaintDto>>
 {
     private readonly IRepository<Complaint> _repo;
     private readonly IMapper _mapper;
 
-    public GetAllComplaintsQueryHandler(IRepository<Complaint> repo, IMapper mapper)
+    public GetComplaintByCodeQueryHandler(IRepository<Complaint> repo, IMapper mapper)
     {
         _repo = repo;
         _mapper = mapper;
     }
 
-    public async Task<Response<ComplaintDto>> Handle(GetAllComplaintsQuery request, CancellationToken cancellationToken)
+    public async Task<Response<ComplaintDto>> Handle(GetComplaintByCodeQuery request, CancellationToken cancellationToken)
     {
         Response<ComplaintDto> result = new();
         try
         {
+            var source = _repo.GetAll()
+                            .Where(x=> x.TrackingCode == request.code)
+                           .ProjectTo<ComplaintDto>(_mapper.ConfigurationProvider)
+                           .FirstOrDefault();
 
-            //var source = await _repo.GetAll()
-            //               .ProjectTo<ComplaintsDto>(_mapper.ConfigurationProvider)
-            //               .ToList();
-
-
-            //result.Result = source;
+            result.Result = source;
 
             return result;
 

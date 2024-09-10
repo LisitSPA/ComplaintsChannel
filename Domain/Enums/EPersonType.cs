@@ -6,9 +6,8 @@ namespace Domain.Enums
     [Flags]
     public enum EPersonType
     {
-        Complainant = 1,
-        Employee = 2,
-        Customer = 4,
-
+        Customer = 1,
+        Complainant = 2,
+        Employee = 4,
     }
 }
