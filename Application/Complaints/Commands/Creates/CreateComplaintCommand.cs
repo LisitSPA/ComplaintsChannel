@@ -78,7 +78,8 @@ public class CreateComplaintCommandHandler : IRequestHandler<CreateComplaintComm
 
             complaint.TrackingCode = GenerateCode().ToUpper();
             complaint.TrackingEmail = command.ContactEmail;
-
+           
+    
             _repository.Add(complaint);
             _repository.Save();
 

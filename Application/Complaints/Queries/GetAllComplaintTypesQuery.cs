@@ -9,13 +9,15 @@ using System.Linq;
 using AutoMapper.QueryableExtensions;
 using System.Collections.Generic;
 using Application.Complaints.Queries.DTOs;
+using Utility.Translator;
+using Google.Cloud.Translation.V2;
 
 
 namespace Application.Queries;
 
 public record GetAllComplaintTypesQuery : IRequest<Response<List<ComplaintTypeDto>>>
 {
-    public int Id { get; init; }
+    public string languaje { get; init; }
 }
 
 
@@ -41,7 +43,13 @@ public class GetAllComplaintTypesQueryHandler : IRequestHandler<GetAllComplaintT
                            .ProjectTo<ComplaintTypeDto>(_mapper.ConfigurationProvider)
                            .ToList();
 
-           result.Result = source;
+            if(request.languaje != "es")
+                source.ForEach(x =>
+                {
+                    x.Description = Translator.TranslateText(x.Description, request.languaje);
+                });
+
+            result.Result = source;
 
             return result;
 
