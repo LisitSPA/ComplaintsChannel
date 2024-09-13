@@ -21,12 +21,12 @@ public record GetComplaintByCodeQuery : IRequest<Response<ComplaintDto>>
 //HANDLER
 public class GetComplaintByCodeQueryHandler : IRequestHandler<GetComplaintByCodeQuery, Response<ComplaintDto>>
 {
-    private readonly IRepository<Complaint> _repo;
+    private readonly IRepository<Complaint> _repository;
     private readonly IMapper _mapper;
 
     public GetComplaintByCodeQueryHandler(IRepository<Complaint> repo, IMapper mapper)
     {
-        _repo = repo;
+        _repository = repo;
         _mapper = mapper;
     }
 
@@ -35,8 +35,8 @@ public class GetComplaintByCodeQueryHandler : IRequestHandler<GetComplaintByCode
         Response<ComplaintDto> result = new();
         try
         {
-            var source = _repo.GetAll()
-                            .Where(x=> x.TrackingCode == request.code)
+            var source = _repository.GetAll()
+                            .Where(x => x.TrackingCode == request.code)
                            .ProjectTo<ComplaintDto>(_mapper.ConfigurationProvider)
                            .FirstOrDefault();
 

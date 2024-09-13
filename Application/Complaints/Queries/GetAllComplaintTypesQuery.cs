@@ -43,7 +43,7 @@ public class GetAllComplaintTypesQueryHandler : IRequestHandler<GetAllComplaintT
                            .ProjectTo<ComplaintTypeDto>(_mapper.ConfigurationProvider)
                            .ToList();
 
-            if(request.languaje != "es")
+            if (request.languaje != "es")
                 source.ForEach(x =>
                 {
                     x.Description = Translator.TranslateText(x.Description, request.languaje);

@@ -25,13 +25,13 @@ namespace Application.Complaints.Queries.DTOs
         public ComplainantDto Complainant { get; set; }
         public List<PersonInvolvedDto> Involveds { get; set; }
         public List<ComplaintType> Reasons { get; set; }
-        public List<Attachtment> Attachments { get; set; }
+        public List<Attachment> Attachments { get; set; }
 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Complaint, ComplaintDto>()
-                .ForMember(x => x.Involveds, opt => opt.MapFrom(s => s.ComplaintInvolved.Select(x => x.People)))
-                .ForMember(x => x.Reasons, opt => opt.MapFrom(s => s.ComplaintReasons.Select(x => x.ComplaintType)))
+                //.ForMember(x => x.Involveds, opt => opt.MapFrom(s => s.ComplaintInvolved.Select(x => x.People)))
+                //.ForMember(x => x.Reasons, opt => opt.MapFrom(s => s.ComplaintReasons.Select(x => x.ComplaintType)))
                 ;
 
         }

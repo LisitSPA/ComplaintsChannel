@@ -12,7 +12,7 @@ namespace Domain.Entities
         public int ComplaintId { get; set; }
         public int PersonId { get; set; }
         public Complaint Complaints { get; set; }
-        public Person People { get; set; }
+        public User People { get; set; }
 
     }
     

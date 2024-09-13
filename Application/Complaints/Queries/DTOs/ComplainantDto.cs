@@ -10,7 +10,7 @@ using Utility.Mappings;
 
 namespace Application.Complaints.Queries.DTOs
 {
-    public class ComplainantDto : IMapFrom<Person>
+    public class ComplainantDto : IMapFrom<User>
     {
         public string RUT { get; set; }
         public string Names { get; set; }
@@ -23,8 +23,8 @@ namespace Application.Complaints.Queries.DTOs
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<ComplainantDto, Person>();
-            profile.CreateMap<Person, ComplainantDto>();
+            profile.CreateMap<ComplainantDto, User>();
+            profile.CreateMap<User, ComplainantDto>();
         }
     }
 }

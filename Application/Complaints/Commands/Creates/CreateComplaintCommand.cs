@@ -35,11 +35,11 @@ public record CreateComplaintCommand : IRequest<Response<int>>
 public class CreateComplaintCommandHandler : IRequestHandler<CreateComplaintCommand, Response<int>>
 {
     private readonly IRepository<Complaint> _repository;
-    private readonly IRepository<Person> _repoPerson;
+    private readonly IRepository<User> _repoPerson;
     private readonly IMapper _mapper;
 
     public CreateComplaintCommandHandler(IRepository<Complaint> repository, 
-        IRepository<Person> repoPerson,
+        IRepository<User> repoPerson,
         IMapper mapper)
     {
         _repository = repository;
@@ -104,8 +104,8 @@ public class CreateComplaintCommandHandler : IRequestHandler<CreateComplaintComm
         personInvolvedDtos.ForEach(p =>
         {
             var person = _repoPerson.GetAllActive().Where(x => x.Names.Contains(p.Names) && x.LastName.Contains(p.LastName)).FirstOrDefault();
-            person ??= _repoPerson.Add(_mapper.Map<Person>(p));
-            person.EPersonType = EPersonType.Employee;
+            person ??= _repoPerson.Add(_mapper.Map<User>(p));
+            person.EUserType = EUserType.Employee;
 
             person.ComplaintInvolveds = new List<ComplaintInvolved>()
             {
@@ -119,12 +119,12 @@ public class CreateComplaintCommandHandler : IRequestHandler<CreateComplaintComm
          return true;
     }
 
-    private Person SetComplainant(ComplainantDto complainant)
+    private User SetComplainant(ComplainantDto complainant)
     {
         
         var person = _repoPerson.GetAllActive().Where(x => x.Names.Contains(complainant.Names) && x.LastName.Contains(complainant.LastName)).FirstOrDefault();
-        person ??= _repoPerson.Add(_mapper.Map<Person>(complainant));
-        person.EPersonType = person.EPersonType.HasFlag(EPersonType.Complainant) ? person.EPersonType : EPersonType.Complainant;
+        person ??= _repoPerson.Add(_mapper.Map<User>(complainant));
+        person.EUserType = person.EUserType.HasFlag(EUserType.Complainant) ? person.EUserType : EUserType.Complainant;
               
         return person;
     }

@@ -10,7 +10,7 @@ using Utility.Mappings;
 
 namespace Application.Complaints.Queries.DTOs
 {
-    public class PersonInvolvedDto : IMapFrom<Person>
+    public class PersonInvolvedDto : IMapFrom<User>
     {
         public string Names { get; set; }
         public string LastName { get; set; }
@@ -19,8 +19,8 @@ namespace Application.Complaints.Queries.DTOs
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<PersonInvolvedDto, Person>();
-            profile.CreateMap<Person, PersonInvolvedDto>();
+            profile.CreateMap<PersonInvolvedDto, User>();
+            profile.CreateMap<User, PersonInvolvedDto>();
         }
 
     }

@@ -4,7 +4,7 @@ using System.ComponentModel;
 namespace Domain.Enums
 {
     [Flags]
-    public enum EPersonType
+    public enum EUserType
     {
         Customer = 1,
         Complainant = 2,

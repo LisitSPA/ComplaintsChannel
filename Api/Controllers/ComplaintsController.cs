@@ -1,3 +1,4 @@
+using Application.Chats.Commands.Creates;
 using Application.Complaints.Commands.Creates;
 using Application.Queries;
 using MediatR;
@@ -33,6 +34,13 @@ namespace Api.Controllers
 
         [HttpPost("attachments", Name = "AddAttachments")]
         public async Task<IActionResult> AddAttachments([FromForm]AddAttachmentsCommand command)
+        {
+            var result = await Mediator.Send(command);
+            return HandleResult(result.Result, result.ErrorProvider);
+        }
+
+        [HttpPost("chat", Name = "AddMessage")]
+        public async Task<IActionResult> AddMessage([FromForm] CreateMessageChatCommand command)
         {
             var result = await Mediator.Send(command);
             return HandleResult(result.Result, result.ErrorProvider);

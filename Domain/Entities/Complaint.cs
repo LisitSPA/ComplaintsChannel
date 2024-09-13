@@ -18,10 +18,10 @@ namespace Domain.Entities
         public string ModifiedBy { get; set; } = "unknown";
         public DateTime? ModifiedOn { get; set; }
         public string TrackingEmail { get; set; }
-        public Person Complainant { get; set; }
+        public User Complainant { get; set; }
         public List<ComplaintInvolved> ComplaintInvolved { get; set; }
         public List<ComplaintReasons> ComplaintReasons { get; set; }
-        public List<Attachtment> Attachments { get; set; }
+        public List<Attachment> Attachments { get; set; }
 
     }
 

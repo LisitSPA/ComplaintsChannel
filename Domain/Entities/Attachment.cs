@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Domain.Entities
 {
 
-    public class Attachtment : BaseEntity
+    public class Attachment : BaseEntity
     {
         public int ComplaintId { get; set; }
         public string FileName { get; set; }
