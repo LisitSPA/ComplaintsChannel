@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataAccess.Configurations
 {
-    public class PersonConfig: IEntityTypeConfiguration<Person>
+    public class AttachmentConfig : IEntityTypeConfiguration<Attachment>
     {
-        public void Configure(EntityTypeBuilder<Person> builder)
+        public void Configure(EntityTypeBuilder<Attachment> builder)
         {
             //Table Name
-            builder.ToTable("People");
+            builder.ToTable("Attachments");
             
             //Primary Key
             builder.Property<int>("Id")
@@ -18,7 +18,6 @@ namespace DataAccess.Configurations
                 .UseIdentityColumn();
 
             //Other Columns
-            builder.HasMany(x => x.Complaints);           
 
         }
     }

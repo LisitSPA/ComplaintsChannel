@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
-    public class Person : BaseEntity
+    public class User : BaseEntity
     {
         public string RUT { get; set; }
         public string Names { get; set; }
@@ -15,12 +15,13 @@ namespace Domain.Entities
         public string Area { get; set; }
         public string PersonDescription { get; set; }
         public EGenre EGenre { get; set; }
-        public EPersonType EPersonType { get; set; }
+        public EUserType EUserType { get; set; }
         public ECompanyStatus ECompanyStatus { get; set; }
         public string ContactPhone { get; set; }
         public string ContactEmail { get; set; }
 
         public List<Complaint> Complaints { get; set; }
+        public List<ComplaintInvolved> ComplaintInvolveds { get; set; }
     }
     
 }

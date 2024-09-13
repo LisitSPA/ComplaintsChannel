@@ -20,6 +20,8 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Api.Services;
+using Application.Common.Interfaces;
 
 namespace Api
 {
@@ -80,6 +82,7 @@ namespace Api
 
             services.AddSingleton<IAuthorizationPolicyProvider, AuthorizationPolicyProvider>();
             services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
+           
             // services.AddCompression();
             services.AddApplicationInsightsTelemetry();
             services.AddHealthChecks()

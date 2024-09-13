@@ -11,16 +11,17 @@ namespace Domain.Entities
     {
         public string Description { get; set; }
         public DateTime IncidentDate { get; set; }
-        public int ComplainantId { get; set; }
-        public DateTime CreatedOn { get; set; }
+        public int? ComplainantId { get; set; }
+        public DateTime CreatedOn { get; set; } = DateTime.Now;
         public string TrackingCode { get; set; }
         public EComplaintStatus EStatus { get; set; }
         public string ModifiedBy { get; set; } = "unknown";
         public DateTime? ModifiedOn { get; set; }
-        public List<Person> Complainant { get; set; }
-        public List<Person> Involved { get; set; }
-        public List<ComplaintType> Reasons { get; set; }
-        public List<Attachtment> Attachments { get; set; }
+        public string TrackingEmail { get; set; }
+        public User Complainant { get; set; }
+        public List<ComplaintInvolved> ComplaintInvolved { get; set; }
+        public List<ComplaintReasons> ComplaintReasons { get; set; }
+        public List<Attachment> Attachments { get; set; }
 
     }
 

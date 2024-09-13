@@ -18,7 +18,7 @@ namespace DataAccess.Configurations
                 .UseIdentityColumn();
 
             //Other Columns
-            
+            builder.HasOne(x => x.ComplaintType);
 
         }
     }

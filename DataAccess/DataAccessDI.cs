@@ -21,11 +21,12 @@ namespace DataAccess
             services.AddScoped<IComplaintDbContext,ComplaintDbContext>();
 
             services.AddTransient<IRepository<Complaint>, Repository<Complaint>>();
-            services.AddTransient<IRepository<Attachtment>, Repository<Attachtment>>();
+            services.AddTransient<IRepository<Attachment>, Repository<Attachment>>();
             services.AddTransient<IRepository<ComplaintInvolved>, Repository<ComplaintInvolved>>();
             services.AddTransient<IRepository<ComplaintReasons>, Repository<ComplaintReasons>>();
             services.AddTransient<IRepository<ComplaintType>, Repository<ComplaintType>>();
-            services.AddTransient<IRepository<Person>, Repository<Person>>();
+            services.AddTransient<IRepository<User>, Repository<User>>();
+            services.AddTransient<IRepository<Chat>, Repository<Chat>>();
           
             return services;
         }
