@@ -8,7 +8,7 @@ namespace Api.Controllers
 {
     [ApiController]
     [Route("api/translator")]
-    public class TranslatorController : ComplaintControllerBase
+    public class TranslatorController : ControllerBase
     {
         [HttpPost("TranslateText", Name = "TranslateText")]
         public async Task<IActionResult> TranslateText(TranslateTextCommand command)

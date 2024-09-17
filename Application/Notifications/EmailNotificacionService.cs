@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace Application.Notifications
 {
 
-    public static class EmailNotificacion
+    public static class EmailNotificationService
     {
-        public static void SendEmail(string toEmail, string code)
+        public static void SendEmail(EmailNotification notification)
         {
             var fromEmail = "MS_qgE106@trial-pxkjn41rxj5gz781.mlsender.net"; 
             var fromPassword = "K2AQaLvcwJCb4ADl";
@@ -22,12 +22,12 @@ namespace Application.Notifications
             var mailMessage = new MailMessage
             {
                 From = new MailAddress(fromEmail),
-                Subject = "Código Alfanumérico Generado",
-                Body = $"Tu código alfanumérico es: {code}",
-                IsBodyHtml = false
+                Subject = notification.Subject,
+                Body = notification.Body,
+                IsBodyHtml = true
             };
 
-            mailMessage.To.Add(toEmail);
+            mailMessage.To.Add(notification.ToEmail);
 
             // Configurar el cliente SMTP
             using var smtpClient = new SmtpClient(smtpHost, smtpPort);
@@ -50,6 +50,14 @@ namespace Application.Notifications
             }
         }
 
+
+    }
+
+    public class EmailNotification
+    {
+        public string ToEmail { get; set; }
+        public string Body { get; set; }
+        public string Subject { get; set; }
 
     }
 }
