@@ -86,7 +86,12 @@ public class CreateComplaintCommandHandler : IRequestHandler<CreateComplaintComm
             SetInvolveds(command.PersonInvolveds, complaint.Id);
             _repository.Save();
 
-            EmailNotificacion.SendEmail(complaint.TrackingEmail, complaint.TrackingCode);
+            EmailNotificationService.SendEmail(new EmailNotification
+            {
+                Subject = "Denuncia creada exitosamente",
+                Body = $"Tu código alfanumérico es: {complaint.TrackingCode}",
+                ToEmail = complaint.TrackingEmail
+            });
 
             result.Result = complaint.Id;
 

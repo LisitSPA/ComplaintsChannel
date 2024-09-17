@@ -9,7 +9,7 @@ namespace Api.Controllers
 {
     [ApiController]
     [Route("api/complaints")]
-    public class ComplaintsController: ComplaintControllerBase
+    public class ComplaintsController: ControllerBase
     {
         [HttpGet("types/all", Name = "GetAllComplaintTypes")]
         public async Task<IActionResult> GetAllComplaintTypes()

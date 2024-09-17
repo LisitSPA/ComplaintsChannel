@@ -1,4 +1,8 @@
 using System;
+using Application.Users.Queries.DTOs;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,8 +15,8 @@ namespace Api.JwtConfig
         public static void InitConfig(IServiceCollection services, IConfiguration config, SymmetricSecurityKey secretKey)
         {
             // Get options from app setting
-            var issuer = config.GetValue<string>(TokenOptions.Issuer);
-            var audience = config.GetValue<string>(TokenOptions.Audience);
+            var issuer = config["Jwt:Issuer"];
+            var audience = config["Jwt:Issuer"];
 
             // Configure JwtIssuerOptions
             services.Configure<JwtIssuerOptions>(options =>
@@ -62,14 +66,35 @@ namespace Api.JwtConfig
 
             });
 
+
+
         }
- 
+
+        public static string GenerateToken(UserLoginDto user, IConfiguration _config)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_config["Jwt:Key"]);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, user.Names),
+                    new Claim("LastName", user.LastName),
+                    new Claim(ClaimTypes.Role, user.EUserType.ToString()),
+                }),
+                Expires = DateTime.UtcNow.AddMinutes(30),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
+                Issuer = _config["Jwt:Issuer"],
+                Audience = _config["Jwt:Audience"]
+            };
+
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+
+
     }
 
-    public static class TokenOptions
-    {
-        public const string Issuer = "KV-JwtIssuerOptions-Issuer";
-        public const string Audience = "KV-JwtIssuerOptions-Audience";
-        public const string SecretKey = "KV-JwtIssuerOptions-SecretKey";
-    }
+
 }

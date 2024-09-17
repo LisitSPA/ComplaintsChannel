@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Api.Controllers
 {
-    public class ComplaintControllerBase: ControllerBase
+    public class ControllerBase: Microsoft.AspNetCore.Mvc.ControllerBase
     {
         public ISender _mediator;
         public ISender Mediator => _mediator ??= HttpContext.RequestServices.GetService<ISender>();

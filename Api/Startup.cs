@@ -22,6 +22,7 @@ using System.Reflection;
 using System.Text;
 using Api.Services;
 using Application.Common.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Api
 {
@@ -68,9 +69,9 @@ namespace Api
             services.AddComplaintApplication();
             services.AddProxyRest();
 
-            //var secretKey = new SymmetricSecurityKey(
-            //    Encoding.ASCII.GetBytes(Configuration.GetSection(TokenOptions.SecretKey).Value));
-            //JwtConfiguration.InitConfig(services, Configuration, secretKey);
+            var secretKey = new SymmetricSecurityKey(
+                Encoding.ASCII.GetBytes(Configuration.GetSection("Jwt:Key").Value));
+            JwtConfiguration.InitConfig(services, Configuration, secretKey);
 
             services.AddCors(options =>
             {
@@ -103,7 +104,7 @@ namespace Api
 
 
             //app.UseDevExpressControls();
-            app.UseApiResponseWrapperMiddleware();
+            //app.UseApiResponseWrapperMiddleware();
 
             app.UseHttpsRedirection();
 
