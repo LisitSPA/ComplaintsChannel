@@ -30,7 +30,7 @@ namespace Application.Complaints.Queries.DTOs
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Complaint, ComplaintDto>()
-                //.ForMember(x => x.Involveds, opt => opt.MapFrom(s => s.ComplaintInvolved.Select(x => x.People)))
+                //.ForMember(x => x.Involveds, opt => opt.MapFrom(s => s.ComplaintInvolved.Select(x => x.PersonInvolved)))
                 //.ForMember(x => x.Reasons, opt => opt.MapFrom(s => s.ComplaintReasons.Select(x => x.ComplaintType)))
                 ;
 

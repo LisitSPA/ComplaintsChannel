@@ -13,7 +13,7 @@ using Utility.Translator;
 using Google.Cloud.Translation.V2;
 
 
-namespace Application.Queries;
+namespace Application.Complaints.Queries;
 
 public record GetAllComplaintTypesQuery : IRequest<Response<List<ComplaintTypeDto>>>
 {

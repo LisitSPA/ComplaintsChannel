@@ -31,6 +31,7 @@
     <Folder Include="Common\Interfaces\External\" />
     <Folder Include="Chats\Commands\Updates\" />
     <Folder Include="Complaints\Commands\Updates\" />
+    <Folder Include="Dashboard\Commands\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />

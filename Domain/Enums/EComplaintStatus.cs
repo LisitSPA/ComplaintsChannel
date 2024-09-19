@@ -7,7 +7,8 @@ namespace Domain.Enums
     {
         [Description("Registrada")]
         Registry = 1,
-        Resolved = 2,
+        InProcess = 2,
+        Resolved = 3,
 
     }
 }
