@@ -32,9 +32,6 @@ namespace Utility.PasswordHasher
             return result == PasswordVerificationResult.Success;
         }
 
-        public string GeneratePassword()
-        {
-
-        }
+      
     }
 }

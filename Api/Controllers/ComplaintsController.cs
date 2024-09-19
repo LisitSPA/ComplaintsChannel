@@ -1,6 +1,6 @@
 using Application.Chats.Commands.Creates;
 using Application.Complaints.Commands.Creates;
-using Application.Queries;
+using Application.Complaints.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
