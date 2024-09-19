@@ -19,7 +19,7 @@ namespace DataAccess.Configurations
 
             //Other Columns
             builder.HasMany(x => x.Complaints);
-            //builder.HasMany(x => x.ComplaintInvolveds).WithMany(x=> x.People);           
+            //builder.HasMany(x => x.ComplaintInvolveds).WithMany(x=> x.PersonInvolved);           
 
         }
     }

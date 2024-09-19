@@ -10,7 +10,7 @@ using AutoMapper.QueryableExtensions;
 using Application.Complaints.Queries.DTOs;
 
 
-namespace Application.Queries;
+namespace Application.Complaints.Queries;
 
 public record GetComplaintByCodeQuery : IRequest<Response<ComplaintDto>>
 {
