@@ -1,5 +1,4 @@
 using Application.Complaints.Commands.Creates;
-using Application.Queries;
 using Application.Users.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
