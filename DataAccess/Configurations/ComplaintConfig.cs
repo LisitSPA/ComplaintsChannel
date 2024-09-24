@@ -22,7 +22,7 @@ namespace DataAccess.Configurations
             builder.HasMany(x => x.ComplaintInvolved);
             builder.HasMany(x => x.ComplaintReasons);
             builder.HasMany(x => x.Attachments);
-           
+            builder.HasMany(x => x.ComplaintHistory);
 
         }
     }

@@ -56,17 +56,17 @@ public class AddAttachmentsCommandHandler : IRequestHandler<AddAttachmentsComman
             command.Attachments.ForEach(item =>
             {
                 string fileBase64 = "";
-                using (var memoryStream = new MemoryStream())
-                {
-                    item.CopyTo(memoryStream);
-                    byte[] fileBytes = memoryStream.ToArray();
-                    fileBase64 = Convert.ToBase64String(fileBytes);
-                }
+                //using (var memoryStream = new MemoryStream())
+                //{
+                //    item.CopyTo(memoryStream);
+                //    byte[] fileBytes = memoryStream.ToArray();
+                //    fileBase64 = Convert.ToBase64String(fileBytes);
+                //}
 
                 attachment = new Domain.Entities.Attachment
                 {
                     FileBase64 = fileBase64,
-                    Description = command.AttachDescription.Count >= index ? command.AttachDescription[index] : "",
+                    Description = command.AttachDescription?.Count >= index ? command.AttachDescription[index] : "",
                     FileName = item.FileName,
                     ContentType = item.ContentType,
                     ComplaintId = command.ComplaintId
