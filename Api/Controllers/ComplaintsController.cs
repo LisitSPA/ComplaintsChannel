@@ -1,5 +1,6 @@
 using Application.Chats.Commands.Creates;
 using Application.Complaints.Commands.Creates;
+using Application.Complaints.Commands.Updates;
 using Application.Complaints.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -41,6 +42,13 @@ namespace Api.Controllers
 
         [HttpPost("chat", Name = "AddMessage")]
         public async Task<IActionResult> AddMessage([FromForm] CreateMessageChatCommand command)
+        {
+            var result = await Mediator.Send(command);
+            return HandleResult(result.Result, result.ErrorProvider);
+        }
+
+        [HttpPut("", Name = "UpdateStatusComplaint")]
+        public async Task<IActionResult> UpdateComplaint(UpdateComplaintStatusCommand command)
         {
             var result = await Mediator.Send(command);
             return HandleResult(result.Result, result.ErrorProvider);

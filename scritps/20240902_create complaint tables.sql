@@ -30,6 +30,8 @@ CREATE TABLE dbo.Complaints (
 	IncidentDate DateTime NOT NULL,
     ComplainantId INT NULL,
 	CreatedOn DateTime NOT NULL,
+	ModifiedBy INT NULL,
+	ModifiedOn DateTime NULL,
 	TrackingCode VARCHAR(20) NOT NULL,
 	EStatus int NOT NULL,
 	Active bit NOT NULL,
@@ -67,4 +69,14 @@ CREATE TABLE dbo.Chat (
 	CreatedBy int null,
 	Active bit NOT NULL
 );
---alter table dbo.Chat add CreatedBy int null
+
+
+CREATE TABLE dbo.ComplaintHistory (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+	ComplaintId int NOT NULL,
+	EStatus int NOT NULL,
+	Notes bit NOT NULL,
+	CreatedOn DateTime NOT NULL,
+	CreatedBy int not null,
+    FOREIGN KEY (ComplaintId) REFERENCES Complaints(Id)
+);

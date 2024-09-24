@@ -30,7 +30,6 @@
     <Folder Include="Chats\Queries\DTOs\" />
     <Folder Include="Common\Interfaces\External\" />
     <Folder Include="Chats\Commands\Updates\" />
-    <Folder Include="Complaints\Commands\Updates\" />
     <Folder Include="Dashboard\Commands\" />
   </ItemGroup>
   <ItemGroup>

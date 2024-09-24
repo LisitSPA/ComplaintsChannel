@@ -27,6 +27,7 @@ namespace DataAccess
             services.AddTransient<IRepository<ComplaintType>, Repository<ComplaintType>>();
             services.AddTransient<IRepository<User>, Repository<User>>();
             services.AddTransient<IRepository<Chat>, Repository<Chat>>();
+            services.AddTransient<IRepository<ComplaintHistory>, Repository<ComplaintHistory>>();
           
             return services;
         }
