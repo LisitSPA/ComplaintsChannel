@@ -67,7 +67,9 @@ CREATE TABLE dbo.Chat (
     AttachmentId int NULL,
 	CreatedOn datetime not null,
 	CreatedBy int null,
-	Active bit NOT NULL
+	Active bit NOT NULL,
+	FOREIGN KEY (ComplaintId) REFERENCES Complaints(Id),
+	FOREIGN KEY (CreatedBy) REFERENCES Users(Id)
 );
 
 

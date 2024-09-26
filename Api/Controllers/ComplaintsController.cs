@@ -39,14 +39,7 @@ namespace Api.Controllers
             var result = await Mediator.Send(command);
             return HandleResult(result.Result, result.ErrorProvider);
         }
-
-        [HttpPost("chat", Name = "AddMessage")]
-        public async Task<IActionResult> AddMessage([FromForm] CreateMessageChatCommand command)
-        {
-            var result = await Mediator.Send(command);
-            return HandleResult(result.Result, result.ErrorProvider);
-        }
-
+        
         [HttpPut("", Name = "UpdateStatusComplaint")]
         public async Task<IActionResult> UpdateComplaint(UpdateComplaintStatusCommand command)
         {

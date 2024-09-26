@@ -15,6 +15,8 @@ namespace Domain.Entities
         public DateTime CreatedOn { get; set; }
         public int? CreatedBy { get; set; }
         
+        public Complaint Complaint { get; set; }
+        public User User { get; set; }
     }
     
 }

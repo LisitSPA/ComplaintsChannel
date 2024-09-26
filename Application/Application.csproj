@@ -27,7 +27,6 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Chats\Queries\DTOs\" />
     <Folder Include="Common\Interfaces\External\" />
     <Folder Include="Chats\Commands\Updates\" />
     <Folder Include="Dashboard\Commands\" />
