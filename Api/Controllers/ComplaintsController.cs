@@ -19,7 +19,7 @@ namespace Api.Controllers
             return HandleResult(result.Result, result.ErrorProvider);
         }
 
-        [HttpGet("getByCode/{code}", Name = "GetComplaintByCode")]
+        [HttpGet("{code}", Name = "GetComplaintByCode")]
         public async Task<IActionResult> GetComplaintByCode(string code)
         {
             var result = await Mediator.Send(new GetComplaintByCodeQuery { code = code});

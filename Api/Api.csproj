@@ -3,6 +3,12 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Assets\NewFolder\**" />
+    <Content Remove="Assets\NewFolder\**" />
+    <EmbeddedResource Remove="Assets\NewFolder\**" />
+    <None Remove="Assets\NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Controllers\CreditMemoController.cs~RF91db9190.TMP" />
   </ItemGroup>
   <ItemGroup>
