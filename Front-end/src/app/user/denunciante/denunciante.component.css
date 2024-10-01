@@ -1,0 +1,114 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #6653aa, #371ec2 50%, #e6e6fa 50%);
+  }
+  
+  .report-card {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 1200px;
+  }
+  
+  .progress-indicator {
+    position: absolute; 
+    left: 50px; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .step {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+  }
+  
+  .step.active {
+    background-color: #371ec2;
+  }
+  
+  .content-section {
+    flex: 1;
+    padding: 60px 20px 20px 20px; 
+    margin-left: 20px;
+  }
+  .denuncia-options {
+    display: flex;
+    gap: 20px; 
+}
+
+.denuncia-option {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    border: 0.5px solid grey; 
+    background-color: white;
+    padding: 20px; 
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100px; 
+    height: 100px; 
+    transition: background-color 0.3s; 
+    background-size:auto;
+
+}
+
+.option-icon {
+    width: 60px; 
+    height: 50px; 
+    margin-bottom: 25px; 
+}
+  
+  .incident-description {
+    margin-top: 20px;
+  }
+  
+  textarea {
+    width: 80%;
+    height: 80px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    resize: vertical;  
+    max-height: 200px;
+  }
+  
+  
+  
+  
+  .info-section {
+    padding: 20px;
+    background-color: #fdfdfd;
+    border-radius: 10px;
+    width: 240px;
+    text-align: center;
+  }
+  .divider {
+    border: none;
+    border-top: 2px solid #e0e0e0; 
+    margin: 20px 0; 
+  }
+  
+  .incident-description {
+    margin-top: 20px;
+  }
+  .input-email{
+    padding:10px 80px;
+
+  }

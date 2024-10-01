@@ -1,0 +1,77 @@
+<body>
+<h2 style="font-size: xx-large;">Estado de la denuncia</h2>
+<h3>Aquí verás el progreso actual de tu denuncia</h3>
+<hr class="divider">
+<div class="progress-indicator">
+    <div class="step_ok">1</div><label style="color: green">Denuncia recibida</label>
+    <div class="separator"></div> 
+    <div class="step active" >2</div><label style="color: blue; font-weight: bold;">En revisión</label>
+    <div class="separator"></div> 
+    <div class="step">3</div><label>En investigación</label>
+    <div class="separator"></div> 
+    <div class="step ">4</div><label>Acciones en curso</label>
+    <div class="separator"></div> 
+    <div class="step ">5</div><label>Denuncia resuelta</label>
+</div>
+<h2 style="font-size: x-large;">Mi denuncia</h2>
+<h3>Datos de la denuncia</h3>
+<div class="container">
+  <div class="content-section">
+    <div class="mantenedores-grid">
+      <a class="mantenedor-item">
+        Motivos
+        <span class="descripcion">Esta área incluirá la descripción del motivo de <br> de la denuncia que el usario ha proporcionado</span>
+      </a>
+      <a class="mantenedor-item">
+        Involucrados
+        <span class="descripcion">Aquí se listarán las personas involucradas</span>
+      </a>
+      <a class="mantenedor-item">
+        Evidencias
+        <span class="descripcion">Aquí el usuario podrá ver las evidencias adjuntadas</span>
+      </a>
+      
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <h3>Nombre:</h3>
+        <input type="text" name="nombre" required disabled>
+      </div>
+      <div class="form-group">
+        <h3>Apellido:</h3>
+        <input type="text" name="apellido" required disabled>
+      </div>
+      <div class="form-group">
+        <h3>Estado en la Empresa:</h3>
+        <input type="text" name="estado" required disabled>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <h3>Cargo:</h3>
+        <input type="text" name="cargo" required disabled>
+      </div>
+      <div class="form-group">
+        <h3>Área:</h3>
+        <input type="text" name="area" required disabled>
+      </div>
+      <div class="form-group">
+        <h3>Sexo:</h3>
+        <div>
+          <input type="checkbox" class="custom-checkbox" required disabled  name="sexo" value="Masculino"> Masculino
+          <input type="checkbox" required disabled name="sexo" value="Femenino"> Femenino
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <h3>Contacto:</h3>
+        <input type="text" name="contacto" required disabled >
+      </div>
+    </div>
+  <app-chat></app-chat>
+
+  </div>
+</div>
+
+</body>

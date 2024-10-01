@@ -1,0 +1,47 @@
+<div class="modal">
+  <div class="modal-content">
+    <button class="close-btn" (click)="cerrar.emit()">✖</button>
+    <h2>Mis Datos</h2>
+    <h3>Tus datos son completamente confidenciales en el proceso de evaluación de tu denuncia</h3>
+    <form (ngSubmit)="guardarDatos()">
+      <div class="form-row">
+        <div class="form-group">
+          <h3>Nombre:</h3>
+          <input type="text" [(ngModel)]="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+          <h3>Apellido:</h3>
+          <input type="text" [(ngModel)]="apellido" name="apellido" required>
+        </div>
+        <div class="form-group">
+          <h3>Estado en la Empresa:</h3>
+          <input type="text" [(ngModel)]="estado" name="estado" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <h3>Cargo:</h3>
+          <input type="text" [(ngModel)]="cargo" name="cargo" required>
+        </div>
+        <div class="form-group">
+          <h3>Área:</h3>
+          <input type="text" [(ngModel)]="area" name="area" required>
+        </div>
+        <div class="form-group">
+          <h3>Sexo:</h3>
+          <div>
+            <input type="checkbox" [(ngModel)]="sexo" name="sexo" value="Masculino"> Masculino
+            <input type="checkbox" [(ngModel)]="sexo" name="sexo" value="Femenino"> Femenino
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <h3>Contacto:</h3>
+          <input type="text" [(ngModel)]="contacto" name="contacto" required>
+        </div>
+      </div>
+      <button class="next-btn">Guardar</button>
+    </form>
+  </div>
+</div>
