@@ -52,7 +52,7 @@ public class CreateComplaintCommandHandler
             {
                 Description = command.Description,
                 IncidentDate = command.IncidentDate,
-                EStatus = EComplaintStatus.Registry,
+                EStatus = EComplaintStatus.Pending,
             };
 
             List<ComplaintReasons> reasons = [];
