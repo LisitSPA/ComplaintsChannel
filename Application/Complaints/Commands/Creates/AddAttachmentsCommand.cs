@@ -53,22 +53,26 @@ public class AddAttachmentsCommandHandler : IRequestHandler<AddAttachmentsComman
         {
             int index = 0;
             var attachment = new Domain.Entities.Attachment(); //individual attachment
+
+            var complaint = _repository.GetAll().First(x => x.Id == command.ComplaintId);
+
             command.Attachments.ForEach(item =>
             {
-                string fileBase64 = "";
-                //using (var memoryStream = new MemoryStream())
-                //{
-                //    item.CopyTo(memoryStream);
-                //    byte[] fileBytes = memoryStream.ToArray();
-                //    fileBase64 = Convert.ToBase64String(fileBytes);
-                //}
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Attachments", complaint.TrackingCode);
+                if (!Directory.Exists(filePath))
+                {
+                    Directory.CreateDirectory(filePath);
+                }
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    item.CopyToAsync(stream);
+                }
 
                 attachment = new Domain.Entities.Attachment
                 {
-                    FileBase64 = fileBase64,
                     Description = command.AttachDescription?.Count >= index ? command.AttachDescription[index] : "",
                     FileName = item.FileName,
-                    ContentType = item.ContentType,
                     ComplaintId = command.ComplaintId
                 };
 

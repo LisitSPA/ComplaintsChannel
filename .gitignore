@@ -16,3 +16,12 @@
 /Utility/bin/Debug
 /Utility/obj
 /Api/Api.csproj.user
+/Api/.config
+/Api/bin/Release/net8.0
+/Application/bin/Release/net8.0
+/DataAccess/bin/Release/net8.0
+/Domain/bin/Release/net8.0
+/Domain/bin/Release/net8.0/Domain.deps.json
+/Proxy/bin/Release/net8.0
+/Utility/bin/Release/net8.0
+/Api/Properties/PublishProfiles

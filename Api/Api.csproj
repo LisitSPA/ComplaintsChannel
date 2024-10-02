@@ -14,6 +14,7 @@
   <ItemGroup>
     <!--<PackageReference Include="DevExpress.AspNetCore.Reporting" Version="21.1.5" />-->
     <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.0" />
+    <PackageReference Include="Azure.AI.Translation.Text" Version="1.0.0" />
     <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.3.0" />
     <PackageReference Include="Azure.Identity" Version="1.10.4" />
     <PackageReference Include="DevExpress.AspNetCore.Reporting" Version="23.2.3" />
@@ -42,6 +43,9 @@
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\Proxy\Proxy.csproj" />
     <ProjectReference Include="..\Utility\Utility.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Attachments\" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Api.Services;
 using Utility.PasswordHasher;
 using Application.Notifications;
+using Application.Translator;
 
 namespace Api.Dependencies
 {
@@ -17,6 +18,7 @@ namespace Api.Dependencies
             services.AddTransient<IPasswordHasherService, PasswordHasherService>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddTransient<IEmailNotificationService, EmailNotificationService>();
+            services.AddTransient<IAzureTranslatorService, AzureTranslatorService>();
             services.AddScoped<ValidationActionFilter>();
         }
 
