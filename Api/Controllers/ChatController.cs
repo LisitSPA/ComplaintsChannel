@@ -3,6 +3,7 @@ using Application.Chats.Queries;
 using Application.Complaints.Commands.Creates;
 using Application.Complaints.Commands.Updates;
 using Application.Complaints.Queries;
+using Application.Translator;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,26 +14,28 @@ namespace Api.Controllers
     [Route("api/chat")]
     public class ChatController : ControllerBase
     {
+        private IAzureTranslatorService _translatorService;
+
         [AllowAnonymous]
-        [HttpGet("{complaintCode}")]
-        public async Task<IActionResult> GetByComplaintId(string complaintCode)
+        [HttpGet("{complaintCode}/{language}")]
+        public async Task<IActionResult> GetByComplaintId(string complaintCode, string language)
         {
             var result = await Mediator.Send(new GetChatByComplaintCodeQuery { code = complaintCode });
-            return HandleResult(result.Result, result.ErrorProvider);
-        }
-                
-        [HttpGet("getByUser/{userId}")]
-        public async Task<IActionResult> GetByUser(int userId)
-        {
-            var result = await Mediator.Send(new GetChatByUserQuery { UserId = userId });
-            return HandleResult(result.Result, result.ErrorProvider);
+            return HandleResult(result.Result, result.ErrorProvider, language);
         }
 
-        [HttpGet("getAll")]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("getByUser/{userId}/{language}")]
+        public async Task<IActionResult> GetByUser(int userId, string language)
+        {
+            var result = await Mediator.Send(new GetChatByUserQuery { UserId = userId });
+            return HandleResult(result.Result, result.ErrorProvider, language);
+        }
+
+        [HttpGet("getAll/{language}")]
+        public async Task<IActionResult> GetAll(string language)
         {
             var result = await Mediator.Send(new GetAllChatsQuery { });
-            return HandleResult(result.Result, result.ErrorProvider);
+            return HandleResult(result.Result, result.ErrorProvider, language);
         }
 
         [AllowAnonymous]

@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using Application.Complaints.Queries.DTOs;
 using Application.Notifications;
+using Application.Users.Queries.DTOs;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Enums;
@@ -27,7 +28,7 @@ public record CreateComplaintCommand : IRequest<Response<int>>
     public string Description { get; set; }
     public DateTime IncidentDate { get; set; }
     public List<PersonInvolvedDto> PersonInvolveds { get; set; }  
-    public ComplainantDto Complainant { get; set; }
+    public UserDto Complainant { get; set; }
     public string ContactEmail { get; set; }
 
 }
@@ -122,7 +123,7 @@ public class CreateComplaintCommandHandler
          return true;
     }
 
-    private User SetComplainant(ComplainantDto complainant)
+    private User SetComplainant(UserDto complainant)
     {
         
         var person = _repoPerson.GetAllActive().Where(x => x.Names.Contains(complainant.Names) && x.LastName.Contains(complainant.LastName)).FirstOrDefault();

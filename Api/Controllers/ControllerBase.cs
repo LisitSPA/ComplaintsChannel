@@ -3,6 +3,10 @@ using Utility.ServiceErrorHandlers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using Application.Translator;
+using Microsoft.AspNetCore.Http;
+using DevExpress.Office.Utils;
+using Newtonsoft.Json;
 
 namespace Api.Controllers
 {
@@ -11,8 +15,11 @@ namespace Api.Controllers
         public ISender _mediator;
         public ISender Mediator => _mediator ??= HttpContext.RequestServices.GetService<ISender>();
 
+        public IAzureTranslatorService _translatorService;
+        public IAzureTranslatorService Translator => _translatorService ??= HttpContext.RequestServices.GetService<IAzureTranslatorService>();
+
         [ApiExplorerSettingsAttribute(IgnoreApi = true)]
-        public IActionResult HandleResult([FromBody]object data, [FromQuery]ErrorServiceProvider errors)
+        public IActionResult HandleResult([FromBody]object data, [FromQuery]ErrorServiceProvider errors, string language = "es")
         {           
             if(errors.HasError())
             {
@@ -30,6 +37,12 @@ namespace Api.Controllers
             }
             else
             {
+                if(language != "es")
+                {
+                    var translatedData = Translator.Translate(JsonConvert.SerializeObject(data, Formatting.Indented), language).Result;
+                    data = JsonConvert.DeserializeObject(translatedData);
+                }               
+
                 return Ok(new ApiResponse(data, errors.GetWarnings()));
             }
         }

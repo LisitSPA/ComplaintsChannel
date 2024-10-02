@@ -22,6 +22,7 @@ namespace Domain.Entities
         public string UserName { get; set; }
         public string Password { get; set; }
         public bool ChangePassword { get; set; }
+        public bool Deleted { get; set; }
 
         public List<Complaint> Complaints { get; set; }
         public List<ComplaintInvolved> ComplaintInvolveds { get; set; }

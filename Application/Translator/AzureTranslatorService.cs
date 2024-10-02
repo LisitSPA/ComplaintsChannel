@@ -11,6 +11,8 @@ using Microsoft.CodeAnalysis.Scripting;
 using Microsoft.SharePoint.Client;
 using System.Collections.Generic;
 using System.Linq;
+using RestSharp;
+using Application.Translator.Queries.DTOs;
 
 namespace Application.Translator
 {
@@ -21,21 +23,42 @@ namespace Application.Translator
 
     public class AzureTranslatorService(IConfiguration _config) : IAzureTranslatorService
     {
-        private readonly string apiKey = _config["AzureTranslator:Key"];
+        private readonly string key = _config["AzureTranslator:Key"];
         private readonly string endpoint = _config["AzureTranslator:Endpoint"];
-        private static readonly string fromLanguage = "es";
+        private readonly string from = "es";
+        private static readonly string location = "eastus";
 
         public async Task<string> Translate(string text, string toLanguage)
         {
-            var credential = new AzureKeyCredential(apiKey);
-            TextTranslationClient client = new(credential);
+            try
+            {
+                string route = $"/translate?api-version=3.0&from={from}&to={toLanguage}";
+                object[] body = new object[] { new { Text = text } };
+                var requestBody = JsonConvert.SerializeObject(body);
+
+                using (var client = new HttpClient())
+                using (var request = new HttpRequestMessage())
+                {
+                    request.Method = HttpMethod.Post;
+                    request.RequestUri = new Uri(endpoint + route);
+                    request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
+                    request.Headers.Add("Ocp-Apim-Subscription-Key", key);
+                    request.Headers.Add("Ocp-Apim-Subscription-Region", location);
 
 
-            Response<IReadOnlyList<TranslatedTextItem>> response = await client.TranslateAsync(toLanguage, text).ConfigureAwait(false);
-            IReadOnlyList<TranslatedTextItem> translations = response.Value;
-            TranslatedTextItem translation = translations.FirstOrDefault();
+                    HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
 
-            return translation.Translations[0].Text;
+                    string responseString = await response.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<AzureResponseDto[]>(responseString)[0].translations[0].text;
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                return text;
+            }
+            
+
         }
     }
 }

@@ -32,14 +32,14 @@ public class GetChatByComplaintCodeQueryHandler(
         Response<List<ChatDto>> result = new();
         try
         {
-            var source = _repository.GetAll()
-                            .Include(x => x.Complaint)
-                            .Include(x => x.User)
-                            .Where(x => x.Complaint.TrackingCode == request.code)
-                           .ProjectTo<List<ChatDto>>(_mapper.ConfigurationProvider)
-                           .FirstOrDefault();
+            //var source = _repository.GetAll()
+            //                .Include(x => x.Complaint)
+            //                .Include(x => x.User)
+            //                .Where(x => x.Complaint.TrackingCode == request.code)
+            //               .ProjectTo<List<ChatDto>>(_mapper.ConfigurationProvider)
+            //               .FirstOrDefault();
 
-            result.Result = source;
+            //result.Result = source;
 
             return result;
 

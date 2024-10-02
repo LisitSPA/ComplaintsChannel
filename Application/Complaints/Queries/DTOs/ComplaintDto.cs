@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Application.Users.Queries.DTOs;
+using AutoMapper;
 using Domain.Entities;
 using Domain.Enums;
 using System;
@@ -22,7 +23,7 @@ namespace Application.Complaints.Queries.DTOs
         public string ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
         public string TrackingEmail { get; set; }
-        public ComplainantDto Complainant { get; set; }
+        public UserDto Complainant { get; set; }
         public List<PersonInvolvedDto> Involveds { get; set; }
         public List<ComplaintType> Reasons { get; set; }
         public List<Attachment> Attachments { get; set; }

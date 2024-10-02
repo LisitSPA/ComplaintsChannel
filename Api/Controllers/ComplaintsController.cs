@@ -10,20 +10,20 @@ namespace Api.Controllers
 {
     [ApiController]
     [Route("api/complaints")]
-    public class ComplaintsController: ControllerBase
+    public class ComplaintsController : ControllerBase
     {
-        [HttpGet("types/all", Name = "GetAllComplaintTypes")]
-        public async Task<IActionResult> GetAllComplaintTypes()
+        [HttpGet("types/all/{language}", Name = "GetAllComplaintTypes")]
+        public async Task<IActionResult> GetAllComplaintTypes(string language)
         {
-            var result = await Mediator.Send(new GetAllComplaintTypesQuery {});
-            return HandleResult(result.Result, result.ErrorProvider);
+            var result = await Mediator.Send(new GetAllComplaintTypesQuery { });
+            return HandleResult(result.Result, result.ErrorProvider, language);
         }
 
-        [HttpGet("{code}", Name = "GetComplaintByCode")]
-        public async Task<IActionResult> GetComplaintByCode(string code)
+        [HttpGet("{code}/{language}", Name = "GetComplaintByCode")]
+        public async Task<IActionResult> GetComplaintByCode(string code, string language)
         {
             var result = await Mediator.Send(new GetComplaintByCodeQuery { code = code});
-            return HandleResult(result.Result, result.ErrorProvider);
+            return HandleResult(result.Result, result.ErrorProvider, language);
         }
 
         [HttpPost("", Name = "CreateComplaint")]

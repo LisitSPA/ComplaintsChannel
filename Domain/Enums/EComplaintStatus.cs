@@ -5,10 +5,14 @@ namespace Domain.Enums
 {
     public enum EComplaintStatus //TODo
     {
-        [Description("Registrada")]
-        Registry = 1,
+        [Description("Pendiente")]
+        Pending = 1,
+        [Description("En proceso de investigación")]
         InProcess = 2,
-        Resolved = 3,
+        [Description("Desistimada")]
+        Rejected = 3,
+        [Description("SancionAplicada")]
+        sanctionApplied = 4,
 
     }
 }
