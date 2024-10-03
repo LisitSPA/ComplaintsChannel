@@ -1,0 +1,82 @@
+.informacion {
+  background-color: #f1f1f1;
+    padding: 20px;
+    margin-top: 250px;
+    border-radius: 8px;
+    font-family: 'Open Sans', sans-serif;
+    margin-left: 90px
+
+  }
+  
+  .informacion h1 {
+    text-align: left;
+    color: black;
+    font-family: 'Rubik', sans-serif;
+    font-size: xx-large;
+
+  }
+  
+  
+  .informacion p {
+    text-align: left;
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+  
+  .informacion h2 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .report-list {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .report-list ul {
+    flex: 1;
+    list-style-type: disc;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    padding-left: 20px; 
+
+  }
+  
+  .report-list li {
+    margin-bottom: 10px;
+    font-size: 17px;
+    color: #333; 
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    
+  }
+
+  
+  .squares {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    max-width: 50%; 
+    margin: 10px; 
+    margin-top: -180px;
+  }
+  
+  .square {
+    width: calc(33.33% - 10px); 
+    height: 80px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f1f1;
+    text-align: center;
+    font-size: medium;
+    color: #333;
+    border: 1.5px solid #56499f;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+
+

@@ -1,0 +1,151 @@
+body {
+  margin: 30px 50px; 
+  padding: 20px;
+  background-color: #ffffffd1;
+}
+
+h2, h3 {
+  margin: 10px 0; 
+}
+
+h2 {
+  font-size: 2em; 
+}
+
+h3 {
+  color: #333;
+}
+
+.container {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  background: #e6e6fa;
+  margin-top: 20px;
+}
+
+.progress-indicator {
+  display: flex;
+  flex-wrap: wrap; 
+  align-items: center;
+  margin-top: 10px;
+}
+
+.step {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.step_ok {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  color: green; 
+  border: 2px solid green; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.step.active {
+  background-color: #371ec2;
+}
+
+.divider {
+  border: none;
+  border-top: 2px solid #e0e0e0;
+  margin: 20px 0;
+}
+
+.mantenedores-grid {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between;
+  font-family: "Inria Sans", sans-serif;
+  font-size: large;
+  color: blue;
+  font-weight: bold;
+}
+
+.mantenedor-item {
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 8px ;
+  width: 27%;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  height: 80px;
+  margin-bottom: 10px; 
+  border: 1px solid blue; 
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  flex: 1 1 150px; 
+  margin-right: 15px;
+}
+
+.form-group:last-child {
+  margin-right: 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.descripcion {
+  display: block; 
+  font-size: small; 
+  color: #666;
+}
+
+.content-section {
+  padding: 20px; 
+  background-color: #e6e6fa; 
+  border-radius: 10px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  body {
+    margin: 20px 10px; 
+  }
+
+  .mantenedor-item {
+    width: 100%; 
+  }
+
+  .step {
+    width: 30px; 
+    height: 30px;
+  }
+
+  h2 {
+    font-size: 1.5em; 
+  }
+
+ 
+
+  .form-group {
+    margin-right: 0; 
+    margin-bottom: 15px;
+  }
+}
