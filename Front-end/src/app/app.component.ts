@@ -14,23 +14,23 @@
   import { DenuncianteComponent } from './user/denunciante/denunciante.component';
   import { MisdatosComponent } from './user/misdatos/misdatos.component';
   import { FormsModule } from '@angular/forms'; 
-  import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
-  import { ChartsAdmin } from './admin/charts-component/charts-component.component';
-  import { QuickAccessAdmin } from './admin/quick-access-component/quick-access-component.component';
-  import { RecentComplaintsTableAdmin } from './admin/recent-complaints-table-component/recent-complaints-table-component.component';
-  import { SidebarAdmin } from './admin/sidebar-component/sidebar-admin.component';
-  import { ReactiveFormsModule } from '@angular/forms';
+  // import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
+  // import { ChartsAdmin } from './admin/charts-component/charts-component.component';
+  // import { QuickAccessAdmin } from './admin/quick-access-component/quick-access-component.component';
+  // import { RecentComplaintsTableAdmin } from './admin/recent-complaints-table-component/recent-complaints-table-component.component';
+  // import { SidebarAdmin } from './admin/sidebar-component/sidebar-admin.component';
+  // import { ReactiveFormsModule } from '@angular/forms';
   import { TrackingCodeComponent } from './user/tracking-code/tracking-code.component';
   import { SeguimientoComponent } from './user/seguimiento/seguimiento.component';
-  import { HeaderAdmin } from './admin/header-component/header-admin.component';
+  // import { HeaderAdmin } from './admin/header-component/header-admin.component';
   import { BaseChartDirective } from 'ng2-charts';
   import { ChatComponent } from './user/chat/chat.component';
   @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [ HeaderAdmin,ChatComponent, BaseChartDirective,SidebarAdmin, SeguimientoComponent, TrackingCodeComponent,ReactiveFormsModule, RouterOutlet, FaqComponent, FooterComponent, HeaderComponent, HomeComponent, HowItWorksComponent,InformationComponent,
+    imports: [ ChatComponent, BaseChartDirective, SeguimientoComponent, TrackingCodeComponent, RouterOutlet, FaqComponent, FooterComponent, HeaderComponent, HomeComponent, HowItWorksComponent,InformationComponent,
       LoginComponent, FormsModule,CommonModule, MisdatosComponent, ReportComponent, InvolucradosComponent,EvidenciaComponent,DenuncianteComponent,
-      HomeAdminComponent, ChartsAdmin, QuickAccessAdmin, RecentComplaintsTableAdmin,
+      // HomeAdminComponent, ChartsAdmin, QuickAccessAdmin, RecentComplaintsTableAdmin,HeaderAdmin,SidebarAdmin,ReactiveFormsModule,
     ],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
