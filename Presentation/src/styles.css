@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+
+h2{
+    font-family: 'Open Sans';
+
+}
+
+
+h3, .subtitle, h4, span,a , div, label, li{
+    font-size: medium; 
+    text-align: left;
+    font-weight: 200;
+    font-family: 'Open Sans';
+
+}
+
+label {
+  font-size: small; 
+    text-align: left;
+    font-weight: 200;
+    font-family: 'Open Sans';
+
+
+}
+.title{
+    font-family: 'Open Sans';
+    font-size: x-large;
+    text-align: left;
+}
+
+::placeholder{
+    font-family: 'Open Sans';
+
+}
+.reportlogo {
+    max-width: 80%; 
+    height: auto; 
+    margin-right: 40px;
+  }
+
+  
+.body{
+    margin: 0;
+    padding: 0;
+}
+
+.denuncia-btn, .ver-mas-btn {
+    border: 1px solid #371ec2;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: #371ec2;
+    cursor: pointer;
+    font-family: 'Open Sans';
+
+  }
+
+  
+  .denuncia-btn:hover {
+    background-color: #371ec2;
+    color: white;
+  }
+    
+  .next-btn {
+    background-color: #371ec2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Open Sans';
+
+
+  }
+  .incident-description {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+    
+  .incident-date {
+    margin-top: 10px;
+    font-family: 'Open Sans';
+
+  }
+
+  input[type="date"] {
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    font-family: 'Open Sans';
+
+  }
+ 
+  
+  .step {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    font-family: 'Open Sans';
+
+  }
+  .separator {
+    width: 40px; 
+    height: 2px; 
+    background-color: #e0e0e0; 
+    align-self: center; 
+    margin: 0 10px; 
+  }
+
+ 
+  .violet{
+    color:#371ec2;
+    font-weight: 500;
+    text-decoration: underline;
+  }

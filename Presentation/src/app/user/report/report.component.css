@@ -1,0 +1,79 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #6653aa, #371ec2 50%, #e6e6fa 50%);
+  }
+  
+  .report-card {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 1200px;
+  }
+  
+  .progress-indicator {
+    position: absolute; 
+    left: 50px; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+
+  
+  .step.active {
+    background-color: #371ec2;
+    font-family: 'Open Sans';
+
+  }
+  
+  .content-section {
+    flex: 1;
+    padding: 60px 20px 20px 20px; 
+    margin-left: 20px;
+  }
+  
+  .denuncia-options {
+    display: flex;
+    gap: 10px;
+  }
+  
+
+  textarea {
+    width: 80%;
+    height: 80px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    resize: vertical;  
+    max-height: 200px;
+  }
+
+
+
+  .info-section {
+    padding: 20px;
+    background-color: #fdfdfd;
+    border-radius: 10px;
+    width: 240px;
+    text-align: center;
+  }
+  .divider {
+    border: none;
+    border-top: 2px solid #e0e0e0; 
+    margin: 20px 0; 
+  }
+  
+  .incident-description {
+    margin-top: 20px;
+  }
+ 
+  
