@@ -8,6 +8,7 @@ using System.Threading;
 using System.Linq;
 using AutoMapper.QueryableExtensions;
 using Application.Complaints.Queries.DTOs;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Application.Complaints.Queries;
@@ -36,6 +37,11 @@ public class GetComplaintByCodeQueryHandler : IRequestHandler<GetComplaintByCode
         try
         {
             var source = _repository.GetAll()
+                            .Include(x=>x.Complainant)
+                            .Include(x=>x.Attachments)
+                            .Include(x=>x.ComplaintInvolved)
+                            .Include(x=>x.ComplaintHistory)
+                            .Include(x=>x.ComplaintReasons)
                             .Where(x => x.TrackingCode == request.code)
                            .ProjectTo<ComplaintDto>(_mapper.ConfigurationProvider)
                            .FirstOrDefault();

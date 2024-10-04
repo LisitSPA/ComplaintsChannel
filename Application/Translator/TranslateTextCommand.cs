@@ -37,13 +37,13 @@ public class TranslateTextCommandHandler(IAzureTranslatorService _translatorServ
         Response<List<string>> result = new();
         try
         {
-            var traductions = new List<string>();
+            var translates = new List<string>();
             command.Text.ForEach(text =>
             {
-                traductions.Add(_translatorService.Translate(text, command.Language).Result);
+                translates.Add(_translatorService.Translate(text, command.Language).Result);
             });
 
-            result.Result = traductions;
+            result.Result = translates;
         }
         catch (Exception ex)
         {

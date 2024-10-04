@@ -2,7 +2,6 @@
 CREATE TABLE dbo.Attachments (
     Id INT PRIMARY KEY IDENTITY(1,1),
 	ComplaintId int not null,
-    FileBase64 VARCHAR(MAX) NOT NULL,
     FileName VARCHAR(50) NOT NULL,
     Description VARCHAR(150) NOT NULL,
 	Active bit NOT NULL

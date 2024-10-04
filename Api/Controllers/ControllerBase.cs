@@ -39,6 +39,8 @@ namespace Api.Controllers
             {
                 if(language != "es")
                 {
+                    //var dataString = JsonConvert.SerializeObject(data, Formatting.Indented).Replace("null", "");
+
                     var translatedData = Translator.Translate(JsonConvert.SerializeObject(data, Formatting.Indented), language).Result;
                     data = JsonConvert.DeserializeObject(translatedData);
                 }               

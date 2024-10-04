@@ -4,7 +4,7 @@ using System.ComponentModel;
 namespace Domain.Enums
 {
     [Flags]
-    public enum EComplaintStatus //TODo
+    public enum EComplaintStatus 
     {
         [Description("Pendiente")]
         Pending = 1,
@@ -13,11 +13,11 @@ namespace Domain.Enums
         [Description("Finalizada")]
         Completed = 3,
         [Description("Desistimada")]
-        Rejected = 4,
+        Rejected = 31,
         [Description("Sanción Aplicada")]
-        SanctionApplied = 5,
+        SanctionApplied = 32,
         [Description("Medidas preventivas")]
-        PreventiveMeasures = 6,
+        PreventiveMeasures = 33,
 
     }
 }

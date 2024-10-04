@@ -58,7 +58,7 @@ public class AddAttachmentsCommandHandler : IRequestHandler<AddAttachmentsComman
 
             command.Attachments.ForEach(item =>
             {
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Attachments", complaint.TrackingCode);
+                var filePath = Path.Combine("Attachments", complaint.TrackingCode);
                 if (!Directory.Exists(filePath))
                 {
                     Directory.CreateDirectory(filePath);
