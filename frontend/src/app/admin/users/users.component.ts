@@ -2,29 +2,40 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderAdmin } from '../header-component/header-admin.component';
 import { NewUserComponent } from '../new-user/new-user.component';
+import { EditarUsuarioComponent } from '../../editar-usuario/editar-usuario.component';
+import { EliminarUsuarioComponent } from '../../eliminar-usuario/eliminar-usuario.component';
 import { FormsModule } from '@angular/forms';  
 import { SidebarAdmin } from '../admin/sidebar-component/sidebar-admin.component';
 
-
 interface Usuario {
-  id: string;
+  id: number;  // Cambia de string a number
   nombre: string;
   tipo: string;
   estado: string;
+  seleccionado?: boolean; 
 }
+
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CommonModule, SidebarAdmin,HeaderAdmin,NewUserComponent, FormsModule],
+  imports: [
+    CommonModule, 
+    SidebarAdmin, 
+    HeaderAdmin, 
+    NewUserComponent, 
+    EditarUsuarioComponent, 
+    EliminarUsuarioComponent, 
+    FormsModule
+  ], 
   templateUrl: './users.component.html',
-  styleUrl: './users.component.css'
+  styleUrls: ['./users.component.css']
 })
 export class UsersComponent {
- usuarios: Usuario[] = [
+  usuarios: Usuario[] = [
     {
-      id: '00000',
+      id: 0,
       nombre: 'nombre',
-      tipo: 'tipo',
+      tipo: 'Investigador',
       estado: 'activo',
     },
   ];
@@ -32,6 +43,10 @@ export class UsersComponent {
   paginatedColaboradores: Usuario[] = [];
   currentPage = 1;
   itemsPerPage = 7;
+  mostrarFormulario: boolean = false;
+  mostrarEditar: boolean = false; 
+  mostrarEliminar: boolean = false;
+  usuarioSeleccionado: Usuario | null = null; 
 
   constructor() {
     this.updatePaginatedColaboradores();
@@ -60,21 +75,61 @@ export class UsersComponent {
       this.updatePaginatedColaboradores();
     }
   }
+
   pages() {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
-  
+
   goToPage(page: number) {
     this.currentPage = page;
     this.updatePaginatedColaboradores();
   }
-  mostrarFormulario: boolean = false;
 
   abrirFormulario() {
     this.mostrarFormulario = true;
+    this.mostrarEditar = false;
+    this.mostrarEliminar = false;
   }
 
   cerrarFormulario() {
     this.mostrarFormulario = false;
+    this.mostrarEditar = false;
+    this.mostrarEliminar = false;
+  }
+
+  editarUsuario(usuario: Usuario) {
+    this.usuarioSeleccionado = usuario;
+    this.mostrarEditar = true;
+    this.mostrarFormulario = false;
+    this.mostrarEliminar = false;
+  }
+  
+
+  eliminarUsuarios() {
+    if (this.usuarioSeleccionado) {  // Solo proceder si hay un usuario seleccionado
+      this.mostrarEliminar = true;
+      this.mostrarFormulario = false;
+      this.mostrarEditar = false;
+    } else {
+      alert("Por favor selecciona un usuario antes de eliminar");
+    }
+  }
+  
+
+  // Función para cerrar el modal de eliminar
+  cerrarEliminar() {
+    this.mostrarEliminar = false;
+  }
+
+  confirmarEliminarUsuario() {
+    if (this.usuarioSeleccionado) {
+      this.usuarios = this.usuarios.filter(usuario => usuario.id !== this.usuarioSeleccionado!.id);
+      this.updatePaginatedColaboradores();
+      this.mostrarEliminar = false;
+    }
+  }
+
+  seleccionarUsuario(usuario: Usuario, event: Event) {
+    usuario.seleccionado = (event.target as HTMLInputElement).checked;
   }
 }

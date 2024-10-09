@@ -14,6 +14,7 @@ import { DenuncianteComponent } from './user/denunciante/denunciante.component';
 import { ConfigurationComponent } from './admin/configuration/configuration.component';
 import { DenunciasComponent } from './admin/denuncias/denuncias.component';
 import { ChatAdminComponent } from './admin/chat-admin/chat-admin.component';
+import { RecuperarComponent } from './recuperar/recuperar.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -32,5 +33,6 @@ export const routes: Routes = [
   {path:'successreport', component:SuccessreportComponent},
   {path:'login', component:LoginComponent},
   {path:'chatadmin', component: ChatAdminComponent},
+  {path:'recuperar', component: RecuperarComponent},
 
 ];

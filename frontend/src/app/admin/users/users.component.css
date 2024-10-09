@@ -1,76 +1,9 @@
-
-.container {
-  display: flex;
-  height: 100vh;
-  background-color: #f1f1f1;
-}
-
-.main-content {
-  margin-left: calc(330px + 20px);
-  flex-grow: 1;
-  padding: 20px;
-  background-color: #f1f1f1;
-}
-
-body {
-  background-color: rgb(238, 238, 238);
-  font-family: "Open Sans", sans-serif;
-  font-size: small;
-  overflow-y: auto;
-}
-
-
-
-.toolbar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  margin-top: 5%;
-}
-
-.search-bar {
-  width: 20%;
-  padding: 8px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.btn-edit {
-  background-color: #007bff;
-  color: white;
-  padding: 5px;
-  border: none;
-  border-radius: 3px;
-}
-
-.btn-delete {
-  background-color: #dc3545;
-  color: white;
-  padding: 5px;
-  border: none;
-  border-radius: 3px;
-}
-
-.estado-fijo {
-  background-color: #7fe08b;
-  color: white;
-  padding: 5px;
-  border-radius: 5px;
-}
-
-.estado-temporal {
-  background-color: #ffc107;
-  color: black;
-  padding: 5px;
-  border-radius: 5px;
-}
-
-.btn-primary {
+.btn-primary, .btn-edit {
   background-color: #007bff;
   color: white;
   border: none;
+  padding: 5px;
+  border-radius: 3px;
 }
 
 .btn-secondary {
@@ -179,19 +112,54 @@ app-sidebar-admin {
   align-items: center;
   justify-content: space-around;
 }
-.usuario-option {
+
+.usuario-option, .eliminar-option {
   display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  border: 0.5px solid grey; 
+  flex-direction: column;
+  align-items: center;
+  border: 0.5px solid grey;
   background-color: white;
-  padding: 20px; 
+  padding: 20px;
   border-radius: 10px;
   cursor: pointer;
-  width: 7%; 
-  height: 2%; 
-  transition: background-color 0.3s; 
-  background-size:auto;
-
+  width: 120px;
+  height: 50px;
+  transition: background-color 0.3s;
+  text-align: center;
 }
 
+.usuario-option:hover, .eliminar-option:hover {
+  background-color: #f0f0f0;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  background-color: #f1f1f1;
+}
+
+.main-content {
+  margin-left: calc(330px + 20px);
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f1f1f1;
+}
+
+body {
+  background-color: rgb(238, 238, 238);
+  font-family: "Open Sans", sans-serif;
+  font-size: small;
+  overflow-y: auto;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.botones-usuario {
+  display: flex;
+  gap: 10px;
+}

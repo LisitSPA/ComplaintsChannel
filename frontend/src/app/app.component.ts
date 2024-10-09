@@ -31,10 +31,14 @@
   import { QuickAccessAdmin } from './admin/quick-access-component/quick-access-component.component';
   import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
   import { SidebarAdmin } from './admin/admin/sidebar-component/sidebar-admin.component';
+  import { HttpClientModule } from '@angular/common/http';
+  import { TranslateService } from './services/translate.service';
+
+
   @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [NewUserComponent, ChatAdminComponent, ConfigurationComponent,  DenunciasComponent, RouterOutlet,FaqComponent, FooterComponent,HeaderComponent,HomeComponent, HowItWorksComponent, InformationComponent, LoginComponent, CommonModule,ReportComponent,InvolucradosComponent,
+    imports: [  HttpClientModule, NewUserComponent, ChatAdminComponent, ConfigurationComponent,  DenunciasComponent, RouterOutlet,FaqComponent, FooterComponent,HeaderComponent,HomeComponent, HowItWorksComponent, InformationComponent, LoginComponent, CommonModule,ReportComponent,InvolucradosComponent,
       EvidenciaComponent, DenuncianteComponent, MisdatosComponent, FormsModule, HomeAdminComponent, ChartsAdmin, QuickAccessAdmin, RecentComplaintsTableAdmin, SidebarAdmin,
       ReactiveFormsModule, TrackingCodeComponent, SeguimientoComponent, HeaderAdmin, BaseChartDirective, ChatComponent, UsersComponent,
     ],
@@ -48,9 +52,10 @@
     showAdminHeader: boolean = false;
     showAdminSidebar: boolean = false;
     showHeaderFooter: boolean = true;
+    selectedLanguage = 'en';  
 
 
-    constructor(private router: Router) {
+    constructor(private router: Router,  private translateService: TranslateService) {
       this.router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
           this.showHeaderFooter = !event.url.includes('admin');
@@ -72,5 +77,18 @@
         }
 
     
-    
+        translatePage() {
+          const elementsToTranslate = document.querySelectorAll('body *');  // Selecciona todo el contenido visible
+      
+          elementsToTranslate.forEach(element => {
+            if (element.textContent && element.textContent.trim()) {
+              this.translateService.translateText(element.textContent, this.selectedLanguage)
+                .subscribe(translatedText => {
+                  element.textContent = translatedText;
+                }, error => {
+                  console.error('Error en la traducción:', error);
+                });
+            }
+          });
+        }
   }

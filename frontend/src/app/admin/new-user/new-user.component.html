@@ -1,39 +1,49 @@
 <div class="modal">
-    <div class="modal-content">
-      <button class="close-btn" (click)="cerrar.emit()">✖</button>
-      <h2>Crear usuario</h2>
-      <form (ngSubmit)="guardarDatos()">
-        <div class="form-row">
-          <div class="form-group">
-            <h3>Nombre:</h3>
-            <input type="text" [(ngModel)]="nombre" name="nombre" required>
-          </div>
-          <div class="form-group">
-            <h3>Tipo de usuario:</h3>
-            <input type="text" [(ngModel)]="tipo" name="tipo" required>
-          </div>
-          <div class="form-group">
-            <h3>Estado</h3>
-            <input type="text" [(ngModel)]="estado" name="estado" required>
+  <div class="modal-content">
+    <button class="close-btn" (click)="cerrar.emit()">✖</button>
+    <h2>Crear usuario</h2>
+    <form (ngSubmit)="guardarDatos()">
+      <div class="form-row">
+        <div class="form-group">
+          <h3>Nombre:</h3>
+          <input type="text" [(ngModel)]="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+          <h3>Tipo de usuario:</h3>
+          <select [(ngModel)]="tipo" name="tipo" required>
+            <option value="1">Investigador</option>
+            <option value="2">Administrador</option>
+            <option value="3">Usuario</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <h3>Estado</h3>
+          <select [(ngModel)]="estado" name="estado" required>
+            <option value="activo">Activo</option>
+            <option value="inactivo">Inactivo</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <h3>E-mail de usuario:</h3>
+          <input type="email" [(ngModel)]="email" name="email" required>
+        </div>
+       
+        <div class="form-group">
+          <h3>Sexo:</h3>
+          <div>
+            <label>
+              <input type="radio" [(ngModel)]="sexo" name="sexo" value="Masculino" required> Masculino
+            </label>
+            <label>
+              <input type="radio" [(ngModel)]="sexo" name="sexo" value="Femenino" required> Femenino
+            </label>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <h3>e-mail de usuario:</h3>
-            <input type="text" [(ngModel)]="email" name="e-mail" required>
-          </div>
-         
-          <div class="form-group">
-            <h3>Sexo:</h3>
-            <div>
-              <input type="checkbox" [(ngModel)]="sexo" name="sexo" value="Masculino"> Masculino
-              <input type="checkbox" [(ngModel)]="sexo" name="sexo" value="Femenino"> Femenino
-            </div>
-          </div>
-        </div>
-        
-        <button class="next-btn">Guardar</button>
-      </form>
-    </div>
+      </div>
+      
+      <button class="next-btn">Guardar</button>
+    </form>
   </div>
-  
+</div>

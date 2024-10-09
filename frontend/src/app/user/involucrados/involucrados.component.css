@@ -149,4 +149,31 @@
   
   .next-btn:hover {
     background-color: #6653aa; 
+  }  
+
+  .manual-entry {
+    margin-top: 20px;
+  }
+  
+  .input-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; 
+  }
+  
+  .input-field {
+    flex: 1; 
+  }
+  
+  .input-field input {
+    width: 100%; 
+    padding: 15px; 
+    font-size: 16px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; 
+  }
+  
+  .input-field h3 {
+    margin-bottom: 8px;
   }

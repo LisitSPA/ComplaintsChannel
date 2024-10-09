@@ -1,94 +1,168 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
-  }
-  
-  .report-card {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 1200px;
-  }
-  
-  .progress-indicator {
-    position: absolute; 
-    left: 50px; 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
+}
 
-  
-  .step.active {
-    background-color: #371ec2;
-    font-family: 'Open Sans';
+.report-card {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  height: 70%;
+  overflow-y: scroll;
+}
 
-  }
-  
-  .content-section {
-    flex: 1;
-    padding: 30px 20px 20px 20px; 
-    margin-left: 20px;
-    display: flex;        
-    flex-direction: column; 
-  }
-  
-  .denuncia-options {
-    display: flex;
-    gap: 10px;
-  }
-  
+.progress-indicator {
+  position: absolute;
+  left: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
-  textarea {
-    width: 80%;
-    height: 80px;
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #e0e0e0;
-    resize: vertical;  
-    max-height: 200px;
-  }
+.step.active {
+  background-color: #371ec2;
+  font-family: 'Open Sans';
+}
 
+.separator {
+  width: 20px;
+  height: 2px;
+  background-color: #e0e0e0;
+  margin: 0 10px;
+}
 
+.content-section {
+  flex: 1;
+  padding: 30px 20px 20px 20px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
 
-  .info-section {
-    padding: 20px;
-    background-color: #fdfdfd;
-    border-radius: 10px;
-    width: 240px;
-    text-align: center;
-  }
-  .divider {
-    border: none;
-    border-top: 2px solid #e0e0e0; 
-    margin: 20px 0; 
-  }
-  
-  .incident-description {
-    margin-top: 20px;
-  }
- 
-  .next-btn {
-    align-self: flex-end; 
-    background-color: linear-gradient(to bottom, #6653aa, #371ec2); 
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    transition: background-color 0.3s;
-  }
-  
-  .next-btn:hover {
-    background-color: #6653aa; 
-  }
+.denuncia-options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.ver-mas-btn {
+  display: block;
+  margin-top: 10px;
+  color: #371ec2;
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-align: left;
+  padding-left: 0;
+}
+
+.more-reasons {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.more-reasons label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.more-reasons input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.denuncia-btn {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.denuncia-btn.selected {
+  background-color: #371ec2;
+  color: white;
+}
+
+.divider {
+  border: none;
+  border-top: 2px solid #e0e0e0;
+  margin: 20px 0;
+}
+
+.incident-description {
+  margin-top: 20px;
+}
+
+textarea {
+  width: 80%;
+  height: 80px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  resize: vertical;
+  max-height: 200px;
+}
+
+.incident-date input[type="date"] {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  margin-top: 10px;
+  width: 200px;
+}
+
+.info-section {
+  padding: 20px;
+  background-color: #fdfdfd;
+  border-radius: 10px;
+  width: 240px;
+  text-align: center;
+}
+
+.info-section .title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.info-section .subtitle {
+  font-size: 18px;
+  color: #888;
+}
+
+.next-btn {
+  align-self: flex-end;
+  background-color: #371ec2;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.next-btn:hover {
+  background-color: #6653aa;
+}
+.ver-mas-btn {
+  display: block;
+  margin-top: 10px;
+  color: #371ec2;
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-align: left;
+  padding-left: 0;
+}
