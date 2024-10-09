@@ -1,0 +1,89 @@
+<div class="container">
+  <app-sidebar-admin></app-sidebar-admin>
+
+<div class="main-content">
+  <app-header-admin></app-header-admin>
+  <div class="header-container">
+    <h2>Acciones realizadas</h2>
+    <h2>Acciones desestimadas</h2>
+  </div>
+
+  <div class="container-denuncias">
+    <div class="sidebar-denuncias">
+      <h2>Denuncias</h2>
+      <h3>Supervisión de denuncias</h3>
+      <h3>Desestimadas </h3>
+    </div>
+
+<div class="table-container">
+    <div class="toolbar">
+      <button (click)="toggleView()" class="btn-primary">Vista de lista</button>
+    </div>
+    
+    <div *ngIf="isListView" class="list-view">
+      <div *ngFor="let denuncia of denuncias" class="denuncia-item">
+        <div class="denuncia-header">
+          <span>Hora: {{ denuncia.fecha | date:'shortTime' }}</span>
+          <span>Fecha: {{ denuncia.fecha | date:'shortDate' }}</span>
+          <span>Anónimo: {{ denuncia.anonimo }}</span>
+          <span>Motivo: {{ denuncia.motivo }}</span>
+          <span><button class="btn-primary">Ver evidencia</button></span>
+        </div>
+        <div class="denuncia-status">
+          <strong>Estado:</strong> {{ denuncia.estado }}
+        </div>
+        <div class="denuncia-note">
+          <strong>Nota:</strong> {{ denuncia.evidencias }}
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="!isListView" class="table-wrapper">
+      <table class="table">
+        <thead>
+          <tr>
+            <th><input type="checkbox"></th>
+            <th>Id</th>
+            <th>Motivo</th>
+            <th>Fecha</th>
+            <th>Anónimo</th>
+            <th>Estado</th>
+            <th>Evidencia</th>
+            <th>Chat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let denuncia of paginatedColaboradores">
+            <td><input type="checkbox"></td>
+            <td>{{ denuncia.id }}</td>
+            <td>{{ denuncia.motivo }}</td>
+            <td>{{ denuncia.fecha }}</td>
+            <td>{{ denuncia.anonimo }}</td>
+            <td [ngClass]="denuncia.estado === 'activo' ? 'estado-activo' : 'estado-inactivo'">{{ denuncia.estado }}</td>
+            <td>{{ denuncia.evidencias }}</td>
+            <td>{{ denuncia.chat }}</td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="pagination">
+      <span class="label">Principio</span>
+      <span (click)="previousPage()" [class.disabled]="currentPage === 1" class="arrow">‹</span>
+      
+      <div class="page-numbers">
+        <button *ngFor="let page of pages()" (click)="goToPage(page)" [class.active]="currentPage === page">
+          {{ page }}
+        </button>
+      </div>
+      
+      <span (click)="nextPage()" [class.disabled]="currentPage === totalPages" class="arrow">›</span>
+      <span class="label">Final</span>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  

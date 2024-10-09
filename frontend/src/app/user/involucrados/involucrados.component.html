@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="report-card">
+      <div class="progress-indicator">
+        <div class="step">1</div><label>Información general</label>
+        <div class="separator"></div> 
+        <div class="step active">2</div> <label style="color:#371ec2; font-weight: bold;">Involucrados</label>
+        <div class="separator"></div> 
+        <div class="step">3</div><label>Evidencias</label>
+        <div class="separator"></div> 
+        <div class="step">4</div><label>Denunciante</label>
+      </div>
+  
+      <div class="content-section">
+        <h2>Por favor, selecciona al causal del suceso</h2>
+        <div style="display: flex; align-items: center;">
+          <h3 style="display: inline-block; margin-right: 10px;">¿No sabés su nombre?</h3>
+          <h3 style="display: inline-block;" class="violet">Ver listado de personas</h3>
+        </div>
+        <div class="dropdown">
+        <button class="dropbtn">Buscar por nombre o cargo...</button>
+        <div class="dropdown-content">
+            <div *ngFor="let persona of personas">
+            <h3>
+                <input 
+                type="checkbox" 
+                (change)="actualizarSeleccion(persona, $event)" 
+                />
+                {{ persona }}
+            </h3>
+            </div>
+        </div>
+        </div>
+
+        <h3 class="violet">
+        {{ personasSeleccionadas.length ? personasSeleccionadas.join(', ') : '' }}
+        </h3>
+
+        <hr class="divider">
+
+        <div class="incident-description">
+          <h2>Describe al denunciado</h2>
+          <h3 for="incident-details">Por favor, de no encontrarlo en la lista describe al causal del siniestro</h3>
+          <textarea id="incident-details" placeholder="Esta persona es alta de tes blanca..."></textarea>
+        </div>
+  
+        <a class="next-btn" href="evidencia">Siguiente</a>
+      </div>
+  
+      <div class="info-section">
+        <h1 class="title" >Protegemos tu<br> identidad</h1>
+        <h2 class="subtitle">Te cuidamos, cuidándonos <br>entre todos.</h2>
+        <img src="/icons/isotipo-bg.png" alt="Logotipo Canal" class="reportlogo">
+      </div>
+    </div>
+  </div>
+  

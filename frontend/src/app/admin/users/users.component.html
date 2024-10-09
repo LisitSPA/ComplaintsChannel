@@ -1,0 +1,61 @@
+<body>
+  <div class="container">
+    <app-sidebar-admin></app-sidebar-admin>
+
+    <div class="main-content">
+    <app-header-admin></app-header-admin>
+    <div class="table-container">
+      <div class="toolbar">
+        <h1 >Usuarios y privilegios</h1>
+
+        <div class="usuario-option" (click)="abrirFormulario()">
+          <span>Crear usuario</span>
+        </div>
+      </div>
+  
+      <div class="table-wrapper">
+      <table class="table">
+        <thead>
+          <tr>
+            <th><input type="checkbox"></th>
+            <th>Id</th>
+            <th>Nombre </th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Edición</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuarios">
+            <td><input type="checkbox"></td>
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.nombre }}</td>
+            <td>{{ usuario.tipo }}</td>
+            <td [ngClass]="usuario.estado === 'activo' ? 'estado-activo' : 'estado-inactivo'">{{ usuario.estado }}</td>
+            <td>
+              <button class="btn-edit">Editar</button>
+              <button class="btn-delete">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pagination">
+      <span class="label">Principio</span>
+      <span (click)="previousPage()" [class.disabled]="currentPage === 1" class="arrow">‹</span>
+      
+      <div class="page-numbers">
+        <button *ngFor="let page of pages()" (click)="goToPage(page)" [class.active]="currentPage === page">
+          {{ page }}
+        </button>
+      </div>
+      <span (click)="nextPage()" [class.disabled]="currentPage === totalPages" class="arrow">›</span>
+      <span class="label">Final</span>
+    </div>
+  </div>
+</div>
+</div>
+<app-new-user *ngIf="mostrarFormulario" (cerrar)="cerrarFormulario()"></app-new-user>
+
+  </body>
+  

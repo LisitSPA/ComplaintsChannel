@@ -1,0 +1,53 @@
+<div class="container">
+    <app-sidebar-admin></app-sidebar-admin>
+<div class="main-content">
+
+<div class="chat-admin-container">
+    <div class="chat-list">
+      <div class="tabs">
+        <a (click)="filterChats('todos')">Todos</a>
+        <a (click)="filterChats('pendientes')">Pendientes</a>
+        <a (click)="filterChats('finalizados')">Finalizados</a>
+      </div>
+      <input type="text" placeholder="Buscar chat..." class="search-box" />
+      <div class="divider"></div> 
+
+      <ul>
+        <li *ngFor="let chat of filteredChatList" class="chat-item" [ngClass]="{'selected': chat.id === selectedChat?.id}" (click)="selectChat(chat)">
+          <div class="chat-preview">
+            <p class="chat-name">{{ chat.name }}</p>
+            <p class="chat-subject">{{ chat.subject }}</p>
+            <p class="chat-time">{{ chat.time }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  
+    <div class="chat-detail" *ngIf="selectedChat">
+      <h1>Sin respuesta</h1>
+  
+      <div class="chat-message">
+        <h3>{{ selectedChat.name }}</h3>
+        <p>{{ selectedChat.message }}</p>
+      </div>
+
+      <h2>Responde a la solicitud</h2>
+      <div class="status-update">
+        <label for="status">Estado de solicitud</label>
+        <select id="status" [(ngModel)]="status">
+          <option value="revision">En revisión</option>
+          <option value="investigación">En investigación</option>
+          <option value="curso">Acción en curso</option>
+          <option value="resuelta">Denuncia resuelta</option>
+          <option value="stand_by">Stand By</option>
+          <option value="desestimado">Desestimado</option>
+        </select>
+  
+        <textarea placeholder="Escribe tu respuesta aquí" [(ngModel)]="responseMessage"></textarea>
+  
+        <button (click)="sendResponse()">Enviar respuesta</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

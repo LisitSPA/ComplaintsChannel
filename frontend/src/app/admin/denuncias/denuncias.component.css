@@ -1,0 +1,257 @@
+.table-container {
+  width: 100%;
+}
+
+.title {
+  font-size: x-large;
+  font-family: "Inria Sans", sans-serif;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: white; 
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: eee5e675;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center; 
+  gap: 10px; 
+  margin-bottom: 20px;
+  margin-top: 5%;
+}
+
+.search-bar {
+  width: 20%;
+  padding: 8px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; 
+  background-color: rgb(238, 238, 238);
+}
+
+.table th, .table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  height: 50px; 
+}
+
+.table th {
+    background-color: #384146; 
+    color: white;
+}
+
+.table td {
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
+}
+
+.btn-edit {
+  background-color: #007bff;
+  color: white;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: white;
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
+}
+
+.estado-fijo {
+  background-color: #7fe08b;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.estado-temporal {
+  background-color: #ffc107;
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: none;
+  color: grey;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+}
+
+.toolbar .btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination button:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+.label {
+  margin: 0 10px; 
+  font-size: small; 
+  align-self: center; 
+}
+
+.arrow {
+  cursor: pointer;
+  margin: 0 10px; 
+  font-size: xx-large; 
+  color: #007bff;
+}
+
+.arrow.disabled {
+  color: gray; 
+  cursor: not-allowed; 
+}
+
+.container {
+  display: flex; 
+  height: 100vh; 
+  background-color:#f1f1f1;
+
+}
+
+app-sidebar-admin {
+  width: 370px; 
+  background-color: #f1f1f1; 
+  height: 100%; 
+  position: fixed; 
+}
+
+.main-content {
+  margin-left: calc(330px + 20px); 
+  flex-grow: 1; 
+  padding: 20px; 
+  background-color:#f1f1f1;
+}
+
+.header-container {
+  display: flex;
+  align-items: center; 
+  justify-content: space-around; 
+}
+.denuncia-item {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 15px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.denuncia-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.time, .date, .anonymous, .reason {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.btn-primary {
+  background-color: #e7f1ff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.denuncia-status {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.estado-label {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  color: #fff;
+}
+
+.waiting {
+  background-color: #ffc107;
+}
+
+.observation {
+  background-color: #ffccd5;
+  color: #d9534f;
+}
+
+.denuncia-note {
+  font-size: 12px;
+  color: #6c757d;
+  margin-top: 5px;
+}
+
+.container-denuncias {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+}
+
+.sidebar-denuncias {
+  border-radius: 8px;
+  margin-left: -15px;
+}
+
+.sidebar-denuncias h2 {
+  font-size: 24px;
+  color: #384146;
+  width: 80%;
+}
+
+.main-denuncias {
+  flex-grow: 1;
+}
