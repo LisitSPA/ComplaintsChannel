@@ -19,11 +19,10 @@
 
       <div class="table-container">
         <div class="toolbar">
-          <div  (click)="toggleView()">
-            <img src="/icons/lista.svg" alt="Ícono de lista" class="icon" />
+          <div class="view-list" (click)="toggleView()">
+            <img src="/icons/lista.svg" alt="Ícono de lista" class="icon-small" />
             <span style="font-weight: 500;">Vista de lista</span>
           </div>
-
           <div class="icon-container">
             <img src="/icons/filtro.svg" alt="Icono de estado" class="icon" />
             <label for="estado">Estado:</label>
@@ -42,7 +41,7 @@
               <option value="motivo">Motivo</option>
             </select>
           </div>
-          <button (click)="desestimar()" class="btn-secondary desestimar-btn">Desestimar</button>
+          <button (click)="desestimar()" class="desestimar-btn">Desestimar</button>
 
         </div>
 

@@ -88,12 +88,12 @@
     color: white;
 }
 
-.iniciar-sesion {
+.desestimar {
     color: white;
     background-color: rgb(78, 65, 188);
 }
 
-.iniciar-sesion:hover {
+.desestimar:hover {
     background-color: #5d54c2;
 }
 @media (max-width: 768px) {
