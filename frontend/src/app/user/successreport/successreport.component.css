@@ -1,0 +1,58 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
+  }
+  
+  .report-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; 
+    background-color: white;
+    padding: 40px; 
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%; 
+    max-width: 800px;
+  }
+  
+  .top-icon1 {
+    width: 200px;  
+    height: auto; 
+    position: absolute;
+    top: 20px;    
+    left: 30px;   
+  }
+  
+  .content-section {
+    display: flex;
+    flex-direction: column;
+    align-items: left; 
+    margin-top: 60px; 
+    margin-bottom: 60px;
+  }
+  
+  .section-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+  
+  .home-btn {
+    background-color: #371ec2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Open Sans';
+    margin-top: 40px; 
+    align-self: flex-end; 
+    text-decoration: none;
+  }
+  
+  

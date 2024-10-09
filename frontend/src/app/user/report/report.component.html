@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="report-card">
+    <div class="progress-indicator">
+      <div class="step active">1</div>
+      <label style="color:#371ec2; font-weight: bold;">Información general</label>
+      <div class="separator"></div>
+      <div class="step">2</div>
+      <label>Involucrados</label>
+      <div class="separator"></div>
+      <div class="step">3</div>
+      <label>Evidencias</label>
+      <div class="separator"></div>
+      <div class="step">4</div>
+      <label>Denunciante</label>
+    </div>
+
+    <div class="content-section">
+      <h2>Por favor, selecciona una o más opciones</h2>
+      <h3>Motivos de denuncia</h3>
+
+      <div class="denuncia-options">
+        <button class="denuncia-btn" *ngFor="let reason of reasonsList.slice(0, 3)"
+                [ngClass]="{'selected': reasons.includes(reason.id)}"
+                (click)="toggleReasonSelection(reason.id)">
+          {{ reason.text }}
+        </button>
+      </div>
+
+      <button class="ver-mas-btn" (click)="toggleDropdown()">
+        {{ mostrarDropdown ? 'Ver menos' : 'Ver más' }}
+      </button>
+
+      <div *ngIf="mostrarDropdown" class="more-reasons">
+        <label *ngFor="let reason of reasonsList.slice(3)">
+          <input type="checkbox" 
+                 [checked]="reasons.includes(reason.id)"
+                 (change)="toggleReasonSelection(reason.id)">
+          {{ reason.text }}
+        </label>
+      </div>
+
+      <hr class="divider">
+
+      <div class="incident-description">
+        <h2>Descripción del incidente</h2>
+        <h3 for="incident-details">Cuéntanos qué ha sucedido</h3>
+        <textarea id="incident-details" [(ngModel)]="description" placeholder="He presenciado una desviación contable..."></textarea>
+
+        <div class="incident-date">
+          <h3 for="incident-date">Fecha del Incidente</h3>
+          <input type="date" id="incident-date" [(ngModel)]="incidentDate" />
+        </div>
+      </div>
+
+      <button class="next-btn" (click)="guardarYRedirigir()">Siguiente</button>
+    </div>
+
+    <div class="info-section">
+      <h1 class="title">Tomamos<br>Acciones Reales</h1>
+      <h2 class="subtitle">Te cuidamos, cuidándonos <br>entre todos.</h2>
+      <img src="/icons/isotipo-bg.png" alt="Logotipo Canal" class="reportlogo">
+    </div>
+  </div>
+</div>

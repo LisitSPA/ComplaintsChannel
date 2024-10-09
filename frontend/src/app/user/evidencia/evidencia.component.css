@@ -1,0 +1,160 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
+  }
+  
+  .report-card {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 1200px;
+  }
+  
+  .progress-indicator {
+    position: absolute;
+    left: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .step {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+  }
+  
+  .step.active {
+    background-color: #371ec2;
+  }
+  
+  .content-section {
+    flex: 1;
+    padding: 30px 20px 20px 20px; 
+    margin-left: 20px;
+    display: flex;        
+    flex-direction: column; 
+  }
+  .upload-and-description {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .upload-box {
+    border: 2px dashed #cccccc;
+    padding: 20px;
+    width: 200px; 
+    height: 200px; 
+    text-align: center;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.upload-box input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: ruby-text;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: transparent; 
+    color: #371ec2; 
+    border: none; 
+    font-size: 16px;
+    text-decoration: none; 
+    font-weight: bold;
+    font-family: 'Open Sans';
+    margin-top: 70px;
+
+}
+
+.upload-box ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px; 
+    
+}
+
+.upload-box ul li {
+    margin: 5px 0;
+}
+
+  .incident-description {
+    flex: 1;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 80px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    resize: vertical;
+    max-height: 200px;
+  }
+  
+  
+  .info-section {
+    padding: 20px;
+    background-color: #fdfdfd;
+    border-radius: 10px;
+    width: 240px;
+    text-align: center;
+  }
+  
+  .divider {
+    border: none;
+    border-top: 2px solid #e0e0e0;
+    margin: 20px 0;
+  }
+  .file-list {
+    margin-top: 20px;
+  }
+  
+  .file-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .file-list ul li {
+    margin: 5px 0;
+  }
+  
+  .incident-description {
+    flex: 1;
+  }
+  p{
+    font-family: 'Open Sans';
+    font-size: small;
+
+  }
+  .next-btn {
+    align-self: flex-end; 
+    background-color: linear-gradient(to bottom, #6653aa, #371ec2); 
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .next-btn:hover {
+    background-color: #6653aa; 
+  }

@@ -1,0 +1,26 @@
+
+.container {
+    display: grid;
+    grid-template-columns: 370px 1fr;
+    height: 100vh;
+  }
+  
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    background-color:#f1f1f1;
+
+  }
+  
+  .dashboard {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+  }
+  .quick-access-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+  }
+  
