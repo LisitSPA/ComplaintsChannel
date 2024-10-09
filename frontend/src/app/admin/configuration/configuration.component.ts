@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SidebarAdmin } from '../admin/sidebar-component/sidebar-admin.component';
+import { SidebarAdmin } from '../sidebar-component/sidebar-admin.component';
+
+
 @Component({
   selector: 'app-configuration',
   standalone: true,

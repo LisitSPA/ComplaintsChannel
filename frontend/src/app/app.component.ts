@@ -14,24 +14,23 @@
   import { DenuncianteComponent } from './user/denunciante/denunciante.component';
   import { MisdatosComponent } from './user/misdatos/misdatos.component';
   import { FormsModule } from '@angular/forms'; 
-  import { HomeAdminComponent } from './admin/admin/home-admin/home-admin.component';
   import { ChartComponent } from 'chart.js';
-  import { QuickAccessAdmin } from './admin/admin/quick-access-component/quick-access-component.component';
-  import { RecentComplaintsTableAdmin } from './admin/admin/recent-complaints-table-component/recent-complaints-table-component.component';
-  import { SidebarAdmin } from './admin/admin/sidebar-component/sidebar-admin.component';
   import { ReactiveFormsModule } from '@angular/forms';
   import { TrackingCodeComponent } from './user/tracking-code/tracking-code.component';
   import { SeguimientoComponent } from './user/seguimiento/seguimiento.component';
-  import { HeaderAdmin } from './admin/admin/header-component/header-admin.component';
+  import { HeaderAdmin } from './admin/header-component/header-admin.component';
   import { BaseChartDirective } from 'ng2-charts';
   import { ChatComponent } from './user/chat/chat.component';
-  import { ChartsAdmin } from './admin/admin/charts-component/charts-component.component';
+  import { ChartsAdmin } from './admin/charts-component/charts-component.component';
   import { DenunciasComponent } from './admin/denuncias/denuncias.component';
   import { ConfigurationComponent } from './admin/configuration/configuration.component';
   import { UsersComponent } from './admin/users/users.component';
   import { ChatAdminComponent } from './admin/chat-admin/chat-admin.component';
   import { NewUserComponent } from './admin/new-user/new-user.component';
-
+  import { RecentComplaintsTableAdmin } from './admin/recent-complaints-table-component/recent-complaints-table-component.component';
+  import { QuickAccessAdmin } from './admin/quick-access-component/quick-access-component.component';
+  import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
+  import { SidebarAdmin } from './admin/admin/sidebar-component/sidebar-admin.component';
   @Component({
     selector: 'app-root',
     standalone: true,

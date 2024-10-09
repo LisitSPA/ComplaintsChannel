@@ -6,8 +6,7 @@ import { SidebarAdmin } from '../sidebar-component/sidebar-admin.component';
 import { HeaderAdmin } from '../header-component/header-admin.component';
 import { ChartsAdmin } from '../charts-component/charts-component.component';
 import { BaseChartDirective } from 'ng2-charts';
-import { DashboardSummaryComponent } from '../../dashboard-summary/dashboard-summary.component';
-
+import { DashboardSummaryComponent } from '../dashboard-summary/dashboard-summary.component';
 @Component({
   selector: 'app-home-admin',
   standalone: true,

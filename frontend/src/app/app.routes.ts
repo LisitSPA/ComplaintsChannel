@@ -8,7 +8,7 @@ import { TrackingCodeComponent } from './user/tracking-code/tracking-code.compon
 import { SeguimientoComponent } from './user/seguimiento/seguimiento.component';
 import { ChatComponent } from './user/chat/chat.component';
 import { SuccessreportComponent } from './user/successreport/successreport.component';
-import { HomeAdminComponent } from './admin/admin/home-admin/home-admin.component';
+import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
 import { UsersComponent } from './admin/users/users.component';
 import { DenuncianteComponent } from './user/denunciante/denunciante.component';
 import { ConfigurationComponent } from './admin/configuration/configuration.component';
