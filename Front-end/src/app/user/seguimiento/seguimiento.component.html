@@ -20,58 +20,72 @@
     <div class="mantenedores-grid">
       <a class="mantenedor-item">
         Motivos
-        <span class="descripcion">Esta área incluirá la descripción del motivo de <br> de la denuncia que el usario ha proporcionado</span>
+        <span class="descripcion">
+          <span *ngFor="let reason of complaint?.reasons">
+            {{reason.description}}<br>
+          </span>
+        </span>
       </a>
       <a class="mantenedor-item">
         Involucrados
-        <span class="descripcion">Aquí se listarán las personas involucradas</span>
+        <span class="descripcion">
+          <span *ngFor="let person of complaint?.involved">
+            {{person.names}} {{person.lastName}} {{person.personDescription}}<br>
+          </span>
+        </span>
       </a>
       <a class="mantenedor-item">
         Evidencias
-        <span class="descripcion">Aquí el usuario podrá ver las evidencias adjuntadas</span>
-      </a>
-      
+        <span class="descripcion">
+          <span *ngFor="let file of complaint?.attachments">
+            <a href="{{filesUrl}}{{code}}/{{file.fileName}}" download="{{file.fileName}}">{{file.fileName}}</a> <br>
+          </span>
+        </span>
+      </a>      
     </div>
-    <div class="form-row">
-      <div class="form-group">
-        <h3>Nombre:</h3>
-        <input type="text" name="nombre" required disabled>
+    <h3 style="font-size: x-large;">Datos personales</h3>
+    <div *ngIf="complainant">
+      <div class="form-row">
+        <div class="form-group">
+          <h3>Nombre:</h3>
+          <input type="text" name="nombre" [value]="complainant.names" required disabled>
+        </div>
+        <div class="form-group">
+          <h3>Apellido:</h3>
+          <input type="text" name="apellido" [value]="complainant.lastName" required disabled>
+        </div>
+        <div class="form-group">
+          <h3>Estado en la Empresa:</h3>
+          <input type="text" name="estado" [value]="complainant.companyStatus" disabled>
+        </div>
       </div>
-      <div class="form-group">
-        <h3>Apellido:</h3>
-        <input type="text" name="apellido" required disabled>
+      <div class="form-row">
+        <div class="form-group">
+          <h3>Cargo:</h3>
+          <input type="text" name="cargo" [value]="complainant.position" required disabled>
+        </div>
+        <div class="form-group">
+          <h3>Área:</h3>
+          <input type="text" name="area" [value]="complainant.area" required disabled>
+        </div>
+        <div class="form-group">
+          <h3>Sexo:</h3>
+          <input type="text" name="area" [value]="complainant.genre" required disabled>
+        </div>
       </div>
-      <div class="form-group">
-        <h3>Estado en la Empresa:</h3>
-        <input type="text" name="estado" required disabled>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <h3>Cargo:</h3>
-        <input type="text" name="cargo" required disabled>
-      </div>
-      <div class="form-group">
-        <h3>Área:</h3>
-        <input type="text" name="area" required disabled>
-      </div>
-      <div class="form-group">
-        <h3>Sexo:</h3>
-        <div>
-          <input type="checkbox" class="custom-checkbox" required disabled  name="sexo" value="Masculino"> Masculino
-          <input type="checkbox" required disabled name="sexo" value="Femenino"> Femenino
+      <div class="form-row">
+        <div class="form-group">
+          <h3>RUT:</h3>
+          <input type="text" name="rut" [value]="complainant.rut" required disabled >
+        </div>
+        <div class="form-group">
+          <h3>Contacto:</h3>
+          <input type="text" name="contacto" [value]="complainant.contactPhone" required disabled >
         </div>
       </div>
     </div>
-    <div class="form-row">
-      <div class="form-group">
-        <h3>RUT:</h3>
-        <input type="text" name="rut" required disabled >
-      </div>
-      <div class="form-group">
-        <h3>Contacto:</h3>
-        <input type="text" name="contacto" required disabled >
-      </div>
+    <div *ngIf="!complainant">
+        Anónimo
     </div>
   <app-chat></app-chat>
 

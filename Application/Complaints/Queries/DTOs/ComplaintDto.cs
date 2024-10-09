@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utility.Extensions;
 using Utility.Mappings;
 
 namespace Application.Complaints.Queries.DTOs
@@ -20,6 +21,7 @@ namespace Application.Complaints.Queries.DTOs
         public DateTime CreatedOn { get; set; }
         public string TrackingCode { get; set; }
         public EComplaintStatus EStatus { get; set; }
+        public string Status { get; set; }
         //public string ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
         public string TrackingEmail { get; set; }
@@ -33,6 +35,7 @@ namespace Application.Complaints.Queries.DTOs
             profile.CreateMap<Complaint, ComplaintDto>()
                 .ForMember(x => x.Involved, opt => opt.MapFrom(s => s.ComplaintInvolved.Select(x => x.PersonInvolved)))
                 .ForMember(x => x.Reasons, opt => opt.MapFrom(s => s.ComplaintReasons.Select(x => x.ComplaintType)))
+                .ForMember(x => x.Status, opt => opt.MapFrom(s => s.EStatus.GetDescriptionByVal() ))
                 ;
 
         }
