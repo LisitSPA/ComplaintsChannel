@@ -1,0 +1,142 @@
+.header {
+    flex-shrink: 0;
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 1000; 
+    background-color: white;
+    color: rgb(0, 0, 0);
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    box-sizing: border-box;
+    height: 80px;
+}
+
+.header-title {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 50px; 
+    font-size:medium;
+}
+
+.header-title h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.nav {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.nav li {
+    margin: 0 15px; 
+}
+
+.nav a {
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.button a {
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    margin: 5px;
+    font-family: 'Rubik', sans-serif;
+    background-color: transparent;
+}
+
+.button a:hover {
+    background-color: #3737c9;
+    color: white; 
+    transition: background-color 0.3s;
+}
+.highlight{
+    color:#3737c9;
+}
+.logo {
+    max-width: 40%; 
+    height: auto; 
+  }
+.btn {
+    border: 1px solid #ccc; 
+    padding: 10px 20px;
+    margin: 5px;
+    font-family: 'Rubik', sans-serif;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    font-weight: 700;
+}
+
+.denunciar {
+    color: rgb(43, 27, 187); 
+    background-color: white; 
+    transition: background-color 0.3s;
+}
+
+.denunciar:hover {
+    background-color: rgb(78, 65, 188);
+    color: white;
+}
+
+.desestimar {
+    color: white;
+    background-color: rgb(78, 65, 188);
+}
+
+.desestimar:hover {
+    background-color: #5d54c2;
+}
+@media (max-width: 768px) {
+    .header {
+      flex-direction: column; 
+      height: auto; 
+      padding: 10px;
+    }
+  
+    .header-title {
+      margin-left: 0;
+      text-align: center;
+    }
+  
+    .nav {
+      display: none; 
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .nav.open {
+      display: flex; 
+    }
+  
+    .nav li {
+      margin: 10px 0;
+    }
+  
+    .logo {
+      max-width: 100%; 
+    }
+  
+    .button {
+      display: none; 
+    }
+  
+    .hamburger-menu {
+      display: block;
+      cursor: pointer;
+      font-size: 30px;
+    }
+  
+    .hamburger-menu.open .nav {
+      display: flex; 
+    }
+  }

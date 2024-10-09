@@ -1,0 +1,40 @@
+.quick-access {
+  display: flex;
+  justify-content: flex-start; 
+  gap: 5px; 
+  align-items: flex-start;
+}
+
+.card {
+  position: relative;
+  background-color: #4C3DB2;;
+  border-radius: 8px;
+  text-align: center;
+  width: 10%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin: 5px; 
+}
+
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+
+.label {
+  position: absolute;
+  top: 110%;
+  font-size: 14px;
+  color: #4C3DB2;
+}
+.icon {
+  width: 40px; 
+  height: 40px;
+  margin-bottom: 10px;
+}

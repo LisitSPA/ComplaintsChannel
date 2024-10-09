@@ -1,0 +1,24 @@
+<div>
+  <h2>Análisis por área</h2>
+  <canvas
+    baseChart
+    [data]="barChartData"
+    [options]="barChartOptions"
+    [type]="barChartType"
+    (chartHover)="chartHovered($event)"
+    (chartClick)="chartClicked($event)"
+  ></canvas>
+
+
+</div>
+
+<div>
+  <h2>Análisis por cargo</h2>
+  <canvas
+    baseChart
+    [data]="doughnutChartData"
+    [type]="doughnutChartType"
+    (chartHover)="chartHovered($event)"
+    (chartClick)="chartClicked($event)"
+  ></canvas>
+</div>
