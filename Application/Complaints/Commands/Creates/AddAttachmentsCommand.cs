@@ -6,6 +6,7 @@ using Domain.Entities;
 using Domain.Enums;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,15 +34,15 @@ public class AddAttachmentsCommandHandler : IRequestHandler<AddAttachmentsComman
     private readonly IRepository<Complaint> _repository;
     private readonly IRepository<User> _repoPerson;
     private readonly IRepository<Domain.Entities.Attachment> _repoAttach;
-    private readonly IMapper _mapper;
+    private readonly IConfiguration _configuration;
 
     public AddAttachmentsCommandHandler(IRepository<Complaint> repository, 
         IRepository<User> repoPerson,
         IRepository<Domain.Entities.Attachment> repoAttach,
-        IMapper mapper)
+        IConfiguration configuration)
     {
         _repository = repository;
-        _mapper = mapper;
+        _configuration = configuration;
         _repoPerson = repoPerson;
         _repoAttach = repoAttach;
     }
@@ -51,20 +52,23 @@ public class AddAttachmentsCommandHandler : IRequestHandler<AddAttachmentsComman
         Response<int> result = new();
         try
         {
-            int index = 0;
+            var index = 0;
+            var item = command.Attachments[0];
             var attachment = new Domain.Entities.Attachment(); //individual attachment
 
             var complaint = _repository.GetAll().First(x => x.Id == command.ComplaintId);
+                      
 
             command.Attachments.ForEach(item =>
             {
-                var filePath = Path.Combine("Attachments", complaint.TrackingCode);
-                if (!Directory.Exists(filePath))
+                var folderPath = Path.Combine(_configuration["FileRoutes"], complaint.TrackingCode);
+                if (!Directory.Exists(folderPath))
                 {
-                    Directory.CreateDirectory(filePath);
+                    Directory.CreateDirectory(folderPath);
                 }
 
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                var filePath = Path.Combine(folderPath, item.FileName);
+                using (var stream = new FileStream(filePath, FileMode.CreateNew))
                 {
                     item.CopyToAsync(stream);
                 }
