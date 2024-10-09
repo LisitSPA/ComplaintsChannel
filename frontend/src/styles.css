@@ -9,7 +9,7 @@ h2{
 }
 
 
-h3, .subtitle, h4, span,a , div, label, li{
+h3, .subtitle, h4, span,a , div, label, li, option,select{
     font-size: medium; 
     text-align: left;
     font-weight: 200;
@@ -17,14 +17,6 @@ h3, .subtitle, h4, span,a , div, label, li{
 
 }
 
-label {
-  font-size: small; 
-    text-align: left;
-    font-weight: 200;
-    font-family: 'Open Sans';
-
-
-}
 .title{
     font-family: 'Open Sans';
     font-size: x-large;

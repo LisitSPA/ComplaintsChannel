@@ -5,22 +5,27 @@
 <div class="chat-admin-container">
     <div class="chat-list">
       <div class="tabs">
-        <a (click)="filterChats('todos')">Todos</a>
-        <a (click)="filterChats('pendientes')">Pendientes</a>
-        <a (click)="filterChats('finalizados')">Finalizados</a>
+        <a (click)="filterChats('todos')" [ngClass]="{'active': activeTab === 'todos'}">Todos</a>
+        <a (click)="filterChats('pendientes')" [ngClass]="{'active': activeTab === 'pendientes'}">Pendientes</a>
+        <a (click)="filterChats('finalizados')" [ngClass]="{'active': activeTab === 'finalizados'}">Finalizados</a>
       </div>
+      
+      
       <input type="text" placeholder="Buscar chat..." class="search-box" />
       <div class="divider"></div> 
 
-      <ul>
-        <li *ngFor="let chat of filteredChatList" class="chat-item" [ngClass]="{'selected': chat.id === selectedChat?.id}" (click)="selectChat(chat)">
+      <div class="chat-items-container">
+        <div *ngFor="let chat of filteredChatList" 
+             class="chat-item" 
+             [ngClass]="{'selected': chat.id === selectedChat?.id}" 
+             (click)="selectChat(chat)">
           <div class="chat-preview">
             <p class="chat-name">{{ chat.name }}</p>
             <p class="chat-subject">{{ chat.subject }}</p>
             <p class="chat-time">{{ chat.time }}</p>
           </div>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   
     <div class="chat-detail" *ngIf="selectedChat">
@@ -33,7 +38,7 @@
 
       <h2>Responde a la solicitud</h2>
       <div class="status-update">
-        <label for="status">Estado de solicitud</label>
+        <label for="status" style="margin-right: 10px;">Estado de solicitud</label>
         <select id="status" [(ngModel)]="status">
           <option value="revision">En revisión</option>
           <option value="investigación">En investigación</option>
@@ -45,7 +50,7 @@
   
         <textarea placeholder="Escribe tu respuesta aquí" [(ngModel)]="responseMessage"></textarea>
   
-        <button (click)="sendResponse()">Enviar respuesta</button>
+        <button class="respuesta-btn" (click)="sendResponse()">Enviar respuesta</button>
       </div>
     </div>
   </div>

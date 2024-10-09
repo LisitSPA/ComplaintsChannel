@@ -30,8 +30,9 @@ export class ChatAdminComponent implements OnInit {
   
   filteredChatList: Chat[] = [...this.chatList];  
   selectedChat: Chat | null = null;
-  status = 'en_revision';
+  activeTab = 'todos'; 
   responseMessage = '';
+  status = 'revision';
 
   constructor(private chatService: ChatService) {}
 
@@ -52,6 +53,7 @@ export class ChatAdminComponent implements OnInit {
   }
 
   filterChats(filter: string) {
+    this.activeTab = filter; 
     if (filter === 'todos') {
       this.filteredChatList = [...this.chatList];
     } else {
