@@ -18,9 +18,12 @@ export class ComplaintService {
         ));
     }
 
-    addAttachments(data: RequestEvidencies): Promise<any> {
+    addAttachments(file: RequestEvidencies): Promise<any> {
+        const formData = new FormData();
+        // formData.append("fileData", file);
+
         return lastValueFrom(this._httpClient.put(
-            `${environment.apiUrl}/complaints/Attachments/`, data
+            `${environment.apiUrl}/complaints/Attachments/`, formData
         ));
     }
 

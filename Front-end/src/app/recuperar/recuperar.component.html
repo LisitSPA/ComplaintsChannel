@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="report-card">
+        <div class="content-section">
+            <h2>Recuperar Contraseña</h2>
+            <form (ngSubmit)="recuperarContrasenia()">
+                <div class="form-group">
+                    <h3>Escriba su correo electrónico</h3>
+                    <input type="email" class="form-control" 
+                           placeholder="Correo electrónico" 
+                           [(ngModel)]="username" name="username" required>
+                </div>
+                <button type="submit" class="track-button" style="font-family: 'Open Sans'; font-size: medium;">
+                    Enviar instrucciones
+                </button>
+            </form>
+            <div *ngIf="mensajeError" class="text-danger mt-3">{{ mensajeError }}</div>
+            <div *ngIf="mensajeExito" class="text-success mt-3">{{ mensajeExito }}</div>
+        </div>
+    </div>
+</div>

@@ -5,9 +5,11 @@
 }
 
 .funcionamiento-tittle {
+  text-align: left;
+  color: black;
   font-family: 'Rubik', sans-serif;
-  font-size: 2.5em; 
-  background-color: #f1f1f1;
+  font-size: xx-large;
+  text-align: center;
 }
 
 .steps-container {
@@ -43,7 +45,7 @@
 }
 
 .icon-container img {
-  max-width: 100%; 
+  max-width: 200%; 
   height: auto; 
 }
 

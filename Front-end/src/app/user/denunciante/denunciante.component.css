@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to bottom, #6653aa, #371ec2 50%, #e6e6fa 50%);
+    background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
   }
   
   .report-card {
@@ -44,8 +44,10 @@
   
   .content-section {
     flex: 1;
-    padding: 60px 20px 20px 20px; 
+    padding: 20px 20px 20px 20px; 
     margin-left: 20px;
+    display: flex;        
+    flex-direction: column; 
   }
   .denuncia-options {
     display: flex;
@@ -111,4 +113,17 @@
   .input-email{
     padding:10px 80px;
 
+  }  .next-btn {
+    align-self: flex-end; 
+    background-color: linear-gradient(to bottom, #6653aa, #371ec2); 
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .next-btn:hover {
+    background-color: #6653aa; 
   }

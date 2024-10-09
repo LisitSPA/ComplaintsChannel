@@ -1,0 +1,61 @@
+.configuracion-empresa {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(245, 238, 252);
+
+    
+  }
+  
+.container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    height: 100vh;
+  }
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .logo-upload {
+    display: flex;
+    align-items: center;
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .color-options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .color-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid #ccc;
+  }
+  
+  input[type="color"] {
+    width: 40px;
+    height: 40px;
+    border: none;
+  }
+  
+  button {
+    margin-top: 20px;
+  }
+  

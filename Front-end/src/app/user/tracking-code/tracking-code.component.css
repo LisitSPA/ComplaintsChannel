@@ -7,7 +7,7 @@
 }
 
 .track-container form {
-  width: 100%;
+  width: 90%;
   max-width: 90%; 
 }
 
@@ -42,8 +42,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: linear-gradient(to bottom, #6653aa, #371ec2 50%, #e6e6fa 50%);
+  height: 80vh;
+  background: url('/images/Bg_usuario.png') no-repeat top left / 100% 70%, white 30%;
 }
 
 .report-card {

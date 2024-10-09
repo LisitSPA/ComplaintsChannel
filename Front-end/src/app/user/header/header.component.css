@@ -43,7 +43,6 @@
 
 .nav a {
     text-decoration: none;
-    color: black;
     font-size: 16px;
 }
 
@@ -67,4 +66,77 @@
     max-width: 40%; 
     height: auto; 
   }
+.btn {
+    border: 1px solid #ccc; 
+    padding: 10px 20px;
+    margin: 5px;
+    font-family: 'Rubik', sans-serif;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    font-weight: 700;
+}
+
+.denunciar {
+    color: rgb(43, 27, 187); 
+    background-color: white; 
+    transition: background-color 0.3s;
+}
+
+.denunciar:hover {
+    background-color: rgb(78, 65, 188);
+    color: white;
+}
+
+.desestimar {
+    color: white;
+    background-color: rgb(78, 65, 188);
+}
+
+.desestimar:hover {
+    background-color: #5d54c2;
+}
+@media (max-width: 768px) {
+    .header {
+      flex-direction: column; 
+      height: auto; 
+      padding: 10px;
+    }
   
+    .header-title {
+      margin-left: 0;
+      text-align: center;
+    }
+  
+    .nav {
+      display: none; 
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .nav.open {
+      display: flex; 
+    }
+  
+    .nav li {
+      margin: 10px 0;
+    }
+  
+    .logo {
+      max-width: 100%; 
+    }
+  
+    .button {
+      display: none; 
+    }
+  
+    .hamburger-menu {
+      display: block;
+      cursor: pointer;
+      font-size: 30px;
+    }
+  
+    .hamburger-menu.open .nav {
+      display: flex; 
+    }
+  }

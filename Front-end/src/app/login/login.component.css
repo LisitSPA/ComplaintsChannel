@@ -1,7 +1,7 @@
 body {
     height: 100vh;
     margin: 0;
-    background: url('/images/Bg_usuario.png') no-repeat top left / 100% 70%, white 30%;
+    background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
 }
 
 .login-container {

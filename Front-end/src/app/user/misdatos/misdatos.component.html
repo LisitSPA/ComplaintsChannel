@@ -3,6 +3,7 @@
     <button class="close-btn" (click)="cerrar.emit()">✖</button>
     <h2>Mis Datos</h2>
     <h3>Tus datos son completamente confidenciales en el proceso de evaluación de tu denuncia</h3>
+    
     <form (ngSubmit)="guardarDatos()">
       <div class="form-row">
         <div class="form-group">
@@ -15,9 +16,14 @@
         </div>
         <div class="form-group">
           <h3>Estado en la Empresa:</h3>
-          <input type="text" [(ngModel)]="estado" name="estado" required>
+          <select [(ngModel)]="eCompanyStatus" name="eCompanyStatus" required>
+            <option value="1">Empleado</option>
+            <option value="2">Ex-empleado</option>
+            <option value="3">Contratista</option>
+          </select>
         </div>
       </div>
+
       <div class="form-row">
         <div class="form-group">
           <h3>Cargo:</h3>
@@ -30,18 +36,26 @@
         <div class="form-group">
           <h3>Sexo:</h3>
           <div>
-            <input type="checkbox" [(ngModel)]="sexo" name="sexo" value="Masculino"> Masculino
-            <input type="checkbox" [(ngModel)]="sexo" name="sexo" value="Femenino"> Femenino
+            <input type="radio" [(ngModel)]="sexo" name="sexo" value="Masculino"> Masculino
+            <input type="radio" [(ngModel)]="sexo" name="sexo" value="Femenino"> Femenino
           </div>
         </div>
       </div>
+
       <div class="form-row">
         <div class="form-group">
           <h3>Contacto:</h3>
           <input type="text" [(ngModel)]="contacto" name="contacto" required>
         </div>
+        <div class="form-group">
+          <h3>RUT:</h3>
+          <input type="text" [(ngModel)]="rut" name="rut" required>
+        </div>
       </div>
-      <button class="next-btn">Guardar</button>
+
+      <div class="form-actions">
+        <button type="submit" class="next-btn">Guardar</button>
+      </div>
     </form>
   </div>
 </div>

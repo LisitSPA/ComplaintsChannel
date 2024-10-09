@@ -116,7 +116,12 @@ label {
     margin: 0 10px; 
   }
 
- 
+  .divider {
+    border: none;
+    border-top: 2px solid #e0e0e0; 
+    margin: 20px 0; 
+  }
+  
   .violet{
     color:#371ec2;
     font-weight: 500;

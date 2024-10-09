@@ -14,23 +14,33 @@
   import { DenuncianteComponent } from './user/denunciante/denunciante.component';
   import { MisdatosComponent } from './user/misdatos/misdatos.component';
   import { FormsModule } from '@angular/forms'; 
-  // import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
-  // import { ChartsAdmin } from './admin/charts-component/charts-component.component';
-  // import { QuickAccessAdmin } from './admin/quick-access-component/quick-access-component.component';
-  // import { RecentComplaintsTableAdmin } from './admin/recent-complaints-table-component/recent-complaints-table-component.component';
-  // import { SidebarAdmin } from './admin/sidebar-component/sidebar-admin.component';
-  // import { ReactiveFormsModule } from '@angular/forms';
+  import { ChartComponent } from 'chart.js';
+  import { ReactiveFormsModule } from '@angular/forms';
   import { TrackingCodeComponent } from './user/tracking-code/tracking-code.component';
   import { SeguimientoComponent } from './user/seguimiento/seguimiento.component';
-  // import { HeaderAdmin } from './admin/header-component/header-admin.component';
+  import { HeaderAdmin } from './admin/header-component/header-admin.component';
   import { BaseChartDirective } from 'ng2-charts';
   import { ChatComponent } from './user/chat/chat.component';
+  import { ChartsAdmin } from './admin/charts-component/charts-component.component';
+  import { DenunciasComponent } from './admin/denuncias/denuncias.component';
+  import { ConfigurationComponent } from './admin/configuration/configuration.component';
+  import { UsersComponent } from './admin/users/users.component';
+  import { ChatAdminComponent } from './admin/chat-admin/chat-admin.component';
+  import { NewUserComponent } from './admin/new-user/new-user.component';
+  import { RecentComplaintsTableAdmin } from './admin/recent-complaints-table-component/recent-complaints-table-component.component';
+  import { QuickAccessAdmin } from './admin/quick-access-component/quick-access-component.component';
+  import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
+  import { SidebarAdmin } from './admin/admin/sidebar-component/sidebar-admin.component';
+  import { HttpClientModule } from '@angular/common/http';
+  import { TranslateService } from './services/translate.service';
+
+
   @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [ ChatComponent, BaseChartDirective, SeguimientoComponent, TrackingCodeComponent, RouterOutlet, FaqComponent, FooterComponent, HeaderComponent, HomeComponent, HowItWorksComponent,InformationComponent,
-      LoginComponent, FormsModule,CommonModule, MisdatosComponent, ReportComponent, InvolucradosComponent,EvidenciaComponent,DenuncianteComponent,
-      // HomeAdminComponent, ChartsAdmin, QuickAccessAdmin, RecentComplaintsTableAdmin,HeaderAdmin,SidebarAdmin,ReactiveFormsModule,
+    imports: [  HttpClientModule, NewUserComponent, ChatAdminComponent, ConfigurationComponent,  DenunciasComponent, RouterOutlet,FaqComponent, FooterComponent,HeaderComponent,HomeComponent, HowItWorksComponent, InformationComponent, LoginComponent, CommonModule,ReportComponent,InvolucradosComponent,
+      EvidenciaComponent, DenuncianteComponent, MisdatosComponent, FormsModule, HomeAdminComponent, ChartsAdmin, QuickAccessAdmin, RecentComplaintsTableAdmin, SidebarAdmin,
+      ReactiveFormsModule, TrackingCodeComponent, SeguimientoComponent, HeaderAdmin, BaseChartDirective, ChatComponent, UsersComponent,
     ],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
@@ -42,9 +52,10 @@
     showAdminHeader: boolean = false;
     showAdminSidebar: boolean = false;
     showHeaderFooter: boolean = true;
+    selectedLanguage = 'en';  
 
 
-    constructor(private router: Router) {
+    constructor(private router: Router,  private translateService: TranslateService) {
       this.router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
           this.showHeaderFooter = !event.url.includes('admin');
@@ -66,5 +77,18 @@
         }
 
     
-    
+        translatePage() {
+          const elementsToTranslate = document.querySelectorAll('body *');  
+      
+          elementsToTranslate.forEach(element => {
+            if (element.textContent && element.textContent.trim()) {
+              this.translateService.translateText(element.textContent, this.selectedLanguage)
+                .subscribe(translatedText => {
+                  element.textContent = translatedText;
+                }, error => {
+                  console.error('Error en la traducción:', error);
+                });
+            }
+          });
+        }
   }

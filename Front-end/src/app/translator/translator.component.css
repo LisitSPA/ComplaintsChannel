@@ -1,0 +1,29 @@
+.translator-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1000;  /* Asegúrate de que esté en el frente */
+}
+
+.translate-button {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.translate-button:hover {
+  background-color: #45a049;
+}
+
+.translate-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}

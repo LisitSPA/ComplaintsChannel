@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ComplaintDataService } from '../../services/complaint-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-involucrados',
@@ -10,8 +12,12 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./involucrados.component.css']
 })
 export class InvolucradosComponent {
-  personas: string[] = ['Nombre1', 'Nombre2', 'Nombre3', 'Nombre4'];
   personasSeleccionadas: string[] = [];
+  personDescription: string = '';
+  manualName: string = '';  
+  manualLastName: string = '';  
+
+  constructor(private complaintDataService: ComplaintDataService, private router: Router) {}
 
   actualizarSeleccion(persona: string, event: Event) {
     const checkbox = (event.target as HTMLInputElement);
@@ -20,5 +26,37 @@ export class InvolucradosComponent {
     } else {
       this.personasSeleccionadas = this.personasSeleccionadas.filter(p => p !== persona);
     }
+  }
+
+  guardarCausal() {
+    if (this.manualName && this.manualLastName) {
+      const newCausal = `${this.manualName} ${this.manualLastName}`;
+      this.personasSeleccionadas.push(newCausal);
+
+      this.manualName = '';
+      this.manualLastName = '';
+
+      console.log('Causal agregado manualmente:', newCausal);  
+    } else {
+      console.log('Debe ingresar un nombre y apellido');
+    }
+  }
+
+  guardarDatosYRedirigir(event: Event) {
+    event.preventDefault();  
+
+    const personInvolveds = this.personasSeleccionadas.map(persona => ({
+      names: persona.split(' ')[0],  
+      lastName: persona.split(' ')[1] || '',  
+      personDescription: this.personDescription
+    }));
+
+    this.complaintDataService.setComplaintData({
+      personInvolveds: personInvolveds
+    });
+
+    console.log('Datos guardados de personas involucradas:', personInvolveds);
+
+    this.router.navigate(['/evidencia']);
   }
 }
