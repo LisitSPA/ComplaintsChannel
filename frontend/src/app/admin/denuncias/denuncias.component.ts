@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderAdmin } from '../header-component/header-admin.component';
-import { SidebarAdmin } from '../sidebar-component/sidebar-admin.component';
-
+import { SidebarAdmin } from '../admin/sidebar-component/sidebar-admin.component';
 interface Denuncia {
   id: string;
   motivo: string;

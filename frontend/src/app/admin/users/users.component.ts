@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';  
 import { CommonModule } from '@angular/common';
-import { SidebarAdmin } from '../sidebar-component/sidebar-admin.component';
 import { HeaderAdmin } from '../header-component/header-admin.component';
 import { NewUserComponent } from '../new-user/new-user.component';
 import { FormsModule } from '@angular/forms';  
+import { SidebarAdmin } from '../admin/sidebar-component/sidebar-admin.component';
 
 
 interface Usuario {
