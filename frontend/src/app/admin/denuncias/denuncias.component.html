@@ -8,6 +8,7 @@
       <h2 class="header-title" [class.active]="viewMode === 'realizadas'" (click)="changeViewMode('realizadas')">Acciones realizadas</h2>
       <h2 class="header-title" [class.active]="viewMode === 'desestimadas'" (click)="changeViewMode('desestimadas')">Acciones desestimadas</h2>
     </div>
+    
 
     <div class="container-denuncias">
       <div class="sidebar-denuncias">
@@ -21,7 +22,7 @@
         <div class="toolbar">
           <div class="view-list" (click)="toggleView()">
             <img src="/icons/lista.svg" alt="Ícono de lista" class="icon-small" />
-            <label style="font-weight: 500;">Vista de lista</label>
+            <label style="font-weight: 500;">{{ isListView ? 'Vista de tabla' : 'Vista de lista' }}</label>
           </div>
           <div class="icon-container">
             <img src="/icons/filtro.svg" alt="Icono de estado" class="icon" />

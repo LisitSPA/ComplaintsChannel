@@ -272,3 +272,9 @@ app-sidebar-admin {
   justify-content: center; 
 }
 
+
+.header-title.active {
+  font-weight: bold; 
+  text-decoration: underline; 
+  color: rgb(78, 65, 188);
+}
