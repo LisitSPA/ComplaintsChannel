@@ -57,15 +57,16 @@ public class AddAttachmentsCommandHandler : IRequestHandler<AddAttachmentsComman
             var attachment = new Domain.Entities.Attachment(); //individual attachment
 
             var complaint = _repository.GetAll().First(x => x.Id == command.ComplaintId);
-
-            var folderPath = Path.Combine(_configuration["FileRoutes"]);
-            if (!Directory.Exists(folderPath))
-            {
-                Directory.CreateDirectory(folderPath);
-            }
+                      
 
             command.Attachments.ForEach(item =>
             {
+                var folderPath = Path.Combine(_configuration["FileRoutes"], complaint.TrackingCode);
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
                 var filePath = Path.Combine(folderPath, item.FileName);
                 using (var stream = new FileStream(filePath, FileMode.CreateNew))
                 {
