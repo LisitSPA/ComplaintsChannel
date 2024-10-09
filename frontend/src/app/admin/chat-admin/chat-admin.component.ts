@@ -26,7 +26,7 @@ export class ChatAdminComponent implements OnInit {
     { id: 2, name: 'Anónimo', subject: 'Problema de nómina', time: '11:00', message: 'No he recibido mi pago.', status: 'finalizado' },
     { id: 3, name: 'Ana García', subject: 'Solicitud de revisión', time: '12:15', message: 'Por favor revisen mi caso, sigue sin resolverse.', status: 'en_revision' },
     { id: 4, name: 'Carlos López', subject: 'Problema de horario', time: '13:45', message: 'Mis horarios no han sido actualizados en el sistema.', status: 'pendiente' }
-  ];  // Ejemplos de chats
+  ];  
   
   filteredChatList: Chat[] = [...this.chatList];  
   selectedChat: Chat | null = null;

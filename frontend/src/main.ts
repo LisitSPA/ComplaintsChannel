@@ -5,8 +5,8 @@ import { AppComponent } from './app/app.component';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideHttpClient(withFetch()), // Configura HttpClient con fetch
-    ...appConfig.providers, // Combina los proveedores existentes de appConfig
+    provideHttpClient(withFetch()), 
+    ...appConfig.providers, 
   ],
 })
   .catch((err) => console.error(err));

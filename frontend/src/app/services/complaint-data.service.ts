@@ -23,17 +23,14 @@ export class ComplaintDataService {
     contactEmail: ''
   };
 
-  // Guardar los datos de la denuncia
   setComplaintData(data: any) {
     this.complaintData = { ...this.complaintData, ...data };
   }
 
-  // Obtener los datos de la denuncia
   getComplaintData() {
     return this.complaintData;
   }
 
-  // Limpiar los datos después de enviar
   clearData() {
     this.complaintData = {};
   }

@@ -13,7 +13,7 @@ export class TranslateService {
   translateText(language: string, text: string): Observable<any> {
     const payload = {
       language: language,
-      text: [text]  // Asegúrate de enviar un arreglo aquí
+      text: [text] 
     };
 
     return this.http.post<any>(this.apiUrl, payload);

@@ -27,7 +27,7 @@ export class DenuncianteComponent {
 
   abrirFormulario() {
     this.mostrarFormulario = true;
-    this.isAnonymous = false;  // Si se abre el formulario, no es anónimo.
+    this.isAnonymous = false;  
   }
 
   cerrarFormulario() {
@@ -36,19 +36,18 @@ export class DenuncianteComponent {
 
   setDenunciaAnonima() {
     this.isAnonymous = true;
-    this.mostrarFormulario = false;  // Si es anónima, no se muestran más datos.
+    this.mostrarFormulario = false;  
   }
 
   enviarDenuncia() {
     const datosCompletos = this.complaintDataService.getComplaintData();
 
-    // Log para verificar los datos guardados antes de enviarlos
     console.log('Datos enviados al backend:', datosCompletos);
 
     this.complaintService.submitComplaint(datosCompletos).subscribe(
       (response) => {
         console.log('Denuncia enviada con éxito:', response);
-        this.router.navigate(['/successreport']);  // Redirigir a la página de éxito
+        this.router.navigate(['/successreport']);  
       },
       (error) => {
         console.error('Error al enviar la denuncia:', error);
@@ -58,14 +57,12 @@ export class DenuncianteComponent {
 
   guardarYRedirigir() {
     if (this.isAnonymous) {
-      // Si la denuncia es anónima, no se rellenan los datos del denunciante
       this.complaintDataService.setComplaintData({
         isAnonymous: true,
         contactEmail: this.contactEmail,
-        complainant: null  // No incluimos los datos de complainant si es anónimo
+        complainant: null  
       });
     } else {
-      // Si no es anónima, se guarda con los datos del denunciante
       this.complaintDataService.setComplaintData({
         isAnonymous: false,
         contactEmail: this.contactEmail,

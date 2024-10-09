@@ -1,12 +1,8 @@
 <main>
-  <router-outlet></router-outlet>
-  <app-footer *ngIf="showHeaderFooter"></app-footer>
+  <app-header *ngIf="!showAdminHeader"></app-header>
+  <app-header *ngIf="!showAdminSidebar"></app-header>
 
-  <!-- Botón de traducción en la esquina inferior izquierda -->
-  <div class="translator-container">
-    <button class="translate-button" (click)="translatePage()">
-      <img src="/assets/icons/translate-icon.png" alt="Traducir" class="translate-icon">
-      Traducir Página
-    </button>
-  </div>
+  <router-outlet></router-outlet>
+
+ <app-footer *ngIf="showHeaderFooter"></app-footer>
 </main>

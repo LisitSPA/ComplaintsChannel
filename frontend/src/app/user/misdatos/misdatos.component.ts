@@ -20,28 +20,26 @@ export class MisdatosComponent {
   sexo: string = ''; 
   contacto: string = '';
   rut: string = '';
-  eCompanyStatus: number = 1;  // Valor por defecto
+  eCompanyStatus: number = 1;  
 
   @Output() cerrar = new EventEmitter<void>();
 
   constructor(private complaintDataService: ComplaintDataService) {}
 
   guardarDatos() {
-    // Guardar datos del denunciante en el servicio
     this.complaintDataService.setComplaintData({
       complainant: {
         names: this.nombre,
         lastName: this.apellido,
-        eCompanyStatus: this.eCompanyStatus,  // Guardar el eCompanyStatus
+        eCompanyStatus: this.eCompanyStatus,  
         position: this.cargo,
         area: this.area,
-        eGenre: this.sexo === 'Masculino' ? 1 : 2,  // Manejar el género
+        eGenre: this.sexo === 'Masculino' ? 1 : 2,  
         contactPhone: this.contacto,
         rut: this.rut
       }
     });
 
-    // Log para verificar que los datos se guardan correctamente
     console.log('Datos del denunciante guardados:', {
       names: this.nombre,
       lastName: this.apellido,
@@ -53,6 +51,6 @@ export class MisdatosComponent {
       eGenre: this.sexo,
     });
 
-    this.cerrar.emit();  // Cerrar el formulario después de guardar los datos
+    this.cerrar.emit();  
   }
 }

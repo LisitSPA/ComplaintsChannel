@@ -96,3 +96,47 @@
 .iniciar-sesion:hover {
     background-color: #5d54c2;
 }
+@media (max-width: 768px) {
+    .header {
+      flex-direction: column; 
+      height: auto; 
+      padding: 10px;
+    }
+  
+    .header-title {
+      margin-left: 0;
+      text-align: center;
+    }
+  
+    .nav {
+      display: none; 
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .nav.open {
+      display: flex; 
+    }
+  
+    .nav li {
+      margin: 10px 0;
+    }
+  
+    .logo {
+      max-width: 100%; 
+    }
+  
+    .button {
+      display: none; 
+    }
+  
+    .hamburger-menu {
+      display: block;
+      cursor: pointer;
+      font-size: 30px;
+    }
+  
+    .hamburger-menu.open .nav {
+      display: flex; 
+    }
+  }

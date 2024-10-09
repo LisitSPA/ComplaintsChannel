@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { SidebarAdmin } from '../admin/sidebar-component/sidebar-admin.component';
 
 interface Usuario {
-  id: number;  // Cambia de string a number
+  id: number; 
   nombre: string;
   tipo: string;
   estado: string;
@@ -106,7 +106,7 @@ export class UsersComponent {
   
 
   eliminarUsuarios() {
-    if (this.usuarioSeleccionado) {  // Solo proceder si hay un usuario seleccionado
+    if (this.usuarioSeleccionado) {  
       this.mostrarEliminar = true;
       this.mostrarFormulario = false;
       this.mostrarEditar = false;
@@ -115,8 +115,6 @@ export class UsersComponent {
     }
   }
   
-
-  // Función para cerrar el modal de eliminar
   cerrarEliminar() {
     this.mostrarEliminar = false;
   }

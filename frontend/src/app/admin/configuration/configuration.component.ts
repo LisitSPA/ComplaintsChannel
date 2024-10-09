@@ -31,7 +31,6 @@ export class ConfigurationComponent {
   }
 
   guardarConfiguracion(): void {
-    // Lógica para guardar la configuración
     console.log('Configuración guardada:', {
       companyName: this.companyName,
       channelStatus: this.channelStatus,

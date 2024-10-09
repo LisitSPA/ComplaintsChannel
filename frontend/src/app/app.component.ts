@@ -78,7 +78,7 @@
 
     
         translatePage() {
-          const elementsToTranslate = document.querySelectorAll('body *');  // Selecciona todo el contenido visible
+          const elementsToTranslate = document.querySelectorAll('body *');  
       
           elementsToTranslate.forEach(element => {
             if (element.textContent && element.textContent.trim()) {

@@ -86,11 +86,7 @@
   border-radius: 5px;
 }
 
-.btn-primary {
-  background-color: none;
-  color: grey;
-  border: none;
-}
+
 
 .btn-secondary {
   background-color: #6c757d;
@@ -169,11 +165,20 @@ app-sidebar-admin {
   padding: 20px; 
   background-color:#f1f1f1;
 }
-
 .header-container {
   display: flex;
   align-items: center; 
-  justify-content: space-around; 
+  justify-content: flex-start; 
+  gap: 40px; 
+  margin-bottom: 20px; 
+  padding-left: 20px; 
+}
+
+.header-title {
+  font-size: 24px;
+  margin: 0;
+  padding: 0; 
+  font-family: 'Open Sans', sans-serif;
 }
 .denuncia-item {
   background-color: #f8f9fa;
@@ -196,14 +201,6 @@ app-sidebar-admin {
   color: #6c757d;
 }
 
-.btn-primary {
-  background-color: #e7f1ff;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 5px;
-  color: #007bff;
-  cursor: pointer;
-}
 
 .denuncia-status {
   display: flex;
@@ -254,4 +251,61 @@ app-sidebar-admin {
 
 .main-denuncias {
   flex-grow: 1;
+} 
+
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  margin-top: 5%;
 }
+
+
+.desestimar-btn {
+  margin-left: auto;  
+   background-color: #6f42c1;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.desestimar-btn:hover {
+  background-color: #5a34a1; 
+}
+
+.btn-primary {
+  background-color: #6f42c1; 
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #5a34a1;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.filter-select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
