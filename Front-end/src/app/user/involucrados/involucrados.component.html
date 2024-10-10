@@ -5,9 +5,9 @@
       <div class="separator"></div> 
       <div class="step active">2</div> <label style="color:#371ec2; font-weight: bold;">Involucrados</label>
       <div class="separator"></div> 
-      <div class="step">3</div><label>Evidencias</label>
+      <div class="step">3</div> <label>Denunciante</label>
       <div class="separator"></div> 
-      <div class="step">4</div><label>Denunciante</label>
+      <div class="step">4</div><label>Evidencias</label>
     </div>
 
     <div class="content-section">
@@ -49,7 +49,7 @@
             <input type="text" id="manualLastName" [(ngModel)]="manualLastName" placeholder="Ingrese apellido">
           </div>
         </div>
-        <button class="next-btn" style="margin-top: 20px;" (click)="guardarCausal()">Guardar al causal</button>
+        <button class="guardarCausal-btn" style="margin-top: 20px;" (click)="guardarCausal()">Guardar al causal</button>
       </div>
       
       <hr class="divider">
@@ -60,7 +60,7 @@
         <textarea id="incident-details" placeholder="Esta persona es alta de tes blanca..." [(ngModel)]="personDescription"></textarea>
       </div>
 
-      <a class="next-btn" (click)="guardarDatosYRedirigir($event)" href="javascript:void(0)">Siguiente</a>
+      <button class="next-btnn" (click)="guardarDatosYRedirigir($event)" href="javascript:void(0)">Siguiente</button>
     </div>
 
     <div class="info-section">

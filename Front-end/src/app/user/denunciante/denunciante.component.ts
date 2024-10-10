@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core';  
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';  
 import { MisdatosComponent } from '../misdatos/misdatos.component';
@@ -11,13 +11,15 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule, FormsModule, MisdatosComponent],
   templateUrl: './denunciante.component.html',
-  styleUrl: './denunciante.component.css'
+  styleUrls: ['./denunciante.component.css']
 })
 export class DenuncianteComponent {
   mostrarFormulario: boolean = false;
   contactEmail: string = '';
   deseoCodigoSeguimiento: boolean = false;
   isAnonymous: boolean = false;
+  eCompanyStatus: number = 1;  // Estado en la empresa
+  selectedSex: string = '';  // Sexo seleccionado
 
   constructor(
     private complaintDataService: ComplaintDataService, 
@@ -27,7 +29,7 @@ export class DenuncianteComponent {
 
   abrirFormulario() {
     this.mostrarFormulario = true;
-    this.isAnonymous = false;  
+    this.isAnonymous = false;  // Si selecciona identificarse, no es anónima
   }
 
   cerrarFormulario() {
@@ -47,7 +49,7 @@ export class DenuncianteComponent {
     this.complaintService.submitComplaint(datosCompletos).subscribe(
       (response) => {
         console.log('Denuncia enviada con éxito:', response);
-        this.router.navigate(['/successreport']);  
+        this.router.navigate(['/evidencias']);  
       },
       (error) => {
         console.error('Error al enviar la denuncia:', error);
@@ -56,20 +58,28 @@ export class DenuncianteComponent {
   }
 
   guardarYRedirigir() {
-    if (this.isAnonymous) {
-      this.complaintDataService.setComplaintData({
-        isAnonymous: true,
-        contactEmail: this.contactEmail,
-        complainant: null  
-      });
-    } else {
-      this.complaintDataService.setComplaintData({
-        isAnonymous: false,
-        contactEmail: this.contactEmail,
-        deseoCodigoSeguimiento: this.deseoCodigoSeguimiento
-      });
-    }
+    console.log('Tipo de denuncia:', this.isAnonymous ? 'Anónima' : 'Identificada');
+    console.log('Correo electrónico ingresado:', this.contactEmail);
+    console.log('Estado en la empresa:', this.eCompanyStatus);
+    console.log('Sexo (si es anónima):', this.selectedSex);
 
-    this.enviarDenuncia();
+    // Guardar los datos incluyendo el estado de la empresa y el sexo (si es anónima)
+    this.complaintDataService.setComplaintData({
+      isAnonymous: this.isAnonymous,
+      contactEmail: this.contactEmail,
+      deseoCodigoSeguimiento: this.deseoCodigoSeguimiento,
+      eCompanyStatus: this.eCompanyStatus,
+      eGenre: this.selectedSex  // Guardar el sexo seleccionado
+    });
+
+    this.complaintService.submitComplaint(this.complaintDataService.getComplaintData()).subscribe(
+      (response) => {
+        console.log('Denuncia enviada con éxito:', response);
+        this.router.navigate(['/evidencia']);  
+      },
+      (error) => {
+        console.error('Error al enviar la denuncia:', error);
+      }
+    );
   }
 }

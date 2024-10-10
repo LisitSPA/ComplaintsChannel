@@ -4,14 +4,17 @@
 
     <div class="main-content">
       <app-header-admin></app-header-admin>
-      <h2>Usuarios y privilegios</h2>
+      <h2 style="margin-left: 40px;">Usuarios y privilegios</h2>
 
       <div class="table-container">
         <div class="toolbar">
           <div class="botones-usuario">
-            <div class="usuario-option eliminar-option" (click)="eliminarUsuarios()">
+            <div class="eliminar-option" (click)="eliminarUsuarios()">
+              <img src="/icons/basurero.svg" alt="Eliminar Icono" class="icono-eliminar">
               <span>Eliminar</span>
             </div>
+            
+            
             <div class="usuario-option" (click)="abrirFormulario()">
               <span>Crear usuario</span>
             </div>

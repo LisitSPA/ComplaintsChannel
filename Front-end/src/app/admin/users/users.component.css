@@ -64,7 +64,8 @@
 }
 
 .table-container {
-  width: 100%;
+  width: 80%;
+  margin-left: 40px;
 }
 
 .table {
@@ -113,24 +114,25 @@ app-sidebar-admin {
   justify-content: space-around;
 }
 
-.usuario-option, .eliminar-option {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 0.5px solid grey;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
+.usuario-option{
+  color: white;
+  background-color: rgb(78, 65, 188);
+  width: 80%; 
+  height: 40px; 
+  border: none;
+  border-radius: 5px; 
   cursor: pointer;
-  width: 120px;
-  height: 50px;
-  transition: background-color 0.3s;
-  text-align: center;
+  font-size: 16px;
+  transition: background-color 0.3s; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
 }
 
-.usuario-option:hover, .eliminar-option:hover {
-  background-color: #f0f0f0;
+.eliminar-option {
+  margin-right: 20px;
 }
+
 
 .container {
   display: flex;
@@ -155,11 +157,22 @@ body {
 .toolbar {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
   margin-bottom: 20px;
 }
 
 .botones-usuario {
   display: flex;
-  gap: 10px;
+  align-items: center;
+}
+
+.eliminar-option {
+  display: flex; 
+  align-items: center; 
+  cursor: pointer;
+}
+
+.icono-eliminar {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px; 
 }

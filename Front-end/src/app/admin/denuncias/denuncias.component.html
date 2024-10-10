@@ -8,6 +8,7 @@
       <h2 class="header-title" [class.active]="viewMode === 'realizadas'" (click)="changeViewMode('realizadas')">Acciones realizadas</h2>
       <h2 class="header-title" [class.active]="viewMode === 'desestimadas'" (click)="changeViewMode('desestimadas')">Acciones desestimadas</h2>
     </div>
+    
 
     <div class="container-denuncias">
       <div class="sidebar-denuncias">
@@ -21,13 +22,12 @@
         <div class="toolbar">
           <div class="view-list" (click)="toggleView()">
             <img src="/icons/lista.svg" alt="Ícono de lista" class="icon-small" />
-            <span style="font-weight: 500;">Vista de lista</span>
+            <label style="font-weight: 500;">{{ isListView ? 'Vista de tabla' : 'Vista de lista' }}</label>
           </div>
           <div class="icon-container">
             <img src="/icons/filtro.svg" alt="Icono de estado" class="icon" />
             <label for="estado">Estado:</label>
             <select id="estado" [(ngModel)]="selectedEstado" (change)="filtrarPorEstado()" class="filter-select">
-              <option value="">Todos los estados</option>
               <option value="activo">Activo</option>
               <option value="inactivo">Inactivo</option>
             </select>
@@ -36,13 +36,14 @@
           <div class="icon-container">
             <label for="filtro">Filtrar por:</label>
             <select id="filtro" [(ngModel)]="selectedFiltro" (change)="filtrarPorOtro()" class="filter-select">
-              <option value="">Filtrar por...</option>
               <option value="anonimo">Anónimo</option>
               <option value="motivo">Motivo</option>
             </select>
           </div>
-          <button (click)="desestimar()" class="desestimar-btn">Desestimar</button>
-
+          <button (click)="desestimar()" class="desestimar-btn">
+            <img src="/icons/desestimados.svg" alt="Ícono" class="btn-icon" />
+            Desestimar
+          </button>
         </div>
 
         <div *ngIf="isListView" class="list-view">
@@ -52,7 +53,9 @@
               <span>Fecha: {{ denuncia.fecha | date:'shortDate' }}</span>
               <span>Anónimo: {{ denuncia.anonimo }}</span>
               <span>Motivo: {{ denuncia.motivo }}</span>
-              <span><button class="btn-primary">Ver evidencia</button></span>
+              <span>
+                <button class="evidencia-btn">Ver evidencia</button>
+              </span>
             </div>
             <div class="denuncia-status">
               <strong>Estado:</strong> {{ denuncia.estado }}

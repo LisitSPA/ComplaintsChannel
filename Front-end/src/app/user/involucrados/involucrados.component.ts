@@ -57,6 +57,6 @@ export class InvolucradosComponent {
 
     console.log('Datos guardados de personas involucradas:', personInvolveds);
 
-    this.router.navigate(['/evidencia']);
+    this.router.navigate(['/denunciante']);
   }
 }

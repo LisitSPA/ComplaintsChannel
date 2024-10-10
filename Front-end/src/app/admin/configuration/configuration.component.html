@@ -31,8 +31,12 @@
   
     <div class="input-group">
       <label>Barra de navegación</label>
-      <mat-slide-toggle [(ngModel)]="showNavBar">Ocultar nav-bar como default</mat-slide-toggle>
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="showNavBar">
+        <span class="slider round"></span>
+      </label>
     </div>
+    
   
     <div class="input-group">
       <label>Identificador</label>
@@ -46,7 +50,7 @@
       </select>
     </div>
   
-    <button mat-raised-button color="primary" (click)="guardarConfiguracion()">Guardar</button>
+    <button class="btn btn-primary" (click)="guardarConfiguracion()">Guardar</button>
   </div>
 </div>
 

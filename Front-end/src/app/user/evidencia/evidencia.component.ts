@@ -44,7 +44,7 @@ export class EvidenciaComponent {
       .subscribe(
         (response) => {
           console.log('Archivos subidos con éxito:', response);
-          this.router.navigate(['/denunciante']);
+          this.router.navigate(['/successreport']);
         },
         (error) => {
           console.error('Error al subir archivos:', error);

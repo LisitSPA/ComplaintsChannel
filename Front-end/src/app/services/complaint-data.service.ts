@@ -14,7 +14,7 @@ export class ComplaintDataService {
       rut: '',
       names: '',
       lastName: '',
-      eCompanyStatus: 1,
+      eCompanyStatus: 1,  
       position: '',
       area: '',
       eGenre: 1,
@@ -25,6 +25,7 @@ export class ComplaintDataService {
 
   setComplaintData(data: any) {
     this.complaintData = { ...this.complaintData, ...data };
+    console.log('Datos actualizados en ComplaintDataService:', this.complaintData);
   }
 
   getComplaintData() {
@@ -32,6 +33,24 @@ export class ComplaintDataService {
   }
 
   clearData() {
-    this.complaintData = {};
+    this.complaintData = {
+      reasons: [],
+      isAnonymous: true,
+      description: '',
+      incidentDate: '',
+      personInvolveds: [],
+      complainant: {
+        rut: '',
+        names: '',
+        lastName: '',
+        eCompanyStatus: 1,
+        position: '',
+        area: '',
+        eGenre: 1,
+        contactPhone: ''
+      },
+      contactEmail: ''
+    };
+    console.log('Datos reiniciados en ComplaintDataService');
   }
 }

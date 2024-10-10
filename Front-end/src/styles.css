@@ -64,17 +64,7 @@ label {
     color: white;
   }
     
-  .next-btn {
-    background-color: #371ec2;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-family: 'Open Sans';
 
-
-  }
   .incident-description {
     margin-top: 50px;
     margin-bottom: 50px;
