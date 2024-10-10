@@ -3,17 +3,16 @@
 <h3>Aquí verás el progreso actual de tu denuncia</h3>
 <hr class="divider">
 <div class="progress-indicator">
-    <div class="step_ok">1</div><label style="color: green">Denuncia recibida</label>
+    <div class="step_ok" [ngClass]="{'active': complaint.eStatus == 1 }">1</div><label class="text-green">Denuncia recibida</label>
     <div class="separator"></div> 
-    <div class="step active" >2</div><label style="color: blue; font-weight: bold;">En revisión</label>
-    <div class="separator"></div> 
-    <div class="step">3</div><label>En investigación</label>
-    <div class="separator"></div> 
-    <div class="step ">4</div><label>Acciones en curso</label>
-    <div class="separator"></div> 
-    <div class="step ">5</div><label>Denuncia resuelta</label>
+    <div [ngClass]="complaint.eStatus == 2 ? 'step_ok active': 'step'">2</div>
+    <label [ngClass]="{'text-green': complaint.eStatus == 2 }">En investigación</label>
+   <div class="separator"></div> 
+    <div [ngClass]="complaint.eStatus > 3 ? 'step_ok active': 'step'">3</div>
+    <label [ngClass]="{'text-green': complaint.eStatus > 3}">Denuncia resuelta</label>
 </div>
 <h2 style="font-size: x-large;">Mi denuncia</h2>
+<h3>Estado: <b>{{complaint.status}}</b></h3><br>
 <h3>Datos de la denuncia</h3>
 <div class="container">
   <div class="content-section">

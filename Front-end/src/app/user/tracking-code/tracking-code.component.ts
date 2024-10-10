@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import {  Router } from '@angular/router';
+import { ComplaintService } from '../../services/complaint.service';
+import { ResponseComplaint } from '../../../types/complaint.type';
 
 @Component({
   selector: 'app-tracking-code',
@@ -12,8 +15,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class TrackingCodeComponent {
   trackForm: FormGroup;
+  mensajeError: any;
+  complaint: any = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+    private route: Router,
+    private complaintService: ComplaintService
+  ) {
     this.trackForm = this.fb.group({
       trackCode: ['', [Validators.required, Validators.minLength(6)]]
     });
@@ -35,10 +43,20 @@ export class TrackingCodeComponent {
       }
     }
   }
-  onSubmit() {
-    if (this.trackForm.valid) {
-      console.log('Código enviado:', this.trackForm.value.trackCode);
-    }
+ 
+  async onSubmit() {
+    let code = `${this.trackingForm.value.digit1}${this.trackingForm.value.digit2}${this.trackingForm.value.digit3}${this.trackingForm.value.digit4}${this.trackingForm.value.digit5}`;
+   
+    this.mensajeError = ""
+
+    if(code)
+      this.complaint = await this.complaintService.getComplaintByCode(code, "es");
+     
+     if(this.complaint)
+        this.route.navigate(['seguimiento/'+code]);
+      else
+        this.mensajeError = "Código incorrecto" 
+   
   }
 
 }

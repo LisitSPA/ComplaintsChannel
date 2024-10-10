@@ -45,7 +45,6 @@ export class SeguimientoComponent {
   async getComplaint(){
     this.complaint = await this.complaintService.getComplaintByCode(this.code??"", this.language);
     this.complainant = this.complaint?.complainant
-    console.log(this.complaint);
   }
 
 }
