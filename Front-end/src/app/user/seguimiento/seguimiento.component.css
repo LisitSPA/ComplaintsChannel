@@ -158,3 +158,58 @@ input[type="text"] {
   box-sizing: border-box; 
   height: 40px; 
 }
+@media (max-width: 768px) {
+  body {
+    margin: 10px 10px;  
+  }
+
+  .mantenedor-item {
+    width: 100%; 
+    margin-bottom: 15px;
+  }
+
+  .step {
+    width: 30px; 
+    height: 30px;
+  }
+
+  h2 {
+    font-size: 1.5em; 
+  }
+
+  .form-group {
+    margin-right: 0; 
+    margin-bottom: 15px; 
+  }
+
+  .form-row {
+    flex-direction: column; 
+  }
+
+  .content-section {
+    padding: 15px;
+  }
+
+  .progress-indicator {
+    justify-content: center; 
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    margin: 5px;
+  }
+
+  .step {
+    width: 25px;
+    height: 25px;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  .content-section {
+    padding: 10px;
+  }
+}

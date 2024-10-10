@@ -139,4 +139,94 @@
     background-color: #371ec2;
     color: white;
   }
-  
+  @media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        justify-content: flex-start;
+        height: auto;
+        padding: 10px;
+    }
+
+    .report-card {
+        flex-direction: column;
+        width: 100%;
+        padding: 15px;
+        max-height: none;
+        overflow: visible;
+    }
+
+    .progress-indicator {
+        left: 0;
+        position: relative;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .step {
+        width: 30px;
+        height: 30px;
+        margin: 5px;
+    }
+
+    .content-section {
+        padding: 15px;
+        margin-left: 0;
+    }
+
+    .denuncia-option {
+        width: 80px;
+        height: 80px;
+    }
+
+    .option-icon {
+        width: 50px;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+
+    .info-section {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    textarea, .input-email, .next-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .reportlogo {
+      display: none; 
+  }
+}
+
+@media (max-width: 480px) {
+    .report-card {
+        padding: 10px;
+    }
+
+    .step {
+        width: 25px;
+        height: 25px;
+    }
+
+    .info-section {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .info-section .title {
+        font-size: 18px;
+    }
+
+    .info-section .subtitle {
+        font-size: 12px;
+    }
+
+    .next-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+    .reportlogo {
+      display: none; 
+  }
+}

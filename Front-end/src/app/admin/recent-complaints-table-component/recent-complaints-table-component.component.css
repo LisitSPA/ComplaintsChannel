@@ -149,3 +149,66 @@
   color: gray; 
   cursor: not-allowed; 
 }
+@media (max-width: 768px) {
+  .table-container {
+    margin: 10px;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .search-bar {
+    width: 100%;  
+  }
+
+  .table th, .table td {
+    padding: 8px;
+    font-size: 14px;
+    white-space: normal; 
+  }
+
+  .table td {
+    overflow: visible;
+  }
+
+  .btn-edit, .btn-delete {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pagination button {
+    padding: 8px;
+  }
+
+  .arrow {
+    font-size: large;
+  }
+}
+
+@media (max-width: 480px) {
+  .table th, .table td {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .pagination button {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  .btn-edit, .btn-delete {
+    padding: 5px;
+    font-size: 10px;
+  }
+
+  .arrow {
+    font-size: medium;
+  }
+}

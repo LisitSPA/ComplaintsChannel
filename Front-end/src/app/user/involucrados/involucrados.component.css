@@ -121,6 +121,10 @@ textarea {
       width: 100%;
       margin-top: 20px;
   }
+
+  .reportlogo {
+    display: none; 
+}
 }
 
 @media (max-width: 480px) {
@@ -150,4 +154,8 @@ textarea {
   textarea, .denuncia-btn, .dropbtn, .next-btnn {
       width: 100%;
   }
+
+  .reportlogo {
+    display: none; 
+}
 }
