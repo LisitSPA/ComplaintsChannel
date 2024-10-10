@@ -33,3 +33,31 @@
   width: 50px; 
   height: 50px; 
 }
+@media (max-width: 768px) {
+  .summary-container {
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .summary-card {
+    width: 100%; 
+    margin-right: 0;
+    margin-top: 20px;
+  }
+
+  .summary-icon {
+    width: 40px; 
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .summary-card {
+    padding: 15px; 
+  }
+
+  .summary-icon {
+    width: 30px; 
+    height: 30px;
+  }
+}

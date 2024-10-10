@@ -119,4 +119,59 @@
   .btn-primary:hover {
     background-color: #0056b3;
   }
-    
+  @media (max-width: 768px) {
+    .container {
+      grid-template-columns: 1fr;
+      height: auto; 
+    }
+  
+    .configuracion-empresa {
+      max-width: 100%; 
+      padding: 10px; 
+    }
+  
+    .logo-upload {
+      flex-direction: column; 
+      padding: 10px; 
+    }
+  
+    .color-options {
+      flex-wrap: wrap; 
+      gap: 5px; 
+    }
+  
+    .color-circle {
+      width: 25px;
+      height: 25px; 
+    }
+  
+    input[type="color"] {
+      width: 30px;
+      height: 30px; 
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .configuracion-empresa {
+      padding: 5px; 
+    }
+  
+    .upload-placeholder span {
+      font-size: 12px; 
+    }
+  
+    .btn {
+      font-size: 14px; 
+      padding: 8px 16px; 
+    }
+  
+    .switch {
+      width: 50px; 
+      height: 30px;
+    }
+  
+    .slider:before {
+      height: 22px;
+      width: 22px;
+    }
+  }

@@ -128,3 +128,50 @@ font-size: medium;
 font-weight: bold; 
 color: rgb(78, 65, 188);
 }
+@media (max-width: 768px) {
+  .chat-admin-container {
+    flex-direction: column; 
+  }
+
+  .chat-list {
+    width: 100%; 
+    border-right: none; 
+    border-bottom: 1px solid #ddd; 
+  }
+
+  .chat-detail {
+    width: 100%; 
+    padding: 10px; 
+  }
+
+  .main-content {
+    margin-left: 0; 
+    padding: 10px;
+  }
+
+  .respuesta-btn {
+    width: 100%; 
+  }
+
+  app-sidebar-admin {
+    display: none; 
+  }
+}
+
+@media (max-width: 480px) {
+  .tabs button {
+    padding: 5px 10px; 
+  }
+
+  .chat-item {
+    padding: 5px; 
+  }
+
+  .respuesta-btn {
+    font-size: 14px; 
+  }
+
+  .status-title {
+    font-size: medium; 
+  }
+}

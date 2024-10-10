@@ -161,3 +161,80 @@
   .next-btn:hover {
     background-color: #6653aa; 
   }
+
+  @media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        justify-content: flex-start;
+        height: auto;
+        padding: 20px;
+    }
+
+    .report-card {
+        flex-direction: column;
+        width: 100%;
+        padding: 15px;
+        height: auto;
+        max-height: 100%;
+        overflow-y: auto;
+    }
+
+    .progress-indicator {
+        left: 0;
+        top: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .step {
+        width: 30px;
+        height: 30px;
+    }
+
+    .info-section {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .reportlogo {
+        display: none; 
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .report-card {
+        width: 100%;
+        padding: 10px;
+        height: auto;
+    }
+
+    .step {
+        width: 25px;
+        height: 25px;
+    }
+
+    .info-section {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .info-section .title {
+        font-size: 20px;
+    }
+
+    .info-section .subtitle {
+        font-size: 14px;
+    }
+
+    textarea, .denuncia-btn, .dropbtn, .next-btn {
+        width: 100%;
+    }
+
+    .reportlogo {
+        display: none; 
+    }
+}
