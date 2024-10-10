@@ -50,3 +50,20 @@
   justify-content: flex-end; 
   margin-top: 20px; 
 }
+.next-btn {
+  align-self: flex-end;
+  background: linear-gradient(to bottom, #6653aa, #371ec2);
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.next-btn:hover {
+  background-color: #6653aa; 
+}

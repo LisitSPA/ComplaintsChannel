@@ -83,12 +83,12 @@ export class DenunciasComponent implements OnInit {
   }
 
   changeViewMode(mode: 'realizadas' | 'desestimadas') {
-    this.viewMode = mode;
+    this.viewMode = mode; 
     this.currentPage = 1; 
     if (mode === 'realizadas') {
       this.loadRealizadas();
     } else {
-      this.loadDesestimadas();
+      this.loadDesestimadas(); 
     }
   }
 
@@ -116,7 +116,7 @@ export class DenunciasComponent implements OnInit {
   }
 
   toggleView() {
-    this.isListView = !this.isListView;
+    this.isListView = !this.isListView; 
   }
 
   filtrarPorEstado() {

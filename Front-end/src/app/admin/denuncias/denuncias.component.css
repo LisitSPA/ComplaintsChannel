@@ -143,15 +143,6 @@ app-sidebar-admin {
 }
 
 
-.denuncia-btnitem {
-  background-color: hsl(255, 72%, 47%);
-    border-color: hsl(255, 72%, 47%);
-  border-radius: 8px;
-  margin: 10px 0;
-  padding: 15px;
-  font-family: 'Open Sans', sans-serif;
-}
-
 .denuncia-header {
   display: flex;
   justify-content: space-between;
@@ -164,11 +155,7 @@ app-sidebar-admin {
   color: #6c757d;
 }
 
-.denuncia-note {
-  font-size: 12px;
-  color: #6c757d;
-  margin-top: 5px;
-}
+
 
 .container-denuncias {
   display: flex;
@@ -192,16 +179,29 @@ app-sidebar-admin {
   flex-grow: 1;
 } 
 
-
 .desestimar-btn {
   color: white;
   background-color: rgb(78, 65, 188);
-  width: 20%;
-  height: 30%;
+  width: 15%; 
+  height: 40px; 
+  border: none;
+  border-radius: 5px; 
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
 }
 
 .desestimar-btn:hover {
-  background-color: #5d54c2;
+  background-color: #5d54c2; 
+}
+
+.btn-icon {
+  width: 20px; 
+  height: 20px; 
+  margin-right: 8px; 
 }
 
 
@@ -209,6 +209,7 @@ app-sidebar-admin {
   display: flex;
   align-items: center;
   margin-left: 10px;
+  margin-right: 20px;
 }
 
 .icon {
@@ -222,6 +223,7 @@ app-sidebar-admin {
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 14px;
+  margin-left: 10px;
 }
 
 .icon-small {
@@ -234,4 +236,45 @@ app-sidebar-admin {
   display: flex;
   align-items: center;
   cursor: pointer;
+}  
+
+.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
+}
+
+.denuncia-item {
+  background-color: #fff; 
+  border: 1px solid #ddd; 
+  border-radius: 8px; 
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.denuncia-status, .denuncia-note {
+  font-size: 14px; 
+  color: #6c757d; 
+}  
+
+.evidencia-btn {
+  color: rgb(78, 65, 188);
+  background-color: rgb(180, 176, 212);
+  width: 80px; 
+  height: 40px; 
+  border: none;
+  border-radius: 5px; 
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+
+.header-title.active {
+  font-weight: bold; 
+  text-decoration: underline; 
+  color: rgb(78, 65, 188);
 }
