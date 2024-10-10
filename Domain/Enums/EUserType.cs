@@ -9,5 +9,6 @@ namespace Domain.Enums
         Investigator = 1,
         Complainant = 2,
         Employee = 3,
+        Administrator = 4,
     }
 }

@@ -62,7 +62,7 @@ public class CreateUserCommandHandler(
                 Active = command.Active,
                 ContactEmail = command.Email,
                 EGenre = command.EGenre,
-                Password = command.Password,
+                Password = password,
                 UserName = command.UserName
             };
 
