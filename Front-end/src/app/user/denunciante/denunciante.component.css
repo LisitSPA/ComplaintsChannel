@@ -16,6 +16,9 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 1200px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-sizing: border-box;
   }
   
   .progress-indicator {
@@ -113,17 +116,27 @@
   .input-email{
     padding:10px 80px;
 
-  }  .next-btn {
-    align-self: flex-end; 
-    background-color: linear-gradient(to bottom, #6653aa, #371ec2); 
+  } 
+  .next-btn {
+    align-self: flex-end;
+    background: linear-gradient(to bottom, #6653aa, #371ec2);
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 16px;
+    color: white;
+    border: none;
+    cursor: pointer;
     transition: background-color 0.3s;
   }
   
   .next-btn:hover {
     background-color: #6653aa; 
   }
+
+  .selected {
+    background-color: #371ec2;
+    color: white;
+  }
+  

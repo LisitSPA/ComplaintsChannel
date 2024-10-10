@@ -6,6 +6,7 @@ import { EditarUsuarioComponent } from '../../editar-usuario/editar-usuario.comp
 import { EliminarUsuarioComponent } from '../../eliminar-usuario/eliminar-usuario.component';
 import { FormsModule } from '@angular/forms';  
 import { SidebarAdmin } from '../admin/sidebar-component/sidebar-admin.component';
+import { UserService } from '../../services/user.service';
 
 interface Usuario {
   id: number; 
@@ -31,15 +32,7 @@ interface Usuario {
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent {
-  usuarios: Usuario[] = [
-    {
-      id: 0,
-      nombre: 'nombre',
-      tipo: 'Investigador',
-      estado: 'activo',
-    },
-  ];
-
+  usuarios: Usuario[] = [];
   paginatedColaboradores: Usuario[] = [];
   currentPage = 1;
   itemsPerPage = 7;
@@ -48,8 +41,15 @@ export class UsersComponent {
   mostrarEliminar: boolean = false;
   usuarioSeleccionado: Usuario | null = null; 
 
-  constructor() {
-    this.updatePaginatedColaboradores();
+  constructor(private userService: UserService) {
+    this.obtenerUsuarios();
+  }
+
+  obtenerUsuarios() {
+    this.userService.getUsers().subscribe((data: Usuario[]) => {
+      this.usuarios = data; // Aquí obtienes los usuarios de la API
+      this.updatePaginatedColaboradores();
+    });
   }
 
   get totalPages() {
@@ -103,18 +103,17 @@ export class UsersComponent {
     this.mostrarFormulario = false;
     this.mostrarEliminar = false;
   }
-  
 
   eliminarUsuarios() {
     if (this.usuarioSeleccionado) {  
-      this.mostrarEliminar = true;
+      this.mostrarEliminar = true; 
       this.mostrarFormulario = false;
       this.mostrarEditar = false;
     } else {
       alert("Por favor selecciona un usuario antes de eliminar");
     }
   }
-  
+
   cerrarEliminar() {
     this.mostrarEliminar = false;
   }
@@ -128,6 +127,12 @@ export class UsersComponent {
   }
 
   seleccionarUsuario(usuario: Usuario, event: Event) {
-    usuario.seleccionado = (event.target as HTMLInputElement).checked;
+    const checked = (event.target as HTMLInputElement).checked;
+    
+    if (checked) {
+      this.usuarioSeleccionado = usuario; 
+    } else {
+      this.usuarioSeleccionado = null; 
+    }
   }
 }

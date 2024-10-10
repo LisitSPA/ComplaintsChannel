@@ -10,6 +10,9 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  getUsers(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
+  }
   createUser(userData: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, userData);
   }

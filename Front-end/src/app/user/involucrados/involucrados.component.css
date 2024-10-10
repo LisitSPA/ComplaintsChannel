@@ -1,231 +1,153 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
-  }
-  
-  .report-card {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 1200px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.step.active {
+  background-color: #371ec2;
+  font-family: 'Open Sans';
+}
+.report-card {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 1200px;
+  max-height: 80vh; 
+  overflow-y: auto; 
+  box-sizing: border-box;
+}
 
-  .progress-indicator {
-    position: absolute; 
-    left: 50px; 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-  
-  .step {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #e0e0e0;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
-  }
-  
-  .step.active {
-    background-color: #371ec2;
-  }
-  
-  .content-section {
-    flex: 1;
-    padding: 30px 20px 20px 20px; 
-    margin-left: 20px;
-    display: flex;        
-    flex-direction: column; 
-  }
-  .denuncia-options {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .denuncia-btn, .ver-mas-btn {
-    border: 1px solid #3b82f6;
-    background-color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    color: #3b82f6;
-    cursor: pointer;
-  }
-  
-  .denuncia-btn:hover {
-    background-color: #3b82f6;
-    color: white;
-  }
-  
-  .incident-description {
-    margin-top: 20px;
-  }
-  
-  textarea {
-    width: 80%;
-    height: 80px;
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #e0e0e0;
-    resize: vertical;  
-    max-height: 200px;
-  }
-  
-  
- 
- 
-  .info-section {
-    padding: 20px;
-    background-color: #fdfdfd;
-    border-radius: 10px;
-    width: 240px;
-    text-align: center;
-  }
-  .divider {
-    border: none;
-    border-top: 2px solid #e0e0e0; 
-    margin: 20px 0; 
-  }
-  
-  .incident-description {
-    margin-top: 20px;
-  }
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropbtn {
-    background-color: white; 
-    color: black; 
-    padding: 10px; 
-    font-size: 14px;
-    font-family: 'Open Sans';
-    border: 0.3px solid rgb(121, 116, 116); 
-    cursor: pointer; 
-    width: 350px; 
+.progress-indicator {
+  position: absolute;
+  left: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
-  }
-  
-  .dropdown-content {
-    display: none; 
-    position: absolute; 
-    background-color: white; 
-    width: 350px; 
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
-    z-index: 1; 
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block; 
-  }
-  
-  .label {
-    margin-top: 10px; 
-  }
+.content-section {
+  flex: 1;
+  padding: 30px 20px 20px 20px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
 
-  .next-btn {
-    align-self: flex-end; 
-    background-color: linear-gradient(to bottom, #6653aa, #371ec2); 
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    transition: background-color 0.3s;
-  }
-  
-  .next-btn:hover {
-    background-color: #6653aa; 
-  }  
+.info-section {
+  padding: 20px;
+  background-color: #fdfdfd;
+  border-radius: 10px;
+  width: 240px;
+  text-align: center;
+  box-sizing: border-box;
+}
 
-  .manual-entry {
-    margin-top: 20px;
-  }
-  
-  .input-group {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px; 
-  }
-  
-  .input-field {
-    flex: 1; 
-  }
-  
-  .input-field input {
-    width: 100%; 
-    padding: 15px; 
-    font-size: 16px; 
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box; 
-  }
-  
-  .input-field h3 {
-    margin-bottom: 8px;
-  }
-  @media (max-width: 768px) {
-    .container {
+textarea {
+  width: 100%;
+  height: 80px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  resize: vertical;
+  max-height: 200px;
+  box-sizing: border-box;
+}
+
+.guardarCausal-btn {
+  align-self: flex-end;
+  background: #6653aa;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 20%;
+} 
+.next-btnn {
+  align-self: flex-end;
+  background: linear-gradient(to bottom, #6653aa, #371ec2);
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.next-btnn:hover {
+  background-color: #6653aa;
+}
+
+@media (max-width: 768px) {
+  .container {
       flex-direction: column;
       justify-content: flex-start;
       height: auto;
       padding: 20px;
-    }
-  
-    .report-card {
+  }
+
+  .report-card {
       flex-direction: column;
       width: 100%;
       padding: 15px;
-    }
-  
-   
-    textarea, .denuncia-btn, .dropbtn, .next-btn {
+      height: auto;
+      max-height: 100%; 
+      overflow-y: auto;
+  }
+
+  textarea, .denuncia-btn, .dropbtn  {
       width: 100%;
-    }
-  
-    .info-section {
+  }
+
+  .info-section {
       width: 100%;
       margin-top: 20px;
-    }
   }
-  
-  @media (max-width: 480px) {
-    .container {
+}
+
+@media (max-width: 480px) {
+  .container {
       padding: 10px;
-    }
-  
-    .report-card {
+  }
+
+  .report-card {
       width: 100%;
-    }
-  
- 
-    .info-section {
+      padding: 10px;
+      height: auto;
+  }
+
+  .info-section {
       padding: 10px;
       font-size: 16px;
-    }
-  
-    .info-section .title {
-      font-size: 20px;
-    }
-  
-    .info-section .subtitle {
-      font-size: 14px;
-    }
-  
-    textarea, .denuncia-btn, .dropbtn, .next-btn {
-      width: 100%;
-    }
   }
+
+  .info-section .title {
+      font-size: 20px;
+  }
+
+  .info-section .subtitle {
+      font-size: 14px;
+  }
+
+  textarea, .denuncia-btn, .dropbtn, .next-btnn {
+      width: 100%;
+  }
+}
