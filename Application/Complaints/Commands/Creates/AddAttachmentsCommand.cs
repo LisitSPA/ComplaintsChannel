@@ -75,7 +75,7 @@ public class AddAttachmentsCommandHandler : IRequestHandler<AddAttachmentsComman
 
                 attachment = new Domain.Entities.Attachment
                 {
-                    Description = command.AttachDescription?.Count >= index ? command.AttachDescription[index] : "",
+                    Description = command.AttachDescription?.Count > index ? command.AttachDescription[index] : "",
                     FileName = item.FileName,
                     ComplaintId = command.ComplaintId
                 };
