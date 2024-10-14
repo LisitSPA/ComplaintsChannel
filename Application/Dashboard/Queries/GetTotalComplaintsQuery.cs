@@ -36,7 +36,7 @@ public class GetAllDataDashboardQueryHandler(
                           { 
                                 TotalComplaints = x.Count(),
                                 ComplaintsInProcess = x.Count(x => x.EStatus == Domain.Enums.EComplaintStatus.InProcess),
-                                PendingComplaints = x.Count(x => x.EStatus == Domain.Enums.EComplaintStatus.Registry)
+                                PendingComplaints = x.Count(x => x.EStatus == Domain.Enums.EComplaintStatus.Pending)
                            })
                           .First();
 

@@ -1,0 +1,94 @@
+<body>
+<h2 style="font-size: xx-large;">Estado de la denuncia</h2>
+<h3>Aquí verás el progreso actual de tu denuncia</h3>
+<hr class="divider">
+<div class="progress-indicator">
+    <div class="step_ok" [ngClass]="{'active': complaint.eStatus == 1 }">1</div><label class="text-green">Denuncia recibida</label>
+    <div class="separator"></div> 
+    <div [ngClass]="complaint.eStatus == 2 ? 'step_ok active': 'step'">2</div>
+    <label [ngClass]="{'text-green': complaint.eStatus == 2 }">En investigación</label>
+   <div class="separator"></div> 
+    <div [ngClass]="complaint.eStatus > 3 ? 'step_ok active': 'step'">3</div>
+    <label [ngClass]="{'text-green': complaint.eStatus > 3}">Denuncia resuelta</label>
+</div>
+<h2 style="font-size: x-large;">Mi denuncia</h2>
+<h3>Estado: <b>{{complaint.status}}</b></h3><br>
+<h3>Datos de la denuncia</h3>
+<div class="container">
+  <div class="content-section">
+    <div class="mantenedores-grid">
+      <a class="mantenedor-item">
+        Motivos
+        <span class="descripcion">
+          <span *ngFor="let reason of complaint?.reasons">
+            {{reason.description}}<br>
+          </span>
+        </span>
+      </a>
+      <a class="mantenedor-item">
+        Involucrados
+        <span class="descripcion">
+          <span *ngFor="let person of complaint?.involved">
+            {{person.names}} {{person.lastName}} {{person.personDescription}}<br>
+          </span>
+        </span>
+      </a>
+      <a class="mantenedor-item">
+        Evidencias
+        <span class="descripcion">
+          <span *ngFor="let file of complaint?.attachments">
+            <a href="{{filesUrl}}{{code}}/{{file.fileName}}" download="{{file.fileName}}">{{file.fileName}}</a> <br>
+          </span>
+        </span>
+      </a>      
+    </div>
+    <h3 style="font-size: x-large;">Datos personales</h3>
+    <div *ngIf="complainant">
+      <div class="form-row">
+        <div class="form-group">
+          <h3>Nombre:</h3>
+          <input type="text" name="nombre" [value]="complainant.names" required disabled>
+        </div>
+        <div class="form-group">
+          <h3>Apellido:</h3>
+          <input type="text" name="apellido" [value]="complainant.lastName" required disabled>
+        </div>
+        <div class="form-group">
+          <h3>Estado en la Empresa:</h3>
+          <input type="text" name="estado" [value]="complainant.companyStatus" disabled>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <h3>Cargo:</h3>
+          <input type="text" name="cargo" [value]="complainant.position" required disabled>
+        </div>
+        <div class="form-group">
+          <h3>Área:</h3>
+          <input type="text" name="area" [value]="complainant.area" required disabled>
+        </div>
+        <div class="form-group">
+          <h3>Sexo:</h3>
+          <input type="text" name="area" [value]="complainant.genre" required disabled>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <h3>RUT:</h3>
+          <input type="text" name="rut" [value]="complainant.rut" required disabled >
+        </div>
+        <div class="form-group">
+          <h3>Contacto:</h3>
+          <input type="text" name="contacto" [value]="complainant.contactPhone" required disabled >
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!complainant">
+        Anónimo
+    </div>
+  <app-chat></app-chat>
+
+  </div>
+</div>
+
+</body>

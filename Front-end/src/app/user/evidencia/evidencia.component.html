@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="report-card">
+    <div class="progress-indicator">
+      <div class="step ">1</div><label>Información general</label>
+      <div class="separator"></div> 
+      <div class="step">2</div> <label>Involucrados</label>
+      <div class="separator"></div> 
+      <div class="step ">3</div><label>Denunciante</label>
+      <div class="separator"></div> 
+      <div class="step active">4</div><label style="color:#371ec2; font-weight: bold;">Evidencias</label>
+    </div>
+
+    <div class="content-section">
+      <h2>Sube los archivos de evidencia</h2>
+      <h3>Sube uno o más archivos que demuestren la veracidad de lo ocurrido. Por favor añade una descripción a cada uno de ellos.</h3>
+
+      <div class="upload-and-description">
+        <div class="upload-box">
+          <input type="file" id="file-upload" (change)="onFileSelected($event)" multiple accept=".png,.pdf">
+          <label for="file-upload" class="custom-file-upload">
+            <i class="fa fa-cloud-upload"></i> Sube los documentos</label>
+          <p>Se permiten archivos png o pdf</p>
+        </div>
+
+        <div *ngFor="let file of archivosSeleccionados; let i = index">
+          <p>{{ file.name }}</p>
+          <textarea placeholder="Descripción para {{file.name}}" (input)="onDescripcionCambiada($event, i)"></textarea>
+        </div>
+      </div>
+
+      <div class="file-list">
+        <p *ngIf="archivosSeleccionados.length > 0">Archivos seleccionados:</p>
+        <ul>
+          <li *ngFor="let file of archivosSeleccionados">{{ file.name }}</li>
+        </ul>
+      </div>
+
+      <button class="next-btn" (click)="onSubmit()">Siguiente</button>
+    </div>
+
+    <div class="info-section">
+      <h1 class="title">Protegemos tu<br> identidad</h1>
+      <h2 class="subtitle">Te cuidamos, cuidándonos <br>entre todos.</h2>
+      <img src="/icons/isotipo-bg.png" alt="Logotipo Canal" class="reportlogo">
+    </div>
+  </div>
+</div>

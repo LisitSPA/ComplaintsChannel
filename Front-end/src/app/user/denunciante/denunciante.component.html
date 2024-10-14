@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="report-card">
+    <div class="progress-indicator">
+      <div class="step">1</div><label>Información general</label>
+      <div class="separator"></div> 
+      <div class="step">2</div><label>Involucrados</label>
+      <div class="separator"></div> 
+      <div class="step active">3</div><label style="color:#371ec2; font-weight: bold;">Denunciante</label>
+      <div class="separator"></div> 
+      <div class="step">4</div><label>Evidencias</label>
+    </div>
+
+    <div class="content-section">
+      <h2>Por favor, selecciona una opción</h2>
+
+      <h3>¿Qué tipo de denuncia desea realizar?</h3>
+      <div class="denuncia-options">
+        <div class="denuncia-option" [ngClass]="{'selected': isAnonymous}" (click)="setDenunciaAnonima()">
+          <img src="/icons/vector-icono-anonimo.svg" alt="Anónima" class="option-icon">
+          <span>Anónima</span>
+        </div>
+
+        <div class="denuncia-option" [ngClass]="{'selected': !isAnonymous}" (click)="abrirFormulario()">
+          <img src="/icons/vector-icono-identificarme.svg" alt="Identificarme" class="option-icon">
+          <span>Identificarme</span>
+        </div>
+      </div>
+
+      <app-misdatos *ngIf="mostrarFormulario" (cerrar)="cerrarFormulario()"></app-misdatos>
+      
+      <div *ngIf="isAnonymous" class="form-group">
+        <h3>Sexo:</h3>
+        <select [(ngModel)]="selectedSex">
+          <option value="Masculino">Masculino</option>
+          <option value="Femenino">Femenino</option>
+        </select>
+        <h3>Estado en la Empresa:</h3>
+        <select [(ngModel)]="eCompanyStatus" [disabled]="!isAnonymous">
+          <option value="1">Empleado</option>
+          <option value="2">Ex-empleado</option>
+          <option value="3">Contratista</option>
+        </select>
+      </div>
+
+      <hr class="divider">
+
+      <div class="incident-description">
+        <h2>Seguimiento</h2>
+        <h3>Ingresa tu dirección de e-mail.</h3>
+        <input class="input-email" type="email" [(ngModel)]="contactEmail" placeholder="e-mail">
+
+        <h4>Este dato no será visible y solo lo utilizaremos para enviarte notificaciones de seguimiento.</h4>
+
+        <div>
+          <input type="checkbox" id="seguimiento-codigo" [(ngModel)]="deseoCodigoSeguimiento">
+          <label for="seguimiento-codigo" style="color:#371ec2;font-weight: bold;">Deseo hacer el seguimiento con código</label>
+        </div>
+      </div>
+
+      <a class="next-btn" (click)="guardarYRedirigir()" href="javascript:void(0)">Subir evidencia</a>
+    </div>
+
+    <div class="info-section">
+      <h1 class="title">Protegemos tu<br>identidad</h1>
+      <h2 class="subtitle">Te cuidamos, cuidándonos <br>entre todos.</h2>
+      <img src="/icons/isotipo-bg.png" alt="Logotipo Canal" class="reportlogo">
+    </div>
+  </div>
+</div>

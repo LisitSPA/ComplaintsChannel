@@ -1,0 +1,232 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
+  }
+  
+  .report-card {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 1200px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+  
+  .progress-indicator {
+    position: absolute; 
+    left: 50px; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .step {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+  }
+  
+  .step.active {
+    background-color: #371ec2;
+  }
+  
+  .content-section {
+    flex: 1;
+    padding: 20px 20px 20px 20px; 
+    margin-left: 20px;
+    display: flex;        
+    flex-direction: column; 
+  }
+  .denuncia-options {
+    display: flex;
+    gap: 20px; 
+}
+
+.denuncia-option {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    border: 0.5px solid grey; 
+    background-color: white;
+    padding: 20px; 
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100px; 
+    height: 100px; 
+    transition: background-color 0.3s; 
+    background-size:auto;
+
+}
+
+.option-icon {
+    width: 60px; 
+    height: 50px; 
+    margin-bottom: 25px; 
+}
+  
+  .incident-description {
+    margin-top: 20px;
+  }
+  
+  textarea {
+    width: 80%;
+    height: 80px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    resize: vertical;  
+    max-height: 200px;
+  }
+  
+  
+  
+  
+  .info-section {
+    padding: 20px;
+    background-color: #fdfdfd;
+    border-radius: 10px;
+    width: 240px;
+    text-align: center;
+  }
+  .divider {
+    border: none;
+    border-top: 2px solid #e0e0e0; 
+    margin: 20px 0; 
+  }
+  
+  .incident-description {
+    margin-top: 20px;
+  }
+  .input-email{
+    padding:10px 80px;
+
+  } 
+  .next-btn {
+    align-self: flex-end;
+    background: linear-gradient(to bottom, #6653aa, #371ec2);
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .next-btn:hover {
+    background-color: #6653aa; 
+  }
+
+  .selected {
+    background-color: #371ec2;
+    color: white;
+  }
+  @media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        justify-content: flex-start;
+        height: auto;
+        padding: 10px;
+    }
+
+    .report-card {
+        flex-direction: column;
+        width: 100%;
+        padding: 15px;
+        max-height: none;
+        overflow: visible;
+    }
+
+    .progress-indicator {
+        left: 0;
+        position: relative;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .step {
+        width: 30px;
+        height: 30px;
+        margin: 5px;
+    }
+
+    .content-section {
+        padding: 15px;
+        margin-left: 0;
+    }
+
+    .denuncia-option {
+        width: 80px;
+        height: 80px;
+    }
+
+    .option-icon {
+        width: 50px;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+
+    .info-section {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    textarea, .input-email, .next-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .reportlogo {
+      display: none; 
+  }
+}
+
+@media (max-width: 480px) {
+    .report-card {
+        padding: 10px;
+    }
+
+    .step {
+        width: 25px;
+        height: 25px;
+    }
+
+    .info-section {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .info-section .title {
+        font-size: 18px;
+    }
+
+    .info-section .subtitle {
+        font-size: 12px;
+    }
+
+    .next-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+    .reportlogo {
+      display: none; 
+  }
+}

@@ -10,20 +10,20 @@ namespace Api.Controllers
 {
     [ApiController]
     [Route("api/complaints")]
-    public class ComplaintsController: ControllerBase
+    public class ComplaintsController : ControllerBase
     {
-        [HttpGet("types/all", Name = "GetAllComplaintTypes")]
-        public async Task<IActionResult> GetAllComplaintTypes()
+        [HttpGet("types/all/{language}", Name = "GetAllComplaintTypes")]
+        public async Task<IActionResult> GetAllComplaintTypes(string language)
         {
-            var result = await Mediator.Send(new GetAllComplaintTypesQuery {});
-            return HandleResult(result.Result, result.ErrorProvider);
+            var result = await Mediator.Send(new GetAllComplaintTypesQuery { });
+            return HandleResult(result.Result, result.ErrorProvider, language);
         }
 
-        [HttpGet("getByCode/{code}", Name = "GetComplaintByCode")]
-        public async Task<IActionResult> GetComplaintByCode(string code)
+        [HttpGet("{code}/{language}", Name = "GetComplaintByCode")]
+        public async Task<IActionResult> GetComplaintByCode(string code, string language)
         {
             var result = await Mediator.Send(new GetComplaintByCodeQuery { code = code});
-            return HandleResult(result.Result, result.ErrorProvider);
+            return HandleResult(result.Result, result.ErrorProvider, language);
         }
 
         [HttpPost("", Name = "CreateComplaint")]
@@ -39,14 +39,7 @@ namespace Api.Controllers
             var result = await Mediator.Send(command);
             return HandleResult(result.Result, result.ErrorProvider);
         }
-
-        [HttpPost("chat", Name = "AddMessage")]
-        public async Task<IActionResult> AddMessage([FromForm] CreateMessageChatCommand command)
-        {
-            var result = await Mediator.Send(command);
-            return HandleResult(result.Result, result.ErrorProvider);
-        }
-
+        
         [HttpPut("", Name = "UpdateStatusComplaint")]
         public async Task<IActionResult> UpdateComplaint(UpdateComplaintStatusCommand command)
         {

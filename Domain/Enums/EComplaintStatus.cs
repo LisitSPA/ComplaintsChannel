@@ -3,12 +3,21 @@ using System.ComponentModel;
 
 namespace Domain.Enums
 {
-    public enum EComplaintStatus //TODo
+    [Flags]
+    public enum EComplaintStatus 
     {
-        [Description("Registrada")]
-        Registry = 1,
-        InProcess = 2,
-        Resolved = 3,
+        [Description("Pendiente")]
+        Pending = 1,
+        [Description("En proceso de investigación")]
+        InProcess = 2,       
+        [Description("Finalizada")]
+        Completed = 3,
+        [Description("Desistimada")]
+        Rejected = 31,
+        [Description("Sanción Aplicada")]
+        SanctionApplied = 32,
+        [Description("Medidas preventivas")]
+        PreventiveMeasures = 33,
 
     }
 }

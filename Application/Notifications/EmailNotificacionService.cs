@@ -5,40 +5,42 @@ using System.Net.Mail;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using DevExpress.ClipboardSource.SpreadsheetML;
+using Notifications.Helpers;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Application.Notifications
 {
-
-    public static class EmailNotificationService
+    public interface IEmailNotificationService
     {
-        public static void SendEmail(EmailNotification notification)
+        public void SendEmail(EmailNotification notification);
+    }
+
+
+    public class EmailNotificationService(IConfiguration _configuration) : IEmailNotificationService
+    {
+        public void SendEmail(EmailNotification notification)
         {
-            var fromEmail = "MS_qgE106@trial-pxkjn41rxj5gz781.mlsender.net"; 
-            var fromPassword = "K2AQaLvcwJCb4ADl";
-            var smtpHost = "smtp.mailersend.net"; 
-            var smtpPort = 587; 
+            var fromEmail = _configuration["EmailConfiguration:Email"]; 
 
-                     
-            var mailMessage = new MailMessage
-            {
-                From = new MailAddress(fromEmail),
-                Subject = notification.Subject,
-                Body = notification.Body,
-                IsBodyHtml = true
-            };
-
-            mailMessage.To.Add(notification.ToEmail);
-
-            // Configurar el cliente SMTP
-            using var smtpClient = new SmtpClient(smtpHost, smtpPort);
-
-            smtpClient.Credentials = new NetworkCredential(fromEmail, fromPassword);
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
+            smtpClient.Credentials = new NetworkCredential(fromEmail, _configuration["EmailConfiguration:Password"]);
             smtpClient.EnableSsl = true;
 
+            notification.Body.Add("URIPORTAL", _configuration["UriPortal"]);
+        
+            MailMessage mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress(fromEmail);
+            mailMessage.To.Add(notification.ToEmail);
+            mailMessage.Subject = notification.Subject;
+            mailMessage.Body = Templates.FillTemplate(_configuration["EmailConfiguration:DirTemplates"], notification.TemplateName ?? "GeneralTemplate.html", notification.Body).Result;
+            mailMessage.IsBodyHtml = true;
+
+          
             try
             {
                 smtpClient.Send(mailMessage);
-                Console.WriteLine("Correo enviado exitosamente.");
             }
             catch (SmtpException ex)
             {
@@ -46,7 +48,7 @@ namespace Application.Notifications
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al enviar el correo: {ex.Message}");
+                Console.WriteLine($"Error to send the email: {ex.Message}");
             }
         }
 
@@ -56,8 +58,10 @@ namespace Application.Notifications
     public class EmailNotification
     {
         public string ToEmail { get; set; }
-        public string Body { get; set; }
+        public Dictionary<string, string> Body { get; set; }
         public string Subject { get; set; }
-
+        public string TemplateName { get; set; }
     }
+
+
 }

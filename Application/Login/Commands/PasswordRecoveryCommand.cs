@@ -26,23 +26,16 @@ public record PasswordRecoveryCommand : IRequest<Response<bool>>
     public string Username { get; set; }
 }
 
-public class PasswordRecoveryCommandHandler : IRequestHandler<PasswordRecoveryCommand, Response<bool>>
+public class PasswordRecoveryCommandHandler
+    (
+        IRepository<User> _repository,
+        IPasswordHasherService _passwordHasher,
+        IMapper _mapper,
+        IEmailNotificationService _emailNotificationService
+        ) 
+    : IRequestHandler<PasswordRecoveryCommand, Response<bool>>
 {
-    private readonly IRepository<User> _repository;
-    private readonly IMapper _mapper;
-    private readonly IPasswordHasherService _passwordHasher;
-
-    public PasswordRecoveryCommandHandler(
-        IRepository<User> repository,
-        IPasswordHasherService passwordHasherService,
-        IMapper mapper
-        )
-    {
-        _repository = repository;
-        _mapper = mapper;
-        _passwordHasher = passwordHasherService;
-    }
-
+   
     public async Task<Response<bool>> Handle(PasswordRecoveryCommand command, CancellationToken cancellationToken)
     {
         Response<bool> result = new();
@@ -60,10 +53,13 @@ public class PasswordRecoveryCommandHandler : IRequestHandler<PasswordRecoveryCo
                 _repository.Update(user);
                 _repository.Save();
 
-                EmailNotificationService.SendEmail(new EmailNotification
+                _emailNotificationService.SendEmail(new EmailNotification
                 {
                     Subject = "Recuperar contraseña",
-                    Body = $"Tu contraseña temporal es: {tempPass}",
+                    Body = new Dictionary<string, string> {
+                        { "TITLE", "Contraseña recuperada exitosamente" },
+                        { "TEXT", $"Ingresa con la siguiente contraseña temporal: <br><br> {tempPass}  <br><br>Te solicitará cambio al ingresar." }
+                    },
                     ToEmail = user.ContactEmail
                 });
             }

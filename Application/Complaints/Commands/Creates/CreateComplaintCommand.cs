@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using Application.Complaints.Queries.DTOs;
 using Application.Notifications;
+using Application.Users.Queries.DTOs;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Enums;
@@ -23,29 +24,24 @@ namespace Application.Complaints.Commands.Creates;
 public record CreateComplaintCommand : IRequest<Response<int>>
 {
     public List<int> Reasons { get; set; }
-    public bool IsAnonimo { get; set; }
+    public bool IsAnonymous { get; set; }
     public string Description { get; set; }
     public DateTime IncidentDate { get; set; }
     public List<PersonInvolvedDto> PersonInvolveds { get; set; }  
-    public ComplainantDto Complainant { get; set; }
+    public UserDto Complainant { get; set; }
     public string ContactEmail { get; set; }
 
 }
 
-public class CreateComplaintCommandHandler : IRequestHandler<CreateComplaintCommand, Response<int>>
+public class CreateComplaintCommandHandler
+    (
+        IRepository<Complaint> _repository,
+        IRepository<User> _repoPerson,
+        IMapper _mapper,
+        IEmailNotificationService _emailNotificationService
+    ) 
+    : IRequestHandler<CreateComplaintCommand, Response<int>>
 {
-    private readonly IRepository<Complaint> _repository;
-    private readonly IRepository<User> _repoPerson;
-    private readonly IMapper _mapper;
-
-    public CreateComplaintCommandHandler(IRepository<Complaint> repository, 
-        IRepository<User> repoPerson,
-        IMapper mapper)
-    {
-        _repository = repository;
-        _mapper = mapper;
-        _repoPerson = repoPerson;
-    }
 
     public async Task<Response<int>> Handle(CreateComplaintCommand command, CancellationToken cancellationToken)
     {
@@ -56,7 +52,7 @@ public class CreateComplaintCommandHandler : IRequestHandler<CreateComplaintComm
             {
                 Description = command.Description,
                 IncidentDate = command.IncidentDate,
-                EStatus = EComplaintStatus.Registry,
+                EStatus = EComplaintStatus.Pending,
             };
 
             List<ComplaintReasons> reasons = [];
@@ -70,7 +66,7 @@ public class CreateComplaintCommandHandler : IRequestHandler<CreateComplaintComm
 
             complaint.ComplaintReasons = reasons;
 
-            if (!command.IsAnonimo)
+            if (!command.IsAnonymous)
             {
                 complaint.Complainant = SetComplainant(command.Complainant);
                 complaint.Complainant.ContactEmail = command.ContactEmail;
@@ -78,20 +74,23 @@ public class CreateComplaintCommandHandler : IRequestHandler<CreateComplaintComm
 
             complaint.TrackingCode = GenerateCode().ToUpper();
             complaint.TrackingEmail = command.ContactEmail;
-           
-    
+
+
             _repository.Add(complaint);
             _repository.Save();
 
             SetInvolveds(command.PersonInvolveds, complaint.Id);
             _repository.Save();
 
-            EmailNotificationService.SendEmail(new EmailNotification
+            _emailNotificationService.SendEmail(new EmailNotification
             {
                 Subject = "Denuncia creada exitosamente",
-                Body = $"Tu código alfanumérico es: {complaint.TrackingCode}",
-                ToEmail = complaint.TrackingEmail
-            });
+                Body = new Dictionary<string, string> { 
+                    { "CODIGO", complaint.TrackingCode } 
+                },
+                ToEmail = complaint.TrackingEmail,
+                TemplateName = "CreateComplaint.html"
+            }); ;
 
             result.Result = complaint.Id;
 
@@ -124,7 +123,7 @@ public class CreateComplaintCommandHandler : IRequestHandler<CreateComplaintComm
          return true;
     }
 
-    private User SetComplainant(ComplainantDto complainant)
+    private User SetComplainant(UserDto complainant)
     {
         
         var person = _repoPerson.GetAllActive().Where(x => x.Names.Contains(complainant.Names) && x.LastName.Contains(complainant.LastName)).FirstOrDefault();
@@ -137,7 +136,7 @@ public class CreateComplaintCommandHandler : IRequestHandler<CreateComplaintComm
     private string GenerateCode()
     {
         string code = Guid.NewGuid().ToString("N")[..5];
-        while(_repository.GetAll().Where(x=> x.TrackingCode == code).Any())
+        while (_repository.GetAll().Where(x => x.TrackingCode == code).Any())
         {
             GenerateCode();
         }

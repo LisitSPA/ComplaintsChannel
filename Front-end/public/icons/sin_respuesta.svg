@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Layer_2" data-name="Layer 2" transform="translate(24 24) rotate(180)">
+    <g id="invisible_box" data-name="invisible box">
+      <rect id="Rectángulo_120" data-name="Rectángulo 120" width="24" height="24" fill="none"/>
+    </g>
+    <g id="icons_Q2" data-name="icons Q2" transform="translate(1 1)">
+      <path id="Trazado_28" data-name="Trazado 28" d="M13,2a10.95,10.95,0,1,0,7.793,3.207A11,11,0,0,0,13,2Zm0,20a9,9,0,1,1,9-9A9,9,0,0,1,13,22Z" transform="translate(-2 -2)"/>
+      <path id="Trazado_29" data-name="Trazado 29" d="M23,20a1,1,0,0,0-1,1v6a1,1,0,0,0,2,0V21A1,1,0,0,0,23,20Z" transform="translate(-12 -11)"/>
+      <circle id="Elipse_19" data-name="Elipse 19" cx="1" cy="1" r="1" transform="translate(10 5)"/>
+    </g>
+  </g>
+</svg>

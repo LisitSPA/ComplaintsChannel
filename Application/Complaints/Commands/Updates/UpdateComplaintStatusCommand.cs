@@ -31,9 +31,12 @@ public record UpdateComplaintStatusCommand : IRequest<Response<int>>
 
 }
 
-public class CreateComplaintCommandHandler(IRepository<Complaint> _repository,
+public class CreateComplaintCommandHandler(
+    IRepository<Complaint> _repository,
         IMediator _mediator,
-        ICurrentUserService _currentUserService) 
+        ICurrentUserService _currentUserService,
+        IEmailNotificationService _emailNotificationService
+    ) 
     : IRequestHandler<UpdateComplaintStatusCommand, Response<int>>
 {
 
@@ -62,11 +65,14 @@ public class CreateComplaintCommandHandler(IRepository<Complaint> _repository,
                 _mediator.Send(new AddAttachmentsCommand { Attachments = command.Attachments, ComplaintId = complaint.Id});
             }
 
-            EmailNotificationService.SendEmail(new EmailNotification
+            _emailNotificationService.SendEmail(new EmailNotification
             {
-                Subject = "Denuncia actualizada exitosamente",
-                Body = $"El estado de la denuncia ha sido actualizado a {command.EComplaintStatus.GetDescriptionByVal()}. <br><br>" +
-                       $"Notas: {command.Notes}",
+                Subject = "Actualización de denuncia",
+                Body = new Dictionary<string, string> {
+                    { "TITLE", "Tu denuncia ha cambiado de estado." },
+                    { "TEXT", $"El estado de la denuncia ha sido actualizado a {command.EComplaintStatus.GetDescriptionByVal()}. <br><br>" +
+                       $"Notas: {command.Notes}" }                    
+                },
                 ToEmail = complaint.TrackingEmail
             });
 

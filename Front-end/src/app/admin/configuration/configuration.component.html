@@ -1,0 +1,57 @@
+<div class="container">
+<app-sidebar-admin></app-sidebar-admin>
+
+<div class="configuracion-empresa">
+    <h2>Configuración Empresa</h2>
+    <p>Configura el aspecto del Canal de Denuncias</p>
+  
+    <div class="input-group">
+      <label>Logo de la empresa</label>
+      <div class="logo-upload">
+        <input type="file" (change)="onFileSelected($event)" accept=".jpg, .jpeg, .png" />
+        <div class="upload-placeholder">
+          <i class="material-icons">cloud_upload</i>
+          <span>Sube tu imagen</span>
+          <small>Se permiten archivos .png, .jpg, o .jpeg</small>
+        </div>
+      </div>
+    </div>
+  
+    <div class="input-group">
+      <label>Color del sistema</label>
+      <p>Personaliza el color de tu canal de denuncias</p>
+      <div class="color-options">
+        <div *ngFor="let color of predefinedColors" [ngStyle]="{ 'background-color': color }" class="color-circle" (click)="setColor(color)"></div>
+        <div>
+          <input type="color" [(ngModel)]="customColor" (change)="setColor(customColor)" />
+          <span>Custom color: {{ customColor }}</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="input-group">
+      <label>Barra de navegación</label>
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="showNavBar">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    
+  
+    <div class="input-group">
+      <label>Identificador</label>
+      <input type="text" [(ngModel)]="companyName" placeholder="Nombre de la empresa" />
+    </div>
+  
+    <div class="input-group">
+      <label>Estado del canal</label>
+      <select [(ngModel)]="channelStatus">
+        <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+      </select>
+    </div>
+  
+    <button class="btn btn-primary" (click)="guardarConfiguracion()">Guardar</button>
+  </div>
+</div>
+
+  

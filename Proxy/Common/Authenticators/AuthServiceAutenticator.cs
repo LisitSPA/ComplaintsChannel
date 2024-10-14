@@ -8,8 +8,8 @@ namespace Proxy.Common.Authenticators
     {
         private readonly IConfiguration _config;
 
-        public AuthServiceAutenticator(string token, IConfiguration config)
-            : base(token)
+        public AuthServiceAutenticator(IConfiguration config)
+            : base(config["KV-DefaultTokenAttachment"])
         {
             _config = config;
         }

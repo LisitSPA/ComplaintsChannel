@@ -9,8 +9,7 @@ using System.Linq;
 using AutoMapper.QueryableExtensions;
 using System.Collections.Generic;
 using Application.Complaints.Queries.DTOs;
-using Utility.Translator;
-using Google.Cloud.Translation.V2;
+using Application.Translator;
 
 
 namespace Application.Complaints.Queries;
@@ -22,16 +21,13 @@ public record GetAllComplaintTypesQuery : IRequest<Response<List<ComplaintTypeDt
 
 
 //HANDLER
-public class GetAllComplaintTypesQueryHandler : IRequestHandler<GetAllComplaintTypesQuery, Response<List<ComplaintTypeDto>>>
+public class GetAllComplaintTypesQueryHandler
+    (
+        IRepository<ComplaintType> _repo, 
+        IMapper _mapper,
+        IAzureTranslatorService _translatorService
+     ) : IRequestHandler<GetAllComplaintTypesQuery, Response<List<ComplaintTypeDto>>>
 {
-    private readonly IRepository<ComplaintType> _repo;
-    private readonly IMapper _mapper;
-
-    public GetAllComplaintTypesQueryHandler(IRepository<ComplaintType> repo, IMapper mapper)
-    {
-        _repo = repo;
-        _mapper = mapper;
-    }
 
     public async Task<Response<List<ComplaintTypeDto>>> Handle(GetAllComplaintTypesQuery request, CancellationToken cancellationToken)
     {
@@ -46,7 +42,7 @@ public class GetAllComplaintTypesQueryHandler : IRequestHandler<GetAllComplaintT
             if (request.languaje != "es")
                 source.ForEach(x =>
                 {
-                    x.Description = Translator.TranslateText(x.Description, request.languaje);
+                    x.Description = _translatorService.Translate(x.Description, request.languaje).Result;
                 });
 
             result.Result = source;

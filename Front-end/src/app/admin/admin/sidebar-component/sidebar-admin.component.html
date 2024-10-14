@@ -1,0 +1,42 @@
+<nav class="sidebar">
+  <div class="white-section" [ngClass]="{ 'active': isActive }">
+    <ng-container *ngIf="selectedSection === 'home'">
+      <h2>Home</h2>
+      <a style="font-size: small;" href="homeadmin">Dashboard</a>
+      <a style="font-size: small;" routerLink="/acciones-realizadas">Acciones realizadas</a>
+    </ng-container>
+    <ng-container *ngIf="selectedSection === 'denuncias'">
+      <h2>Denuncias</h2>
+      <a style="font-size: small;" href="denunciasadmin">Supervisión de denuncias</a>
+    </ng-container>
+    <ng-container *ngIf="selectedSection === 'chat'">
+      <h2>Chats</h2>
+      <a style="font-size: small;" href="chatadmin">Mis chats</a>
+      <a style="font-size: small;" routerLink="/acciones-realizadas">Desestimados</a>
+    </ng-container>
+    <ng-container *ngIf="selectedSection === 'administrar'">
+      <h2>Administrar</h2>
+      <a style="font-size: small;" href="usersadmin">Usuarios y privilegios</a>
+      <a style="font-size: small;" href="configurationadmin">Configuración</a>
+    </ng-container>
+    <ng-container *ngIf="selectedSection === 'logout'">
+      <h2>Cerra sesión</h2>
+      <a style="font-size: small;" routerLink="/acciones-realizadas">Cerrar sesión</a>
+    </ng-container>
+  </div>
+  <div class="violet-section">
+    <div class="logo">
+      <a href="homeadmin">
+        <img src="/icons/Logo_adm.svg" alt="Logo" />
+      </a>
+    </div>
+  
+    <ul>
+      <li><a style="font-size: medium;" (click)="toggleSection('home')">Home</a></li>
+      <li><a style="font-size: medium;" (click)="toggleSection('denuncias')">Denuncias</a></li>
+      <li><a style="font-size: medium;" (click)="toggleSection('chat')">Chat</a></li>
+      <li><a style="font-size: medium;" (click)="toggleSection('administrar')">Administrar</a></li>
+      <li><a style="font-size: medium;" (click)="toggleSection('logout')">Cerrar sesión</a></li>
+    </ul>
+  </div>
+</nav>
