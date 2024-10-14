@@ -2,22 +2,28 @@ import { Component } from '@angular/core';
 import { ComplaintAttachmentService } from '../../services/complaintAttachnmentService';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ComplaintDataService } from '../../services/complaint-data.service';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-evidencia',
   standalone: true,
   templateUrl: './evidencia.component.html',
   styleUrl: './evidencia.component.css',
-  imports: [CommonModule],
+  imports: [CommonModule, MatProgressSpinnerModule],
  
 })
 export class EvidenciaComponent {
   archivosSeleccionados: File[] = [];
   descripcionesArchivos: string[] = [];
-  complaintId: number = 123;  
   descripcionGeneral: string = '';
+  submit: boolean = false;
 
-  constructor(private complaintAttachmentService: ComplaintAttachmentService, private router: Router) {}
+  constructor(
+    private complaintAttachmentService: ComplaintAttachmentService, 
+    private dataService : ComplaintDataService,
+    private router: Router
+  ) {}
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -36,11 +42,10 @@ export class EvidenciaComponent {
       return;
     }
 
-    console.log('ComplaintId:', this.complaintId);
-    console.log('Archivos seleccionados:', this.archivosSeleccionados);
-    console.log('Descripciones de archivos:', this.descripcionesArchivos);
+    let complaint = this.dataService.getComplaintData();
+    this.submit = true;
 
-    this.complaintAttachmentService.uploadAttachments(this.complaintId, this.archivosSeleccionados, this.descripcionesArchivos)
+    this.complaintAttachmentService.uploadAttachments(complaint.Id, this.archivosSeleccionados, this.descripcionesArchivos)
       .subscribe(
         (response) => {
           console.log('Archivos subidos con éxito:', response);
@@ -48,6 +53,7 @@ export class EvidenciaComponent {
         },
         (error) => {
           console.error('Error al subir archivos:', error);
+          this.submit = false;
         }
       );
   }

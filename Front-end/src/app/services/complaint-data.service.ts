@@ -4,13 +4,19 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ComplaintDataService {
+  
+  private resons: any = {}
+
   private complaintData: any = {
     reasons: [],
     isAnonymous: true,
     description: '',
     incidentDate: '',
-    personInvolveds: [],
-    complainant: {
+    personInvolveds: [],   
+    contactEmail: ''
+  };
+
+  private complainant: any = {   
       rut: '',
       names: '',
       lastName: '',
@@ -18,18 +24,35 @@ export class ComplaintDataService {
       position: '',
       area: '',
       eGenre: 1,
-      contactPhone: ''
-    },
-    contactEmail: ''
-  };
+      contactPhone: ''    
+  }
 
   setComplaintData(data: any) {
     this.complaintData = { ...this.complaintData, ...data };
+   
+    if(!this.complaintData.isAnonymous)
+      this.complaintData.complainant = { ...this.complainant, ...data.complainant };
+    
     console.log('Datos actualizados en ComplaintDataService:', this.complaintData);
+  }
+
+  setId(id: number){
+    this.complaintData.Id = id;
   }
 
   getComplaintData() {
     return this.complaintData;
+  }
+
+  getReasons(){
+    console.log(this.resons)
+    return this.resons;
+  }
+
+  setReasons(data: any){
+    this.resons = data;
+    console.log(this.resons)
+
   }
 
   clearData() {

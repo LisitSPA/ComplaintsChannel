@@ -1,39 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComplaintDataService } from '../../services/complaint-data.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ComplaintService } from '../../services/complaint.service';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-report',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatGridListModule, MatButtonModule],
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.css']
 })
-export class ReportComponent {
+export class ReportComponent implements OnInit {
   reasons: number[] = [];  
   description: string = '';
   incidentDate: string = '';
   mostrarDropdown: boolean = false;  
 
-  reasonsList = [
-    { id: 0, text: 'Violación al Código de Ética' },
-    { id: 1, text: 'Fraude Financiero' },
-    { id: 2, text: 'Manejo indebido de la Información' },
-    { id: 3, text: 'Acoso Laboral' },
-    { id: 4, text: 'Abuso de poder' },
-    { id: 5, text: 'Uso indebido de recursos de la empresa' },
-    { id: 6, text: 'Desviación contable' },
-    { id: 7, text: 'Discriminación' },
-    { id: 8, text: 'Incumplimiento de Política de Seguridad' },
-    { id: 9, text: 'Corrupción o soborno' },
-    { id: 10, text: 'Nepotismo' },
-    { id: 11, text: 'Violación de la privacidad' },
-    { id: 12, text: 'Manipulación de registros' }
+  reasonsList : any = [
   ];
 
-  constructor(private complaintDataService: ComplaintDataService, private router: Router) {}
+  constructor(
+    private complaintDataService: ComplaintDataService, 
+    private complaintService: ComplaintService, 
+    private router: Router,
+  ) {
+   
+  }
+
+  ngOnInit(): void { 
+    this.getData()
+  }
+
+  async getData(){
+    this.reasonsList = this.complaintDataService.getReasons()
+    if(!this.reasonsList.length)
+      {
+        this.reasonsList = await this.complaintService.getReasonsComplaints();
+        this.complaintDataService.setReasons(this.reasonsList);
+      }
+      
+  }
 
   toggleReasonSelection(reasonId: number) {
     const index = this.reasons.indexOf(reasonId);

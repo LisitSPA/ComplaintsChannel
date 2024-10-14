@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-sidebar-admin',
@@ -9,11 +11,23 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./sidebar-admin.component.css'] 
 })
 export class SidebarAdmin {
+
   isActive: boolean = false; 
   selectedSection: string = '';
+
+  constructor(
+    private router: Router,
+  ) {
+   
+  }
 
   toggleSection(section: string) {
     this.isActive = !this.isActive;
     this.selectedSection = section; 
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }

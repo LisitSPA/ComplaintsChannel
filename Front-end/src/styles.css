@@ -47,6 +47,45 @@ label {
     padding: 0;
 }
 
+
+.next-btn {
+  align-self: flex-end;
+  background: linear-gradient(to bottom, #786ca1, #371ec2);
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: white !important;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.flex-end{
+  align-self: flex-end;
+  justify-content: space-between;
+}
+
+.back-btn {
+  align-self: flex-end;
+  background: linear-gradient(to bottom, #605b75, #4f4880);
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: white !important;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  justify-content: space-between;
+}
+
+.next-btn:hover {
+  background-color: #6653aa;
+}
+
 .denuncia-btn, .ver-mas-btn {
     border: 1px solid #371ec2;
     background-color: white;
@@ -58,6 +97,38 @@ label {
 
   }
 
+
+  section {
+    display: table;
+  }
+  
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    max-width: 600px;
+  }
+  
+  .example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }
   
   .denuncia-btn:hover {
     background-color: #371ec2;
@@ -117,3 +188,5 @@ label {
     font-weight: 500;
     text-decoration: underline;
   }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

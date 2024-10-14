@@ -18,11 +18,12 @@
       <h2>Administrar</h2>
       <a style="font-size: small;" href="usersadmin">Usuarios y privilegios</a>
       <a style="font-size: small;" href="configurationadmin">Configuración</a>
+      <a style="font-size: small;" href="cambiarcontrasenaadmin">Cambiar contraseña</a>
     </ng-container>
-    <ng-container *ngIf="selectedSection === 'logout'">
+    <!-- <ng-container *ngIf="selectedSection === 'logout'">
       <h2>Cerra sesión</h2>
       <a style="font-size: small;" routerLink="/acciones-realizadas">Cerrar sesión</a>
-    </ng-container>
+    </ng-container> -->
   </div>
   <div class="violet-section">
     <div class="logo">
@@ -36,7 +37,7 @@
       <li><a style="font-size: medium;" (click)="toggleSection('denuncias')">Denuncias</a></li>
       <li><a style="font-size: medium;" (click)="toggleSection('chat')">Chat</a></li>
       <li><a style="font-size: medium;" (click)="toggleSection('administrar')">Administrar</a></li>
-      <li><a style="font-size: medium;" (click)="toggleSection('logout')">Cerrar sesión</a></li>
+      <li><a style="font-size: medium;" (click)="logout()">Cerrar sesión</a></li>
     </ul>
   </div>
 </nav>

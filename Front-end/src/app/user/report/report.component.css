@@ -143,16 +143,36 @@ textarea {
 
 .next-btn {
   align-self: flex-end;
-  background: linear-gradient(to bottom, #6653aa, #371ec2);
+  background: linear-gradient(to bottom, #786ca1, #371ec2);
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
-  color: white;
+  color: white !important;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
+}
+
+.flex-end{
+  align-self: flex-end;
+  justify-content: space-between;
+}
+
+.back-btn {
+  align-self: flex-end;
+  background: linear-gradient(to bottom, #605b75, #4f4880);
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: white !important;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  justify-content: space-between;
 }
 
 .next-btn:hover {

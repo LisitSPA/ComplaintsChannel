@@ -29,7 +29,7 @@ export class DenuncianteComponent {
 
   abrirFormulario() {
     this.mostrarFormulario = true;
-    this.isAnonymous = false;  // Si selecciona identificarse, no es anónima
+    this.isAnonymous = true;  // Si selecciona identificarse, no es anónima
   }
 
   cerrarFormulario() {
@@ -41,21 +41,21 @@ export class DenuncianteComponent {
     this.mostrarFormulario = false;  
   }
 
-  enviarDenuncia() {
-    const datosCompletos = this.complaintDataService.getComplaintData();
+  // enviarDenuncia() {
+  //   const datosCompletos = this.complaintDataService.getComplaintData();
 
-    console.log('Datos enviados al backend:', datosCompletos);
+  //   console.log('Datos enviados al backend:', datosCompletos);
 
-    this.complaintService.submitComplaint(datosCompletos).subscribe(
-      (response) => {
-        console.log('Denuncia enviada con éxito:', response);
-        this.router.navigate(['/evidencias']);  
-      },
-      (error) => {
-        console.error('Error al enviar la denuncia:', error);
-      }
-    );
-  }
+  //   this.complaintService.submitComplaint(datosCompletos).subscribe(
+  //     (response) => {
+  //       console.log('Denuncia enviada con éxito:', response);
+  //       this.router.navigate(['/evidencias']);  
+  //     },
+  //     (error) => {
+  //       console.error('Error al enviar la denuncia:', error);
+  //     }
+  //   );
+  // }
 
   guardarYRedirigir() {
     console.log('Tipo de denuncia:', this.isAnonymous ? 'Anónima' : 'Identificada');
@@ -72,9 +72,12 @@ export class DenuncianteComponent {
       eGenre: this.selectedSex  // Guardar el sexo seleccionado
     });
 
-    this.complaintService.submitComplaint(this.complaintDataService.getComplaintData()).subscribe(
+    let data = this.complaintDataService.getComplaintData();
+
+    this.complaintService.createComplaint(data).subscribe(
       (response) => {
         console.log('Denuncia enviada con éxito:', response);
+        this.complaintDataService.setId(response.content)
         this.router.navigate(['/evidencia']);  
       },
       (error) => {

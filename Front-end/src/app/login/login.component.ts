@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { UserDataService } from '../services/user-data.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,11 @@ export class LoginComponent {
   };
   mensajeError = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+     private router: Router,
+     private userData: UserDataService
+    ) {}
 
   gotoHome() {
     const loginCommand = {
@@ -26,12 +31,13 @@ export class LoginComponent {
       password: this.usuario.password
     };
 
-    this.http.post('https://cdd-api.lisit-digital.cl/api/auth/login', loginCommand)
+      this.http.post('https://cdd-api.lisit-digital.cl/api/auth/login', loginCommand)
       .subscribe(
         (response: any) => {
           console.log('Login exitoso:', response);
           
           localStorage.setItem('token', response.token);
+          this.userData.setUserData({ username: this.usuario.email })
           
           this.router.navigate(['/homeadmin']);
         },

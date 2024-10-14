@@ -3,21 +3,27 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ComplaintDataService } from '../../services/complaint-data.service';
 import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-involucrados',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatButtonModule],
   templateUrl: './involucrados.component.html',
   styleUrls: ['./involucrados.component.css']
 })
 export class InvolucradosComponent {
+
   personasSeleccionadas: string[] = [];
   personDescription: string = '';
   manualName: string = '';  
   manualLastName: string = '';  
 
-  constructor(private complaintDataService: ComplaintDataService, private router: Router) {}
+  constructor(private complaintDataService: ComplaintDataService, 
+    private router: Router,
+    private location: Location
+  ) {}
 
   actualizarSeleccion(persona: string, event: Event) {
     const checkbox = (event.target as HTMLInputElement);
@@ -58,5 +64,9 @@ export class InvolucradosComponent {
     console.log('Datos guardados de personas involucradas:', personInvolveds);
 
     this.router.navigate(['/denunciante']);
+  }
+
+  back() {
+    this.location.back();
   }
 }

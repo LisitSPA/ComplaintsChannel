@@ -1,17 +1,10 @@
-<div class="container">
-  <app-sidebar-admin></app-sidebar-admin>
-  <div class="main-content">
-    <app-header-admin></app-header-admin>
+<div class="dashboard">
+  <div class="quick-access-container">
+    <h1>Accesos rápidos</h1>
 
-    <div class="dashboard">
-      <div class="quick-access-container">
-        <h1>Accesos rápidos</h1>
-
-        <app-quick-access-component></app-quick-access-component>
-        <app-dashboard-summary></app-dashboard-summary> 
-        <app-recent-complaints-table-component></app-recent-complaints-table-component>
-      </div>
-      <app-charts-component></app-charts-component>
-    </div>
+    <app-quick-access-component></app-quick-access-component>
+    <app-dashboard-summary></app-dashboard-summary> 
+    <app-recent-complaints-table-component></app-recent-complaints-table-component>
   </div>
+  <app-charts-component></app-charts-component>
 </div>

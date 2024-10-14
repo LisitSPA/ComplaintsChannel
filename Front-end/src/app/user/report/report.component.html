@@ -19,10 +19,10 @@
       <h3>Motivos de denuncia</h3>
 
       <div class="denuncia-options">
-        <button class="denuncia-btn" *ngFor="let reason of reasonsList.slice(0, 3)"
+        <button class="denuncia-btn" *ngFor="let reason of reasonsList?.slice(0,3)"
                 [ngClass]="{'selected': reasons.includes(reason.id)}"
                 (click)="toggleReasonSelection(reason.id)">
-          {{ reason.text }}
+          {{ reason.description }}
         </button>
       </div>
 
@@ -31,11 +31,11 @@
       </button>
 
       <div *ngIf="mostrarDropdown" class="more-reasons">
-        <label *ngFor="let reason of reasonsList.slice(3)">
+        <label *ngFor="let reason of reasonsList?.slice(3)">
           <input type="checkbox" 
                  [checked]="reasons.includes(reason.id)"
                  (change)="toggleReasonSelection(reason.id)">
-          {{ reason.text }}
+          {{ reason.description }}
         </label>
       </div>
 
@@ -52,7 +52,12 @@
         </div>
       </div>
 
-      <button class="next-btn" (click)="guardarYRedirigir()">Siguiente</button>
+      <div class="example-button-row flex-end">
+        <!-- <button class="back-btn" mat-raised-button>Volver</button> -->
+        <button class="next-btn" mat-raised-button [disabled]="!reasons.length && !incidentDate && !description" (click)="guardarYRedirigir()">Siguiente</button>
+      </div>
+
+      <br>
     </div>
 
     <div class="info-section">

@@ -35,7 +35,12 @@
         </ul>
       </div>
 
-      <button class="next-btn" (click)="onSubmit()">Siguiente</button>
+     
+      <button class="next-btn" [disabled]="submit" (click)="onSubmit()">
+        <span *ngIf="!submit">Siguiente</span>
+        <mat-progress-spinner *ngIf="submit" [diameter]="24" mode="indeterminate"></mat-progress-spinner>
+      </button>
+      <br>
     </div>
 
     <div class="info-section">
