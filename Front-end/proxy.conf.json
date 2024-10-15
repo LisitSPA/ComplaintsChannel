@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://cdd-api.lisit-digital.cl",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

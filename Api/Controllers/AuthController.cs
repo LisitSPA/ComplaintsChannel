@@ -42,7 +42,7 @@ namespace Api.Controllers
             return HandleResult(result.Result, result.ErrorProvider);
         }
 
-        [HttpPut("changePassword")]
+        [HttpPost("changePassword")]
         public async Task<IActionResult> ChangePassword(ChangePasswordCommand command)
         {
             var result = await Mediator.Send(command);

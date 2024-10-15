@@ -14,6 +14,7 @@ export class UserDataService {
   }
 
   getUserData() {
+    console.log(this.user)
     return this.user;
   }
 

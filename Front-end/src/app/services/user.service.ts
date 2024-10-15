@@ -8,8 +8,13 @@ import { environment } from '../../environment/environment';
 })
 export class UserService {
   private apiUrl = environment.apiUrl+'/users';
+  private headers = new HttpHeaders();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.headers = new HttpHeaders({
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+    });
+  }
  
   getUsers(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
@@ -27,7 +32,13 @@ export class UserService {
   }
 
   changePassword(data: any): Observable<any>{
-    const url = `${this.apiUrl}/auth/changePassword`;
-    return this.http.put(url, data); 
+    console.log(sessionStorage.getItem('token'))
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+    });
+
+    const url = `${environment.apiUrl}/auth/changePassword`;
+    console.log(this.http)
+    return this.http.post(url, data,{headers}); 
   }
 }

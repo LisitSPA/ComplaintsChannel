@@ -130,6 +130,21 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
+
+  .back-btn {
+    align-self: flex-end;
+    background: linear-gradient(to bottom, #605b75, #4f4880);
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    color: white !important;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    justify-content: space-between;
+  }
   
   .next-btn:hover {
     background-color: #6653aa; 

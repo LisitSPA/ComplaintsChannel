@@ -108,7 +108,9 @@
     resize: vertical;
     max-height: 200px;
   }
-  
+  .form-control {
+    border-radius: 5px;
+}
   
   .info-section {
     padding: 20px;

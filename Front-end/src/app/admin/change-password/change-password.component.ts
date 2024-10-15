@@ -7,11 +7,12 @@ import { UserDataService } from '../../services/user-data.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environment/environment';
 import { UserService } from '../../services/user.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-change-password',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MatFormFieldModule, MatFormFieldModule],
+  imports: [ReactiveFormsModule, CommonModule, MatFormFieldModule, MatFormFieldModule, MatProgressSpinnerModule],
   templateUrl: './change-password.component.html',
   styleUrl: './change-password.component.css'
 })
@@ -21,6 +22,7 @@ export class ChangePasswordComponent implements OnInit{
   mensajeExito: any;
 
   changePasswordForm: FormGroup;
+  submit: boolean = false;
 
   constructor(private fb: FormBuilder, 
     private userData: UserDataService,
@@ -48,24 +50,27 @@ export class ChangePasswordComponent implements OnInit{
   onSubmit() {
     if (this.changePasswordForm.valid) {
      
+      this.submit = true;
       let data = this.userData.getUserData();
-      console.log(data)
-      // const loginCommand = {
-      //   username: this.userData.getUserData()
-      //   password: this.usuario.password
-      // };
-  
-      this.userService.changePassword(data)
+      
+       const request = {
+          username: localStorage.getItem("email"),
+          oldPassword: this.changePasswordForm.controls['currentPassword'].value,
+          newPassword: this.changePasswordForm.controls['newPassword'].value,
+      }
+      console.log(request)
+      this.userService.changePassword(request)
         .subscribe(
           (response: any) => {
-            console.log('Login exitoso:', response);
             
             
+            this.mensajeExito = "Contraseña cambiada exitosamente"
             
            
           },
           (error) => {
-           
+            this.submit = false;
+            this.mensajeError = "Contraseña incorrecta"
           }
         );
     }

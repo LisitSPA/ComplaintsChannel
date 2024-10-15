@@ -5,11 +5,12 @@ import { ComplaintDataService } from '../../services/complaint-data.service';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { Location } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-involucrados',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatButtonModule],
+  imports: [CommonModule, FormsModule, MatButtonModule, MatInputModule],
   templateUrl: './involucrados.component.html',
   styleUrls: ['./involucrados.component.css']
 })

@@ -8,18 +8,17 @@
       <div class="form-row">
         <div class="form-group">
           <h3>Nombre:</h3>
-          <input type="text" [(ngModel)]="nombre" name="nombre" required>
+          <input type="text" class="form-control" [(ngModel)]="nombre" name="nombre" required>
         </div>
         <div class="form-group">
           <h3>Apellido:</h3>
-          <input type="text" [(ngModel)]="apellido" name="apellido" required>
+          <input type="text" class="form-control" [(ngModel)]="apellido" name="apellido" required>
         </div>
         <div class="form-group">
           <h3>Estado en la Empresa:</h3>
-          <select [(ngModel)]="eCompanyStatus" name="eCompanyStatus" required>
-            <option value="1">Empleado</option>
-            <option value="2">Ex-empleado</option>
-            <option value="3">Contratista</option>
+          <select [(ngModel)]="eCompanyStatus" class="form-control" name="eCompanyStatus" required>
+            <option value="1">Activo</option>
+            <option value="2">Inactivo</option>
           </select>
         </div>
       </div>
@@ -27,29 +26,29 @@
       <div class="form-row">
         <div class="form-group">
           <h3>Cargo:</h3>
-          <input type="text" [(ngModel)]="cargo" name="cargo" required>
+          <input type="text" class="form-control"  [(ngModel)]="cargo" name="cargo" required>
         </div>
         <div class="form-group">
           <h3>Área:</h3>
-          <input type="text" [(ngModel)]="area" name="area" required>
+          <input type="text" class="form-control"  [(ngModel)]="area" name="area" required>
         </div>
         <div class="form-group">
           <h3>Sexo:</h3>
           <div>
-            <input type="radio" [(ngModel)]="sexo" name="sexo" value="Masculino"> Masculino
-            <input type="radio" [(ngModel)]="sexo" name="sexo" value="Femenino"> Femenino
+            <input type="radio" class="form-control"  [(ngModel)]="sexo" name="sexo" value="Masculino"> Masculino
+            <input type="radio" class="form-control"  [(ngModel)]="sexo" name="sexo" value="Femenino"> Femenino
           </div>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <h3>Contacto:</h3>
-          <input type="text" [(ngModel)]="contacto" name="contacto" required>
+          <h3>Telefono de contacto:</h3>
+          <input type="text" class="form-control"  [(ngModel)]="contacto" name="contacto" required>
         </div>
         <div class="form-group">
           <h3>RUT:</h3>
-          <input type="text" [(ngModel)]="rut" name="rut" required>
+          <input type="text" class="form-control"  [(ngModel)]="rut" name="rut" required>
         </div>
       </div>
 

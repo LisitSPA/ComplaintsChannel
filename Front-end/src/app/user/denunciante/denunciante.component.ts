@@ -5,21 +5,27 @@ import { MisdatosComponent } from '../misdatos/misdatos.component';
 import { ComplaintDataService } from '../../services/complaint-data.service';
 import { ComplaintService } from '../../services/complaint.service';  
 import { Router } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-denunciante',
   standalone: true,
-  imports: [CommonModule, FormsModule, MisdatosComponent],
+  imports: [CommonModule, FormsModule, MisdatosComponent, MatProgressSpinnerModule, MatButtonModule],
   templateUrl: './denunciante.component.html',
   styleUrls: ['./denunciante.component.css']
 })
 export class DenuncianteComponent {
+back() {
+throw new Error('Method not implemented.');
+}
   mostrarFormulario: boolean = false;
   contactEmail: string = '';
   deseoCodigoSeguimiento: boolean = false;
-  isAnonymous: boolean = false;
+  isAnonymous: boolean = true;
   eCompanyStatus: number = 1;  // Estado en la empresa
   selectedSex: string = '';  // Sexo seleccionado
+  submit: boolean = false;
 
   constructor(
     private complaintDataService: ComplaintDataService, 
@@ -29,7 +35,7 @@ export class DenuncianteComponent {
 
   abrirFormulario() {
     this.mostrarFormulario = true;
-    this.isAnonymous = true;  // Si selecciona identificarse, no es anónima
+    this.isAnonymous = false;  
   }
 
   cerrarFormulario() {
@@ -63,6 +69,8 @@ export class DenuncianteComponent {
     console.log('Estado en la empresa:', this.eCompanyStatus);
     console.log('Sexo (si es anónima):', this.selectedSex);
 
+    this.submit = true
+
     // Guardar los datos incluyendo el estado de la empresa y el sexo (si es anónima)
     this.complaintDataService.setComplaintData({
       isAnonymous: this.isAnonymous,
@@ -82,6 +90,7 @@ export class DenuncianteComponent {
       },
       (error) => {
         console.error('Error al enviar la denuncia:', error);
+        this.submit = false
       }
     );
   }

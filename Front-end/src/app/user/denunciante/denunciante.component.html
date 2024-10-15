@@ -42,13 +42,19 @@
           <label for="seguimiento-codigo" style="color:#371ec2;font-weight: bold;">Deseo hacer el seguimiento con código</label>
         </div> -->
       </div>
+      <div class="example-button-row flex-end">
+        <a class="back-btn" mat-raised-button href="involucrados">Volver</a>
+        <button class="next-btn"  mat-raised-button [disabled]="submit" (click)="guardarYRedirigir()">
+          <span *ngIf="!submit">Siguiente</span>
+          <mat-progress-spinner *ngIf="submit" [diameter]="24" mode="indeterminate"></mat-progress-spinner>
+          </button>
+      </div>
 
-      <a class="next-btn" (click)="guardarYRedirigir()" href="javascript:void(0)">Subir evidencia</a>
       <br>
     </div>
 
     <div class="info-section">
-      <h1 class="title">Protegemos tu<br>identidad</h1>
+      <h2 class="title">Protegemos tu<br>identidad</h2>
       <h2 class="subtitle">Te cuidamos, cuidándonos <br>entre todos.</h2>
       <img src="/icons/isotipo-bg.png" alt="Logotipo Canal" class="reportlogo">
     </div>

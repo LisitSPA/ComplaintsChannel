@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserDataService } from '../services/user-data.service';
+import { environment } from '../../environment/environment';
 
 @Component({
   selector: 'app-login',
@@ -31,12 +32,13 @@ export class LoginComponent {
       password: this.usuario.password
     };
 
-      this.http.post('https://cdd-api.lisit-digital.cl/api/auth/login', loginCommand)
+      this.http.post(environment.apiUrl+'/auth/login', loginCommand)
       .subscribe(
         (response: any) => {
           console.log('Login exitoso:', response);
           
-          localStorage.setItem('token', response.token);
+          sessionStorage.setItem('token', response.token);
+          sessionStorage.setItem('email', this.usuario.email);
           this.userData.setUserData({ username: this.usuario.email })
           
           this.router.navigate(['/homeadmin']);

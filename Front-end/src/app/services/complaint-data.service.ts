@@ -28,16 +28,21 @@ export class ComplaintDataService {
   }
 
   setComplaintData(data: any) {
+    console.log()
     this.complaintData = { ...this.complaintData, ...data };
    
     if(!this.complaintData.isAnonymous)
-      this.complaintData.complainant = { ...this.complainant, ...data.complainant };
+      this.complaintData = { ...this.complaintData, ...this.complainant };
     
     console.log('Datos actualizados en ComplaintDataService:', this.complaintData);
   }
 
   setId(id: number){
     this.complaintData.Id = id;
+  }
+
+  setDenunciante(data: any){
+    this.complainant = data;
   }
 
   getComplaintData() {

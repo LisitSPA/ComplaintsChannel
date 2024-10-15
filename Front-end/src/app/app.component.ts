@@ -63,6 +63,8 @@
           this.showAdminSidebar = event.url.includes('admin');
         }
       });
+
+     
     }
 
     

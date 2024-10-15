@@ -27,14 +27,14 @@ export class MisdatosComponent {
   constructor(private complaintDataService: ComplaintDataService) {}
 
   guardarDatos() {
-    this.complaintDataService.setComplaintData({
+    this.complaintDataService.setDenunciante({
       complainant: {
         names: this.nombre,
         lastName: this.apellido,
         eCompanyStatus: this.eCompanyStatus,  
         position: this.cargo,
         area: this.area,
-        eGenre: this.sexo === 'Masculino' ? 1 : 2,  
+        eGenre: this.sexo === 'Masculino' ? 2 : 1,  
         contactPhone: this.contacto,
         rut: this.rut
       }

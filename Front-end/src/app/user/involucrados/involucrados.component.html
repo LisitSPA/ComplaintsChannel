@@ -39,14 +39,14 @@
 
       <div class="manual-entry">
         <h2>Agregar causal manualmente</h2>
-        <div class="input-group">
+        <div class="form-group">
           <div class="input-field">
             <h3 for="manualName">Nombre:</h3>
-            <input type="text" id="manualName" [(ngModel)]="manualName" placeholder="Ingrese nombre">
+            <input type="text" matInput class="form-control" id="manualName" [(ngModel)]="manualName" placeholder="Ingrese nombre">
           </div>
           <div class="input-field">
             <h3 for="manualLastName">Apellido:</h3>
-            <input type="text" id="manualLastName" [(ngModel)]="manualLastName" placeholder="Ingrese apellido">
+            <input type="text"  matInput class="form-control" id="manualLastName" [(ngModel)]="manualLastName" placeholder="Ingrese apellido">
           </div>
         </div>
         <button class="guardarCausal-btn" style="margin-top: 20px;" (click)="guardarCausal()">Guardar al causal</button>
@@ -61,15 +61,15 @@
       </div>
      
       <div class="example-button-row flex-end">
-        <button class="back-btn" mat-raised-button (click)="back()">Volver</button>
+        <a class="back-btn" mat-raised-button href="report">Volver</a>
         <button class="next-btn"  mat-raised-button (click)="guardarDatosYRedirigir($event)" href="javascript:void(0)">Siguiente</button>
       </div>
       <br>
     </div>
 
     <div class="info-section">
-      <h1 class="title">Protegemos tu<br> identidad</h1>
-      <h2 class="subtitle">Te cuidamos, cuidándonos <br>entre todos.</h2>
+      <h2 class="title ">Protegemos tu identidad</h2>
+      <h2 class="subtitle">Te cuidamos, cuidándonos entre todos.</h2>
       <img src="/icons/isotipo-bg.png" alt="Logotipo Canal" class="reportlogo">
     </div>
   </div>
