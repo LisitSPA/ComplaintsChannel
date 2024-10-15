@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,8 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class ChatService {
   private apiUrl = 'https://cdd-api.lisit-digital.cl/api/chat';
+  headers: HttpHeaders;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.headers = new HttpHeaders({
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+    });
+  }
 
   getAllChats(language: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/getAll/${language}`);

@@ -26,51 +26,48 @@ export class DenunciasComponent implements OnInit {
   constructor(private complaintService: ComplaintService) {}
 
   ngOnInit() {
-    this.loadRealizadas();
+    this.loadAll();
   }
 
-  loadRealizadas() {
+  loadAll() {
     this.complaintService.getAllComplaints().subscribe(
-      (data: any[]) => {  
-        this.denuncias = data.filter(denuncia => denuncia.estado !== 'desestimada');
+      (data: any) => {  
+        this.denuncias = data.content;
         this.updatePaginatedColaboradores();
       },
       (error) => {
         console.error('Error al cargar las denuncias realizadas:', error);
-        this.loadLocalExamples('realizadas');
+        
       }
     );
+  }
+
+  loadRealizadas() {
+    this.denuncias = this.denuncias.filter(x => x.estado !== 'desestimada');
+    this.updatePaginatedColaboradores();     
   }
 
   loadDesestimadas() {
-    this.complaintService.getAllComplaints().subscribe(
-      (data: any[]) => {  
-        this.denuncias = data.filter(denuncia => denuncia.estado === 'desestimada');
-        this.updatePaginatedColaboradores();
-      },
-      (error) => {
-        console.error('Error al cargar las denuncias desestimadas:', error);
-        this.loadLocalExamples('desestimadas');
-      }
-    );
-  }
-
-  loadLocalExamples(viewMode: 'realizadas' | 'desestimadas') {
-    const allExamples = [
-      { id: '001', motivo: 'Motivo 1', fecha: '2024-10-01', anonimo: 'Sí', estado: 'activo', evidencias: 'Prueba 1', chat: 'Chat 1' },
-      { id: '002', motivo: 'Motivo 2', fecha: '2024-10-02', anonimo: 'No', estado: 'desestimada', evidencias: 'Prueba 2', chat: 'Chat 2' },
-      { id: '003', motivo: 'Motivo 3', fecha: '2024-10-03', anonimo: 'Sí', estado: 'activo', evidencias: 'Prueba 3', chat: 'Chat 3' },
-      { id: '004', motivo: 'Motivo 4', fecha: '2024-10-04', anonimo: 'No', estado: 'desestimada', evidencias: 'Prueba 4', chat: 'Chat 4' },
-    ];
-
-    if (viewMode === 'realizadas') {
-      this.denuncias = allExamples.filter(denuncia => denuncia.estado !== 'desestimada');
-    } else {
-      this.denuncias = allExamples.filter(denuncia => denuncia.estado === 'desestimada');
-    }
-
+    this.denuncias = this.denuncias.filter(x => x.estado === 'desestimada');
     this.updatePaginatedColaboradores();
   }
+
+  // loadLocalExamples(viewMode: 'realizadas' | 'desestimadas') {
+  //   const allExamples = [
+  //     { id: '001', motivo: 'Motivo 1', fecha: '2024-10-01', anonimo: 'Sí', estado: 'activo', evidencias: 'Prueba 1', chat: 'Chat 1' },
+  //     { id: '002', motivo: 'Motivo 2', fecha: '2024-10-02', anonimo: 'No', estado: 'desestimada', evidencias: 'Prueba 2', chat: 'Chat 2' },
+  //     { id: '003', motivo: 'Motivo 3', fecha: '2024-10-03', anonimo: 'Sí', estado: 'activo', evidencias: 'Prueba 3', chat: 'Chat 3' },
+  //     { id: '004', motivo: 'Motivo 4', fecha: '2024-10-04', anonimo: 'No', estado: 'desestimada', evidencias: 'Prueba 4', chat: 'Chat 4' },
+  //   ];
+
+  //   if (viewMode === 'realizadas') {
+  //     this.denuncias = allExamples.filter(denuncia => denuncia.estado !== 'desestimada');
+  //   } else {
+  //     this.denuncias = allExamples.filter(denuncia => denuncia.estado === 'desestimada');
+  //   }
+
+  //   this.updatePaginatedColaboradores();
+  // }
 
   get totalPages() {
     return Math.ceil(this.denuncias.length / this.itemsPerPage);
@@ -152,6 +149,19 @@ export class DenunciasComponent implements OnInit {
   }
 
   desestimar() {
-    console.log('Desestimar denuncias seleccionadas');
+    let data = {
+      complaintId : 0,
+      eComplaintStatus : 1,
+      notes: "",        
+    };
+
+    this.complaintService.updateStatus(data).subscribe(
+        (response) => {
+          console.log('Denuncia actualizada correctamente:', response);
+        },
+        (error) => {
+          console.error('Error al actulizar la denuncia:', error);
+        }
+      );
   }
 }

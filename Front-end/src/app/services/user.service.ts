@@ -8,7 +8,7 @@ import { environment } from '../../environment/environment';
 })
 export class UserService {
   private apiUrl = environment.apiUrl+'/users';
-  private headers = new HttpHeaders();
+  private headers : HttpHeaders;
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({
@@ -32,10 +32,8 @@ export class UserService {
   }
 
   changePassword(data: any): Observable<any>{
-    console.log(sessionStorage.getItem('token'))
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-    });
+   
+    const headers = this.headers;
 
     const url = `${environment.apiUrl}/auth/changePassword`;
     console.log(this.http)

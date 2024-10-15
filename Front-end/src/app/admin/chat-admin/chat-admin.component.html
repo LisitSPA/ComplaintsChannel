@@ -40,12 +40,12 @@
     <div class="status-update">
       <label for="status" style="margin-right: 10px;">Estado de solicitud</label>
       <select id="status" [(ngModel)]="status">
-        <option value="revision">En revisión</option>
-        <option value="investigación">En investigación</option>
-        <option value="curso">Acción en curso</option>
-        <option value="resuelta">Denuncia resuelta</option>
-        <option value="stand_by">Stand By</option>
-        <option value="desestimado">Desestimado</option>
+        <option value="1">Pendientes</option>
+        <option value="2">En proceso de investigación</option>
+        <option value="3">Finalizada</option>
+        <option value="31">Desistimada</option>
+        <option value="32">Sanción Aplicada</option>
+        <option value="33">Medidas preventivas</option>
       </select>
 
       <textarea placeholder="Escribe tu respuesta aquí" [(ngModel)]="responseMessage"></textarea>

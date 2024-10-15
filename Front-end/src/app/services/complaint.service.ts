@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { lastValueFrom, Observable } from 'rxjs';
 import { environment } from '../../environment/environment';
 import { ELanguageType } from '../../types/language.type';
@@ -13,14 +13,29 @@ import { json } from 'stream/consumers';
 export class ComplaintService {
   private apiUrl = environment.apiUrl;
   private langage = "es"
-
-  constructor(private http: HttpClient) {}
+  headers: any;
+ 
+  constructor(private http: HttpClient) {
+    this.headers = new HttpHeaders({
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+    });
+  }
 
   getAllComplaints(): Observable<any> {
+    const headers = this.headers;
     return (this.http.get(
-      `${environment.apiUrl}/getAll/${this.langage}`
+      `${environment.apiUrl}/complaints/getAll/`, {headers}
     ));
   }
+  
+  async getAllComplaintsPromise(params : HttpParams): Promise<any> {   
+    const headers = this.headers;
+    let res = await (lastValueFrom(this.http.get<ApiResponse<any>>(
+      `${environment.apiUrl}/complaints/getAll`,{headers, params}
+    )));
+    return res?.content;
+  }
+  
   
   async getReasonsComplaints(): Promise<any> {
     let res = await (lastValueFrom(this.http.get<ApiResponse<any>>(
@@ -39,6 +54,11 @@ export class ComplaintService {
 
   createComplaint(data: RequestComplaint): Observable<any> {    
     return this.http.post<any>(this.apiUrl+'/complaints', data);
+  }
+
+  updateStatus(data: any): Observable<any> {    
+    const headers = this.headers;
+    return this.http.post<any>(this.apiUrl+'/complaints/updateStatus', data, {headers});
   }
 
   addAttachments(file: RequestEvidencies): Promise<any> {

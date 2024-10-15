@@ -40,10 +40,10 @@
               <option value="motivo">Motivo</option>
             </select>
           </div>
-          <button (click)="desestimar()" class="desestimar-btn">
+          <!-- <button (click)="desestimar()" class="desestimar-btn">
             <img src="/icons/desestimados.svg" alt="Ícono" class="btn-icon" />
             Desestimar
-          </button>
+          </button> -->
         </div>
 
         <div *ngIf="isListView" class="list-view">
@@ -71,7 +71,6 @@
             <thead>
               <tr>
                 <th><input type="checkbox"></th>
-                <th>Id</th>
                 <th>Motivo</th>
                 <th>Fecha</th>
                 <th>Anónimo</th>
@@ -82,12 +81,11 @@
             </thead>
             <tbody>
               <tr *ngFor="let denuncia of paginatedColaboradores">
-                <td><input type="checkbox"></td>
                 <td>{{ denuncia.id }}</td>
                 <td>{{ denuncia.motivo }}</td>
                 <td>{{ denuncia.fecha }}</td>
                 <td>{{ denuncia.anonimo }}</td>
-                <td [ngClass]="denuncia.estado === 'activo' ? 'estado-activo' : 'estado-inactivo'">{{ denuncia.estado }}</td>
+                <td>{{ denuncia.estado }}</td>
                 <td>{{ denuncia.evidencias }}</td>
                 <td>{{ denuncia.chat }}</td>
               </tr>

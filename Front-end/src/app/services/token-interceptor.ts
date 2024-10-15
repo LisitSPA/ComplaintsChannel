@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 export class TokenInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = sessionStorage.getItem('token');  // Aquí iría la lógica para obtener el token (de un servicio, por ejemplo)
+    const token = sessionStorage.getItem('token'); 
     console.log("token", token)
     // Clonar la petición para agregar el header de autorización
     const authReq = req.clone({

@@ -82,7 +82,7 @@ namespace Api.JwtConfig
                     new Claim("LastName", user.LastName),
                     new Claim(ClaimTypes.Role, user.EUserType.ToString()),
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(30),
+                Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
                 Issuer = _config["Jwt:Issuer"],
                 Audience = _config["Jwt:Audience"]

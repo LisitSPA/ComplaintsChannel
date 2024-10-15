@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SidebarAdmin } from '../admin/sidebar-component/sidebar-admin.component';
 import { ChatService } from '../../services/chat.service';
+import { ComplaintService } from '../../services/complaint.service';
 
 interface Chat {
   id: number;
@@ -21,12 +22,7 @@ interface Chat {
   styleUrls: ['./chat-admin.component.css']
 })
 export class ChatAdminComponent implements OnInit {
-  chatList: Chat[] = [
-    { id: 1, name: 'Juan Pérez', subject: 'Denuncia de acoso', time: '10:30', message: 'Necesito ayuda con un caso de acoso en el trabajo.', status: 'pendiente' },
-    { id: 2, name: 'Anónimo', subject: 'Problema de nómina', time: '11:00', message: 'No he recibido mi pago.', status: 'finalizado' },
-    { id: 3, name: 'Ana García', subject: 'Solicitud de revisión', time: '12:15', message: 'Por favor revisen mi caso, sigue sin resolverse.', status: 'en_revision' },
-    { id: 4, name: 'Carlos López', subject: 'Problema de horario', time: '13:45', message: 'Mis horarios no han sido actualizados en el sistema.', status: 'pendiente' }
-  ];  
+  chatList: Chat[] = [];  
   
   filteredChatList: Chat[] = [...this.chatList];  
   selectedChat: Chat | null = null;
@@ -34,7 +30,9 @@ export class ChatAdminComponent implements OnInit {
   responseMessage = '';
   status = 'revision';
 
-  constructor(private chatService: ChatService) {}
+  constructor(private chatService: ChatService,
+    private complaintService: ComplaintService,
+  ) {}
 
   ngOnInit(): void {
     this.loadAllChats('es');
@@ -67,6 +65,8 @@ export class ChatAdminComponent implements OnInit {
 
   sendResponse() {
     if (this.selectedChat) {
+
+   
       this.chatService.sendChatResponse(this.selectedChat.id.toString(), this.responseMessage).subscribe(
         (response) => {
           console.log('Respuesta enviada con éxito:', response);

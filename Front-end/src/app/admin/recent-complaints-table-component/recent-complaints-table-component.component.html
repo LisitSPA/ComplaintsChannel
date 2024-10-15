@@ -7,25 +7,29 @@
       <table class="table">
         <thead>
           <tr>
-            <th><input type="checkbox"></th>
             <th>Id</th>
             <th>Nombre </th>
-            <th>Tipo</th>
+            <th>Fecha</th>
+            <th>Anónimo</th>
             <th>Estado</th>
-            <th>Edición</th>
+            <th>Evidencias</th>
+            <th>Chat</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let denuncia of denuncias">
-            <td><input type="checkbox"></td>
+            <!-- <td><input type="checkbox"></td> -->
             <td>{{ denuncia.id }}</td>
-            <td>{{ denuncia.nombre }}</td>
-            <td>{{ denuncia.tipo }}</td>
-            <td [ngClass]="denuncia.estado === 'activo' ? 'estado-activo' : 'estado-inactivo'">{{ denuncia.estado }}</td>
-            <td>
+            <td>{{ denuncia.reasons[0].description }}</td>
+            <td>{{ denuncia.createdOn | date }}</td>
+            <td>{{ denuncia.complainant ? 'Si' : 'No' }}</td>
+            <td>{{ denuncia.status }}</td>
+            <td><mat-icon aria-hidden="false" fontIcon="attach_file"></mat-icon></td>
+            <td><mat-icon aria-hidden="false" fontIcon="chat"></mat-icon></td>
+            <!-- <td>
               <button class="btn-edit">Editar</button>
               <button class="btn-delete">Eliminar</button>
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>

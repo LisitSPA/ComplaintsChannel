@@ -9,6 +9,8 @@ using System.Linq;
 using DevExtreme.AspNet.Data;
 using DevExtreme.AspNet.Data.ResponseModel;
 using System.Data.Entity;
+using Application.Complaints.Queries.DTOs;
+using AutoMapper.QueryableExtensions;
 
 
 namespace Application.Complaints.Queries;
@@ -21,7 +23,8 @@ public record GetAllComplaintsQueryDE : IRequest<Response<LoadResult>>
 
 //HANDLER
 public class GetAllComplaintsQueryHandler(
-    IRepository<Complaint> _repo
+    IRepository<Complaint> _repo,
+    IMapper _mapper
     ) : IRequestHandler<GetAllComplaintsQueryDE, Response<LoadResult>>
 {
 
@@ -31,7 +34,14 @@ public class GetAllComplaintsQueryHandler(
         try
         {
 
-            var source = _repo.GetAllActive().AsNoTracking().OrderByDescending(x => x.Id);
+            var source = _repo.GetAllActive()
+                            .Include(x => x.Complainant)
+                            .Include(x => x.Attachments)
+                            .Include(x => x.ComplaintInvolved)
+                            .Include(x => x.ComplaintHistory)
+                            .Include(x => x.ComplaintReasons)
+                        .ProjectTo<ComplaintDto>(_mapper.ConfigurationProvider)
+                        .AsNoTracking().OrderByDescending(x => x.Id);
 
             var loadResult = await DataSourceLoader.LoadAsync(source, request.Params, cancellationToken);
 

@@ -17,8 +17,8 @@ export class LayoutComponent implements OnInit{
   constructor(
     private router: Router
   ){
-    if(!sessionStorage || !sessionStorage.getItem("token"))
-      this.router.navigate(['/home']);
+    // if(!sessionStorage || !sessionStorage.getItem("token"))
+    //   this.router.navigate(['/home']);
   }
 
 
