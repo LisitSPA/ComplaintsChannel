@@ -8,105 +8,18 @@
       <h2 class="header-title" [class.active]="viewMode === 'realizadas'" (click)="changeViewMode('realizadas')">Acciones realizadas</h2>
       <h2 class="header-title" [class.active]="viewMode === 'desestimadas'" (click)="changeViewMode('desestimadas')">Acciones desestimadas</h2>
     </div>
-    
+    <hr>
 
     <div class="container-denuncias">
       <div class="sidebar-denuncias">
         <h2>Denuncias</h2>
-        <h3>Supervisión de denuncias</h3>
-        <h3 *ngIf="viewMode === 'desestimadas'">Desestimadas</h3>
-        <h3 *ngIf="viewMode === 'realizadas'">Realizadas</h3>
+        <p class="bold" style="color: rgb(78, 65, 188);">Supervisión de denuncias</p>
+        <p *ngIf="viewMode === 'desestimadas'">Desestimadas</p>
+        <p *ngIf="viewMode === 'realizadas'">Realizadas</p>
       </div>
 
-      <div class="table-container">
-        <div class="toolbar">
-          <div class="view-list" (click)="toggleView()">
-            <img src="/icons/lista.svg" alt="Ícono de lista" class="icon-small" />
-            <label style="font-weight: 500;">{{ isListView ? 'Vista de tabla' : 'Vista de lista' }}</label>
-          </div>
-          <div class="icon-container">
-            <img src="/icons/filtro.svg" alt="Icono de estado" class="icon" />
-            <label for="estado">Estado:</label>
-            <select id="estado" [(ngModel)]="selectedEstado" (change)="filtrarPorEstado()" class="filter-select">
-              <option value="activo">Activo</option>
-              <option value="inactivo">Inactivo</option>
-            </select>
-          </div>
-
-          <div class="icon-container">
-            <label for="filtro">Filtrar por:</label>
-            <select id="filtro" [(ngModel)]="selectedFiltro" (change)="filtrarPorOtro()" class="filter-select">
-              <option value="anonimo">Anónimo</option>
-              <option value="motivo">Motivo</option>
-            </select>
-          </div>
-          <!-- <button (click)="desestimar()" class="desestimar-btn">
-            <img src="/icons/desestimados.svg" alt="Ícono" class="btn-icon" />
-            Desestimar
-          </button> -->
-        </div>
-
-        <div *ngIf="isListView" class="list-view">
-          <div *ngFor="let denuncia of denuncias" class="denuncia-item">
-            <div class="denuncia-header">
-              <span>Hora: {{ denuncia.fecha | date:'shortTime' }}</span>
-              <span>Fecha: {{ denuncia.fecha | date:'shortDate' }}</span>
-              <span>Anónimo: {{ denuncia.anonimo }}</span>
-              <span>Motivo: {{ denuncia.motivo }}</span>
-              <span>
-                <button class="evidencia-btn">Ver evidencia</button>
-              </span>
-            </div>
-            <div class="denuncia-status">
-              <strong>Estado:</strong> {{ denuncia.estado }}
-            </div>
-            <div class="denuncia-note">
-              <strong>Nota:</strong> {{ denuncia.evidencias }}
-            </div>
-          </div>
-        </div>
-
-        <div *ngIf="!isListView" class="table-wrapper">
-          <table class="table">
-            <thead>
-              <tr>
-                <th><input type="checkbox"></th>
-                <th>Motivo</th>
-                <th>Fecha</th>
-                <th>Anónimo</th>
-                <th>Estado</th>
-                <th>Evidencia</th>
-                <th>Chat</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let denuncia of paginatedColaboradores">
-                <td>{{ denuncia.id }}</td>
-                <td>{{ denuncia.motivo }}</td>
-                <td>{{ denuncia.fecha }}</td>
-                <td>{{ denuncia.anonimo }}</td>
-                <td>{{ denuncia.estado }}</td>
-                <td>{{ denuncia.evidencias }}</td>
-                <td>{{ denuncia.chat }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="pagination">
-          <span class="label">Principio</span>
-          <span (click)="previousPage()" [class.disabled]="currentPage === 1" class="arrow">‹</span>
-
-          <div class="page-numbers">
-            <button *ngFor="let page of pages()" (click)="goToPage(page)" [class.active]="currentPage === page">
-              {{ page }}
-            </button>
-          </div>
-
-          <span (click)="nextPage()" [class.disabled]="currentPage === totalPages" class="arrow">›</span>
-          <span class="label">Final</span>
-        </div>
-      </div>
+      <app-denuncias-table *ngIf="viewMode === 'desestimadas'" [filterStatus]="31"></app-denuncias-table>
+      <app-denuncias-table *ngIf="viewMode !== 'desestimadas'" [filterStatus]="0"></app-denuncias-table>
     </div>
   </div>
 </div>

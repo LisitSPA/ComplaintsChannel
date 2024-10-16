@@ -61,7 +61,7 @@
       </div>
      
       <div class="example-button-row flex-end">
-        <a class="back-btn" mat-raised-button href="report">Volver</a>
+        <button class="back-btn" mat-raised-button (click)="goBack()">Volver</button>
         <button class="next-btn"  mat-raised-button (click)="guardarDatosYRedirigir($event)" href="javascript:void(0)">Siguiente</button>
       </div>
       <br>

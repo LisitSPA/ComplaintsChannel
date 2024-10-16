@@ -27,6 +27,15 @@ export class ComplaintDataService {
       contactPhone: ''    
   }
 
+  private _notes: string = "";
+  
+  public get notes(): string {
+    return this._notes;
+  }
+  public set notes(value: string) {
+    this._notes = value;
+  }
+
   setComplaintData(data: any) {
     console.log()
     this.complaintData = { ...this.complaintData, ...data };
@@ -39,6 +48,10 @@ export class ComplaintDataService {
 
   setId(id: number){
     this.complaintData.Id = id;
+  }
+
+  getId(): number{
+    return this.complaintData.Id;
   }
 
   setDenunciante(data: any){

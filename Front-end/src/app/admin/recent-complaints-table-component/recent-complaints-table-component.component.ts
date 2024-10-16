@@ -3,6 +3,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { ComplaintService } from '../../services/complaint.service';
 import { HttpParams } from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
+import { environment } from '../../../environment/environment';
 
 interface Denuncia {
   id: string;
@@ -21,12 +22,12 @@ interface Denuncia {
 export class RecentComplaintsTableAdmin {
   denuncias: any = []
 
-  paginatedColaboradores: Denuncia[] = [];
+  paginatedColaboradores: any = [];
   currentPage = 1;
-  itemsPerPage = 7;
+  itemsPerPage = 10;
+  filesUrl: any;
 
   constructor(private complaintService: ComplaintService) {
-    this.updatePaginatedColaboradores();
     this.getData();
   }
 
@@ -36,7 +37,9 @@ export class RecentComplaintsTableAdmin {
     .set('RequireTotalCount', true)
 
     this.denuncias = (await this.complaintService.getAllComplaintsPromise(params)).data;
-    console.log(this.denuncias)
+    this.filesUrl = environment.filesUrl;
+    this.updatePaginatedColaboradores();
+
   }
 
   get totalPages() {
@@ -46,7 +49,7 @@ export class RecentComplaintsTableAdmin {
   updatePaginatedColaboradores() {
     const start = (this.currentPage - 1) * this.itemsPerPage;
     const end = start + this.itemsPerPage;
-    this.paginatedColaboradores = this.denuncias?.slice(start, end);
+    this.paginatedColaboradores = this.denuncias.slice(start, end);
   }
 
   nextPage() {

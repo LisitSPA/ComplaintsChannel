@@ -2,7 +2,7 @@
 CREATE TABLE dbo.Attachments (
     Id INT PRIMARY KEY IDENTITY(1,1),
 	ComplaintId int not null,
-    FileName VARCHAR(50) NOT NULL,
+    FileName VARCHAR(150) NOT NULL,
     Description VARCHAR(150) NOT NULL,
 	Active bit NOT NULL
 );
@@ -76,7 +76,7 @@ CREATE TABLE dbo.ComplaintHistory (
     Id INT PRIMARY KEY IDENTITY(1,1),
 	ComplaintId int NOT NULL,
 	EStatus int NOT NULL,
-	Notes bit NOT NULL,
+	Notes VARCHAR(500) NOT NULL,
 	CreatedOn DateTime NOT NULL,
 	CreatedBy int not null,
     FOREIGN KEY (ComplaintId) REFERENCES Complaints(Id)

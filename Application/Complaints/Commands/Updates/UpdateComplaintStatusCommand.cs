@@ -27,7 +27,7 @@ public record UpdateComplaintStatusCommand : IRequest<Response<int>>
     public int ComplaintId { get; set; }
     public EComplaintStatus EComplaintStatus { get; set; }
     public string Notes { get; set; }
-    public List<IFormFile> Attachments { get; set; }
+    //public List<IFormFile> Attachments { get; set; }
 
 }
 
@@ -50,20 +50,20 @@ public class CreateComplaintCommandHandler(
             complaint.ModifiedBy = _currentUserService.UserId;
             complaint.ModifiedOn = DateTime.Now;
 
-            complaint.ComplaintHistory = [ new() 
+            complaint.ComplaintHistory = [new()
             {
                 EStatus = command.EComplaintStatus,
                 CreatedBy = _currentUserService.UserId.Value,
-                Notes = command.Notes,                
-             }];
+                Notes = command.Notes,
+            }];
 
             _repository.Update(complaint);
             _repository.Save();
 
-            if(command.Attachments.Count > 0)
-            {
-                _mediator.Send(new AddAttachmentsCommand { Attachments = command.Attachments, ComplaintId = complaint.Id});
-            }
+            //if(command.Attachments.Count > 0)
+            //{
+            //    _mediator.Send(new AddAttachmentsCommand { Attachments = command.Attachments, ComplaintId = complaint.Id});
+            //}
 
             _emailNotificationService.SendEmail(new EmailNotification
             {
@@ -71,7 +71,7 @@ public class CreateComplaintCommandHandler(
                 Body = new Dictionary<string, string> {
                     { "TITLE", "Tu denuncia ha cambiado de estado." },
                     { "TEXT", $"El estado de la denuncia ha sido actualizado a {command.EComplaintStatus.GetDescriptionByVal()}. <br><br>" +
-                       $"Notas: {command.Notes}" }                    
+                       $"Notas: {command.Notes}" }
                 },
                 ToEmail = complaint.TrackingEmail
             });

@@ -15,7 +15,7 @@
 .container {
     display: grid;
     grid-template-columns: 350px 1fr;
-    height: 100vh;
+    height: 100%;
   }
   .input-group {
     margin-bottom: 20px;

@@ -11,6 +11,7 @@ namespace Application.Users.Queries.DTOs
 {
     public record UserLoginDto : IMapFrom<User>
     {
+        public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string RUT { get; set; }

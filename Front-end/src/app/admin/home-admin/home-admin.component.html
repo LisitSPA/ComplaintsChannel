@@ -4,7 +4,10 @@
 
     <app-quick-access-component></app-quick-access-component>
     <app-dashboard-summary></app-dashboard-summary> 
-    <app-recent-complaints-table-component></app-recent-complaints-table-component>
+    <div class="toolbar">
+      <h1 >Denuncias recientes</h1>
+    </div>
+    <app-denuncias-table [isDashboard]="true"></app-denuncias-table>
   </div>
   <app-charts-component></app-charts-component>
 </div>

@@ -43,7 +43,7 @@ export const routes: Routes = [
     },
     children: [
       { path: 'homeadmin', component: HomeAdminComponent},   
-      {path:'cambiarcontrasenaadmin', component: ChangePasswordComponent},
+      { path:'cambiarcontrasenaadmin', component: ChangePasswordComponent},
     ]
   },
 

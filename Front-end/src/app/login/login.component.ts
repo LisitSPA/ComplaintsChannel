@@ -5,13 +5,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserDataService } from '../services/user-data.service';
 import { environment } from '../../environment/environment';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [CommonModule, FormsModule],  
+  imports: [CommonModule, FormsModule, MatProgressSpinnerModule],  
 })
 export class LoginComponent {
   usuario = {
@@ -19,6 +20,7 @@ export class LoginComponent {
     password: ''
   };
   mensajeError = '';
+  submit: boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -31,6 +33,7 @@ export class LoginComponent {
       username: this.usuario.email,
       password: this.usuario.password
     };
+    this.submit = true;
 
       this.http.post(environment.apiUrl+'/auth/login', loginCommand)
       .subscribe(
@@ -45,7 +48,7 @@ export class LoginComponent {
         },
         (error) => {
           console.error('Error en el login:', error);
-
+          this.submit = false;
           if (error.status === 401) {
             this.mensajeError = 'Credenciales incorrectas. Intenta nuevamente.';
           } else {

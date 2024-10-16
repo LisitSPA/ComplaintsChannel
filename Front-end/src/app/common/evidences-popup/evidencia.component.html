@@ -1,0 +1,36 @@
+<div class="modal">
+  <div class="modal-content">
+    <h2>Desestimar denuncia</h2>
+    
+      <div class="upload-and-description">
+        <div class="upload-box">
+          <input type="file" id="file-upload" (change)="onFileSelected($event)" multiple accept=".png,.pdf">
+          <label for="file-upload" class="custom-file-upload">
+            <i class="fa fa-cloud-upload"></i> Sube los documentos</label>
+          <p>Se permiten archivos png o pdf</p>
+        </div>
+          <div>
+        <textarea placeholder="Deseo desestimar la denuncia realizada..." [(ngModel)]="notes" ></textarea>
+      </div>
+
+      </div>
+    
+      <div class="file-list">
+        <p *ngIf="archivosSeleccionados.length > 0">Archivos seleccionados:</p>
+        <ul>
+          <li *ngFor="let file of archivosSeleccionados">{{ file.name }}</li>
+        </ul>
+      </div>
+
+      <div class="example-button-row flex-end">
+        <button class="back-btn" mat-button (click)="cerrar.emit()"> Cancelar</button>
+        <button class="next-btn" mat-button [disabled]="submit" (click)="onSubmit()">
+          <span *ngIf="!submit">Siguiente</span>
+          <mat-progress-spinner *ngIf="submit" [diameter]="24" mode="indeterminate"></mat-progress-spinner>
+        </button>
+      </div>
+
+      <br>
+    
+  </div>
+</div>

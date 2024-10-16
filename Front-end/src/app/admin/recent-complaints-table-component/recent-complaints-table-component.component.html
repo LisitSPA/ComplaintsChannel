@@ -1,14 +1,12 @@
 
     <div class="table-container">
-      <div class="toolbar">
-        <h1 >Denuncias recientes</h1>
-      </div>
+    
       <div class="table-wrapper">
       <table class="table">
         <thead>
           <tr>
-            <th>Id</th>
-            <th>Nombre </th>
+            <!-- <th>Id</th> -->
+            <th>Motivo </th>
             <th>Fecha</th>
             <th>Anónimo</th>
             <th>Estado</th>
@@ -17,15 +15,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let denuncia of denuncias">
+          <tr *ngFor="let denuncia of paginatedColaboradores; let i=index">
             <!-- <td><input type="checkbox"></td> -->
-            <td>{{ denuncia.id }}</td>
+            <!-- <td>{{ i }}</td> -->
             <td>{{ denuncia.reasons[0].description }}</td>
             <td>{{ denuncia.createdOn | date }}</td>
             <td>{{ denuncia.complainant ? 'Si' : 'No' }}</td>
             <td>{{ denuncia.status }}</td>
-            <td><mat-icon aria-hidden="false" fontIcon="attach_file"></mat-icon></td>
-            <td><mat-icon aria-hidden="false" fontIcon="chat"></mat-icon></td>
+            <td><a href="{{filesUrl}}{{denuncia?.trackingCode}}/{{denuncia?.attachments[0]?.fileName}}" download="{{denuncia?.attachments[0]?.fileName}}"><mat-icon aria-hidden="false" fontIcon="attach_file" ></mat-icon></a></td>
+            <td><a href="chatadmin"><mat-icon aria-hidden="false" fontIcon="chat"></mat-icon></a></td>
             <!-- <td>
               <button class="btn-edit">Editar</button>
               <button class="btn-delete">Eliminar</button>

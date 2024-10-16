@@ -16,9 +16,7 @@ namespace Application.Common.Interfaces
         string Token { get; }
 
         public EUserType EUserType { get; }
-
-        public int? GetAnonymousId();
-        public int? GetSystemId();
+      
         public List<UserDetail> GetUsersFromConfig();
     }
 

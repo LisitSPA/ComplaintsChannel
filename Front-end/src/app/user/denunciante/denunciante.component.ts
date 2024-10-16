@@ -16,9 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./denunciante.component.css']
 })
 export class DenuncianteComponent {
-back() {
-throw new Error('Method not implemented.');
-}
+
+
   mostrarFormulario: boolean = false;
   contactEmail: string = '';
   deseoCodigoSeguimiento: boolean = false;
@@ -93,5 +92,9 @@ throw new Error('Method not implemented.');
         this.submit = false
       }
     );
+  }
+
+  goBack() {
+    this.router.navigate(['/involucrados']);  
   }
 }

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EvidenciaComponent } from './evidencia.component';
+import { EvidenciaComponent } from '../../common/evidences-popup/evidencia.component';
 
 describe('EvidenciaComponent', () => {
   let component: EvidenciaComponent;

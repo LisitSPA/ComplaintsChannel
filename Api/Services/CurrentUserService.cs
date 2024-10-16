@@ -20,43 +20,23 @@ public class CurrentUserService : ICurrentUserService
         _context = httpContextAccessor.HttpContext;
         _config = config;
         HasContext = _context != null;
-        HasClaims = HasContext && _context?.User.Identity is ClaimsIdentity claims && claims.Claims.Any();
 
-        if (HasContext & HasClaims)
-        {
-            ClaimsId = _context?.User?.FindFirstValue("id");
-            FirstName = _context?.User?.FindFirstValue("firstName") ?? "Anonymous";
-            LastName = _context?.User?.FindFirstValue("lastName");
-            UserEmail = _context?.User?.FindFirstValue(ClaimTypes.Email);
-            //ERole = Enum.Parse<ERoleByName>(_context.User.Claims
-            //                        .Where(x => x.Type == ClaimsIdentity.DefaultRoleClaimType)
-            //                        .FirstOrDefault(x => Enum.IsDefined(typeof(ERoleByName), x.Value)).Value);
 
-            Token = httpContextAccessor.HttpContext.Request.Headers.Authorization.ToString().Split(' ').LastOrDefault();
-        }
+        UserId = _context?.User?.FindFirstValue("Id") != null ? Convert.ToInt32(_context?.User?.FindFirstValue("Id")) : null;
+        FirstName = _context?.User?.FindFirstValue("Name") ?? "Anonymous";
+        LastName = _context?.User?.FindFirstValue("LastName");
+        UserEmail = _context?.User?.FindFirstValue(ClaimTypes.Email);
+        //ERole = Enum.Parse<ERoleByName>(_context.User.Claims
+        //                        .Where(x => x.Type == ClaimsIdentity.DefaultRoleClaimType)
+        //                        .FirstOrDefault(x => Enum.IsDefined(typeof(ERoleByName), x.Value)).Value);
+
+        Token = httpContextAccessor.HttpContext.Request.Headers.Authorization.ToString().Split(' ').LastOrDefault();
+        
     }
 
     public bool HasClaims { get; }
     public bool HasContext { get; }
-    public int? UserId
-    {
-        get
-        {
-            if (!HasClaims)
-            {
-                if (!HasContext)
-                {
-                    return GetSystemId();
-                }
-                else
-                {
-                    return GetAnonymousId();
-                }
-            }
-            else return null;
-        }
-    }
-
+    public int? UserId { get; }
     private string ClaimsId { get; }
     public string Token { get; }
     public string UserEmail { get; }
@@ -82,14 +62,7 @@ public class CurrentUserService : ICurrentUserService
 
     }
 
-    public int? GetAnonymousId()
-    {
-        return GetUsersFromConfig().Where(x => x.Name == "Anonymous").FirstOrDefault()?.AspNetId;
-    }
-    public int? GetSystemId()
-    {
-        return GetUsersFromConfig().Where(x => x.Name == "System").FirstOrDefault()?.AspNetId;
-    }
+   
 
     public List<UserDetail> GetUsersFromConfig()
     {

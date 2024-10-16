@@ -7,10 +7,11 @@ import { ChartsAdmin } from '../charts-component/charts-component.component';
 import { BaseChartDirective } from 'ng2-charts';
 import { DashboardSummaryComponent } from '../dashboard-summary/dashboard-summary.component';
 import { SidebarAdmin } from '../admin/sidebar-component/sidebar-admin.component';
+import { DenunciasTableComponent } from "../denuncias/denuncias-table/denuncias-table.component";
 @Component({
   selector: 'app-home-admin',
   standalone: true,
-  imports: [CommonModule, DashboardSummaryComponent,RecentComplaintsTableAdmin,BaseChartDirective, HeaderAdmin, QuickAccessAdmin,SidebarAdmin,ChartsAdmin,],
+  imports: [CommonModule, DashboardSummaryComponent, RecentComplaintsTableAdmin, BaseChartDirective, HeaderAdmin, QuickAccessAdmin, SidebarAdmin, ChartsAdmin, DenunciasTableComponent],
   templateUrl: './home-admin.component.html',
   styleUrl: './home-admin.component.css'
 })

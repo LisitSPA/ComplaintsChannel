@@ -58,6 +58,7 @@ export class ComplaintService {
 
   updateStatus(data: any): Observable<any> {    
     const headers = this.headers;
+
     return this.http.post<any>(this.apiUrl+'/complaints/updateStatus', data, {headers});
   }
 

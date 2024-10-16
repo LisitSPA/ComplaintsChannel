@@ -43,11 +43,11 @@
         </div> -->
       </div>
       <div class="example-button-row flex-end">
-        <a class="back-btn" mat-raised-button href="involucrados">Volver</a>
+        <button class="back-btn" mat-raised-button (click)="goBack()">Volver</button>
         <button class="next-btn"  mat-raised-button [disabled]="submit" (click)="guardarYRedirigir()">
           <span *ngIf="!submit">Siguiente</span>
           <mat-progress-spinner *ngIf="submit" [diameter]="24" mode="indeterminate"></mat-progress-spinner>
-          </button>
+        </button>
       </div>
 
       <br>

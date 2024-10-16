@@ -16,7 +16,7 @@ namespace Api.Dependencies
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IErrorServiceProvider, ErrorServiceProvider>();
             services.AddTransient<IPasswordHasherService, PasswordHasherService>();
-            services.AddScoped<ICurrentUserService, CurrentUserService>();
+            services.AddTransient<ICurrentUserService, CurrentUserService>();
             services.AddTransient<IEmailNotificationService, EmailNotificationService>();
             services.AddTransient<IAzureTranslatorService, AzureTranslatorService>();
             services.AddScoped<ValidationActionFilter>();

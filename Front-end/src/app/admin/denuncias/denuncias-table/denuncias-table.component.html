@@ -1,0 +1,100 @@
+      <div class="table-container">
+        <div class="toolbar">
+          <div class="view-list" *ngIf="showActions && !isDashboard" (click)="toggleView()">
+            <img src="/icons/lista.svg" alt="Ícono de lista" class="icon-small" />
+            <label style="font-weight: 500;">{{ isListView ? 'Vista de tabla' : 'Vista de lista' }}</label>
+          </div>
+          <div class="icon-container">
+            <img src="/icons/filtro.svg" alt="Icono de estado" class="icon" />
+            <label for="estado">Estado:</label>
+            <select id="estado" [(ngModel)]="selectedEstado" (change)="filtrarPorEstado()" class="filter-select">
+              <option value="">Todos</option>
+              <option value="1">Pendientes</option>
+              <option value="2">En proceso de investigación</option>
+              <!-- <option value="3">Finalizada</option> -->
+              <option value="31">Desistimada</option>
+              <option value="32">Sanción Aplicada</option>
+              <option value="33">Medidas preventivas</option>
+            </select>
+          </div>
+
+          <div class="icon-container">
+            <label for="filtro">Filtrar por:</label>
+            <button mat-stroked-button class="filter-button-select" (click)="filtrarPorOtro()">Más recientes </button>
+            <!-- <select id="filtro" [(ngModel)]="selectedFiltro" (change)="filtrarPorOtro()" class="filter-select">
+              <option value="">Mas recientes</option>
+            </select> -->
+          </div>         
+        </div>
+
+        <div *ngIf="isListView && showActions" class="list-view">
+          <div *ngFor="let denuncia of paginated" class="denuncia-item">
+            <div class="denuncia-header">
+              <span>{{ denuncia.createdOn | date:'shortTime' }}</span>
+              <span>{{ denuncia.createdOn | date:'shortDate' }}</span>
+              <span>{{ denuncia.complainant ? denuncia.complainant.names + ' ' + denuncia.complainant.lastName: 'Anónimo'}}</span>
+              <span>{{ denuncia.reasons[0].description }}</span>
+              <span>
+                <!-- <button class="evidencia-btn">Ver evidencia</button> -->
+                <a class="evidencia-btn" href="{{filesUrl}}{{denuncia?.trackingCode}}/{{denuncia?.attachments[0]?.fileName}}" download="{{denuncia?.attachments[0]?.fileName}}">Ver evidencia</a>
+              </span>
+            </div>
+            <hr>
+            <div class="denuncia-status">
+              <strong>Estado:</strong> {{ denuncia.status }}
+            </div>
+            <div class="denuncia-note">
+              <strong>Nota:</strong> {{ denuncia.notas }} 
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="!isListView" class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <!-- <th><input type="checkbox"></th> -->
+                <th>Motivo</th>
+                <th>Fecha</th>
+                <th>Denunciante</th>
+                <th>Estado</th>
+                <th>Evidencia</th>
+                <th>Chat</th>
+                <th *ngIf="showActions && !isDashboard">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let denuncia of paginated">
+                <td>{{ denuncia.reasons[0].description }}</td>
+                <td>{{ denuncia.createdOn | date }}</td>
+                <td>{{ denuncia.complainant ? denuncia.complainant.names + ' ' + denuncia.complainant.lastName: 'Anónimo' }}</td>
+                <td>{{ denuncia.status }}</td>
+                <td><a href="{{filesUrl}}{{denuncia?.trackingCode}}/{{denuncia?.attachments[0]?.fileName}}" download="{{denuncia?.attachments[0]?.fileName}}"><mat-icon aria-hidden="false" fontIcon="attach_file" ></mat-icon></a></td>
+                <td><a href="javascript:void(0)" (click)="goToChat()"><mat-icon aria-hidden="false" fontIcon="chat"></mat-icon></a></td>
+                <td *ngIf="showActions && !isDashboard">
+                  <button *ngIf="denuncia.eStatus < 3" (click)="initDesestimar(denuncia.id)" class="desestimar-btn">
+                  <img src="/icons/desestimados.svg" alt="Ícono" class="btn-icon" />
+                  Desestimar
+                </button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination">
+          <span class="label">Principio</span>
+          <span (click)="previousPage()" [class.disabled]="currentPage === 1" class="arrow">‹</span>
+
+          <div class="page-numbers">
+            <button *ngFor="let page of pages()" (click)="goToPage(page)" [class.active]="currentPage === page">
+              {{ page }}
+            </button>
+          </div>
+
+          <span (click)="nextPage()" [class.disabled]="currentPage === totalPages" class="arrow">›</span>
+          <span class="label">Final</span>
+        </div>
+      </div>
+
+      <app-evidencia-popup (cerrar)="showPopup = !showPopup" (guardar)="loadAll()" *ngIf="showPopup"></app-evidencia-popup>
+    

@@ -67,7 +67,8 @@ export class InvolucradosComponent {
     this.router.navigate(['/denunciante']);
   }
 
-  back() {
-    this.location.back();
+  goBack() {
+    this.router.navigate(['/report']);
   }
+    
 }

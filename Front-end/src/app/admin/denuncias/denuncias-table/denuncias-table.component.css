@@ -182,8 +182,8 @@ app-sidebar-admin {
 .desestimar-btn {
   color: white;
   background-color: rgb(78, 65, 188);
-  width: 15%; 
   height: 40px; 
+  width: 100%;
   border: none;
   border-radius: 5px; 
   cursor: pointer;
@@ -219,14 +219,33 @@ app-sidebar-admin {
 }
 
 .filter-button-select {
+  color: rgb(41, 24, 193);
+  background-color: rgb(234 238 250);
   padding: 8px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid rgb(41, 24, 193);
   font-size: 14px;
   margin-left: 10px;
-  color: rgb(78, 65, 188);
-  background-color: rgb(180, 176, 212);
 }
+
+.evidencia-btn {
+  color: rgb(41, 24, 193);
+  background-color: rgb(234 238 250);
+  width: 90px; 
+  height: 40px; 
+  border: none;
+  border-radius: 5px; 
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  text-align: center !important;
+  text-decoration: none;
+}
+
+
 
 .icon-small {
   width: 16px; 
@@ -258,21 +277,6 @@ app-sidebar-admin {
   font-size: 14px; 
   color: #6c757d; 
 }  
-
-.evidencia-btn {
-  color: rgb(78, 65, 188);
-  background-color: rgb(180, 176, 212);
-  width: 80px; 
-  height: 40px; 
-  border: none;
-  border-radius: 5px; 
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-}
 
 
 .header-title.active {
