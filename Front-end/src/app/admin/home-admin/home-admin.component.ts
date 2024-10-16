@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RecentComplaintsTableAdmin } from '../recent-complaints-table-component/recent-complaints-table-component.component';
 import { QuickAccessAdmin } from '../quick-access-component/quick-access-component.component';
 import { HeaderAdmin } from '../header-component/header-admin.component';
 import { ChartsAdmin } from '../charts-component/charts-component.component';
@@ -11,7 +10,7 @@ import { DenunciasTableComponent } from "../denuncias/denuncias-table/denuncias-
 @Component({
   selector: 'app-home-admin',
   standalone: true,
-  imports: [CommonModule, DashboardSummaryComponent, RecentComplaintsTableAdmin, BaseChartDirective, HeaderAdmin, QuickAccessAdmin, SidebarAdmin, ChartsAdmin, DenunciasTableComponent],
+  imports: [CommonModule, DashboardSummaryComponent,  BaseChartDirective, HeaderAdmin, QuickAccessAdmin, SidebarAdmin, ChartsAdmin, DenunciasTableComponent],
   templateUrl: './home-admin.component.html',
   styleUrl: './home-admin.component.css'
 })

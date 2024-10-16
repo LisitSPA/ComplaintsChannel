@@ -27,7 +27,6 @@
   import { UsersComponent } from './admin/users/users.component';
   import { ChatAdminComponent } from './admin/chat-admin/chat-admin.component';
   import { NewUserComponent } from './admin/new-user/new-user.component';
-  import { RecentComplaintsTableAdmin } from './admin/recent-complaints-table-component/recent-complaints-table-component.component';
   import { QuickAccessAdmin } from './admin/quick-access-component/quick-access-component.component';
   import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
   import { SidebarAdmin } from './admin/admin/sidebar-component/sidebar-admin.component';
@@ -39,7 +38,7 @@
     selector: 'app-root',
     standalone: true,
     imports: [  HttpClientModule, NewUserComponent, ChatAdminComponent, ConfigurationComponent,  DenunciasComponent, RouterOutlet,FaqComponent, FooterComponent,HeaderComponent,HomeComponent, HowItWorksComponent, InformationComponent, LoginComponent, CommonModule,ReportComponent,InvolucradosComponent,
-      EvidenciaComponent, DenuncianteComponent, MisdatosComponent, FormsModule, HomeAdminComponent, ChartsAdmin, QuickAccessAdmin, RecentComplaintsTableAdmin, SidebarAdmin,
+      EvidenciaComponent, DenuncianteComponent, MisdatosComponent, FormsModule, HomeAdminComponent, ChartsAdmin, QuickAccessAdmin, SidebarAdmin,
       ReactiveFormsModule, TrackingCodeComponent, SeguimientoComponent, HeaderAdmin, BaseChartDirective, ChatComponent, UsersComponent,
     ],
     templateUrl: './app.component.html',
