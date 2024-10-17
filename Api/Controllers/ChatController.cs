@@ -38,6 +38,14 @@ namespace Api.Controllers
             return HandleResult(result.Result, result.ErrorProvider, language);
         }
 
+
+        [HttpGet("getByComplaintId/{complaintId}/{language}")]
+        public async Task<IActionResult> GetAll(int complaintId, string language)
+        {
+            var result = await Mediator.Send(new GetChatByComplaintIdQuery {complaintId = complaintId });
+            return HandleResult(result.Result, result.ErrorProvider, language);
+        }
+
         [AllowAnonymous]
         [HttpPost("", Name = "AddMessage")]
         public async Task<IActionResult> AddMessage([FromForm] CreateMessageChatCommand command)

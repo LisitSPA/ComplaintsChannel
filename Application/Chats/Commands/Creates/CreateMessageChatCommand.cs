@@ -68,7 +68,7 @@ public class CreateMessageChatCommandHandler : IRequestHandler<CreateMessageChat
             Chat chat = new()
             {
                 ComplaintId = complaint.Id,
-                //CreatedBy = _currentUserSvc.UserId != null ? _currentUserSvc.UserId : complaint.ComplainantId,
+                CreatedBy = _currentUserSvc.UserLoginId,
                 Message = command.Message,
                 CreatedOn = DateTime.Now,
                 AttachmentId = attachId > 0 ? attachId : null,

@@ -22,7 +22,7 @@ public class CurrentUserService : ICurrentUserService
         HasContext = _context != null;
 
 
-        UserId = _context?.User?.FindFirstValue("Id") != null ? Convert.ToInt32(_context?.User?.FindFirstValue("Id")) : null;
+        UserLoginId = _context?.User?.FindFirstValue("Id") != null ? Convert.ToInt32(_context?.User?.FindFirstValue("Id")) : null;
         FirstName = _context?.User?.FindFirstValue("Name") ?? "Anonymous";
         LastName = _context?.User?.FindFirstValue("LastName");
         UserEmail = _context?.User?.FindFirstValue(ClaimTypes.Email);
@@ -36,7 +36,7 @@ public class CurrentUserService : ICurrentUserService
 
     public bool HasClaims { get; }
     public bool HasContext { get; }
-    public int? UserId { get; }
+    public int? UserLoginId { get; }
     private string ClaimsId { get; }
     public string Token { get; }
     public string UserEmail { get; }

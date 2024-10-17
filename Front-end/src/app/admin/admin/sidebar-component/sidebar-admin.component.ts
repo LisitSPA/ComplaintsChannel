@@ -27,7 +27,7 @@ export class SidebarAdmin {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    sessionStorage.clear();
     this.router.navigate(['/login']);
   }
 }

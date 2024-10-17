@@ -20,7 +20,6 @@
   import { SeguimientoComponent } from './user/seguimiento/seguimiento.component';
   import { HeaderAdmin } from './admin/header-component/header-admin.component';
   import { BaseChartDirective } from 'ng2-charts';
-  import { ChatComponent } from './user/chat/chat.component';
   import { ChartsAdmin } from './admin/charts-component/charts-component.component';
   import { DenunciasComponent } from './admin/denuncias/denuncias.component';
   import { ConfigurationComponent } from './admin/configuration/configuration.component';
@@ -39,7 +38,7 @@
     standalone: true,
     imports: [  HttpClientModule, NewUserComponent, ChatAdminComponent, ConfigurationComponent,  DenunciasComponent, RouterOutlet,FaqComponent, FooterComponent,HeaderComponent,HomeComponent, HowItWorksComponent, InformationComponent, LoginComponent, CommonModule,ReportComponent,InvolucradosComponent,
       EvidenciaComponent, DenuncianteComponent, MisdatosComponent, FormsModule, HomeAdminComponent, ChartsAdmin, QuickAccessAdmin, SidebarAdmin,
-      ReactiveFormsModule, TrackingCodeComponent, SeguimientoComponent, HeaderAdmin, BaseChartDirective, ChatComponent, UsersComponent,
+      ReactiveFormsModule, TrackingCodeComponent, SeguimientoComponent, HeaderAdmin, BaseChartDirective,  UsersComponent,
     ],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],

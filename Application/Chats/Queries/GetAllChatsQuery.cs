@@ -31,8 +31,8 @@ public class GetAllChatsQueryHandler(
         try
         {
             var source = _repository.GetAllActive()
-                           .ProjectTo<List<ChatDto>>(_mapper.ConfigurationProvider)
-                           .FirstOrDefault();
+                           .ProjectTo<ChatDto>(_mapper.ConfigurationProvider)
+                           .ToList();
 
             result.Result = source;
 

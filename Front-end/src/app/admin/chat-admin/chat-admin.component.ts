@@ -4,15 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { SidebarAdmin } from '../admin/sidebar-component/sidebar-admin.component';
 import { ChatService } from '../../services/chat.service';
 import { ComplaintService } from '../../services/complaint.service';
+import { HttpParams } from '@angular/common/http';
 
-interface Chat {
-  id: number;
-  name: string;
-  subject: string;
-  time: string;
-  message: string;
-  status: string;  
-}
 
 @Component({
   selector: 'app-chat-admin',
@@ -22,13 +15,17 @@ interface Chat {
   styleUrls: ['./chat-admin.component.css']
 })
 export class ChatAdminComponent implements OnInit {
-  chatList: Chat[] = [];  
-  
-  filteredChatList: Chat[] = [...this.chatList];  
-  selectedChat: Chat | null = null;
+
+
+  chatList: any[] = [];  
+  chat: any[] = [];  
+
+  filteredComplaints: any[] = []; 
+  selectedComplaint: any = [];
   activeTab = 'todos'; 
   responseMessage = '';
   status = 'revision';
+  complaints: any;
 
   constructor(private chatService: ChatService,
     private complaintService: ComplaintService,
@@ -36,13 +33,26 @@ export class ChatAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAllChats('es');
+    this.loadAllComplaints();
+  }
+
+  async loadAllComplaints(){
+    let params = new HttpParams()
+    this.complaints = await this.complaintService.getAllComplaintsPromise(params);
+  }
+
+  getLastMessage(complaintId: number): string{
+    var chat = this.chatList.filter(x => x.complaintId == complaintId).sort((a, b) => a - b);
+    if(chat.length)
+      return chat[0].message
+    
+    return ""
   }
 
   loadAllChats(language: string) {
     this.chatService.getAllChats(language).subscribe(
-      (data: Chat[]) => {  
-        this.chatList = data;
-        this.filteredChatList = [...this.chatList];
+      (data: any) => {  
+        this.chatList = data.content;
       },
       (error) => {
         console.error('Error al cargar los chats:', error);
@@ -51,30 +61,40 @@ export class ChatAdminComponent implements OnInit {
   }
 
   filterChats(filter: string) {
-    this.activeTab = filter; 
-    if (filter === 'todos') {
-      this.filteredChatList = [...this.chatList];
-    } else {
-      this.filteredChatList = this.chatList.filter(chat => chat.status === filter);
+    // this.activeTab = filter; 
+    // if (filter === 'todos') {
+    //   this.filteredChatList = [...this.chatList];
+    // } else {
+    //   this.filteredChatList = this.chatList.filter(chat => chat.status === filter);
     }
+
+
+  async selectChat(complaint: any) {
+    
+    
   }
 
-  selectChat(chat: Chat) {
-    this.selectedChat = chat;
-  }
 
+  
   sendResponse() {
-    if (this.selectedChat) {
-
    
-      this.chatService.sendChatResponse(this.selectedChat.id.toString(), this.responseMessage).subscribe(
-        (response) => {
-          console.log('Respuesta enviada con éxito:', response);
-        },
-        (error) => {
-          console.error('Error al enviar la respuesta:', error);
-        }
-      );
-    }
+    // this.chatService.sendChatResponse(this.selectedComplaint.code, this.responseMessage).subscribe(
+    //   (response) => {
+    //     console.log('Respuesta enviada con éxito:', response);
+    //   },
+    //   (error) => {
+    //     console.error('Error al enviar la respuesta:', error);
+    //   }
+    // );
+    
   }
+
+
 }
+
+
+
+
+
+
+

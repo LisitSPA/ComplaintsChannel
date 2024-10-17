@@ -15,28 +15,31 @@
     <div class="divider"></div> 
 
     <div class="chat-items-container">
-      <div *ngFor="let chat of filteredChatList" 
+      <div *ngFor="let complaint of complaints" 
            class="chat-item" 
-           [ngClass]="{'selected': chat.id === selectedChat?.id}" 
-           (click)="selectChat(chat)">
+           [ngClass]="{'selected': complaint.id === selectedComplaint?.id}" 
+           (click)="selectChat(complaint)">
         <div class="chat-preview">
-          <p class="chat-name">{{ chat.name }}</p>
-          <p class="chat-subject">{{ chat.subject }}</p>
-          <p class="chat-time">{{ chat.time }}</p>
+          <p class="chat-name">{{ complaint.complainant ? complaint.complainant.names + ' ' + complaint.complainant.lastName: 'Anónimo' }}</p>
+          <p class="chat-subject">{{ complaint.reasons[0].description  }}</p>
+          <p class="chat-subject">{{ getLastMessage(complaint) }}</p>
+          <p class="chat-time">{{ complaint.createdOn | date:'shortTime'}}</p>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="chat-detail" *ngIf="selectedChat">
+  <div class="chat-detail" *ngIf="selectedComplaint">
     <h1>Sin respuesta</h1>
 
     <div class="chat-message">
-      <h3>{{ selectedChat.name }}</h3>
-      <p>{{ selectedChat.message }}</p>
+      <div *ngFor="let message of chat">
+        <h3>{{ message.user ? message.user.names + ' ' + message.user.lastName: 'Anónimo' }}</h3>
+        <p>{{ message.message }}</p>
+      </div>
     </div>
 
-    <h2>Responde a la solicitud</h2>
+    <h2>Responde la solicitud</h2>
     <div class="status-update">
       <label for="status" style="margin-right: 10px;">Estado de solicitud</label>
       <select id="status" [(ngModel)]="status">

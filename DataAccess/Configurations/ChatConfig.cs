@@ -19,7 +19,8 @@ namespace DataAccess.Configurations
 
             //Other Columns
             builder.HasOne(x => x.Complaint);
-            builder.HasOne(x => x.User);
+            builder.HasOne(x => x.User).WithMany().HasForeignKey(x => x.CreatedBy);
+            builder.HasOne(x => x.Attachment);
         }
     }
 }

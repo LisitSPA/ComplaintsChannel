@@ -1,4 +1,5 @@
 ﻿using Application.Complaints.Queries.DTOs;
+using Application.Users.Queries.DTOs;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Enums;
@@ -17,13 +18,16 @@ namespace Application.Chats.Queries.DTOs
         public int? AttachmentId { get; set; }
         public string Message { get; set; }
         public DateTime CreatedOn { get; set; }
-        public string CreatedBy { get; set; }
+        public string CreatedByName { get; set; }
+        public int? CreatedBy { get; set; }
         public Attachment Attachment { get; set; }
+        public int ComplaintId { get; set; }
+        public UserDto User { get; set; }
 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Chat, ChatDto>()
-                .ForMember(x => x.CreatedBy, opt => opt.MapFrom(s => s.User != null ? $"{s.User.Names} {s.User.LastName}" : "Anómimo" ))
+                .ForMember(x => x.CreatedByName, opt => opt.MapFrom(s => s.User != null ? $"{s.User.Names} {s.User.LastName}" : "Anómimo" ))
                 ;
 
         }

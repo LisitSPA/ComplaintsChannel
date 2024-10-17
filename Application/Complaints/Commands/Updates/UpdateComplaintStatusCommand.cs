@@ -47,13 +47,13 @@ public class CreateComplaintCommandHandler(
         {
             var complaint = _repository.GetAll().First(x => x.Id == command.ComplaintId);
             complaint.EStatus = command.EComplaintStatus;
-            complaint.ModifiedBy = _currentUserService.UserId;
+            complaint.ModifiedBy = _currentUserService.UserLoginId;
             complaint.ModifiedOn = DateTime.Now;
 
             complaint.ComplaintHistory = [new()
             {
                 EStatus = command.EComplaintStatus,
-                CreatedBy = _currentUserService.UserId.Value,
+                CreatedBy = _currentUserService.UserLoginId.Value,
                 Notes = command.Notes,
             }];
 

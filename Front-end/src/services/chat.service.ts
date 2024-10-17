@@ -12,15 +12,5 @@ export class ChatService {
     constructor(private _httpClient: HttpClient, ) { }
    
 
-    async getChatByComplaintCode(code: string, language: ELanguageType): Promise<ChatResponse> {
-       
-        let res = await lastValueFrom(this._httpClient.get<ApiResponse<ChatResponse>>(
-            `${environment.apiUrl}/chat/${code}/${language}`
-        ));
-    
-        return res?.content;
-
-    }
-
    
 }

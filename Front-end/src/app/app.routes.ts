@@ -6,7 +6,6 @@ import { InvolucradosComponent } from './user/involucrados/involucrados.componen
 import { EvidenciaComponent } from './user/evidencia/evidencia.component';
 import { TrackingCodeComponent } from './user/tracking-code/tracking-code.component';
 import { SeguimientoComponent } from './user/seguimiento/seguimiento.component';
-import { ChatComponent } from './user/chat/chat.component';
 import { SuccessreportComponent } from './user/successreport/successreport.component';
 import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
 import { UsersComponent } from './admin/users/users.component';
@@ -30,7 +29,7 @@ export const routes: Routes = [
   {path:'successreport', component:SuccessreportComponent},
   {path:'login', component:LoginComponent},
   {path:'recuperar', component: RecuperarComponent},  
-  {path: 'chat', component: ChatComponent},
+  //{path: 'chat', component: ChatUserComponent},
   {path: 'usersadmin', component: UsersComponent},
   {path:'configurationadmin', component: ConfigurationComponent},
   { path: 'denunciasadmin', component: DenunciasComponent},

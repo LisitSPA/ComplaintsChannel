@@ -17,6 +17,7 @@ namespace Domain.Entities
         
         public Complaint Complaint { get; set; }
         public User User { get; set; }
+        public Attachment Attachment { get; set; }
     }
     
 }

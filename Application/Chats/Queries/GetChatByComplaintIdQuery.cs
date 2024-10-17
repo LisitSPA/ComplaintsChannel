@@ -9,34 +9,30 @@ using System.Linq;
 using AutoMapper.QueryableExtensions;
 using Application.Complaints.Queries.DTOs;
 using Application.Chats.Queries.DTOs;
-using System.Data.Entity;
 using System.Collections.Generic;
 
 
 namespace Application.Chats.Queries;
 
-public record GetChatByComplaintCodeQuery : IRequest<Response<List<ChatDto>>>
+public record GetChatByComplaintIdQuery : IRequest<Response<List<ChatDto>>>
 {
-    public string code { get; init; }
+    public int complaintId { get; init; }
 }
 
 
 //HANDLER
-public class GetChatByComplaintCodeQueryHandler(
+public class GetChatByComplaintIdQueryHandler(
         IRepository<Chat> _repository,
         IMapper _mapper
-    ) : IRequestHandler<GetChatByComplaintCodeQuery, Response<List<ChatDto>>>
+    ) : IRequestHandler<GetChatByComplaintIdQuery, Response<List<ChatDto>>>
 {
-    public async Task<Response<List<ChatDto>>> Handle(GetChatByComplaintCodeQuery request, CancellationToken cancellationToken)
+    public async Task<Response<List<ChatDto>>> Handle(GetChatByComplaintIdQuery request, CancellationToken cancellationToken)
     {
         Response<List<ChatDto>> result = new();
         try
         {
             var source = _repository.GetAll()
-                            .Include(x => x.Complaint)
-                            .Include(x => x.User)
-                            .Include(x => x.Attachment)
-                            .Where(x => x.Complaint.TrackingCode == request.code)
+                            .Where(x => x.ComplaintId == request.complaintId)
                            .ProjectTo<ChatDto>(_mapper.ConfigurationProvider)
                            .ToList();
 

@@ -1,0 +1,27 @@
+
+    <div class="messages-list" >
+      <div class="message" *ngFor="let message of chat" [ngClass]="{'investigator': message.CreatedBy, 'user': !message.CreatedBy}">
+          <p>{{message.message}}
+            <a *ngIf="message.attachment" class="evidencia-btn" href="{{filesUrl}}{{complaint?.trackingCode}}/{{message?.attachment?.fileName}}" download="{{message?.attachment?.fileName}}">
+                <mat-icon>attach_file</mat-icon>
+                Documento
+            </a>
+            <span class="message-time">{{message.createdOn | date}}</span>
+        </p>
+      </div>
+
+    </div>
+
+    <div class="message-input-container">
+      <div class="message-input">
+        <textarea [(ngModel)]="message" placeholder="Escribe tu mensaje aquí..."></textarea>
+        <div class="upload-box">
+          <input (change)="onFileSelected($event)" type="file" id="file-upload" accept=".png,.pdf">
+          <label for="file-upload" class="custom-file-upload">
+            <i class="fa fa-cloud-upload"></i> Sube los documentos
+          </label>
+        </div>
+      </div>
+      <label class="confidentiality-note">Todos los mensajes se manejan con absoluta confidencialidad.</label>
+      <button class="send-btn" [disabled]="!this.message && !this.file" (click)="sendMessage()">Enviar</button>
+    </div>

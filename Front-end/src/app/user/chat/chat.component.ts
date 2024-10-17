@@ -12,13 +12,13 @@ interface Message {
 }
 
 @Component({
-  selector: 'app-chat',
+  selector: 'app-chat-user',
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent {
+export class ChatUserComponent {
   messages: Message[] = [
     { id: 1, author: 'Anónimo', subject: 'Denuncia Abuso Sexual', content: 'Necesito una solución...', time: '13:00', status: 'en revision' },
     { id: 2, author: 'Anónimo', subject: 'Motivos de denuncia', content: 'Quiero más información...', time: '13:00', status: 'denuncia resuelta' },
