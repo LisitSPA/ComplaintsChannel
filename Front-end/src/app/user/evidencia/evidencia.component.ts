@@ -38,8 +38,9 @@ export class EvidenciaComponent {
 
   onSubmit(): void {
     if (this.archivosSeleccionados.length === 0) {
-      alert('Por favor selecciona archivos');
-      return;
+      // alert('Por favor selecciona archivos');
+      // return;
+      this.router.navigate(['/successreport']);
     }
 
     let complaint = this.dataService.getComplaintData();

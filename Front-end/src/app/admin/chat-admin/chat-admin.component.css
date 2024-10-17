@@ -29,7 +29,6 @@
 .chat-detail {
   flex: 1;
   padding: 20px;
-  background-color: #f1f1f1;
 
 }
 
@@ -89,11 +88,10 @@ font-weight: bold;
 }
 
 .chat-message, .status-update {
-background-color: #fff;
-padding: 20px;
-border-radius: 8px;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 

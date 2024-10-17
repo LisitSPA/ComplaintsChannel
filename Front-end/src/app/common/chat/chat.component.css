@@ -45,6 +45,7 @@
     background-color: #f0effb;
     padding: 10px;
     max-height: 65%;
+    min-height: 364px;
   }
   
   .message {
@@ -59,7 +60,7 @@
   }
   
   .investigator {
-    background-color: #ffffff;
+    background-color: #ffffff !important;
     align-self: flex-start;
     border: 1px solid #ddd;
     position: relative;

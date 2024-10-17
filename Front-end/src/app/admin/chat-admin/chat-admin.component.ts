@@ -5,12 +5,14 @@ import { SidebarAdmin } from '../admin/sidebar-component/sidebar-admin.component
 import { ChatService } from '../../services/chat.service';
 import { ComplaintService } from '../../services/complaint.service';
 import { HttpParams } from '@angular/common/http';
+import { ChatComponent } from '../../common/chat/chat.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-chat-admin',
   standalone: true,
-  imports: [CommonModule, FormsModule, SidebarAdmin],
+  imports: [CommonModule, FormsModule, SidebarAdmin, ChatComponent, MatIconModule ],
   templateUrl: './chat-admin.component.html',
   styleUrls: ['./chat-admin.component.css']
 })
@@ -21,11 +23,11 @@ export class ChatAdminComponent implements OnInit {
   chat: any[] = [];  
 
   filteredComplaints: any[] = []; 
-  selectedComplaint: any = [];
+  selectedComplaint: any;
   activeTab = 'todos'; 
   responseMessage = '';
   status = 'revision';
-  complaints: any;
+  complaints: any[] = [];
 
   constructor(private chatService: ChatService,
     private complaintService: ComplaintService,
@@ -38,7 +40,8 @@ export class ChatAdminComponent implements OnInit {
 
   async loadAllComplaints(){
     let params = new HttpParams()
-    this.complaints = await this.complaintService.getAllComplaintsPromise(params);
+    this.complaints = (await this.complaintService.getAllComplaintsPromise(params)).data;
+    this.filterChats('todos');
   }
 
   getLastMessage(complaintId: number): string{
@@ -61,22 +64,25 @@ export class ChatAdminComponent implements OnInit {
   }
 
   filterChats(filter: string) {
-    // this.activeTab = filter; 
-    // if (filter === 'todos') {
-    //   this.filteredChatList = [...this.chatList];
-    // } else {
-    //   this.filteredChatList = this.chatList.filter(chat => chat.status === filter);
+    this.activeTab = filter; 
+    if (filter === 'todos') {
+      this.filteredComplaints = [...this.complaints];
+    } else if(filter === 'pendientes') {
+      this.filteredComplaints = this.complaints.filter(x => x.eStatus < 3);
+    } else {
+      this.filteredComplaints = this.complaints.filter(x => x.eStatus > 3);
     }
+  }
 
 
   async selectChat(complaint: any) {
     
-    
+    this.selectedComplaint = complaint
   }
 
 
   
-  sendResponse() {
+  updateComplaint() {
    
     // this.chatService.sendChatResponse(this.selectedComplaint.code, this.responseMessage).subscribe(
     //   (response) => {

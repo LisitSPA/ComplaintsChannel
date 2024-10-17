@@ -1,15 +1,27 @@
 
-    <div class="messages-list" >
-      <div class="message" *ngFor="let message of chat" [ngClass]="{'investigator': message.CreatedBy, 'user': !message.CreatedBy}">
-          <p>{{message.message}}
+
+    <div class="messages-list" *ngIf="fromUser">
+      <div class="message" *ngFor="let message of chat" [ngClass]="message.createdBy ? 'investigator' : 'user'">
+          <span>{{message.message}} </span>
             <a *ngIf="message.attachment" class="evidencia-btn" href="{{filesUrl}}{{complaint?.trackingCode}}/{{message?.attachment?.fileName}}" download="{{message?.attachment?.fileName}}">
                 <mat-icon>attach_file</mat-icon>
                 Documento
             </a>
             <span class="message-time">{{message.createdOn | date}}</span>
-        </p>
       </div>
+    </div>
 
+    <!-- from chat admin -->
+    <div class="messages-list" *ngIf="!fromUser">
+        <div class="message" *ngFor="let message of chat" [ngClass]="!message.createdBy ? 'investigator' : 'user'">
+            <span class="chat-name"><b>{{getName(message) | titlecase}}</b></span>
+            <span>{{message.message}}</span>
+            <a *ngIf="message.attachment" class="evidencia-btn" href="{{filesUrl}}{{complaint?.trackingCode}}/{{message?.attachment?.fileName}}" download="{{message?.attachment?.fileName}}">
+                <mat-icon>attach_file</mat-icon>
+                Documento
+            </a>
+            <span class="message-time">{{message.createdOn | date}}</span>             
+        </div>
     </div>
 
     <div class="message-input-container">
@@ -22,6 +34,6 @@
           </label>
         </div>
       </div>
-      <label class="confidentiality-note">Todos los mensajes se manejan con absoluta confidencialidad.</label>
+      <label class="confidentiality-note" *ngIf="fromUser">Todos los mensajes se manejan con absoluta confidencialidad.</label>
       <button class="send-btn" [disabled]="!this.message && !this.file" (click)="sendMessage()">Enviar</button>
     </div>

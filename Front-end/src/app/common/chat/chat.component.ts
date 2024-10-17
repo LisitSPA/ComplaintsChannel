@@ -3,7 +3,7 @@ import { Component, Input, input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChatService } from '../../services/chat.service';
 import { MatIcon } from '@angular/material/icon';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-chat',
@@ -16,6 +16,7 @@ export class ChatComponent implements OnInit{
 
   
   @Input() complaint : any = []
+  @Input() fromUser : boolean = false;
   message: string = '';
   chat: any;
   filesUrl: any;
@@ -54,11 +55,21 @@ export class ChatComponent implements OnInit{
     const input = event.target as HTMLInputElement;
     if (input?.files) {
       this.file = input.files;
-      console.log(this.file[0])
       this.message =  this.file[0].name
     }
    
   }
+
+  getName(message: any): string {
+    let name = ""
+    if(message.createdBy) //investigador
+      name = message.user.names + " " + message.user.lastName
+    else
+      name = this.complaint.complainant ? this.complaint.complainant.names + ' ' + this.complaint.complainant.lastName : 'Anónimo'
+
+    return name
+  }
+  
   
   
 }

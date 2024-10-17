@@ -1,61 +1,62 @@
 <div class="container">
   <app-sidebar-admin></app-sidebar-admin>
-<div class="main-content">
+  <div class="main-content">
 
-<div class="chat-admin-container">
-  <div class="chat-list">
-    <div class="tabs">
-      <a (click)="filterChats('todos')" [ngClass]="{'active': activeTab === 'todos'}">Todos</a>
-      <a (click)="filterChats('pendientes')" [ngClass]="{'active': activeTab === 'pendientes'}">Pendientes</a>
-      <a (click)="filterChats('finalizados')" [ngClass]="{'active': activeTab === 'finalizados'}">Finalizados</a>
-    </div>
-    
-    
-    <input type="text" placeholder="Buscar chat..." class="search-box" />
-    <div class="divider"></div> 
+  <div class="chat-admin-container">
+    <div class="chat-list">
+      <div class="tabs">
+        <a (click)="filterChats('todos')" [ngClass]="{'active': activeTab === 'todos'}">Todos</a>
+        <a (click)="filterChats('pendientes')" [ngClass]="{'active': activeTab === 'pendientes'}">Pendientes</a>
+        <a (click)="filterChats('finalizados')" [ngClass]="{'active': activeTab === 'finalizados'}">Finalizados</a>
+      </div>
+      
+      
+      <input type="text" placeholder="Buscar chat..." class="search-box" />
+      <div class="divider"></div> 
 
-    <div class="chat-items-container">
-      <div *ngFor="let complaint of complaints" 
-           class="chat-item" 
-           [ngClass]="{'selected': complaint.id === selectedComplaint?.id}" 
-           (click)="selectChat(complaint)">
-        <div class="chat-preview">
-          <p class="chat-name">{{ complaint.complainant ? complaint.complainant.names + ' ' + complaint.complainant.lastName: 'Anónimo' }}</p>
-          <p class="chat-subject">{{ complaint.reasons[0].description  }}</p>
-          <p class="chat-subject">{{ getLastMessage(complaint) }}</p>
-          <p class="chat-time">{{ complaint.createdOn | date:'shortTime'}}</p>
+      <div class="chat-items-container">
+        <div *ngFor="let complaint of filteredComplaints" 
+            class="chat-item" 
+            [ngClass]="{'selected': complaint.id === selectedComplaint?.id}" 
+            (click)="selectChat(complaint)">
+          <div class="chat-preview">
+            <p class="chat-name">{{ complaint.complainant ? complaint.complainant.names + ' ' + complaint.complainant.lastName: 'Anónimo' | titlecase }}</p>
+            <p class="chat-subject">{{ complaint.reasons[0].description  }}</p>
+            <p class="chat-subject">{{ getLastMessage(complaint) }}</p>
+            <p class="chat-time">{{ complaint.createdOn | date:'shortTime'}}</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="chat-detail" *ngIf="selectedComplaint">
-    <h1>Sin respuesta</h1>
+    <div class="chat-detail" *ngIf="selectedComplaint">
+     <h2 *ngIf="selectedComplaint.eStatus == 1"><mat-icon>error_outline</mat-icon> Sin respuesta</h2>
 
-    <div class="chat-message">
-      <div *ngFor="let message of chat">
-        <h3>{{ message.user ? message.user.names + ' ' + message.user.lastName: 'Anónimo' }}</h3>
-        <p>{{ message.message }}</p>
+      <!-- <div class="chat-message">
+        <div *ngFor="let message of chat">
+          <h3>{{ message.user ? message.user.names + ' ' + message.user.lastName: 'Anónimo' }}</h3>
+          <p>{{ message.message }}</p>
+        </div>
+      </div> -->
+      <app-chat [complaint]="selectedComplaint"></app-chat>
+
+      <h2>Responde la solicitud</h2>
+      <div class="status-update">
+        <label for="status" style="margin-right: 10px;">Estado de solicitud</label>
+        <select id="status" [(ngModel)]="status">
+          <option value="1">Pendientes</option>
+          <option value="2">En proceso de investigación</option>
+          <!-- <option value="3">Finalizada</option> -->
+          <option value="31">Desistimada</option>
+          <option value="32">Sanción Aplicada</option>
+          <option value="33">Medidas preventivas</option>
+        </select>
+
+        <textarea placeholder="Escribe tu respuesta aquí" [(ngModel)]="responseMessage"></textarea>
+
+        <button class="respuesta-btn" (click)="updateComplaint()">Enviar respuesta</button>
       </div>
     </div>
-
-    <h2>Responde la solicitud</h2>
-    <div class="status-update">
-      <label for="status" style="margin-right: 10px;">Estado de solicitud</label>
-      <select id="status" [(ngModel)]="status">
-        <option value="1">Pendientes</option>
-        <option value="2">En proceso de investigación</option>
-        <!-- <option value="3">Finalizada</option> -->
-        <option value="31">Desistimada</option>
-        <option value="32">Sanción Aplicada</option>
-        <option value="33">Medidas preventivas</option>
-      </select>
-
-      <textarea placeholder="Escribe tu respuesta aquí" [(ngModel)]="responseMessage"></textarea>
-
-      <button class="respuesta-btn" (click)="sendResponse()">Enviar respuesta</button>
-    </div>
   </div>
-</div>
-</div>
+  </div>
 </div>
