@@ -7,11 +7,11 @@
       <h2 for="trackCode">Introduce el código de <br>seguimiento</h2>
       <h3>Este código ha sido enviado a tu correo electrónico. <br>Introdúcelo para acceder a tu denuncia. </h3>
       <div class="code-input-container" [formGroup]="trackingForm">
-        <input type="text" maxlength="1" formControlName="digit1">
-        <input type="text" maxlength="1" formControlName="digit2">
-        <input type="text" maxlength="1" formControlName="digit3">
-        <input type="text" maxlength="1" formControlName="digit4">
-        <input type="text" maxlength="1" formControlName="digit5">
+        <input type="text" maxlength="1" (input)="onInput($event, 0)" (keydown)="onKeydown($event, 0)" (paste)="onPaste($event)" formControlName="digit1">
+        <input type="text" maxlength="1" (input)="onInput($event, 1)" (keydown)="onKeydown($event, 1)" formControlName="digit2">
+        <input type="text" maxlength="1" (input)="onInput($event, 2)" (keydown)="onKeydown($event, 2)" formControlName="digit3">
+        <input type="text" maxlength="1" (input)="onInput($event, 3)" (keydown)="onKeydown($event, 3)" formControlName="digit4">
+        <input type="text" maxlength="1" (input)="onInput($event, 4)" (keydown)="onKeydown($event, 4)" formControlName="digit5">
       </div>
       <a href="#" class="a_">¿No recibiste un código?</a>
 
@@ -24,5 +24,3 @@
 </div>
 
 </div>
-
-  
