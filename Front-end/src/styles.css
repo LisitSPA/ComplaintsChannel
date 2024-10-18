@@ -129,6 +129,14 @@ label {
   transition: background-color 0.3s;
 }
 
+.next-btn:disabled{
+  background: #e3e3e4 !important;
+}
+
+button:disabled{
+  background: #e3e3e4 !important;
+}
+
 .flex-end{
   align-self: flex-end;
   justify-content: space-between;
@@ -204,7 +212,7 @@ label {
     
 
   .incident-description {
-    margin-top: 50px !important;
+    /* margin-top: 50px !important; */
     margin-bottom: 50px !important;
   }
     

@@ -15,10 +15,21 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
+  
   reasons: number[] = [];  
   description: string = '';
-  incidentDate: string = '';
-  mostrarDropdown: boolean = false;  
+  incidentDate: string | undefined;
+  mostrarDropdown: boolean = false; 
+   
+  private complaint: any = {
+    reasons: [],
+    isAnonymous: true,
+    description: '',
+    incidentDate: '',
+    personInvolveds: [],   
+    contactEmail: ''
+  };
+
 
   reasonsList : any = [
   ];
@@ -42,7 +53,14 @@ export class ReportComponent implements OnInit {
         this.reasonsList = await this.complaintService.getReasonsComplaints();
         this.complaintDataService.setReasons(this.reasonsList);
       }
-      
+    
+    this.complaint = this.complaintDataService.getComplaintData();
+    if(this.complaint)
+    {
+      this.reasons = [...this.complaint.reasons];
+      this.description = this.complaint.description;
+      this.incidentDate = this.complaint.incidentDate;
+    }
   }
 
   toggleReasonSelection(reasonId: number) {

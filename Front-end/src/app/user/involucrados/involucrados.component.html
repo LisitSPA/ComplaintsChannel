@@ -41,13 +41,13 @@
         <h2>Agregar causal manualmente</h2>
         <div class="form-group">
           <div class="input-field">
-            <h3 for="manualName">Nombre:</h3>
-            <input type="text" matInput class="form-control" id="manualName" [(ngModel)]="manualName" placeholder="Ingrese nombre">
+            <h3 for="manualName">Nombre Completo:</h3>
+            <input type="text" matInput class="form-control" id="manualName" [(ngModel)]="manualName" placeholder="Ingrese nombre completo">
           </div>
-          <div class="input-field">
+          <!-- <div class="input-field">
             <h3 for="manualLastName">Apellido:</h3>
             <input type="text"  matInput class="form-control" id="manualLastName" [(ngModel)]="manualLastName" placeholder="Ingrese apellido">
-          </div>
+          </div> -->
         </div>
         <button class="guardarCausal-btn" style="margin-top: 20px;" (click)="guardarCausal()">Guardar al causal</button>
       </div>
@@ -62,7 +62,7 @@
      
       <div class="example-button-row flex-end">
         <button class="back-btn" mat-raised-button (click)="goBack()">Volver</button>
-        <button class="next-btn"  mat-raised-button (click)="guardarDatosYRedirigir($event)" href="javascript:void(0)">Siguiente</button>
+        <button class="next-btn" [disabled]="!personDescription && !personasSeleccionadas.length" mat-raised-button (click)="guardarDatosYRedirigir($event)" href="javascript:void(0)">Siguiente</button>
       </div>
       <br>
     </div>

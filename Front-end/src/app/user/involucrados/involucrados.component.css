@@ -64,7 +64,16 @@
   border-radius: 10px;
   width: 240px;
   text-align: center;
-  box-sizing: border-box;
+}
+
+.info-section .title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.info-section .subtitle {
+  font-size: 18px;
+  color: #888;
 }
 
 textarea {
@@ -107,8 +116,12 @@ textarea {
   transition: background-color 0.3s;
 }
 
+.next-btn:disabled{
+  background: #e3e3e4;
+}
+
 .next-btnn:hover {
-  background-color: #6653aa;
+  background: #6653aa;
 }
 
 @media (max-width: 768px) {

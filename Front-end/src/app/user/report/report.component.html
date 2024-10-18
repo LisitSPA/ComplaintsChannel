@@ -18,25 +18,27 @@
       <h2>Por favor, selecciona una o más opciones</h2>
       <h3>Motivos de denuncia</h3>
 
-      <div class="denuncia-options">
-        <button class="denuncia-btn" *ngFor="let reason of reasonsList?.slice(0,3)"
-                [ngClass]="{'selected': reasons.includes(reason.id)}"
-                (click)="toggleReasonSelection(reason.id)">
-          {{ reason.description }}
-        </button>
-      </div>
+      <div class="denuncia-options" *ngIf="reasonsList.length ">
+        <div>
+          <button class="denuncia-btn" *ngFor="let reason of reasonsList.slice(0,3)"
+                  [ngClass]="{'selected': reasons.includes(reason.id)}"
+                  (click)="toggleReasonSelection(reason.id)">
+            {{ reason.description }}
+          </button>
+        </div>
 
       <button class="ver-mas-btn" (click)="toggleDropdown()">
         {{ mostrarDropdown ? 'Ver menos' : 'Ver más' }}
       </button>
 
-      <div *ngIf="mostrarDropdown" class="more-reasons">
-        <label *ngFor="let reason of reasonsList?.slice(3)">
-          <input type="checkbox" 
-                 [checked]="reasons.includes(reason.id)"
-                 (change)="toggleReasonSelection(reason.id)">
-          {{ reason.description }}
-        </label>
+        <div *ngIf="mostrarDropdown" class="more-reasons">
+          <label *ngFor="let reason of reasonsList.slice(3)">
+            <input type="checkbox" 
+                  [checked]="reasons.includes(reason.id)"
+                  (change)="toggleReasonSelection(reason.id)">
+            {{ reason.description }}
+          </label>
+        </div>
       </div>
 
       <hr class="divider">

@@ -27,15 +27,6 @@ export class ComplaintDataService {
       contactPhone: ''    
   }
 
-  private _notes: string = "";
-  
-  public get notes(): string {
-    return this._notes;
-  }
-  public set notes(value: string) {
-    this._notes = value;
-  }
-
   setComplaintData(data: any) {
     console.log()
     this.complaintData = { ...this.complaintData, ...data };
@@ -68,9 +59,8 @@ export class ComplaintDataService {
   }
 
   setReasons(data: any){
-    this.resons = data;
+    this.resons = [...data];
     console.log(this.resons)
-
   }
 
   clearData() {

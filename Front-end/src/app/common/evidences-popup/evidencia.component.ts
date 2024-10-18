@@ -51,7 +51,6 @@ export class EvidenciaPopupComponent {
     }
 
     let complaint = this.dataService.getComplaintData();
-    this.dataService.notes = this.notes;
     this.submit = true;
 
     let data = {

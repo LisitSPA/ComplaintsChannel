@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { Location } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
+import { Involved } from '../../../types/complaint.type';
 
 @Component({
   selector: 'app-involucrados',
@@ -20,11 +21,24 @@ export class InvolucradosComponent {
   personDescription: string = '';
   manualName: string = '';  
   manualLastName: string = '';  
+  complaint: any;
 
   constructor(private complaintDataService: ComplaintDataService, 
     private router: Router,
     private location: Location
-  ) {}
+  ) {
+
+    this.complaint = this.complaintDataService.getComplaintData();
+    if(this.complaint)
+    {
+     
+      this.personasSeleccionadas = this.complaint.personInvolveds.map((persona: any) => (
+          persona.names 
+      ));
+      this.personDescription = this.complaint.personInvolveds[0]?.personDescription;
+      console.log(this.personasSeleccionadas)
+    }
+  }
 
   actualizarSeleccion(persona: string, event: Event) {
     const checkbox = (event.target as HTMLInputElement);
@@ -36,7 +50,7 @@ export class InvolucradosComponent {
   }
 
   guardarCausal() {
-    if (this.manualName && this.manualLastName) {
+    if (this.manualName) {
       const newCausal = `${this.manualName} ${this.manualLastName}`;
       this.personasSeleccionadas.push(newCausal);
 
