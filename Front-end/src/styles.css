@@ -79,7 +79,7 @@ h2{
 h3, .subtitle, h4, span,a , div, label, li{
     font-size: medium !important; 
     text-align: left !important;
-    font-weight: 200 !important; 
+    /* font-weight: 200 !important;  */
     font-family: 'Open Sans' !important;
 
 }

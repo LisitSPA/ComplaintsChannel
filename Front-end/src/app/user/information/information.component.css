@@ -1,10 +1,10 @@
 .informacion {
-  background-color: #f1f1f1;
-    padding: 20px;
-    margin-top: 250px;
+  background-color: #f0effb;
+    padding: 92px;
+   
     border-radius: 8px;
     font-family: 'Open Sans', sans-serif;
-    margin-left: 90px
+    
 
   }
   
@@ -73,9 +73,12 @@
     text-align: center;
     font-size: medium;
     color: #333;
-    border: 1.5px solid #56499f;
+    border: 1.5px solid #4f4cca;
     border-radius: 5px;
     box-sizing: border-box;
+    padding: 20px;
+    text-align: center !important;
+    font-weight: bold !important;
   }
   
 

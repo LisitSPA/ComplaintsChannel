@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SidebarAdmin } from "../admin/admin/sidebar-component/sidebar-admin.component";
 import { HeaderAdmin } from "../admin/header-component/header-admin.component";
 import { QuickAccessAdmin } from "../admin/quick-access-component/quick-access-component.component";
-import { Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -17,8 +17,12 @@ export class LayoutComponent implements OnInit{
   constructor(
     private router: Router
   ){
-    // if(!sessionStorage || !sessionStorage.getItem("token"))
-    //   this.router.navigate(['/home']);
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        if(!sessionStorage.getItem('token'))
+          router.navigate(["/login"]) 
+      }
+    })
   }
 
 

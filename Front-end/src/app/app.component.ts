@@ -59,10 +59,13 @@
           this.showHeaderFooter = !event.url.includes('admin');
           this.showAdminHeader = event.url.includes('admin');
           this.showAdminSidebar = event.url.includes('admin');
+
+         
         }
       });
 
      
+
     }
 
     

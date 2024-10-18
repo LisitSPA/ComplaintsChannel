@@ -8,20 +8,14 @@ html, body {
   flex-direction: column;
 }
 
-
-main {
-  flex: 1; 
-}
-
-footer {
+.content-footer{
   position: relative;
   bottom: 0;
   left: 0;
   right: 0;
   width: 100%;
   text-align: center;
-  z-index: 1000;
-  background-color: #e6e6fa;
+  z-index: 1000; 
   color: rgb(0, 0, 0);
   font-family: 'Rubik', sans-serif;
   display: flex;
@@ -29,6 +23,15 @@ footer {
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
+}
+
+main {
+  flex: 1; 
+}
+
+footer {
+  background-color: #e6e6fa;
+  padding: 30px;
 }
 
 .footer-title {

@@ -16,7 +16,7 @@
   background-repeat: no-repeat;
   min-height: 100vh; 
   width: 100vw; 
-  margin-bottom: 250px;
+  /* margin-bottom: 250px; */
   position: relative;
   overflow: hidden; 
 }
