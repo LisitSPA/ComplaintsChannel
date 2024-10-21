@@ -26,8 +26,11 @@ export class ChatAdminComponent implements OnInit {
   selectedComplaint: any;
   activeTab = 'todos'; 
   responseMessage = '';
-  status = 'revision';
+  status : number | undefined;
   complaints: any[] = [];
+  message: any;
+  mensajeError: any;
+  mensajeExito: any;
 
   constructor(private chatService: ChatService,
     private complaintService: ComplaintService,
@@ -41,7 +44,7 @@ export class ChatAdminComponent implements OnInit {
   async loadAllComplaints(){
     let params = new HttpParams()
     this.complaints = (await this.complaintService.getAllComplaintsPromise(params)).data;
-    this.filterChats('todos');
+    this.filterComplaints(this.activeTab);
   }
 
   getLastMessage(complaintId: number): string{
@@ -63,7 +66,7 @@ export class ChatAdminComponent implements OnInit {
     );
   }
 
-  filterChats(filter: string) {
+  filterComplaints(filter: string) {
     this.activeTab = filter; 
     if (filter === 'todos') {
       this.filteredComplaints = [...this.complaints];
@@ -79,19 +82,24 @@ export class ChatAdminComponent implements OnInit {
     
     this.selectedComplaint = complaint
   }
-
-
   
   updateComplaint() {
+      let data = {
+      complaintId : this.selectedComplaint.id,
+      eComplaintStatus : this.status,
+      notes: this.responseMessage,        
+    };
    
-    // this.chatService.sendChatResponse(this.selectedComplaint.code, this.responseMessage).subscribe(
-    //   (response) => {
-    //     console.log('Respuesta enviada con éxito:', response);
-    //   },
-    //   (error) => {
-    //     console.error('Error al enviar la respuesta:', error);
-    //   }
-    // );
+    this.complaintService.updateStatus(data).subscribe(
+      (response) => {
+       this.mensajeExito = 'Denuncia actualizada correctamente';    
+       this.loadAllComplaints();    
+      },
+      (error) => {
+        console.log(error)
+        this.mensajeError = 'Denuncia actualizada correctamente';      
+      }
+    );
     
   }
 

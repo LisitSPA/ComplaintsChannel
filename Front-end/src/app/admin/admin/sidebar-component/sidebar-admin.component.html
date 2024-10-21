@@ -2,23 +2,23 @@
   <div class="white-section" [ngClass]="{ 'active': isActive }">
     <ng-container *ngIf="selectedSection === 'home'">
       <h2>Home</h2>
-      <a style="font-size: small;" routerLink="homeadmin">Dashboard</a>
-      <a style="font-size: small;" routerLink="/acciones-realizadas">Acciones realizadas</a>
+      <a style="font-size: small;" routerLink="/homeadmin">Dashboard</a>      
     </ng-container>
     <ng-container *ngIf="selectedSection === 'denuncias'">
       <h2>Denuncias</h2>
-      <a style="font-size: small;" routerLink="denunciasadmin">Supervisión de denuncias</a>
+      <!-- <a style="font-size: small;" routerLink="/acciones-realizadas">Acciones realizadas</a> -->
+      <a style="font-size: small;" routerLink="/denunciasadmin">Supervisión de denuncias</a>
     </ng-container>
     <ng-container *ngIf="selectedSection === 'chat'">
       <h2>Chats</h2>
-      <a style="font-size: small;" routerLink="chatadmin">Mis chats</a>
-      <a style="font-size: small;" routerLink="/acciones-realizadas">Desestimados</a>
+      <a style="font-size: small;" routerLink="/chatadmin">Mis chats</a>
+      <!-- <a style="font-size: small;" routerLink="/acciones-realizadas">Desestimados</a> -->
     </ng-container>
     <ng-container *ngIf="selectedSection === 'administrar'">
       <h2>Administrar</h2>
-      <a style="font-size: small;" routerLink="usersadmin">Usuarios y privilegios</a>
-      <a style="font-size: small;" routerLink="configurationadmin">Configuración</a>
-      <a style="font-size: small;" routerLink="cambiarcontrasenaadmin">Cambiar contraseña</a>
+      <a style="font-size: small;" routerLink="/usersadmin">Usuarios y privilegios</a>
+      <a style="font-size: small;" routerLink="/configurationadmin">Configuración</a>
+      <a style="font-size: small;" routerLink="/cambiarcontrasenaadmin">Cambiar contraseña</a>
     </ng-container>
     <!-- <ng-container *ngIf="selectedSection === 'logout'">
       <h2>Cerra sesión</h2>
@@ -27,7 +27,7 @@
   </div>
   <div class="violet-section">
     <div class="logo">
-      <a routerLink="homeadmin">
+      <a routerLink="/homeadmin">
         <img src="/icons/Logo_adm.svg" alt="Logo" />
       </a>
     </div>

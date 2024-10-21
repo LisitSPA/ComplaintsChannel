@@ -5,9 +5,9 @@
   <div class="chat-admin-container">
     <div class="chat-list">
       <div class="tabs">
-        <a (click)="filterChats('todos')" [ngClass]="{'active': activeTab === 'todos'}">Todos</a>
-        <a (click)="filterChats('pendientes')" [ngClass]="{'active': activeTab === 'pendientes'}">Pendientes</a>
-        <a (click)="filterChats('finalizados')" [ngClass]="{'active': activeTab === 'finalizados'}">Finalizados</a>
+        <a (click)="filterComplaints('todos')" [ngClass]="{'active': activeTab === 'todos'}">Todos</a>
+        <a (click)="filterComplaints('pendientes')" [ngClass]="{'active': activeTab === 'pendientes'}">Pendientes</a>
+        <a (click)="filterComplaints('finalizados')" [ngClass]="{'active': activeTab === 'finalizados'}">Finalizados</a>
       </div>
       
       
@@ -54,7 +54,9 @@
 
         <textarea placeholder="Escribe tu respuesta aquí" [(ngModel)]="responseMessage"></textarea>
 
-        <button class="respuesta-btn" (click)="updateComplaint()">Enviar respuesta</button>
+        <button class="respuesta-btn" [disabled]="!status && responseMessage"  (click)="updateComplaint()">Actulizar denuncia</button>
+        <span *ngIf="mensajeError" class="text-danger mt-3">{{ mensajeError }}</span>
+        <span *ngIf="mensajeExito" class="text-success mt-3">{{ mensajeExito }}</span>
       </div>
     </div>
   </div>
