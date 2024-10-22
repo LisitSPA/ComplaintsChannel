@@ -34,15 +34,15 @@ export class UserService {
     return this.http.post<any>(this.apiUrl, userData, {headers});
   }
 
-  updateUser(userId: number, userData: any): Observable<any> {
+  updateUser(userData: any): Observable<any> {
     const headers = this.headers;
-    const url = `${this.apiUrl}/${userId}`;
-    return this.http.put(url, userData,{headers}); 
+    const url = `${this.apiUrl}/updateUser`;
+    return this.http.post(url, userData,{headers}); 
   }
 
   deleteUser(userId: number): Observable<any> {
     const headers = this.headers;
-    const url = `${this.apiUrl}/${userId},`; 
+    const url = `${this.apiUrl}/${userId}`; 
     return this.http.delete<any>(url,{headers});  
   }
 

@@ -13,7 +13,6 @@ import { ComplaintDataService } from '../../services/complaint-data.service';
 })
 export class MisdatosComponent {
   nombre: string = '';
-  apellido: string = '';
   estado: string = '';
   cargo: string = '';
   area: string = '';
@@ -30,7 +29,6 @@ export class MisdatosComponent {
     this.complaintDataService.setDenunciante({
       complainant: {
         names: this.nombre,
-        lastName: this.apellido,
         eCompanyStatus: this.eCompanyStatus,  
         position: this.cargo,
         area: this.area,
@@ -42,7 +40,6 @@ export class MisdatosComponent {
 
     console.log('Datos del denunciante guardados:', {
       names: this.nombre,
-      lastName: this.apellido,
       position: this.cargo,
       area: this.area,
       eCompanyStatus: this.eCompanyStatus,

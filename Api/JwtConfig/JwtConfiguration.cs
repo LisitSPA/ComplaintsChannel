@@ -80,7 +80,6 @@ namespace Api.JwtConfig
                 {
                     new Claim(ClaimTypes.Name, user.Names),
                     new Claim("Id", user.Id.ToString()),
-                    new Claim("LastName", user.LastName),
                     new Claim(ClaimTypes.Role, user.EUserType.ToString()),
                 }),
                 Expires = DateTime.UtcNow.AddDays(1),

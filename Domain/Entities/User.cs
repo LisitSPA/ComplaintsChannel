@@ -10,7 +10,7 @@ namespace Domain.Entities
     {
         public string RUT { get; set; }
         public string Names { get; set; }
-        public string LastName { get; set; }
+        //public string LastName { get; set; }
         public string Position { get; set; }
         public string Area { get; set; }
         public string PersonDescription { get; set; }

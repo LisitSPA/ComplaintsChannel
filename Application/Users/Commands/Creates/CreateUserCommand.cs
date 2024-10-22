@@ -25,7 +25,7 @@ public record CreateUserCommand : IRequest<Response<bool>>
     public string Name { get; set; }
     public EUserType EUserType { get; set; }
     public EGenre EGenre { get; set; }
-    public bool Active { get; set; }
+    public ECompanyStatus Status { get; set; }
     public string Email { get; set; }
     public string UserName { get; set; }
     public string Password { get; set; }
@@ -59,7 +59,8 @@ public class CreateUserCommandHandler(
             {
                 Names = command.Name,
                 EUserType = command.EUserType,
-                Active = command.Active,
+                Active = true,
+                ECompanyStatus = command.Status,
                 ContactEmail = command.Email,
                 EGenre = command.EGenre,
                 Password = password,

@@ -16,7 +16,6 @@ namespace Application.Users.Queries.DTOs
         public int Id { get; set; }
         public string RUT { get; set; }
         public string Names { get; set; }
-        public string LastName { get; set; }
         public string CompleteName { get; set; }
         public ECompanyStatus ECompanyStatus { get; set; }
         public string CompanyStatus { get; set; }
@@ -25,6 +24,7 @@ namespace Application.Users.Queries.DTOs
         public EGenre EGenre { get; set; }
         public string Genre { get; set; }
         public string ContactPhone { get; set; }
+        public string ContactEmail { get; set; }
         public EUserType EUserType { get; set; }
         public string UserType { get; set; }
 
@@ -35,7 +35,7 @@ namespace Application.Users.Queries.DTOs
                 .ForMember(x => x.CompanyStatus, opt => opt.MapFrom(s => s.ECompanyStatus.GetDescriptionByVal()))
                 .ForMember(x => x.Genre, opt => opt.MapFrom(s => s.EGenre.GetDescriptionByVal()))
                 .ForMember(x => x.UserType, opt => opt.MapFrom(s => s.EUserType.GetDescriptionByVal()))
-                .ForMember(x => x.CompleteName, opt => opt.MapFrom(s => $"{s.Names} {s.LastName}"))
+                .ForMember(x => x.CompleteName, opt => opt.MapFrom(s => $"{s.Names}"))
                 ;
         }
     }

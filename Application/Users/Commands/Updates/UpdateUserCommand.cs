@@ -25,7 +25,7 @@ public record UpdateUserCommand : IRequest<Response<bool>>
     public string Name { get; set; }
     public EUserType EUserType { get; set; }
     public EGenre EGenre { get; set; }
-    public bool Active { get; set; }
+    public ECompanyStatus Status { get; set; }
     public string Email { get; set; }
 
 }
@@ -43,15 +43,18 @@ public class UpdateUserCommandHandler(
         Response<bool> result = new();
         try
         {
-            var user = _repository.GetAll().First(x => x.Id == x.Id);
+            var user = _repository.GetAll().First(x => x.Id == command.Id);
 
-            var exists = _repository.GetAll().FirstOrDefault(x => x.ContactEmail == command.Email && x.Id != command.Id);
-            if (exists != null)
-                throw new Exception("El correo ya existe");
+            if(command.Email != null)
+            {
+                var exists = _repository.GetAll().FirstOrDefault(x => x.ContactEmail == command.Email && x.Id != command.Id);
+                if (exists != null)
+                    throw new Exception("El correo ya existe");
+            }
 
             user.Names = command.Name;
             user.EUserType = command.EUserType;
-            user.Active = command.Active;
+            user.ECompanyStatus = command.Status;
             user.ContactEmail = command.Email;
             user.EGenre = command.EGenre;                      
                            

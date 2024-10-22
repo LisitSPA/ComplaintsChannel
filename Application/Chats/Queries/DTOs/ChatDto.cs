@@ -27,7 +27,7 @@ namespace Application.Chats.Queries.DTOs
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Chat, ChatDto>()
-                .ForMember(x => x.CreatedByName, opt => opt.MapFrom(s => s.User != null ? $"{s.User.Names} {s.User.LastName}" : "Anómimo" ))
+                .ForMember(x => x.CreatedByName, opt => opt.MapFrom(s => s.User != null ? $"{s.User.Names}" : "Anómimo" ))
                 ;
 
         }

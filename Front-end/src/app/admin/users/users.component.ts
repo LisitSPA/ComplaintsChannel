@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';  
 import { CommonModule } from '@angular/common';
 import { HeaderAdmin } from '../header-component/header-admin.component';
-import { NewUserComponent } from '../new-user/new-user.component';
-import { EditarUsuarioComponent } from '../../editar-usuario/editar-usuario.component';
 import { EliminarUsuarioComponent } from '../../eliminar-usuario/eliminar-usuario.component';
 import { FormsModule } from '@angular/forms';  
 import { SidebarAdmin } from '../admin/sidebar-component/sidebar-admin.component';
 import { UserService } from '../../services/user.service';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpParams } from '@angular/common/http';
+import { UserFormComponent } from './user-form/user-form.component';
 
 
 @Component({
@@ -18,8 +17,7 @@ import { HttpParams } from '@angular/common/http';
     CommonModule, 
     SidebarAdmin, 
     HeaderAdmin, 
-    NewUserComponent, 
-    EditarUsuarioComponent, 
+    UserFormComponent,
     EliminarUsuarioComponent, 
     FormsModule, MatButtonModule
   ], 
@@ -82,20 +80,19 @@ export class UsersComponent {
   }
 
   abrirFormulario() {
-    this.mostrarFormulario = true;
-    this.mostrarEditar = false;
+    this.usuarioSeleccionado = []
+    this.mostrarEditar = true;
     this.mostrarEliminar = false;
   }
 
   cerrarFormulario() {
-    this.mostrarFormulario = false;
     this.mostrarEditar = false;
-    this.mostrarEliminar = false;
+    this.obtenerUsuarios();
   }
 
   editarUsuario(usuario: any) {
-    this.usuarioSeleccionado = usuario;
     this.mostrarEditar = true;
+    this.usuarioSeleccionado = usuario;
     this.mostrarFormulario = false;
     this.mostrarEliminar = false;
   }
@@ -113,6 +110,7 @@ export class UsersComponent {
 
   cerrarEliminar() {
     this.mostrarEliminar = false;
+    this.obtenerUsuarios();
   }
 
   confirmarEliminarUsuario() {

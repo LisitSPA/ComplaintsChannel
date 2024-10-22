@@ -22,7 +22,6 @@ namespace Application.Users.Commands.Deletions;
 public record DeleteUserCommand : IRequest<Response<bool>>
 {
     public int Id { get; set; }
-    public bool Active { get; set; }
 
 }
 

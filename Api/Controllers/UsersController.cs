@@ -6,6 +6,7 @@ using Application.Users.Queries;
 using Domain.Common;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Update.Internal;
 using System.Threading.Tasks;
@@ -38,17 +39,19 @@ namespace Api.Controllers
             return HandleResult(result.Result, result.ErrorProvider);
         }
 
-        [HttpPut("", Name = "UpdateUser")]
+       
+        [HttpPost("updateUser", Name = "UpdateUser")]
         public async Task<IActionResult> UpdateUser(UpdateUserCommand command)
         {
             var result = await Mediator.Send(command);
             return HandleResult(result.Result, result.ErrorProvider);
         }
 
-        [HttpDelete("", Name = "DeleteUser")]
-        public async Task<IActionResult> DeleteUser(DeleteUserCommand command)
+        
+        [HttpDelete("{id}", Name = "DeleteUser")]
+        public async Task<IActionResult> DeleteUser(int id)
         {
-            var result = await Mediator.Send(command);
+            var result = await Mediator.Send(new DeleteUserCommand { Id = id});
             return HandleResult(result.Result, result.ErrorProvider);
         }
     }

@@ -39,11 +39,11 @@ public class GetAllComplaintTypesQueryHandler
                            .ProjectTo<ComplaintTypeDto>(_mapper.ConfigurationProvider)
                            .ToList();
 
-            if (request.languaje != "es")
-                source.ForEach(x =>
-                {
-                    x.Description = _translatorService.Translate(x.Description, request.languaje).Result;
-                });
+            //if (request.languaje != "es")
+            //    source.ForEach(x =>
+            //    {
+            //        x.Description = _translatorService.Translate(x.Description, request.languaje).Result;
+            //    });
 
             result.Result = source;
 

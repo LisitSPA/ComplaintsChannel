@@ -67,18 +67,19 @@
     </div>
   </div>
 
-  <app-new-user *ngIf="mostrarFormulario" (cerrar)="cerrarFormulario()"></app-new-user>
+  <app-user-form 
+    *ngIf="mostrarEditar" 
+    [usuario]="usuarioSeleccionado" 
+    (cerrar)="cerrarFormulario()">
+  </app-user-form>
+
   <app-eliminar-usuario 
     *ngIf="mostrarEliminar && usuarioSeleccionado" 
     (cerrar)="cerrarEliminar()" 
     (usuarioEliminado)="confirmarEliminarUsuario()"
     [usuarioId]="usuarioSeleccionado!.id">
 </app-eliminar-usuario>
-<app-editar-usuario 
-  *ngIf="mostrarEditar && usuarioSeleccionado" 
-  [usuario]="usuarioSeleccionado" 
-  (cerrar)="cerrarFormulario()">
-</app-editar-usuario>
+
 
 
 

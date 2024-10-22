@@ -7,12 +7,12 @@
     <form (ngSubmit)="guardarDatos()">
       <div class="form-row">
         <div class="form-group">
-          <h3>Nombre:</h3>
+          <h3>Nombre completo:</h3>
           <input type="text" class="form-control" [(ngModel)]="nombre" name="nombre" required>
         </div>
         <div class="form-group">
-          <h3>Apellido:</h3>
-          <input type="text" class="form-control" [(ngModel)]="apellido" name="apellido" required>
+          <h3>RUT:</h3>
+          <input type="text" class="form-control"  [(ngModel)]="rut" name="rut" required>
         </div>
         <div class="form-group">
           <h3>Estado en la Empresa:</h3>
@@ -46,10 +46,6 @@
         <div class="form-group">
           <h3>Telefono de contacto:</h3>
           <input type="text" class="form-control"  [(ngModel)]="contacto" name="contacto" required>
-        </div>
-        <div class="form-group">
-          <h3>RUT:</h3>
-          <input type="text" class="form-control"  [(ngModel)]="rut" name="rut" required>
         </div>
       </div>
 
