@@ -8,6 +8,7 @@ import { HttpParams } from '@angular/common/http';
 import { ChatComponent } from '../../common/chat/chat.component';
 import { MatIconModule } from '@angular/material/icon';
 import { delay } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -33,14 +34,25 @@ export class ChatAdminComponent implements OnInit {
   mensajeError: any;
   mensajeExito: any;
   showChat: any = false;
+  complaintId: number = 0;
 
   constructor(private chatService: ChatService,
     private complaintService: ComplaintService,
+    private route: ActivatedRoute,
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+
+    this.route.paramMap.subscribe(params => {
+      this.complaintId = parseInt(params.get('id')??"0");     
+    });
+
     this.loadAllChats('es');
-    this.loadAllComplaints();
+    await this.loadAllComplaints();
+  
+    if(this.complaintId)
+      this.filteredComplaints = this.complaints.filter(x=> x.id == this.complaintId)
+
   }
 
   async loadAllComplaints(){

@@ -22,7 +22,6 @@ export class DashboardSummaryComponent implements OnInit {
     this.dashboardService.getCountComplaints().subscribe(
       (res) => {
         let data = res.content;
-        console.log('Datos recibidos:', data);
         this.totalDenuncias = data.totalComplaints;  
         this.denunciasEnProceso = data.complaintsInProcess;
         this.accionesPendientes = data.pendingComplaints;

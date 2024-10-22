@@ -25,7 +25,7 @@ public record GetChartByPositionQuery : IRequest<Response<List<ChartDataDto>>>
 
 //HANDLER
 public class ChartByPositionQueryHandler(
-    IRepository<ComplaintInvolved> _repo
+    IRepository<User> _repo
     ) 
     : IRequestHandler<GetChartByPositionQuery, Response<List<ChartDataDto>>>
 {
@@ -36,12 +36,12 @@ public class ChartByPositionQueryHandler(
         try
         {
             var source = _repo.GetAll()
-                            .Include(x => x.PersonInvolved)
-                            .GroupBy(x => x.PersonInvolved.Position)
+                            .Where(x => x.EUserType == Domain.Enums.EUserType.Complainant)
+                            .GroupBy(x => x.Position)
                             .Select(x => new ChartDataDto
                             {
                                 Total = x.Count(),
-                                Name = x.First().PersonInvolved.Position
+                                Name = x.Key
                             })
                             .ToList();
 

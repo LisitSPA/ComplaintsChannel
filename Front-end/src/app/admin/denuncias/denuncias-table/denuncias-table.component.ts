@@ -5,7 +5,7 @@ import { HttpParams } from '@angular/common/http';
 import { ComplaintService } from '../../../services/complaint.service';
 import { MatIconModule } from '@angular/material/icon';
 import { environment } from '../../../../environment/environment';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { EvidenciaPopupComponent } from "../../../common/evidences-popup/evidencia.component";
 import { ComplaintDataService } from '../../../services/complaint-data.service';
@@ -13,7 +13,7 @@ import { ComplaintDataService } from '../../../services/complaint-data.service';
 @Component({
   selector: 'app-denuncias-table',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatIconModule, MatButtonModule, EvidenciaPopupComponent],
+  imports: [CommonModule, FormsModule, MatIconModule, MatButtonModule, EvidenciaPopupComponent, RouterLink],
   templateUrl: './denuncias-table.component.html',
   styleUrl: './denuncias-table.component.css'
 })
@@ -154,7 +154,7 @@ export class DenunciasTableComponent implements OnInit {
     this.showPopup = true;
   }
 
-  goToChat() {
-    this.router.navigate(["chatadmin"])
+  goToChat(denunciaId: any) {
+    this.router.navigate(["chatadmin", denunciaId])
   }
 }

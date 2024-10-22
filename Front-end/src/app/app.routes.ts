@@ -33,6 +33,7 @@ export const routes: Routes = [
   {path: 'usersadmin', component: UsersComponent},  
   { path: 'denunciasadmin', component: DenunciasComponent},
   {path:'chatadmin', component: ChatAdminComponent},
+  {path:'chatadmin/:id', component: ChatAdminComponent},
   {
     path: '',
     component: LayoutComponent,

@@ -42,25 +42,7 @@ export class ChartsAdmin implements OnInit {
   public barChartType = 'bar' as const;
 
   public doughnutChartType: 'doughnut' = 'doughnut';
-
-  public chartClicked({
-    event,
-    active,
-  }: {
-    event?: ChartEvent;
-    active?: object[];
-  }): void {
-  }
-
-  public chartHovered({
-    event,
-    active,
-  }: {
-    event?: ChartEvent;
-    active?: object[];
-  }): void {
-  }
-
+ 
   constructor(
     private dashboardService: DashboardService
   ) {}
@@ -74,11 +56,17 @@ export class ChartsAdmin implements OnInit {
   loadChartData() {
     this.dashboardService.getChartByArea().subscribe(
       res => {
-          this.barChartData.labels = res.content.map((x : any) => (x.name ));
-          this.barChartData.datasets =  
-          [{ 
-            data: res.content.map((x : any) => ( x.total ))
-          }]
+
+        let labels = res.content.map((x : any) => (x.name ));
+        let data = res.content.map((x : any) => ( x.total ))
+
+        this.barChartData = {
+          labels: labels, 
+          datasets: [
+            { data: data, label: 'Denuncias por Área' },  
+          ],
+        };
+         
       }
     )
   }
@@ -86,11 +74,14 @@ export class ChartsAdmin implements OnInit {
   loadDoughnutChartData(){
     this.dashboardService.getChartByPosition().subscribe(
       res => {
-        this.doughnutChartData.labels = res.content.map((x : any) => (x.name ));
-        this.doughnutChartData.datasets =  
-          [{ 
-            data: res.content.map((x : any) => ( x.total ))
-          }]
+      
+        let labels = res.content.map((x : any) => (x.name ));
+        let data = res.content.map((x : any) => ( x.total ))
+
+        this.doughnutChartData = {
+          labels: labels,  
+          datasets: [{ data: data }], 
+        };
       }
     )
 
