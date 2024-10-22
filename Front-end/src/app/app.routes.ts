@@ -30,8 +30,7 @@ export const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'recuperar', component: RecuperarComponent},  
   //{path: 'chat', component: ChatUserComponent},
-  {path: 'usersadmin', component: UsersComponent},
-  {path:'configurationadmin', component: ConfigurationComponent},
+  {path: 'usersadmin', component: UsersComponent},  
   { path: 'denunciasadmin', component: DenunciasComponent},
   {path:'chatadmin', component: ChatAdminComponent},
   {
@@ -43,6 +42,7 @@ export const routes: Routes = [
     children: [
       { path: 'homeadmin', component: HomeAdminComponent},   
       { path:'cambiarcontrasenaadmin', component: ChangePasswordComponent},
+      { path:'configurationadmin', component: ConfigurationComponent },
     ]
   },
 

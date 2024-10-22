@@ -32,7 +32,7 @@
             Involucrados
             <span class="descripcion">
               <span *ngFor="let person of complaint?.involved">
-                {{person.names}} {{person.lastName}} {{person.personDescription}}<br>
+                {{person.names}} {{person.personDescription}}<br>
               </span>
             </span>
           </a>
@@ -56,8 +56,8 @@
               <input type="text" name="nombre" [value]="complainant.names" required disabled>
             </div>
             <div class="form-group">
-              <h3>Apellido:</h3>
-              <input type="text" name="apellido" [value]="complainant.lastName" required disabled>
+              <h3>RUT:</h3>
+              <input type="text" name="rut" [value]="complainant.rut" required disabled >
             </div>
             <div class="form-group">
               <h3>Estado en la Empresa:</h3>
@@ -79,10 +79,6 @@
             </div>
           </div>
           <div class="form-row">
-            <div class="form-group">
-              <h3>RUT:</h3>
-              <input type="text" name="rut" [value]="complainant.rut" required disabled >
-            </div>
             <div class="form-group">
               <h3>Contacto:</h3>
               <input type="text" name="contacto" [value]="complainant.contactPhone" required disabled >

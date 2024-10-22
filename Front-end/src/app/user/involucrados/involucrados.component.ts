@@ -20,7 +20,6 @@ export class InvolucradosComponent {
   personasSeleccionadas: string[] = [];
   personDescription: string = '';
   manualName: string = '';  
-  manualLastName: string = '';  
   complaint: any;
 
   constructor(private complaintDataService: ComplaintDataService, 
@@ -51,11 +50,10 @@ export class InvolucradosComponent {
 
   guardarCausal() {
     if (this.manualName) {
-      const newCausal = `${this.manualName} ${this.manualLastName}`;
+      const newCausal = `${this.manualName}`;
       this.personasSeleccionadas.push(newCausal);
 
       this.manualName = '';
-      this.manualLastName = '';
 
       console.log('Causal agregado manualmente:', newCausal);  
     } else {
@@ -67,8 +65,7 @@ export class InvolucradosComponent {
     event.preventDefault();  
 
     const personInvolveds = this.personasSeleccionadas.map(persona => ({
-      names: persona.split(' ')[0],  
-      lastName: persona.split(' ')[1] || '',  
+      names: persona.split(' ')[0],   
       personDescription: this.personDescription
     }));
 

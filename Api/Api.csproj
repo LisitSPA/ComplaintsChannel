@@ -4,9 +4,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Assets\NewFolder\**" />
+    <Compile Remove="Attachments\**" />
     <Content Remove="Assets\NewFolder\**" />
+    <Content Remove="Attachments\**" />
     <EmbeddedResource Remove="Assets\NewFolder\**" />
+    <EmbeddedResource Remove="Attachments\**" />
     <None Remove="Assets\NewFolder\**" />
+    <None Remove="Attachments\**" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Controllers\CreditMemoController.cs~RF91db9190.TMP" />
@@ -43,9 +47,6 @@
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\Proxy\Proxy.csproj" />
     <ProjectReference Include="..\Utility\Utility.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Attachments\" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>

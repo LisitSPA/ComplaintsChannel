@@ -1,6 +1,3 @@
-<div class="container">
-<app-sidebar-admin></app-sidebar-admin>
-
 <div class="configuracion-empresa">
     <h2>Configuración Empresa</h2>
     <p>Configura el aspecto del Canal de Denuncias</p>
@@ -29,15 +26,15 @@
       </div>
     </div>
   
-    <div class="input-group">
+    <!-- <div class="input-group">
       <label>Barra de navegación</label>
       <label class="switch">
         <input type="checkbox" [(ngModel)]="showNavBar">
         <span class="slider round"></span>
       </label>
     </div>
-    
-  
+     -->
+<!--   
     <div class="input-group">
       <label>Identificador</label>
       <input type="text" [(ngModel)]="companyName" placeholder="Nombre de la empresa" />
@@ -48,10 +45,10 @@
       <select [(ngModel)]="channelStatus">
         <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
       </select>
-    </div>
+    </div> -->
   
     <button class="btn btn-primary" (click)="guardarConfiguracion()">Guardar</button>
-  </div>
 </div>
+
 
   

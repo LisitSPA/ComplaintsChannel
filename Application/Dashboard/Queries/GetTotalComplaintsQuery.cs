@@ -7,6 +7,7 @@ using System.Threading;
 using Application.Dashboard.Queries.DTOs;
 using System.Linq.Dynamic.Core;
 using System.Linq;
+using Domain.Enums;
 
 
 
@@ -29,17 +30,15 @@ public class GetAllDataDashboardQueryHandler(
         Response<TotalComplaintsDto> result = new();
         try
         {
+            var data = _repo.GetAllActive()
+                           .ToList();
 
-            var source = _repo.GetAllActive()
-                           .GroupBy(x => x.Id)
-                          .Select(x => new TotalComplaintsDto
-                          { 
-                                TotalComplaints = x.Count(),
-                                ComplaintsInProcess = x.Count(x => x.EStatus == Domain.Enums.EComplaintStatus.InProcess),
-                                PendingComplaints = x.Count(x => x.EStatus == Domain.Enums.EComplaintStatus.Pending)
-                           })
-                          .First();
-
+            var source = new TotalComplaintsDto
+            {
+                TotalComplaints = data.Count(),
+                ComplaintsInProcess = data.Count(x => x.EStatus > EComplaintStatus.Pending && x.EStatus < EComplaintStatus.Completed),
+                PendingComplaints = data.Count(x => x.EStatus == EComplaintStatus.Pending)
+            };
 
             result.Result = source;
 

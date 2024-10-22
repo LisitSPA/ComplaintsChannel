@@ -28,6 +28,7 @@ namespace DataAccess
             services.AddTransient<IRepository<User>, Repository<User>>();
             services.AddTransient<IRepository<Chat>, Repository<Chat>>();
             services.AddTransient<IRepository<ComplaintHistory>, Repository<ComplaintHistory>>();
+            services.AddTransient<IRepository<Parameters>, Repository<Parameters>>();
           
             return services;
         }

@@ -16,7 +16,7 @@ export class ChatComponent implements OnInit{
 
   
   @Input() complaint : any = []
-  @Input() chat : any = []
+  @Input() chat : any[] = []
   @Input() fromUser : boolean = false;
   message: string = '';
   filesUrl: any;
@@ -29,6 +29,8 @@ export class ChatComponent implements OnInit{
   }
   
   ngOnInit(): void {
+    if(!this.chat.length)
+      this.getChat()
   }
 
   
@@ -62,9 +64,9 @@ export class ChatComponent implements OnInit{
   getName(message: any): string {
     let name = ""
     if(message.createdBy) //investigador
-      name = message.user.names + " " + message.user.lastName
+      name = message.user.names
     else
-      name = this.complaint.complainant ? this.complaint.complainant.names + ' ' + this.complaint.complainant.lastName : 'Anónimo'
+      name = this.complaint.complainant ? this.complaint.complainant.names : 'Anónimo'
 
     return name
   }

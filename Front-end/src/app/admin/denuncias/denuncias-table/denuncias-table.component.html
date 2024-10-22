@@ -32,7 +32,7 @@
             <div class="denuncia-header">
               <span>{{ denuncia.createdOn | date:'shortTime' }}</span>
               <span>{{ denuncia.createdOn | date:'shortDate' }}</span>
-              <span>{{ denuncia.complainant ? denuncia.complainant.names + ' ' + denuncia.complainant.lastName: 'Anónimo'}}</span>
+              <span>{{ denuncia.complainant ? denuncia.complainant.names : 'Anónimo'}}</span>
               <span>{{ denuncia.reasons[0].description }}</span>
               <span>
                 <!-- <button class="evidencia-btn">Ver evidencia</button> -->
@@ -67,7 +67,7 @@
               <tr *ngFor="let denuncia of paginated">
                 <td>{{ denuncia.reasons[0].description }}</td>
                 <td>{{ denuncia.createdOn | date }}</td>
-                <td>{{ denuncia.complainant ? denuncia.complainant.names + ' ' + denuncia.complainant.lastName: 'Anónimo' }}</td>
+                <td>{{ denuncia.complainant ? denuncia.complainant.names : 'Anónimo' }}</td>
                 <td>{{ denuncia.status }}</td>
                 <td><a href="{{filesUrl}}{{denuncia?.trackingCode}}/{{denuncia?.attachments[0]?.fileName}}" download="{{denuncia?.attachments[0]?.fileName}}"><mat-icon aria-hidden="false" fontIcon="attach_file" ></mat-icon></a></td>
                 <td><a href="javascript:void(0)" (click)="goToChat()"><mat-icon aria-hidden="false" fontIcon="chat"></mat-icon></a></td>

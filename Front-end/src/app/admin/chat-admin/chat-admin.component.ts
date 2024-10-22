@@ -81,9 +81,10 @@ export class ChatAdminComponent implements OnInit {
 
 
   async selectChat(complaint: any) {
-    this.showChat = false;
+    
+    this.selectedComplaint = undefined
+    this.chat = await this.chatService.getChatByComplaintCode(complaint.trackingCode);
     this.selectedComplaint = complaint
-    this.showChat = true;
    
   }
   
@@ -96,6 +97,8 @@ export class ChatAdminComponent implements OnInit {
    
     this.complaintService.updateStatus(data).subscribe(
       (response) => {
+       this.responseMessage = ""
+       this.status = 0
        this.mensajeExito = 'Denuncia actualizada correctamente';    
        this.loadAllComplaints();    
       },

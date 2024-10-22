@@ -20,7 +20,7 @@
             [ngClass]="{'selected': complaint.id === selectedComplaint?.id}" 
             (click)="selectChat(complaint)">
           <div class="chat-preview">
-            <p class="chat-name">{{ complaint.complainant ? complaint.complainant.names + ' ' + complaint.complainant.lastName: 'Anónimo' | titlecase }}</p>
+            <p class="chat-name">{{ complaint.complainant ? complaint.complainant.names : 'Anónimo' | titlecase }}</p>
             <p class="chat-subject">{{ complaint.reasons[0].description  }}</p>
             <p class="chat-subject">{{ getLastMessage(complaint) }}</p>
             <p class="chat-time">{{ complaint.createdOn | date:'shortTime'}}</p>
@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <div class="chat-detail" *ngIf="selectedComplaint">
+    <div class="chat-detail" *ngIf="selectedComplaint?.id">
      <h2 *ngIf="selectedComplaint.eStatus == 1"><mat-icon>error_outline</mat-icon> Sin respuesta</h2>
 
       <!-- <div class="chat-message">
@@ -38,7 +38,7 @@
           <p>{{ message.message }}</p>
         </div>
       </div> -->
-      <app-chat [complaint]="selectedComplaint" *ngIf="showChat"></app-chat>
+      <app-chat [complaint]="selectedComplaint" [chat]="chat"></app-chat>
 
       <h2>Responde la solicitud</h2>
       <div class="status-update">

@@ -3,10 +3,13 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Chats\Commands\Updates\**" />
     <Compile Remove="Common\Helpers\**" />
     <Compile Remove="Interfaces\**" />
+    <EmbeddedResource Remove="Chats\Commands\Updates\**" />
     <EmbeddedResource Remove="Common\Helpers\**" />
     <EmbeddedResource Remove="Interfaces\**" />
+    <None Remove="Chats\Commands\Updates\**" />
     <None Remove="Common\Helpers\**" />
     <None Remove="Interfaces\**" />
   </ItemGroup>
@@ -30,7 +33,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\Interfaces\External\" />
-    <Folder Include="Chats\Commands\Updates\" />
+    <Folder Include="Configuration\Commands\" />
+    <Folder Include="Configuration\Queries\" />
     <Folder Include="Dashboard\Commands\" />
   </ItemGroup>
   <ItemGroup>

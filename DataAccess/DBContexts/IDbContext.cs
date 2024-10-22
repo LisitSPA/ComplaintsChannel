@@ -15,7 +15,7 @@ namespace DataAccess.DBContexts
         public DbSet<User> People { get; set; }
         public DbSet<Chat> Chat { get; set; }
         public DbSet<ComplaintHistory> ComplaintHistory { get; set; }
-
+        public DbSet<Parameters> Parameters { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }
