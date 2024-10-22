@@ -12,34 +12,35 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./editar-usuario.component.css']
 })
 export class EditarUsuarioComponent {
-  @Input() usuario: any;  
+  @Input() usuario: any = {};  
   @Output() cerrar = new EventEmitter<void>();
 
-  nombre: string = '';
-  tipo: string = '';  
-  estado: string = 'activo';  
-  sexo: string = '';  
-  email: string = '';
-  active: boolean = true;  
+  nombre: string = this.usuario.completeName;
+  tipo: string = this.usuario.eUserType;  
+  estado: string = this.usuario.eCompanyStatus;  
+  sexo: string =  this.usuario.eGenre; 
+  email: string = this.usuario.contactEmail;
 
-  constructor(private userService: UserService, private router: Router) {}
-
-  ngOnChanges() {
-    if (this.usuario) {
-      this.nombre = this.usuario.nombre;
-      this.tipo = this.usuario.tipo;
-      this.estado = this.usuario.estado;
-      this.email = this.usuario.email;
-      this.sexo = this.usuario.sexo === 'Masculino' ? 'Masculino' : 'Femenino';
-    }
+  constructor(private userService: UserService, private router: Router) {
+    console.log(this.usuario)
   }
+
+  // ngOnChanges() {
+  //   if (this.usuario) {
+  //     this.nombre = this.usuario.nombre;
+  //     this.tipo = this.usuario.tipo;
+  //     this.estado = this.usuario.estado;
+  //     this.email = this.usuario.email;
+  //     this.sexo = this.usuario.sexo === 'Masculino' ? 'Masculino' : 'Femenino';
+  //   }
+  // }
 
   guardarDatos() {
     const userData = {
       name: this.nombre,
       eUserType: parseInt(this.tipo),  
-      active: this.estado === 'activo',  
-      eGenre: this.sexo === 'Masculino' ? 1 : 2,  
+      active: this.estado,  
+      eGenre: parseInt(this.sexo), 
       email: this.email
     };
 

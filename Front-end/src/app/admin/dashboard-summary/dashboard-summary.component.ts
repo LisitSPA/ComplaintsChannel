@@ -13,15 +13,19 @@ export class DashboardSummaryComponent implements OnInit {
   denunciasEnProceso: number = 0;
   accionesPendientes: number = 0;
 
-  constructor(private dashboardService: DashboardService) {}
+  
+  constructor(private dashboardService: DashboardService) {
+
+  }
 
   ngOnInit() {
     this.dashboardService.getCountComplaints().subscribe(
-      (data) => {
+      (res) => {
+        let data = res.content;
         console.log('Datos recibidos:', data);
         this.totalDenuncias = data.totalComplaints;  
-        this.denunciasEnProceso = data.inProgressComplaints;
-        this.accionesPendientes = data.pendingActions;
+        this.denunciasEnProceso = data.complaintsInProcess;
+        this.accionesPendientes = data.pendingComplaints;
       },
       (error) => {
         console.error('Error al obtener datos del dashboard:', error);

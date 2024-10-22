@@ -9,6 +9,9 @@ using System.Linq;
 using DevExtreme.AspNet.Data;
 using DevExtreme.AspNet.Data.ResponseModel;
 using System.Data.Entity;
+using Application.Complaints.Queries.DTOs;
+using AutoMapper.QueryableExtensions;
+using Application.Users.Queries.DTOs;
 
 
 namespace Application.Users.Queries;
@@ -21,7 +24,8 @@ public record GetAllUsersQueryDE : IRequest<Response<LoadResult>>
 
 //HANDLER
 public class GetAllUsersQueryDEHandler(
-    IRepository<User> _repo
+    IRepository<User> _repo,
+    IMapper _mapper
     ) : IRequestHandler<GetAllUsersQueryDE, Response<LoadResult>>
 {
 
@@ -31,7 +35,10 @@ public class GetAllUsersQueryDEHandler(
         try
         {
 
-            var source = _repo.GetAllActive().AsNoTracking().OrderByDescending(x => x.Id);
+            var source = _repo.GetAllActive()
+                .AsNoTracking()
+                .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
+                .OrderByDescending(x => x.Id);
 
             var loadResult = await DataSourceLoader.LoadAsync(source, request.Params, cancellationToken);
 

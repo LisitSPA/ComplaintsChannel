@@ -19,8 +19,8 @@
         <div class="form-group">
           <h3>Estado</h3>
           <select [(ngModel)]="estado" name="estado" required>
-            <option value="activo">Activo</option>
-            <option value="inactivo">Inactivo</option>
+            <option value="1">Activo</option>
+            <option value="2">Inactivo</option>
           </select>
         </div>
       </div>
@@ -33,12 +33,8 @@
         <div class="form-group">
           <h3>Sexo:</h3>
           <div>
-            <label>
-              <input type="radio" [(ngModel)]="sexo" name="sexo" value="Masculino" required> Masculino
-            </label>
-            <label>
-              <input type="radio" [(ngModel)]="sexo" name="sexo" value="Femenino" required> Femenino
-            </label>
+            <input type="radio" class="form-control"  [(ngModel)]="sexo" name="sexo" value="2" required> Masculino
+            <input type="radio" class="form-control" [(ngModel)]="sexo" name="sexo" value="1" required> Femenino
           </div>
         </div>
       </div>

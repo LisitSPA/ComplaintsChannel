@@ -5,9 +5,9 @@ namespace Domain.Enums
 {
     public enum ECompanyStatus
     {
-        [Description("Active")]
+        [Description("Activo")]
         Active = 1,
-        [Description("Inactive")]
+        [Description("Inactivo")]
         Inactive = 2,
 
     }

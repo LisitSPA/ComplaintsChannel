@@ -9,12 +9,10 @@ export class UserDataService {
   private user: any = {};
 
   setUserData(data: any) {
-    this.user = { ...data };
-    console.log(this.user)
+    this.user = data;
   }
 
   getUserData() {
-    console.log(this.user)
     return this.user;
   }
 

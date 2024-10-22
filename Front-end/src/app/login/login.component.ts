@@ -35,14 +35,15 @@ export class LoginComponent {
     };
     this.submit = true;
 
-      this.http.post(environment.apiUrl+'/auth/login', loginCommand)
+    this.http.post(environment.apiUrl+'/auth/login', loginCommand)
       .subscribe(
         (response: any) => {
           console.log('Login exitoso:', response);
           
           sessionStorage.setItem('token', response.token);
           sessionStorage.setItem('email', this.usuario.email);
-          this.userData.setUserData({ username: this.usuario.email })
+          sessionStorage.setItem('name', response.user.completeName);
+          this.userData.setUserData(response.user)
           
           this.router.navigate(['/homeadmin']);
         },

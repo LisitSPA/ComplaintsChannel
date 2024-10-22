@@ -3,6 +3,7 @@ using Application.Users.Commands.Creates;
 using Application.Users.Commands.Deletions;
 using Application.Users.Commands.Updates;
 using Application.Users.Queries;
+using Domain.Common;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,11 +17,11 @@ namespace Api.Controllers
     public class UsersController : ControllerBase
     {
 
-        [HttpGet("all/{language}", Name = "GetAll")]
-        public async Task<IActionResult> GetAll(string language)
+        [HttpGet("all", Name = "GetAll")]
+        public async Task<IActionResult> GetAll([FromQuery] DataSourceLoadOptions query)
         {
-            var result = await Mediator.Send(new GetAllUsersQueryDE { });
-            return HandleResult(result.Result, result.ErrorProvider, language);
+            var result = await Mediator.Send(new GetAllUsersQueryDE { Params = query});
+            return HandleResult(result.Result, result.ErrorProvider);
         }
 
         [HttpGet("{id}", Name = "GetUserById")]

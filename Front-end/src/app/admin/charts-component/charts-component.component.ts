@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartEvent } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { CommonModule } from '@angular/common';
+import { DashboardService } from '../../services/dashboard.service';
 
 @Component({
   selector: 'app-charts-component',
@@ -14,22 +15,16 @@ export class ChartsAdmin implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective<'bar'> | undefined;
 
   public barChartData: ChartData<'bar'> = {
-    labels: ['Área 1', 'Área 2', 'Área 3', 'Área 4', 'Área 5'], 
+    labels: [], 
     datasets: [
-      { data: [45, 67, 80, 56, 33], label: 'Denuncias por Área' },  
+      { data: [], label: 'Denuncias por Área' },  
     ],
   };
 
   public doughnutChartData: ChartData<'doughnut'> = {
-    labels: ['Gerente', 'Supervisor', 'Empleado'],  
-    datasets: [{ data: [350, 450, 100] }], 
+    labels: [],  
+    datasets: [{ data: [] }], 
   };
-
-  constructor() {}
-
-  ngOnInit(): void {
-    // this.loadChartData();
-  }
 
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {
     scales: {
@@ -48,8 +43,6 @@ export class ChartsAdmin implements OnInit {
 
   public doughnutChartType: 'doughnut' = 'doughnut';
 
-
-
   public chartClicked({
     event,
     active,
@@ -57,7 +50,6 @@ export class ChartsAdmin implements OnInit {
     event?: ChartEvent;
     active?: object[];
   }): void {
-    console.log(event, active);
   }
 
   public chartHovered({
@@ -67,6 +59,43 @@ export class ChartsAdmin implements OnInit {
     event?: ChartEvent;
     active?: object[];
   }): void {
-    console.log(event, active);
   }
+
+  constructor(
+    private dashboardService: DashboardService
+  ) {}
+
+
+  ngOnInit(): void {
+    this.loadChartData();
+    this.loadDoughnutChartData();
+  }
+  
+  loadChartData() {
+    this.dashboardService.getChartByArea().subscribe(
+      res => {
+          this.barChartData.labels = res.content.map((x : any) => (x.name ));
+          this.barChartData.datasets =  
+          [{ 
+            data: res.content.map((x : any) => ( x.total ))
+          }]
+      }
+    )
+  }
+
+  loadDoughnutChartData(){
+    this.dashboardService.getChartByPosition().subscribe(
+      res => {
+        this.doughnutChartData.labels = res.content.map((x : any) => (x.name ));
+        this.doughnutChartData.datasets =  
+          [{ 
+            data: res.content.map((x : any) => ( x.total ))
+          }]
+      }
+    )
+
+    
+  }
+
+
 }

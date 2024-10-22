@@ -7,14 +7,9 @@ import { EliminarUsuarioComponent } from '../../eliminar-usuario/eliminar-usuari
 import { FormsModule } from '@angular/forms';  
 import { SidebarAdmin } from '../admin/sidebar-component/sidebar-admin.component';
 import { UserService } from '../../services/user.service';
+import { MatButtonModule } from '@angular/material/button';
+import { HttpParams } from '@angular/common/http';
 
-interface Usuario {
-  id: number; 
-  nombre: string;
-  tipo: string;
-  estado: string;
-  seleccionado?: boolean; 
-}
 
 @Component({
   selector: 'app-users',
@@ -26,28 +21,29 @@ interface Usuario {
     NewUserComponent, 
     EditarUsuarioComponent, 
     EliminarUsuarioComponent, 
-    FormsModule
+    FormsModule, MatButtonModule
   ], 
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent {
-  usuarios: Usuario[] = [];
-  paginatedColaboradores: Usuario[] = [];
+  usuarios: any[] = [];
+  paginatedColaboradores: any[] = [];
   currentPage = 1;
   itemsPerPage = 7;
   mostrarFormulario: boolean = false;
   mostrarEditar: boolean = false; 
   mostrarEliminar: boolean = false;
-  usuarioSeleccionado: Usuario | null = null; 
+  usuarioSeleccionado: any | null = null; 
 
   constructor(private userService: UserService) {
     this.obtenerUsuarios();
   }
 
   obtenerUsuarios() {
-    this.userService.getUsers().subscribe((data: Usuario[]) => {
-      this.usuarios = data; // Aquí obtienes los usuarios de la API
+    let params = new HttpParams()
+    this.userService.getUsers(params).subscribe((data: any) => {
+      this.usuarios = data.content.data; 
       this.updatePaginatedColaboradores();
     });
   }
@@ -97,21 +93,22 @@ export class UsersComponent {
     this.mostrarEliminar = false;
   }
 
-  editarUsuario(usuario: Usuario) {
+  editarUsuario(usuario: any) {
     this.usuarioSeleccionado = usuario;
     this.mostrarEditar = true;
     this.mostrarFormulario = false;
     this.mostrarEliminar = false;
   }
 
-  eliminarUsuarios() {
-    if (this.usuarioSeleccionado) {  
+  eliminarUsuario(usuario: any) {
+    this.usuarioSeleccionado = usuario;
+    // if (this.usuarioSeleccionado) {  
       this.mostrarEliminar = true; 
       this.mostrarFormulario = false;
       this.mostrarEditar = false;
-    } else {
-      alert("Por favor selecciona un usuario antes de eliminar");
-    }
+    // } else {
+    //   alert("Por favor selecciona un usuario antes de eliminar");
+    // }
   }
 
   cerrarEliminar() {
@@ -119,14 +116,14 @@ export class UsersComponent {
   }
 
   confirmarEliminarUsuario() {
-    if (this.usuarioSeleccionado) {
-      this.usuarios = this.usuarios.filter(usuario => usuario.id !== this.usuarioSeleccionado!.id);
+   
+      // this.usuarios = this.usuarios.filter(usuario => usuario.id !== this.usuarioSeleccionado!.id);
       this.updatePaginatedColaboradores();
-      this.mostrarEliminar = false;
-    }
+      // this.mostrarEliminar = false;
+    
   }
 
-  seleccionarUsuario(usuario: Usuario, event: Event) {
+  seleccionarUsuario(usuario: any, event: Event) {
     const checked = (event.target as HTMLInputElement).checked;
     
     if (checked) {

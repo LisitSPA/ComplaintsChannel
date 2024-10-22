@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { UserDataService } from '../../services/user-data.service';
 
 @Component({
   selector: 'app-header-admin',
@@ -9,5 +10,17 @@ import { CommonModule } from '@angular/common';
   styleUrl: './header-admin.component.css'
 })
 export class HeaderAdmin {
+Name = "";
+Rol = "";
+
+
+
+  constructor(userData: UserDataService){
+    let user = userData.getUserData();
+    this.Name = user.completeName
+    this.Rol = user.userType
+
+
+  }
 
 }

@@ -7,6 +7,7 @@ import { ComplaintService } from '../../services/complaint.service';
 import { HttpParams } from '@angular/common/http';
 import { ChatComponent } from '../../common/chat/chat.component';
 import { MatIconModule } from '@angular/material/icon';
+import { delay } from 'rxjs';
 
 
 @Component({
@@ -31,6 +32,7 @@ export class ChatAdminComponent implements OnInit {
   message: any;
   mensajeError: any;
   mensajeExito: any;
+  showChat: any = false;
 
   constructor(private chatService: ChatService,
     private complaintService: ComplaintService,
@@ -79,8 +81,10 @@ export class ChatAdminComponent implements OnInit {
 
 
   async selectChat(complaint: any) {
-    
+    this.showChat = false;
     this.selectedComplaint = complaint
+    this.showChat = true;
+   
   }
   
   updateComplaint() {
@@ -97,7 +101,7 @@ export class ChatAdminComponent implements OnInit {
       },
       (error) => {
         console.log(error)
-        this.mensajeError = 'Denuncia actualizada correctamente';      
+        this.mensajeError = 'Error al actualizar la denuncia';      
       }
     );
     

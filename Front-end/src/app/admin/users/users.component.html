@@ -4,20 +4,21 @@
 
     <div class="main-content">
       <app-header-admin></app-header-admin>
-      <h2 style="margin-left: 40px;">Usuarios y privilegios</h2>
-
+     
       <div class="table-container">
+        <h2>Usuarios y privilegios</h2>
+
         <div class="toolbar">
           <div class="botones-usuario">
-            <div class="eliminar-option" (click)="eliminarUsuarios()">
+            <!-- <div class="eliminar-option" (click)="eliminarUsuarios()">
               <img src="/icons/basurero.svg" alt="Eliminar Icono" class="icono-eliminar">
               <span>Eliminar</span>
-            </div>
+            </div> -->
             
             
-            <div class="usuario-option" (click)="abrirFormulario()">
-              <span>Crear usuario</span>
-            </div>
+            <button class="usuario-option" mat-button (click)="abrirFormulario()">
+              <span> Crear usuario </span>
+            </button>
           </div>
         </div>
 
@@ -25,7 +26,7 @@
           <table class="table">
             <thead>
               <tr>
-                <th><input type="checkbox"></th>
+                <!-- <th><input type="checkbox"></th> -->
                 <th>Id</th>
                 <th>Nombre </th>
                 <th>Tipo</th>
@@ -34,14 +35,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let usuario of usuarios">
-                <td><input type="checkbox" (change)="seleccionarUsuario(usuario, $event)"></td>
+              <tr *ngFor="let usuario of paginatedColaboradores">
+                <!-- <td><input type="checkbox" (change)="seleccionarUsuario(usuario, $event)"></td> -->
                 <td>{{ usuario.id }}</td>
-                <td>{{ usuario.nombre }}</td>
-                <td>{{ usuario.tipo }}</td>
-                <td [ngClass]="usuario.estado === 'activo' ? 'estado-activo' : 'estado-inactivo'">{{ usuario.estado }}</td>
+                <td>{{ usuario.completeName }}</td>
+                <td>{{ usuario.userType }}</td>
+                <td [ngClass]="usuario.eCompanyStatus == 1 ? 'estado-activo' : 'estado-inactivo'">{{ usuario.companyStatus != 0 ? usuario.companyStatus : 'Activo' }}</td>
                 <td>
                   <button class="btn-edit" (click)="editarUsuario(usuario)">Editar</button>
+                  <button class="btn-delete" (click)="eliminarUsuario(usuario)"> Eliminar</button>
                 </td>
               </tr>
             </tbody>
@@ -60,16 +62,17 @@
           <span (click)="nextPage()" [class.disabled]="currentPage === totalPages" class="arrow">›</span>
           <span class="label">Final</span>
         </div>
+        <br>
       </div>
     </div>
   </div>
 
   <app-new-user *ngIf="mostrarFormulario" (cerrar)="cerrarFormulario()"></app-new-user>
   <app-eliminar-usuario 
-  *ngIf="mostrarEliminar && usuarioSeleccionado" 
-  (cerrar)="cerrarEliminar()" 
-  (usuarioEliminado)="confirmarEliminarUsuario()"
-  [usuarioId]="usuarioSeleccionado!.id">
+    *ngIf="mostrarEliminar && usuarioSeleccionado" 
+    (cerrar)="cerrarEliminar()" 
+    (usuarioEliminado)="confirmarEliminarUsuario()"
+    [usuarioId]="usuarioSeleccionado!.id">
 </app-eliminar-usuario>
 <app-editar-usuario 
   *ngIf="mostrarEditar && usuarioSeleccionado" 

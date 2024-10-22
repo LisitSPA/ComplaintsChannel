@@ -31,7 +31,7 @@ namespace Api.Controllers
         [HttpGet("chartByPosition", Name = "GetChartByPosition")]
         public async Task<IActionResult> GetChartByPosition()
         {
-            var result = await Mediator.Send(new GetChartByAreaQuery { });
+            var result = await Mediator.Send(new GetChartByPositionQuery { });
             return HandleResult(result.Result, result.ErrorProvider);
         }
 

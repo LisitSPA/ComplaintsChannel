@@ -1,24 +1,26 @@
-<div>
+<div class="char-card">
+  <div class="char-content">
   <h2>Análisis por área</h2>
-  <canvas
-    baseChart
-    [data]="barChartData"
-    [options]="barChartOptions"
-    [type]="barChartType"
-    (chartHover)="chartHovered($event)"
-    (chartClick)="chartClicked($event)"
-  ></canvas>
-
-
+    <canvas
+      baseChart
+      [data]="barChartData"
+      [options]="barChartOptions"
+      [type]="barChartType"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"
+    ></canvas>
+  </div>
 </div>
-
-<div>
-  <h2>Análisis por cargo</h2>
-  <canvas
-    baseChart
-    [data]="doughnutChartData"
-    [type]="doughnutChartType"
-    (chartHover)="chartHovered($event)"
-    (chartClick)="chartClicked($event)"
-  ></canvas>
+<br>
+<div class="char-card">
+  <div class="char-content">
+    <h2>Análisis por cargo</h2>
+    <canvas
+      baseChart
+      [data]="doughnutChartData"
+      [type]="doughnutChartType"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"
+    ></canvas>
+  </div>
 </div>

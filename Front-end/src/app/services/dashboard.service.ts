@@ -23,11 +23,11 @@ export class DashboardService {
 
   getChartByArea(): Observable<any> {
     const headers = this.headers;
-    return this.http.get<any>(`${this.apiUrl}/chartByArea`,{headers});
+    return this.http.get<any>(`${this.apiUrl}/chartByArea`, {headers});
   }
 
   getChartByPosition(): Observable<any> {
     const headers = this.headers;
-    return this.http.get<any>(`${this.apiUrl}/chartByPosition`,{headers});
+    return this.http.get<any>(`${this.apiUrl}/chartByPosition`, {headers});
   }
 }

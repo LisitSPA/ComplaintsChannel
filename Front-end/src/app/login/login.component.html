@@ -24,9 +24,9 @@
                                placeholder="Contraseña"
                                [(ngModel)]="usuario.password" name="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">
+                    <button type="submit" [disabled]="submit" class="btn btn-primary btn-block">
                         <span *ngIf="!submit">Acceder</span>
-                        <mat-progress-spinner *ngIf="submit" [diameter]="24" mode="indeterminate"></mat-progress-spinner>
+                        <mat-spinner *ngIf="submit" [diameter]="24" mode="indeterminate"></mat-spinner>
                     </button>
                     <a href="recuperar" class="btn btn-link mt-2">¿Olvidaste tu contraseña?</a>
 

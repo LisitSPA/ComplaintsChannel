@@ -4,3 +4,19 @@
     height: 80%;
   }
   
+  .char-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .char-card {
+    background-color: #fdfdfd;
+    padding: 20px;
+    border-radius: 8px;
+    /* flex: 1; */
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%;
+  }

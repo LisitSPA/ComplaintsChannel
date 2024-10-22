@@ -35,7 +35,7 @@ public class ChartByPositionQueryHandler(
         Response<List<ChartDataDto>> result = new();
         try
         {
-            var source = _repo.GetAllActive()
+            var source = _repo.GetAll()
                             .Include(x => x.PersonInvolved)
                             .GroupBy(x => x.PersonInvolved.Position)
                             .Select(x => new ChartDataDto

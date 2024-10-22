@@ -38,7 +38,7 @@
           <p>{{ message.message }}</p>
         </div>
       </div> -->
-      <app-chat [complaint]="selectedComplaint"></app-chat>
+      <app-chat [complaint]="selectedComplaint" *ngIf="showChat"></app-chat>
 
       <h2>Responde la solicitud</h2>
       <div class="status-update">
@@ -54,7 +54,7 @@
 
         <textarea placeholder="Escribe tu respuesta aquí" [(ngModel)]="responseMessage"></textarea>
 
-        <button class="respuesta-btn" [disabled]="!status && responseMessage"  (click)="updateComplaint()">Actulizar denuncia</button>
+        <button class="respuesta-btn" [disabled]="!status && responseMessage"  (click)="updateComplaint()">Actualizar denuncia</button>
         <span *ngIf="mensajeError" class="text-danger mt-3">{{ mensajeError }}</span>
         <span *ngIf="mensajeExito" class="text-success mt-3">{{ mensajeExito }}</span>
       </div>

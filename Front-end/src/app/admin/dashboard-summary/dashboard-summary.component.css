@@ -5,14 +5,14 @@
 }
 
 .summary-card {
-  background-color: #ececec;
-  padding: 20px;
+  background-color: #fdfdfd;
+  
   border-radius: 8px;
   flex: 1;
   display: flex;
   justify-content: space-between; 
   align-items: center; 
-  margin-right: 10px;
+  margin-right: 22px;
   margin-top: 30px;
 }
 
@@ -22,6 +22,8 @@
 
 .summary-content {
   text-align: left;
+  margin-left: 24px;
+ 
 }
 
 .icon-container {
@@ -32,6 +34,7 @@
 .summary-icon {
   width: 50px; 
   height: 50px; 
+  margin-right: 20px;
 }
 @media (max-width: 768px) {
   .summary-container {

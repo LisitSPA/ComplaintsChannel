@@ -67,7 +67,7 @@ h3 {
 }
 
 input[type="radio"] {
-  margin-right: 8px;  
+  /* margin-right: 8px;   */
   accent-color: #5c6bc0;  
 }
 

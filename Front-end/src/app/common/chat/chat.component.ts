@@ -16,9 +16,9 @@ export class ChatComponent implements OnInit{
 
   
   @Input() complaint : any = []
+  @Input() chat : any = []
   @Input() fromUser : boolean = false;
   message: string = '';
-  chat: any;
   filesUrl: any;
   file: any;
 
@@ -29,7 +29,6 @@ export class ChatComponent implements OnInit{
   }
   
   ngOnInit(): void {
-    this.getChat()
   }
 
   

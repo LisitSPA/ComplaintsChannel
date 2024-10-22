@@ -15,7 +15,7 @@ export class NewUserComponent {
   
   nombre: string = '';
   tipo: string = '';  
-  estado: string = 'activo';  
+  estado: number = 1;  
   sexo: string = '';  
   email: string = '';
   active: boolean = true;  
@@ -28,8 +28,8 @@ export class NewUserComponent {
     const userData = {
       name: this.nombre,
       eUserType: parseInt(this.tipo),  
-      active: this.estado === 'activo',  
-      eGenre: this.sexo === 'Masculino' ? 1 : 2, 
+      active: this.estado,  
+      eGenre: parseInt(this.sexo), 
       email: this.email
     };
 

@@ -36,7 +36,7 @@ public class ChartByAreaQueryHandler(
         try
         {
 
-            var source = _repo.GetAllActive()
+            var source = _repo.GetAll()
                             .Include(x => x.PersonInvolved)
                             .GroupBy(x => x.PersonInvolved.Area)
                             .Select(x => new ChartDataDto
