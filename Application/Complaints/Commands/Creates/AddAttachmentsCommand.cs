@@ -58,7 +58,6 @@ public class AddAttachmentsCommandHandler : IRequestHandler<AddAttachmentsComman
 
             var complaint = _repository.GetAll().First(x => x.Id == command.ComplaintId);
                       
-
             command.Attachments.ForEach(item =>
             {
                 var folderPath = Path.Combine(_configuration["FileRoutes"], complaint.TrackingCode);
@@ -68,9 +67,9 @@ public class AddAttachmentsCommandHandler : IRequestHandler<AddAttachmentsComman
                 }
 
                 var filePath = Path.Combine(folderPath, item.FileName);
-                using (var stream = new FileStream(filePath, FileMode.CreateNew))
+                using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    item.CopyToAsync(stream);
+                    item.CopyTo(stream);
                 }
 
                 attachment = new Domain.Entities.Attachment
