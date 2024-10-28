@@ -34,7 +34,7 @@
               <span>{{ denuncia.createdOn | date:'shortDate' }}</span>
               <span>{{ denuncia.complainant ? denuncia.complainant.names : 'Anónimo'}}</span>
               <span>{{ denuncia.reasons[0].description }}</span>
-              <span>
+              <span *ngIf="denuncia?.attachments.length">
                 <!-- <button class="evidencia-btn">Ver evidencia</button> -->
                 <a class="evidencia-btn" href="{{filesUrl}}{{denuncia?.trackingCode}}/{{denuncia?.attachments[0]?.fileName}}" download="{{denuncia?.attachments[0]?.fileName}}">Ver evidencia</a>
               </span>
@@ -69,7 +69,8 @@
                 <td>{{ denuncia.createdOn | date }}</td>
                 <td>{{ denuncia.complainant ? denuncia.complainant.names : 'Anónimo' }}</td>
                 <td>{{ denuncia.status }}</td>
-                <td><a href="{{filesUrl}}{{denuncia?.trackingCode}}/{{denuncia?.attachments[0]?.fileName}}" download="{{denuncia?.attachments[0]?.fileName}}"><mat-icon aria-hidden="false" fontIcon="attach_file" ></mat-icon></a></td>
+                <td><a href="{{filesUrl}}{{denuncia?.trackingCode}}/{{denuncia?.attachments[0]?.fileName}}" download="{{denuncia?.attachments[0]?.fileName}}"
+                  *ngIf="denuncia?.attachments.length"><mat-icon aria-hidden="false" fontIcon="attach_file" ></mat-icon></a></td>
                 <td><a [routerLink]="'/chatadmin/'+denuncia.id" ><mat-icon aria-hidden="false" fontIcon="chat"></mat-icon></a></td>
                 <td *ngIf="showActions && !isDashboard">
                   <button *ngIf="denuncia.eStatus < 3" (click)="initDesestimar(denuncia.id)" class="desestimar-btn">

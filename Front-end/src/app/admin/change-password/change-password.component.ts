@@ -60,10 +60,8 @@ export class ChangePasswordComponent implements OnInit{
       this.userService.changePassword(request)
         .subscribe(
           (response: any) => {
-            
-            
             this.mensajeExito = "Contraseña cambiada exitosamente"
-            
+            this.submit = false;
            
           },
           (error) => {
