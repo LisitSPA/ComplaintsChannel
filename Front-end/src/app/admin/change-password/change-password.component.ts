@@ -37,8 +37,7 @@ export class ChangePasswordComponent implements OnInit{
   }
 
   ngOnInit(): void {
-      let data = this.userData.getUserData();
-      console.log(data)
+     
   }
 
   passwordMatchValidator(form: FormGroup) {
@@ -51,7 +50,6 @@ export class ChangePasswordComponent implements OnInit{
     if (this.changePasswordForm.valid) {
      
       this.submit = true;
-      let data = this.userData.getUserData();
       
        const request = {
           username: localStorage.getItem("email"),

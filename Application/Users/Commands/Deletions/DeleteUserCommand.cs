@@ -38,7 +38,7 @@ public class DeleteUserCommandHandler(
         Response<bool> result = new();
         try
         {
-            var user = _repository.GetAll().First(x => x.Id == x.Id);
+            var user = _repository.GetAll().First(x => x.Id == command.Id);
             user.Deleted = true;
             user.Active = false;
                            

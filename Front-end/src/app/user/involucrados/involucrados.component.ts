@@ -65,7 +65,7 @@ export class InvolucradosComponent {
     event.preventDefault();  
 
     const personInvolveds = this.personasSeleccionadas.map(persona => ({
-      names: persona.split(' ')[0],   
+      names: persona,   
       personDescription: this.personDescription
     }));
 

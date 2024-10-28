@@ -42,8 +42,8 @@ export class UserService {
 
   deleteUser(userId: number): Observable<any> {
     const headers = this.headers;
-    const url = `${this.apiUrl}/${userId}`; 
-    return this.http.delete<any>(url,{headers});  
+    const url = `${this.apiUrl}/delete/`; 
+    return this.http.post<any>(url,{id:userId},{headers});  
   }
 
   changePassword(data: any): Observable<any>{

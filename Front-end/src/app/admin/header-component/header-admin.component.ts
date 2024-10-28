@@ -10,15 +10,14 @@ import { UserDataService } from '../../services/user-data.service';
   styleUrl: './header-admin.component.css'
 })
 export class HeaderAdmin {
-Name = "";
-Rol = "";
+Name : string | undefined;
+Rol : string | undefined;
 
 
 
-  constructor(userData: UserDataService){
-    let user = userData.getUserData();
-    this.Name = user.completeName
-    this.Rol = user.userType
+  constructor(){
+    this.Name = sessionStorage.getItem("name")?.toString()
+    this.Rol = sessionStorage.getItem("role")?.toString()
 
 
   }

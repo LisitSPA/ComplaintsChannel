@@ -48,10 +48,10 @@ namespace Api.Controllers
         }
 
         
-        [HttpDelete("{id}", Name = "DeleteUser")]
-        public async Task<IActionResult> DeleteUser(int id)
+        [HttpPost("delete", Name = "DeleteUser")]
+        public async Task<IActionResult> DeleteUser(DeleteUserCommand data)
         {
-            var result = await Mediator.Send(new DeleteUserCommand { Id = id});
+            var result = await Mediator.Send(data);
             return HandleResult(result.Result, result.ErrorProvider);
         }
     }

@@ -37,6 +37,7 @@ public class GetAllUsersQueryDEHandler(
 
             var source = _repo.GetAllActive()
                 .AsNoTracking()
+                .Where(x=> !x.Deleted)
                 .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
                 .OrderByDescending(x => x.Id);
 

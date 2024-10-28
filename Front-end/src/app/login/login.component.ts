@@ -38,12 +38,11 @@ export class LoginComponent {
     this.http.post(environment.apiUrl+'/auth/login', loginCommand)
       .subscribe(
         (response: any) => {
-          console.log('Login exitoso:', response);
           
           sessionStorage.setItem('token', response.token);
           sessionStorage.setItem('email', this.usuario.email);
           sessionStorage.setItem('name', response.user.completeName);
-          this.userData.setUserData(response.user)
+          sessionStorage.setItem('role', response.user.userType);
           
           this.router.navigate(['/homeadmin']);
         },

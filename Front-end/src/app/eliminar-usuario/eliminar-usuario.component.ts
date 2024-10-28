@@ -12,10 +12,12 @@ export class EliminarUsuarioComponent {
   @Input() usuarioId!: number;  
   @Output() cerrar = new EventEmitter<void>();  
   @Output() usuarioEliminado = new EventEmitter<void>();  
+  submit = false;
 
   constructor(private userService: UserService, private router: Router) {}
 
   confirmarEliminacion() {
+    this.submit = true;
     this.userService.deleteUser(this.usuarioId).subscribe(
       response => {
         console.log('Usuario eliminado con éxito:', response);
@@ -24,6 +26,7 @@ export class EliminarUsuarioComponent {
       },
       error => {
         console.error('Error al eliminar el usuario:', error);
+        this.cerrar.emit();  
       }
     );
   }

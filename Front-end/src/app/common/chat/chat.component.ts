@@ -19,7 +19,7 @@ export class ChatComponent implements OnInit{
   @Input() chat : any[] = []
   @Input() fromUser : boolean = false;
   message: string = '';
-  filesUrl: any;
+  filesUrl: any = 'Evidences/';
   file: any;
 
   constructor(

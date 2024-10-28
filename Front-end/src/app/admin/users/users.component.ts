@@ -110,13 +110,12 @@ export class UsersComponent {
 
   cerrarEliminar() {
     this.mostrarEliminar = false;
-    this.obtenerUsuarios();
   }
 
   confirmarEliminarUsuario() {
    
       // this.usuarios = this.usuarios.filter(usuario => usuario.id !== this.usuarioSeleccionado!.id);
-      this.updatePaginatedColaboradores();
+      this.obtenerUsuarios();
       // this.mostrarEliminar = false;
     
   }
