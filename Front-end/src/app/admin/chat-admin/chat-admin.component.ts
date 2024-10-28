@@ -95,8 +95,10 @@ export class ChatAdminComponent implements OnInit {
   async selectChat(complaint: any) {
     
     this.selectedComplaint = undefined
-    this.chat = await this.chatService.getChatByComplaintCode(complaint.trackingCode);
-    this.selectedComplaint = complaint
+    setTimeout(() => {
+      this.selectedComplaint = complaint
+    },500)
+   
    
   }
   

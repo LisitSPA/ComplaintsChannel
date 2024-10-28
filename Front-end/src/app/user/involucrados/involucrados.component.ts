@@ -35,7 +35,6 @@ export class InvolucradosComponent {
           persona.names 
       ));
       this.personDescription = this.complaint.personInvolveds[0]?.personDescription;
-      console.log(this.personasSeleccionadas)
     }
   }
 

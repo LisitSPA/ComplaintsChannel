@@ -29,8 +29,7 @@ export class ChatComponent implements OnInit{
   }
   
   ngOnInit(): void {
-    if(!this.chat.length)
-      this.getChat()
+    this.getChat()
   }
 
   
@@ -49,7 +48,9 @@ export class ChatComponent implements OnInit{
   async getChat() {
    
     this.chat = await this.chatService.getChatByComplaintCode(this.complaint.trackingCode);
-    console.log(this.chat)
+    setTimeout(() => {
+      this.getChat();
+    }, 2000)
   }
 
   onFileSelected(event: Event) {
