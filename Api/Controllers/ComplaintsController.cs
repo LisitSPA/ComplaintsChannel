@@ -54,7 +54,7 @@ namespace Api.Controllers
         }
         
         [HttpPost("updateStatus", Name = "UpdateStatusComplaint")]
-        public async Task<IActionResult> UpdateComplaint(UpdateComplaintStatusCommand command)
+        public async Task<IActionResult> UpdateComplaint([FromForm] UpdateComplaintStatusCommand command)
         {
             var result = await Mediator.Send(command);
             return HandleResult(result.Result, result.ErrorProvider);

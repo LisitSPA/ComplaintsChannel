@@ -58,8 +58,16 @@ export class ComplaintService {
 
   updateStatus(data: any): Observable<any> {    
     const headers = this.headers;
+    const formData = new FormData();
 
-    return this.http.post<any>(this.apiUrl+'/complaints/updateStatus', data, {headers});
+    formData.append('ComplaintId', data.complaintId); 
+    formData.append('eComplaintStatus', data.eComplaintStatus);
+    formData.append('notes', data.notes);
+    data.attachments.forEach((file: any) => {
+      formData.append('Attachments', file, file.name);
+    });
+
+    return this.http.post<any>(this.apiUrl+'/complaints/updateStatus', formData, {headers});
   }
 
   addAttachments(file: RequestEvidencies): Promise<any> {

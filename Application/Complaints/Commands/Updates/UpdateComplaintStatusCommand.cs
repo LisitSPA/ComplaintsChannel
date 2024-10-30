@@ -60,7 +60,7 @@ public class CreateComplaintCommandHandler(
             _repository.Update(complaint);
             _repository.Save();
 
-            if (command.Attachments.Count > 0)
+            if (command.Attachments != null && command.Attachments.Count > 0)
             {
                 _mediator.Send(new AddAttachmentsCommand { Attachments = command.Attachments, ComplaintId = complaint.Id });
             }
