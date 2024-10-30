@@ -56,19 +56,20 @@ export class EvidenciaPopupComponent {
     let data = {
       complaintId : complaint.Id,
       eComplaintStatus : 31,
-      notes: this.notes,        
+      notes: this.notes, 
+      attachments: this.archivosSeleccionados     
     };
 
-    this.complaintAttachmentService.uploadAttachments(complaint.Id, this.archivosSeleccionados, ["evidencia al desestimar la denuncia"])
-    .subscribe(
-      (response) => {
-        console.log('Archivos subidos con éxito:', response);       
-      },
-      (error) => {
-        console.error('Error al subir archivos:', error);
-        this.submit = false;
-      }
-    );
+    // this.complaintAttachmentService.uploadAttachments(complaint.Id, this.archivosSeleccionados, ["evidencia al desestimar la denuncia"])
+    // .subscribe(
+    //   (response) => {
+    //     console.log('Archivos subidos con éxito:', response);       
+    //   },
+    //   (error) => {
+    //     console.error('Error al subir archivos:', error);
+    //     this.submit = false;
+    //   }
+    // );
 
     this.complaintService.updateStatus(data).subscribe(
       (response) => {

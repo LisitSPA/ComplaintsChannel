@@ -27,7 +27,7 @@ public record UpdateComplaintStatusCommand : IRequest<Response<int>>
     public int ComplaintId { get; set; }
     public EComplaintStatus EComplaintStatus { get; set; }
     public string Notes { get; set; }
-    //public List<IFormFile> Attachments { get; set; }
+    public List<IFormFile> Attachments { get; set; }
 
 }
 
@@ -60,10 +60,10 @@ public class CreateComplaintCommandHandler(
             _repository.Update(complaint);
             _repository.Save();
 
-            //if(command.Attachments.Count > 0)
-            //{
-            //    _mediator.Send(new AddAttachmentsCommand { Attachments = command.Attachments, ComplaintId = complaint.Id});
-            //}
+            if (command.Attachments.Count > 0)
+            {
+                _mediator.Send(new AddAttachmentsCommand { Attachments = command.Attachments, ComplaintId = complaint.Id });
+            }
 
             _emailNotificationService.SendEmail(new EmailNotification
             {

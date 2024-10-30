@@ -7,8 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using DevExpress.ClipboardSource.SpreadsheetML;
+using Microsoft.AspNetCore.Http;
 using Notifications.Helpers;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Net.Mime;
+using System.IO;
 
 namespace Application.Notifications
 {
@@ -22,22 +25,29 @@ namespace Application.Notifications
     {
         public void SendEmail(EmailNotification notification)
         {
-            var fromEmail = _configuration["EmailConfiguration:Email"]; 
+            var fromEmail = _configuration["EmailConfiguration:Email"];
 
             SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
             smtpClient.Credentials = new NetworkCredential(fromEmail, _configuration["EmailConfiguration:Password"]);
             smtpClient.EnableSsl = true;
 
             notification.Body.Add("URIPORTAL", _configuration["UriPortal"]);
-        
+
+           
             MailMessage mailMessage = new MailMessage();
             mailMessage.From = new MailAddress(fromEmail);
             mailMessage.To.Add(notification.ToEmail);
             mailMessage.Subject = notification.Subject;
             mailMessage.Body = Templates.FillTemplate(_configuration["EmailConfiguration:DirTemplates"], notification.TemplateName ?? "GeneralTemplate.html", notification.Body).Result;
             mailMessage.IsBodyHtml = true;
-
           
+            foreach (var file in notification.Attachments)
+            {
+                using var stream = file.OpenReadStream();
+                var attach = new Attachment(stream, file.FileName, MediaTypeNames.Application.Octet);
+                mailMessage.Attachments.Add(attach);
+            }                
+
             try
             {
                 smtpClient.Send(mailMessage);
@@ -61,6 +71,7 @@ namespace Application.Notifications
         public Dictionary<string, string> Body { get; set; }
         public string Subject { get; set; }
         public string TemplateName { get; set; }
+        public List<IFormFile> Attachments { get; set; }
     }
 
 
