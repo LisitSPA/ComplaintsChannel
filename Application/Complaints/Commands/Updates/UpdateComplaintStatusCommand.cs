@@ -73,11 +73,11 @@ public class CreateComplaintCommandHandler(
                     { "TEXT", $"El estado de la denuncia ha sido actualizado a {command.EComplaintStatus.GetDescriptionByVal()}. <br><br>" +
                        $"Notas: {command.Notes}" }
                 },
-                ToEmail = complaint.TrackingEmail
+                ToEmail = complaint.TrackingEmail,
+                Attachments = command.Attachments
             });
 
             result.Result = complaint.Id;
-
         }
         catch (Exception ex)
         {

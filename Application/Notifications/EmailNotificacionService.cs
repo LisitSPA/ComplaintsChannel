@@ -41,12 +41,13 @@ namespace Application.Notifications
             mailMessage.Body = Templates.FillTemplate(_configuration["EmailConfiguration:DirTemplates"], notification.TemplateName ?? "GeneralTemplate.html", notification.Body).Result;
             mailMessage.IsBodyHtml = true;
           
-            foreach (var file in notification.Attachments)
-            {
-                using var stream = file.OpenReadStream();
-                var attach = new Attachment(stream, file.FileName, MediaTypeNames.Application.Octet);
-                mailMessage.Attachments.Add(attach);
-            }                
+            if(notification.Attachments != null)
+                foreach (var file in notification.Attachments)
+                {
+                    var stream = file.OpenReadStream();
+                    var attach = new Attachment(stream, file.FileName, MediaTypeNames.Application.Octet);
+                    mailMessage.Attachments.Add(attach);
+                }                
 
             try
             {
@@ -59,6 +60,15 @@ namespace Application.Notifications
             catch (Exception ex)
             {
                 Console.WriteLine($"Error to send the email: {ex.Message}");
+            }
+            finally
+            {
+                // Limpia los recursos después de enviar el correo
+                foreach (var attachment in mailMessage.Attachments)
+                {
+                    attachment.Dispose();
+                }
+                mailMessage.Dispose();
             }
         }
 
