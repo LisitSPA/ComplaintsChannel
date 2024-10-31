@@ -2,22 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { lastValueFrom, Observable } from 'rxjs';
 import { environment } from '../../environment/environment';
-import { ELanguageType } from '../../types/language.type';
 import { RequestComplaint, RequestEvidencies, ResponseComplaint } from '../../types/complaint.type';
 import { ApiResponse } from '../../types/api-response.type';
-import { json } from 'stream/consumers';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComplaintService {
   private apiUrl = environment.apiUrl;
-  private langage = "es"
+  private language = "es"
   headers: any;
  
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({
-      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: `Bearer ${sessionStorage?.getItem('token')}`,
     });
   }
 
@@ -33,13 +32,15 @@ export class ComplaintService {
     let res = await (lastValueFrom(this.http.get<ApiResponse<any>>(
       `${environment.apiUrl}/complaints/getAll`,{headers, params}
     )));
+
+    console.log({res});
     return res?.content;
   }
   
   
   async getReasonsComplaints(): Promise<any> {
     let res = await (lastValueFrom(this.http.get<ApiResponse<any>>(
-      `${environment.apiUrl}/complaints/types/all/${this.langage}`
+      `${environment.apiUrl}/complaints/types/all/${this.language}`
     )));
     return res?.content;
   }

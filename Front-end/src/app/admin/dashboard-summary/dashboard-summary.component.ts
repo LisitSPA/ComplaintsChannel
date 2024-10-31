@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-summary',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './dashboard-summary.component.html',
   styleUrl: './dashboard-summary.component.css'
 })

@@ -32,6 +32,7 @@ export const routes: Routes = [
   //{path: 'chat', component: ChatUserComponent},
   {path: 'usersadmin', component: UsersComponent},  
   { path: 'denunciasadmin', component: DenunciasComponent},
+  { path: 'denunciasadmin/:state', component: DenunciasComponent},
   {path:'chatadmin', component: ChatAdminComponent},
   {path:'chatadmin/:id', component: ChatAdminComponent},
   {

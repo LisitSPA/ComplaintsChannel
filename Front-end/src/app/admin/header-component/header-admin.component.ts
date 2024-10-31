@@ -16,10 +16,8 @@ Rol : string | undefined;
 
 
   constructor(){
-    this.Name = sessionStorage.getItem("name")?.toString()
-    this.Rol = sessionStorage.getItem("role")?.toString()
-
-
+    this.Name = sessionStorage?.getItem("name")?.toString()
+    this.Rol = sessionStorage?.getItem("role")?.toString()
   }
 
 }

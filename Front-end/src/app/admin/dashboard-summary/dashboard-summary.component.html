@@ -1,5 +1,6 @@
 <div class="summary-container">
-  <div class="summary-card" style="background: linear-gradient(to bottom, #6653aa, #371ec2); color: white">
+  <a routerLink="/denunciasadmin" class="summary-card"
+    style="text-decoration: none; background: linear-gradient(to bottom, #6653aa, #371ec2); color: white">
     <div class="summary-content">
       <h2 class="summary-total">{{ totalDenuncias }}</h2>
       <p>Denuncias</p>
@@ -7,8 +8,8 @@
     <div class="icon-container">
       <img src="/icons/folder_special_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.png" alt="Icono" class="summary-icon" />
     </div>
-  </div>
-  <div class="summary-card">
+  </a>
+  <a routerLink="/denunciasadmin/2" class="summary-card" style="text-decoration: none;">
     <div class="summary-content">
       <h2 class="summary-total">{{ denunciasEnProceso }}</h2>
       <p>En Proceso</p>
@@ -16,8 +17,8 @@
     <div class="icon-container">
       <img src="/icons/hourglass_top_50dp_6E28C3_FILL0_wght400_GRAD0_opsz48.png" alt="Icono" class="summary-icon" />
     </div>
-  </div>
-  <div class="summary-card">
+  </a>
+  <a routerLink="/denunciasadmin/1" class="summary-card" style="text-decoration: none;">
     <div class="summary-content">
       <h2 class="summary-total">{{ accionesPendientes }}</h2>
       <p>Acciones Pendientes</p>
@@ -25,5 +26,5 @@
     <div class="icon-container">
       <img src="/icons/scales-xxl.png" alt="Icono" class="summary-icon" />
     </div>
-  </div>
+  </a>
 </div>

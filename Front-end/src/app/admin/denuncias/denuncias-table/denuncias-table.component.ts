@@ -5,77 +5,86 @@ import { HttpParams } from '@angular/common/http';
 import { ComplaintService } from '../../../services/complaint.service';
 import { MatIconModule } from '@angular/material/icon';
 import { environment } from '../../../../environment/environment';
-import { Router, RouterLink } from '@angular/router';
-import { MatButton, MatButtonModule } from '@angular/material/button';
-import { EvidenciaPopupComponent } from "../../../common/evidences-popup/evidencia.component";
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { EvidenciaPopupComponent } from '../../../common/evidences-popup/evidencia.component';
 import { ComplaintDataService } from '../../../services/complaint-data.service';
 
 @Component({
   selector: 'app-denuncias-table',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatIconModule, MatButtonModule, EvidenciaPopupComponent, RouterLink],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatIconModule,
+    MatButtonModule,
+    EvidenciaPopupComponent,
+    RouterLink,
+  ],
   templateUrl: './denuncias-table.component.html',
-  styleUrl: './denuncias-table.component.css'
+  styleUrl: './denuncias-table.component.css',
 })
 export class DenunciasTableComponent implements OnInit {
-
-  denuncias: any[] = [];  
+  denuncias: any[] = [];
   paginated: any[] = [];
   currentPage = 1;
   itemsPerPage = 7;
-  selectedEstado: string = ''; 
-  selectedFiltro: string = ''; 
+  selectedEstado: string = '';
+  selectedFiltro: string = '';
   isListView = false;
 
   viewMode: 'realizadas' | 'desestimadas' = 'realizadas';
   filesUrl: any;
   allComplaints: any[] = [];
   showPopup: boolean = false;
-  showActions: boolean = true
+  showActions: boolean = true;
 
   constructor(
     private complaintService: ComplaintService,
     private complaintDataService: ComplaintDataService,
-    private router: Router,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   @Input() isDashboard: boolean = false;
   @Input() filterStatus: number = 0;
- 
- 
+
   ngOnInit() {
     this.loadAll();
-    this.filesUrl = environment.filesUrl
+    this.filesUrl = environment.filesUrl;
   }
 
   async loadAll() {
     this.showPopup = false;
-    let params = new HttpParams()
+    let params = new HttpParams();
     //.set('RequireTotalCount', true)
-    this.allComplaints = (await this.complaintService.getAllComplaintsPromise(params)).data;
-    
-    if(this.isDashboard)
-    {
+    this.allComplaints = (
+      await this.complaintService.getAllComplaintsPromise(params)
+    ).data;
+
+    if (this.isDashboard) {
       this.denuncias = this.allComplaints;
       this.updatePaginated();
-    }     
-    else
-      if(this.filterStatus == 31)
-        this.loadDesestimadas()
-      else
-        this.loadRealizadas() 
-    
+    } else if (this.filterStatus == 31) this.loadDesestimadas();
+    else this.loadRealizadas();
+
+    this.route.paramMap.subscribe((params) => {
+      this.selectedEstado = params.get('state') ?? '';
+    });
+    if (this.selectedEstado) {
+      this.filtrarPorEstado();
+    }
   }
 
   loadRealizadas() {
     this.showActions = true;
-    this.denuncias = this.allComplaints.filter(x => x.eStatus !== 31);
-    this.updatePaginated();     
+    this.denuncias = this.allComplaints.filter((x) => x.eStatus !== 31);
+    this.updatePaginated();
   }
 
   loadDesestimadas() {
     this.showActions = false;
-    this.denuncias = this.allComplaints.filter(x => x.eStatus === 31);
+    this.denuncias = this.allComplaints.filter((x) => x.eStatus === 31);
     this.updatePaginated();
   }
 
@@ -90,12 +99,12 @@ export class DenunciasTableComponent implements OnInit {
   }
 
   changeViewMode(mode: 'realizadas' | 'desestimadas') {
-    this.viewMode = mode; 
-    this.currentPage = 1; 
+    this.viewMode = mode;
+    this.currentPage = 1;
     if (mode === 'realizadas') {
       this.loadRealizadas();
     } else {
-      this.loadDesestimadas(); 
+      this.loadDesestimadas();
     }
   }
 
@@ -123,38 +132,40 @@ export class DenunciasTableComponent implements OnInit {
   }
 
   toggleView() {
-    this.isListView = !this.isListView; 
+    this.isListView = !this.isListView;
   }
 
   filtrarPorEstado() {
     if (this.selectedEstado) {
-      this.denuncias = this.allComplaints.filter(x=> x.eStatus == this.selectedEstado)
-      this.updatePaginated();
-    } else {
-      this.loadRealizadas(); 
-    }
-  }
-
-  filtrarPorOtro() {
-    if (this.selectedFiltro) {
-      this.denuncias = this.denuncias.sort((a, b) => b.id - a.id)
+      this.denuncias = this.allComplaints.filter(
+        (x) => x.eStatus == this.selectedEstado
+      );
       this.updatePaginated();
     } else {
       this.loadRealizadas();
     }
   }
 
-  initDesestimar(id: number){
+  filtrarPorOtro() {
+    if (this.selectedFiltro) {
+      this.denuncias = this.denuncias.sort((a, b) => b.id - a.id);
+      this.updatePaginated();
+    } else {
+      this.loadRealizadas();
+    }
+  }
+
+  initDesestimar(id: number) {
     // let data = {
     //   complaintId : id,
     //   eComplaintStatus : 31,
-    //   notes: "",        
+    //   notes: "",
     // };
     this.complaintDataService.setId(id);
     this.showPopup = true;
   }
 
   goToChat(denunciaId: any) {
-    this.router.navigate(["chatadmin", denunciaId])
+    this.router.navigate(['chatadmin', denunciaId]);
   }
 }
