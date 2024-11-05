@@ -1,0 +1,27 @@
+<div class="modal">
+  <div class="modal-content">
+    <h2>Responde la solicitud</h2>
+    <div class="status-update">
+      <label for="status" style="margin-right: 10px;">Estado de solicitud</label>
+      <select id="status" [(ngModel)]="status">
+        <option *ngFor="let state of states" [value]="state.value">{{ state.label }}</option>
+      </select>
+
+      <textarea class="note-text-area" placeholder="Escribe tu respuesta aquí" [(ngModel)]="notes"></textarea>
+
+      <span *ngIf="mensajeError" class="text-danger mt-3">{{ mensajeError }}</span>
+      <span *ngIf="mensajeExito" class="text-success mt-3">{{ mensajeExito }}</span>
+    </div>
+
+    <div class="example-button-row flex-end">
+      <button class="back-btn" mat-button [disabled]="submit" (click)="cerrar.emit()"> Cancelar</button>
+      <button class="next-btn" mat-button [disabled]="submit" (click)="onSubmit()">
+        <span *ngIf="!submit">Siguiente</span>
+        <mat-progress-spinner *ngIf="submit" [diameter]="24" mode="indeterminate"></mat-progress-spinner>
+      </button>
+    </div>
+
+    <br>
+
+  </div>
+</div>

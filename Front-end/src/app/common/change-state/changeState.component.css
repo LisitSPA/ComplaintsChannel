@@ -72,41 +72,31 @@
   }
   .upload-box {
     border: 2px dashed #371ec2;
-    width: 175px; 
-    height: 175px; 
+    padding: 20px;
+    width: 200px; 
+    height: 200px; 
     text-align: center;
     border-radius: 5px;
     background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    gap: 5px;
 }
 
-.hide {
+.upload-box input[type="file"] {
     display: none;
 }
 
 .custom-file-upload {
     display: ruby-text;
+    padding: 10px 20px;
     cursor: pointer;
-    text-align: center;
     background-color: transparent; 
     color: #371ec2; 
     border: none; 
-    font-size: 14px;
+    font-size: 16px;
     text-decoration: none; 
     font-weight: bold;
     font-family: 'Open Sans';
-    margin: 0;
-    /* temporal */
-    margin-top: 15px;
-}
+    margin-top: 70px;
 
-.custom-file-description{
-  text-align: center;
-  font-size: 10px;
 }
 
 .upload-box ul {
@@ -126,12 +116,12 @@
   
   textarea {
     width: 100%;
+    height: 162px;
+    margin-top: 10px;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #e0e0e0;
     resize: vertical;
-    display: flex;
-    flex: 1;
   }
   .form-control {
     border-radius: 5px;

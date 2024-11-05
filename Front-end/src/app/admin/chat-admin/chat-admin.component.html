@@ -43,12 +43,7 @@
       <div class="status-update">
         <label for="status" style="margin-right: 10px;">Estado de solicitud</label>
         <select id="status" [(ngModel)]="status">
-          <option value="1">Pendientes</option>
-          <option value="2">En proceso de investigación</option>
-          <!-- <option value="3">Finalizada</option> -->
-          <option value="31">Desestimada</option>
-          <option value="32">Sanción Aplicada</option>
-          <option value="33">Medidas preventivas</option>
+          <option *ngFor="let state of states" [value]="state.value">{{ state.label }}</option>
         </select>
 
         <textarea placeholder="Escribe tu respuesta aquí" [(ngModel)]="responseMessage"></textarea>

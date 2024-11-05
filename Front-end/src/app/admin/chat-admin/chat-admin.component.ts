@@ -7,8 +7,8 @@ import { ComplaintService } from '../../services/complaint.service';
 import { HttpParams } from '@angular/common/http';
 import { ChatComponent } from '../../common/chat/chat.component';
 import { MatIconModule } from '@angular/material/icon';
-import { delay } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { requestStates } from '../../../constants/requestState';
 
 
 @Component({
@@ -19,11 +19,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./chat-admin.component.css']
 })
 export class ChatAdminComponent implements OnInit {
-
-
   chatList: any[] = [];  
   chat: any[] = [];  
-
   filteredComplaints: any[] = []; 
   selectedComplaint: any;
   activeTab = 'todos'; 
@@ -35,6 +32,7 @@ export class ChatAdminComponent implements OnInit {
   mensajeExito: any;
   showChat: any = false;
   complaintId: number = 0;
+  states = requestStates;
 
   constructor(private chatService: ChatService,
     private complaintService: ComplaintService,

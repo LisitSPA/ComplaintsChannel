@@ -15,9 +15,9 @@ export class ComplaintService {
   headers: any;
  
   constructor(private http: HttpClient) {
-    this.headers = new HttpHeaders({
-      Authorization: `Bearer ${sessionStorage?.getItem('token')}`,
-    });
+      this.headers = new HttpHeaders({
+        Authorization: `Bearer ${sessionStorage?.getItem('token')}`,
+      });
   }
 
   getAllComplaints(): Observable<any> {
@@ -64,9 +64,11 @@ export class ComplaintService {
     formData.append('ComplaintId', data.complaintId); 
     formData.append('eComplaintStatus', data.eComplaintStatus);
     formData.append('notes', data.notes);
-    data.attachments.forEach((file: any) => {
-      formData.append('Attachments', file, file.name);
-    });
+    if(data.attachments){
+      data.attachments.forEach((file: any) => {
+        formData.append('Attachments', file, file.name);
+      });
+    }
 
     return this.http.post<any>(this.apiUrl+'/complaints/updateStatus', formData, {headers});
   }

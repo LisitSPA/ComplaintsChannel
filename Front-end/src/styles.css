@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
+* {
+  box-sizing: border-box;
+}
+
 .modal {
   display: flex;
   justify-content: center;
@@ -16,7 +20,7 @@
 .modal-content {
   background-color: white;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 3px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   width: 600px;
   position: relative; 

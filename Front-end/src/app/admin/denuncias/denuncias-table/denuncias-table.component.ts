@@ -7,8 +7,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { environment } from '../../../../environment/environment';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { EvidenciaPopupComponent } from '../../../common/evidences-popup/evidencia.component';
 import { ComplaintDataService } from '../../../services/complaint-data.service';
+import { requestStates } from '../../../../constants/requestState';
+import { ChangeStatePopupComponent } from '../../../common/change-state/changeState.component';
 
 @Component({
   selector: 'app-denuncias-table',
@@ -19,7 +23,10 @@ import { ComplaintDataService } from '../../../services/complaint-data.service';
     MatIconModule,
     MatButtonModule,
     EvidenciaPopupComponent,
+    ChangeStatePopupComponent,
     RouterLink,
+    MatMenuModule,
+    MatTooltipModule
   ],
   templateUrl: './denuncias-table.component.html',
   styleUrl: './denuncias-table.component.css',
@@ -32,11 +39,13 @@ export class DenunciasTableComponent implements OnInit {
   selectedEstado: string = '';
   selectedFiltro: string = '';
   isListView = false;
+  states = requestStates;
 
   viewMode: 'realizadas' | 'desestimadas' = 'realizadas';
   filesUrl: any;
   allComplaints: any[] = [];
-  showPopup: boolean = false;
+  showRejectPopup: boolean = false;
+  showChangeStatePopup: boolean = false;
   showActions: boolean = true;
 
   constructor(
@@ -55,7 +64,8 @@ export class DenunciasTableComponent implements OnInit {
   }
 
   async loadAll() {
-    this.showPopup = false;
+    this.showRejectPopup = false;
+    this.showChangeStatePopup = false;
     let params = new HttpParams();
     //.set('RequireTotalCount', true)
     this.allComplaints = (
@@ -155,14 +165,13 @@ export class DenunciasTableComponent implements OnInit {
     }
   }
 
-  initDesestimar(id: number) {
-    // let data = {
-    //   complaintId : id,
-    //   eComplaintStatus : 31,
-    //   notes: "",
-    // };
+  initChangeState(id: number, isReject: boolean) {
     this.complaintDataService.setId(id);
-    this.showPopup = true;
+    if (isReject) {
+      this.showRejectPopup = true;
+    } else {
+      this.showChangeStatePopup = true;
+    }
   }
 
   goToChat(denunciaId: any) {
