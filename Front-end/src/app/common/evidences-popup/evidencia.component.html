@@ -31,14 +31,11 @@
       </div>
     </label>
 
-    <div class="file-list">
-      <p *ngIf="archivosSeleccionados.length > 0">Archivos seleccionados:</p>
-      <ul>
-        <li *ngFor="let file of archivosSeleccionados">{{ file.name }}</li>
-      </ul>
+    <div class="file-list" *ngIf="archivosSeleccionados.length > 0">
+      <button mat-raised-button *ngFor="let file of archivosSeleccionados" class="file-item">{{ file.name }}</button>
     </div>
 
-    <div class="example-button-row flex-end">
+    <div class="btn-container">
       <button
         class="back-btn"
         mat-button
