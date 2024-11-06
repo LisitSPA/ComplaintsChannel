@@ -61,7 +61,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let denuncia of paginated">
-          <td>{{ denuncia.reasons[0].description }}</td>
+          <td>{{ denuncia.reasons?.[0]?.description }}</td>
           <td>{{ denuncia.createdOn | date }}</td>
           <td>{{ denuncia.complainant ? denuncia.complainant.names : 'Anónimo' }}</td>
           <td>{{ denuncia.status }}</td>
