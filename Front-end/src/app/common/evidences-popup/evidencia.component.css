@@ -5,7 +5,7 @@
     height: 100vh;
     background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
   }
-  
+
   .report-card {
     position: relative;
     display: flex;
@@ -17,7 +17,7 @@
     width: 80%;
     max-width: 1200px;
   }
-  
+
   .progress-indicator {
     position: absolute;
     left: 50px;
@@ -25,7 +25,7 @@
     flex-direction: row;
     align-items: center;
   }
-  
+
   .step {
     width: 40px;
     height: 40px;
@@ -37,7 +37,7 @@
     align-items: center;
     margin-right: 10px;
   }
-  
+
   .step.active {
     background-color: #371ec2;
   }
@@ -56,14 +56,14 @@
     transition: background-color 0.3s;
     justify-content: space-between;
   }
-  
-  
+
+
   .content-section {
     flex: 1;
-    padding: 30px 20px 20px 20px; 
+    padding: 30px 20px 20px 20px;
     margin-left: 20px;
-    display: flex;        
-    flex-direction: column; 
+    display: flex;
+    flex-direction: column;
   }
   .upload-and-description {
     display: flex;
@@ -72,8 +72,8 @@
   }
   .upload-box {
     border: 2px dashed #371ec2;
-    width: 175px; 
-    height: 175px; 
+    width: 175px;
+    height: 175px;
     text-align: center;
     border-radius: 5px;
     background-color: #f9f9f9;
@@ -84,6 +84,14 @@
     gap: 5px;
 }
 
+.upload-icon {
+  font-size: 60px;
+  width: 60px;
+  height: 60px;
+  align-self: center;
+  color: #d2d1fb;
+}
+
 .hide {
     display: none;
 }
@@ -92,16 +100,14 @@
     display: ruby-text;
     cursor: pointer;
     text-align: center;
-    background-color: transparent; 
-    color: #371ec2; 
-    border: none; 
+    background-color: transparent;
+    color: #371ec2;
+    border: none;
     font-size: 14px;
-    text-decoration: none; 
+    text-decoration: none;
     font-weight: bold;
     font-family: 'Open Sans';
     margin: 0;
-    /* temporal */
-    margin-top: 15px;
 }
 
 .custom-file-description{
@@ -112,8 +118,8 @@
 .upload-box ul {
     list-style: none;
     padding: 0;
-    margin-top: 10px; 
-    
+    margin-top: 10px;
+
 }
 
 .upload-box ul li {
@@ -123,7 +129,7 @@
   .incident-description {
     flex: 1;
   }
-  
+
   textarea {
     width: 100%;
     padding: 10px;
@@ -136,7 +142,7 @@
   .form-control {
     border-radius: 5px;
 }
-  
+
   .info-section {
     padding: 20px;
     background-color: #fdfdfd;
@@ -144,7 +150,7 @@
     width: 240px;
     text-align: center;
   }
-  
+
   .divider {
     border: none;
     border-top: 2px solid #e0e0e0;
@@ -153,16 +159,16 @@
   .file-list {
     margin-top: 20px;
   }
-  
+
   .file-list ul {
     list-style: none;
     padding: 0;
   }
-  
+
   .file-list ul li {
     margin: 5px 0;
   }
-  
+
   .incident-description {
     flex: 1;
   }
@@ -184,9 +190,9 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
-  
+
   .next-btn:hover {
-    background-color: #6653aa; 
+    background-color: #6653aa;
   }
 
   @media (max-width: 768px) {
@@ -224,7 +230,7 @@
     }
 
     .reportlogo {
-        display: none; 
+        display: none;
     }
 }
 
@@ -262,6 +268,6 @@
     }
 
     .reportlogo {
-        display: none; 
+        display: none;
     }
 }

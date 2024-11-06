@@ -4,23 +4,26 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ComplaintDataService } from '../../services/complaint-data.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-evidencia',
   standalone: true,
   templateUrl: './evidencia.component.html',
   styleUrl: './evidencia.component.css',
-  imports: [CommonModule, MatProgressSpinnerModule],
- 
+  imports: [CommonModule, MatProgressSpinnerModule, MatIconModule, FormsModule, MatButtonModule],
+
 })
 export class EvidenciaComponent {
   archivosSeleccionados: File[] = [];
-  descripcionesArchivos: string[] = [];
+  descripcionesArchivos: string = "";
   descripcionGeneral: string = '';
   submit: boolean = false;
 
   constructor(
-    private complaintAttachmentService: ComplaintAttachmentService, 
+    private complaintAttachmentService: ComplaintAttachmentService,
     private dataService : ComplaintDataService,
     private router: Router
   ) {}
@@ -32,15 +35,20 @@ export class EvidenciaComponent {
     }
   }
 
-  onDescripcionCambiada(event: any, index: number) {
-    this.descripcionesArchivos[index] = event.target.value;
+  onChangeDescription(event: any) {
+    this.descripcionesArchivos = event.target.value;
   }
 
   onSubmit(): void {
     if (this.archivosSeleccionados.length === 0) {
-      // alert('Por favor selecciona archivos');
-      // return;
-      this.router.navigate(['/successreport']);
+      alert('Por favor selecciona archivos');
+      return;
+      // this.router.navigate(['/successreport']);
+    }
+
+    if (!this.descripcionesArchivos) {
+      alert('Por favor ingresa una descripción');
+      return;
     }
 
     let complaint = this.dataService.getComplaintData();

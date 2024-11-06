@@ -1,105 +1,165 @@
 <div class="encabezado">
-  <h2 style="font-size: xx-large;">Estado de la denuncia</h2>
+  <h2 style="font-size: xx-large">Estado de la denuncia</h2>
   <h3>Aquí verás el progreso actual de tu denuncia</h3>
-  <hr class="divider">
+  <hr class="divider" />
   <div class="progress-indicator">
-      <div class="step_ok" [ngClass]="{'active': complaint.eStatus == 1 }">1</div><label class="text-green">Denuncia recibida</label>
-      <div class="separator"></div> 
-      <div [ngClass]="complaint.eStatus == 2 ? 'step_ok active': 'step'">2</div>
-      <label [ngClass]="{'text-green': complaint.eStatus == 2 }">En investigación</label>
-    <div class="separator"></div> 
-      <div [ngClass]="complaint.eStatus > 3 ? 'step_ok active': 'step'">3</div>
-      <label [ngClass]="{'text-green': complaint.eStatus > 3}">Denuncia resuelta</label>
+    <div class="step_ok" [ngClass]="{ active: complaint.eStatus == 1 }">1</div>
+    <label class="text-green">Denuncia recibida</label>
+    <div class="separator"></div>
+    <div [ngClass]="complaint.eStatus == 2 ? 'step_ok active' : 'step'">2</div>
+    <label [ngClass]="{ 'text-green': complaint.eStatus == 2 }"
+      >En investigación</label
+    >
+    <div class="separator"></div>
+    <div [ngClass]="complaint.eStatus > 3 ? 'step_ok active' : 'step'">3</div>
+    <label [ngClass]="{ 'text-green': complaint.eStatus > 3 }"
+      >Denuncia resuelta</label
+    >
   </div>
 
-  <h2 style="font-size: x-large;">Mi denuncia</h2>
-  <p>Estado: <b>{{complaint.status}}</b></p>
+  <h2 style="font-size: x-large">Mi denuncia</h2>
+  <p>
+    Estado: <b>{{ complaint.status }}</b>
+  </p>
   <p>Datos de la denuncia</p>
 </div>
 <div class="container">
   <div class="section-container">
     <div class="section-containers">
-        <div class="mantenedores-grid">
-          <a class="mantenedor-item">
-            Motivos
-            <span class="descripcion">
-              <span *ngFor="let reason of complaint?.reasons">
-                {{reason.description}}<br>
-              </span>
-            </span>
-          </a>
-          <a class="mantenedor-item">
-            Involucrados
-            <span class="descripcion">
-              <span *ngFor="let person of complaint?.involved">
-                {{person.names}} {{person.personDescription}}<br>
-              </span>
-            </span>
-          </a>
-          <a class="mantenedor-item">
-            Evidencias
-            <span class="descripcion">
-              <span *ngFor="let file of complaint?.attachments">
-                <a href="{{filesUrl}}{{code}}/{{file.fileName}}" download="{{file.fileName}}">{{file.fileName}}</a> <br>
-              </span>
-            </span>
-          </a>      
-    </div>
+      <div class="mantenedores-grid">
+        <div class="mantenedor-item">
+          <p class="title">Motivos</p>
+          <ul>
+            <li *ngFor="let reason of complaint?.reasons">
+              <p class="item-link">
+                {{ reason.description }}
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="mantenedor-item">
+          <p class="title">Involucrados</p>
+          <ul>
+            <li *ngFor="let person of complaint?.involved">
+              <p class="item-link">
+                {{ person.names }} {{ person.personDescription }}
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="mantenedor-item">
+          <p class="title">Evidencias</p>
+          <ul>
+            <li *ngFor="let file of complaint?.attachments">
+              <a
+                class="item-link"
+                target="_blank"
+                href="{{ filesUrl }}{{ code }}/{{ file.fileName }}"
+                download="{{ file.fileName }}"
+              >
+                {{ file.fileName }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="card-datos">
       <div class="content-section">
-        <h2 style="font-size: x-large;">Datos personales</h2>
+        <h2 style="font-size: x-large">Datos personales</h2>
         <div *ngIf="complainant">
           <div class="form-row">
             <div class="form-group">
               <h3>Nombre:</h3>
-              <input type="text" name="nombre" [value]="complainant.names" required disabled>
+              <input
+                type="text"
+                name="nombre"
+                [value]="complainant.names"
+                required
+                disabled
+              />
             </div>
             <div class="form-group">
               <h3>RUT:</h3>
-              <input type="text" name="rut" [value]="complainant.rut" required disabled >
+              <input
+                type="text"
+                name="rut"
+                [value]="complainant.rut"
+                required
+                disabled
+              />
             </div>
             <div class="form-group">
               <h3>Estado en la Empresa:</h3>
-              <input type="text" name="estado" [value]="complainant.companyStatus" disabled>
+              <input
+                type="text"
+                name="estado"
+                [value]="complainant.companyStatus"
+                disabled
+              />
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
               <h3>Cargo:</h3>
-              <input type="text" name="cargo" [value]="complainant.position" required disabled>
+              <input
+                type="text"
+                name="cargo"
+                [value]="complainant.position"
+                required
+                disabled
+              />
             </div>
             <div class="form-group">
               <h3>Área:</h3>
-              <input type="text" name="area" [value]="complainant.area" required disabled>
+              <input
+                type="text"
+                name="area"
+                [value]="complainant.area"
+                required
+                disabled
+              />
             </div>
             <div class="form-group">
               <h3>Sexo:</h3>
-              <input type="text" name="area" [value]="complainant.genre" required disabled>
+              <input
+                type="text"
+                name="area"
+                [value]="complainant.genre"
+                required
+                disabled
+              />
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
               <h3>Contacto:</h3>
-              <input type="text" name="contacto" [value]="complainant.contactPhone" required disabled >
+              <input
+                type="text"
+                name="contacto"
+                [value]="complainant.contactPhone"
+                required
+                disabled
+              />
             </div>
           </div>
         </div>
-        <div *ngIf="!complainant">
-            Anónimo
-        </div>
+        <div *ngIf="!complainant">Anónimo</div>
       </div>
     </div>
   </div>
-  <br>
+  <br />
 </div>
 
 <div class="container-chat" *ngIf="showChat">
   <div class="main-content">
-      <h2>Comunicación con el Investigador</h2>
-      <p>Aquí puedes chatear directamente con el investigador asignado a tu denuncia.</p>
-      <div class="investigator-card">
-        <div class="investigator-info">
+    <h2>Comunicación con el Investigador</h2>
+    <p>
+      Aquí puedes chatear directamente con el investigador asignado a tu
+      denuncia.
+    </p>
+    <div class="investigator-card">
+      <div class="investigator-info">
         <!-- <p><strong>Nombre Apellido</strong></p> -->
         <p>Estamos comprometidos con la resolución efectiva de cada caso.</p>
       </div>
@@ -108,11 +168,6 @@
   <div class="chat-messages">
     <div class="div-chat">
       <app-chat [complaint]="complaint" [fromUser]="true"></app-chat>
-
     </div>
-   
   </div>
 </div>
-
-
-

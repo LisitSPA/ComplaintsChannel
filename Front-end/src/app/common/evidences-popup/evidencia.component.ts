@@ -7,14 +7,15 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { ComplaintService } from '../../services/complaint.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-evidencia-popup',
   standalone: true,
   templateUrl: './evidencia.component.html',
   styleUrl: './evidencia.component.css',
-  imports: [CommonModule, MatProgressSpinnerModule, FormsModule, MatButtonModule],
- 
+  imports: [CommonModule, MatProgressSpinnerModule, FormsModule, MatButtonModule, MatIconModule],
+
 })
 export class EvidenciaPopupComponent {
   archivosSeleccionados: File[] = [];
@@ -27,8 +28,8 @@ export class EvidenciaPopupComponent {
   notes: any;
 
   constructor(
-    private complaintAttachmentService: ComplaintAttachmentService, 
-    private complaintService: ComplaintService, 
+    private complaintAttachmentService: ComplaintAttachmentService,
+    private complaintService: ComplaintService,
     private dataService : ComplaintDataService,
     private router: Router
   ) {}
@@ -56,14 +57,14 @@ export class EvidenciaPopupComponent {
     let data = {
       complaintId : complaint.Id,
       eComplaintStatus : 31,
-      notes: this.notes, 
-      attachments: this.archivosSeleccionados     
+      notes: this.notes,
+      attachments: this.archivosSeleccionados
     };
 
     // this.complaintAttachmentService.uploadAttachments(complaint.Id, this.archivosSeleccionados, ["evidencia al desestimar la denuncia"])
     // .subscribe(
     //   (response) => {
-    //     console.log('Archivos subidos con éxito:', response);       
+    //     console.log('Archivos subidos con éxito:', response);
     //   },
     //   (error) => {
     //     console.error('Error al subir archivos:', error);
@@ -74,13 +75,13 @@ export class EvidenciaPopupComponent {
     this.complaintService.updateStatus(data).subscribe(
       (response) => {
         console.log('Denuncia actualizada correctamente:', response);
-        this.guardar.emit();  
+        this.guardar.emit();
       },
       (error) => {
         console.error('Error al actulizar la denuncia:', error);
       }
     );
 
-   
+
   }
 }

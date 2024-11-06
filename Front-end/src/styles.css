@@ -15,6 +15,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 50;
 }
 
 .modal-content {
@@ -23,7 +24,7 @@
   border-radius: 3px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   width: 600px;
-  position: relative; 
+  position: relative;
 }
 
 
@@ -81,7 +82,7 @@ h2{
 
 
 h3, .subtitle, h4, span,a , div, label, li{
-    font-size: medium !important; 
+    font-size: medium !important;
     text-align: left !important;
     /* font-weight: 200 !important;  */
     font-family: 'Open Sans' !important;
@@ -89,7 +90,7 @@ h3, .subtitle, h4, span,a , div, label, li{
 }
 
 label {
-  font-size: small; 
+  font-size: small;
     text-align: left;
     font-weight: 200;
     font-family: 'Open Sans';
@@ -107,12 +108,12 @@ label {
 
 }
 .reportlogo {
-    max-width: 80%; 
-    height: auto; 
+    max-width: 80%;
+    height: auto;
     margin-right: 40px;
   }
 
-  
+
 .body{
     margin: 0;
     padding: 0;
@@ -180,46 +181,46 @@ button:disabled{
   section {
     display: table;
   }
-  
+
   .example-label {
     display: table-cell;
     font-size: 14px;
     margin-left: 8px;
     min-width: 120px;
   }
-  
+
   .example-button-row {
     display: table-cell;
     max-width: 600px;
   }
-  
+
   .example-button-row .mat-mdc-button-base {
     margin: 8px 8px 8px 0;
   }
-  
+
   .example-flex-container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
   }
-  
+
   .example-button-container {
     display: flex;
     justify-content: center;
     width: 120px;
   }
-  
+
   .denuncia-btn:hover {
     background-color: #371ec2;
     color: white;
   }
-    
+
 
   .incident-description {
     /* margin-top: 50px !important; */
     margin-bottom: 50px !important;
   }
-    
+
   .incident-date {
     margin-top: 10px;
     font-family: 'Open Sans';
@@ -233,8 +234,8 @@ button:disabled{
     font-family: 'Open Sans';
 
   }
- 
-  
+
+
   .step {
     width: 40px;
     height: 40px;
@@ -249,19 +250,19 @@ button:disabled{
 
   }
   .separator {
-    width: 40px; 
-    height: 2px; 
-    background-color: #e0e0e0; 
-    align-self: center; 
-    margin: 0 10px; 
+    width: 40px;
+    height: 2px;
+    background-color: #e0e0e0;
+    align-self: center;
+    margin: 0 10px;
   }
 
   .divider {
     border: none;
-    border-top: 2px solid #e0e0e0; 
-    margin: 20px 0; 
+    border-top: 2px solid #e0e0e0;
+    margin: 20px 0;
   }
-  
+
   .violet{
     color:#371ec2;
     font-weight: 500;

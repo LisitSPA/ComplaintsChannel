@@ -10,7 +10,7 @@ export class ComplaintAttachmentService {
 
   constructor(private http: HttpClient) {}
 
-  uploadAttachments(complaintId: number, files: File[], descriptions: string[]): Observable<any> {
+  uploadAttachments(complaintId: number, files: File[], descriptions: string): Observable<any> {
     const formData = new FormData();
 
     formData.append('ComplaintId', complaintId.toString());
@@ -19,9 +19,7 @@ export class ComplaintAttachmentService {
       formData.append('Attachments', file, file.name);
     });
 
-    descriptions.forEach((desc, index) => {
-      formData.append('AttachDescription', desc);
-    });
+    formData.append('AttachDescription', descriptions);
 
     return this.http.post<any>(this.apiUrl, formData);
   }
