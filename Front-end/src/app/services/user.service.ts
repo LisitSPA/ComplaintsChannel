@@ -16,11 +16,13 @@ export class UserService {
     });
   }
 
-  private language : string = "es"
- 
   getUsers(params: HttpParams): Observable<any> {
     const headers = this.headers;
     return this.http.get<any>(`${this.apiUrl}/all`, {headers, params});
+  }
+
+  getPublicEmployees(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/publicEmployees`);
   }
 
   getUserById(userId: number): Observable<any> {
@@ -51,7 +53,6 @@ export class UserService {
     const headers = this.headers;
 
     const url = `${environment.apiUrl}/auth/changePassword`;
-    console.log(this.http)
     return this.http.post(url, data,{headers}); 
   }
 }

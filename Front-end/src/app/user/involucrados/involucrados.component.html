@@ -12,24 +12,34 @@
 
     <div class="content-section">
       <h2>Por favor, selecciona al causal del suceso</h2>
-      <div style="display: flex; align-items: center;">
+      <!-- <div style="display: flex; align-items: center;">
         <h3 style="display: inline-block; margin-right: 10px;">¿No sabés su nombre?</h3>
         <h3 style="display: inline-block;" class="violet">Ver listado de personas</h3>
-      </div>
-      <!-- <div class="dropdown">
-        <button class="dropbtn">Buscar por nombre o cargo...</button>
-        <div class="dropdown-content">
-          <div *ngFor="let persona of personasSeleccionadas">
-            <h3>
-            <input 
-                type="checkbox" 
-                (change)="actualizarSeleccion(persona, $event)" 
-              /> 
-              {{ persona }}
-            </h3>
-          </div>
-        </div>
       </div> -->
+      <div>
+        <form class="example-form">
+          <mat-form-field class="form-selection">
+            <!-- <mat-label>Nombre Completo</mat-label> -->
+            <input type="text"
+                   placeholder="Buscar por nombre o cargo"
+                   aria-label="Number"
+                   matInput
+                   [formControl]="employeeControl"
+                   [matAutocomplete]="auto"
+                   (focus)="addSelection()"
+                   >
+            <mat-autocomplete   #auto="matAutocomplete">
+              @for (option of filteredEmployees | async; track option) {
+                <mat-option [value]="option.names">
+                  <!-- <img alt="" class="example-option-img" [src]="state.flag" height="25"> -->
+                  <span>{{option.names}}</span> <br>
+                  <small>{{option.position}}</small>
+              </mat-option>
+              }
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
 
       <h3 class="violet">
         {{ personasSeleccionadas.length ? personasSeleccionadas.join(', ') : '' }}

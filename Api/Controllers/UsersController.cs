@@ -26,10 +26,18 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}", Name = "GetUserById")]
-        public async Task<IActionResult> GetUserById(int id, string language)
+        public async Task<IActionResult> GetUserById(int id)
         {
             var result = await Mediator.Send(new GetUserByIdQuery { Id = id });
-            return HandleResult(result.Result, result.ErrorProvider, language);
+            return HandleResult(result.Result, result.ErrorProvider);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("publicEmployees", Name = "GetPublicEmployees")]
+        public async Task<IActionResult> GetPublicEmployees()
+        {
+            var result = await Mediator.Send(new GetEmployeesQuery {  });
+            return HandleResult(result.Result, result.ErrorProvider);
         }
 
         [HttpPost("", Name = "CreateUser")]

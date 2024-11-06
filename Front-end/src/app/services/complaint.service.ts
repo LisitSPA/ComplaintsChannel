@@ -64,7 +64,7 @@ export class ComplaintService {
     formData.append('ComplaintId', data.complaintId); 
     formData.append('eComplaintStatus', data.eComplaintStatus);
     formData.append('notes', data.notes);
-    if(data.attachments){
+    if(data.attachments.length){
       data.attachments.forEach((file: any) => {
         formData.append('Attachments', file, file.name);
       });

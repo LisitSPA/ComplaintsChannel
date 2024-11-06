@@ -124,6 +124,16 @@ textarea {
   background: #6653aa;
 }
 
+.form-selection{
+  width: 50%;
+}
+
+.violet{
+  color:#371ec2;
+  font-weight: 500;
+  text-decoration: none;
+}
+
 @media (max-width: 768px) {
   .container {
       flex-direction: column;

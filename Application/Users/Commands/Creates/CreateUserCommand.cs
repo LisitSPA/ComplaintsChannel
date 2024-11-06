@@ -48,7 +48,7 @@ public class CreateUserCommandHandler(
         {
             string password = null;
 
-            var exists = _repository.GetAll().FirstOrDefault(x => command.Email != null && x.ContactEmail == command.Email && x.Deleted != true);
+            var exists = _repository.GetAllActive().FirstOrDefault(x => command.Email != null && x.ContactEmail == command.Email && x.Deleted != true);
             if (exists != null)
                 throw new Exception("El usuario ya existe");
 
