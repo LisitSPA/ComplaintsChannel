@@ -79,8 +79,8 @@ public class UpdateConfigurationCommandHandler(
                 {
                     configColor = new Parameters
                     {
-                        Code = "Logo",
-                        TextValue = command.Logo,
+                        Code = "Color",
+                        TextValue = command.Color,
                         Active = true,
                         CreatedBy = _currentUserService.UserLoginId,
                         CreatedOn = DateTime.Now
