@@ -33,8 +33,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\Interfaces\External\" />
-    <Folder Include="Configuration\Commands\" />
-    <Folder Include="Configuration\Queries\" />
     <Folder Include="Dashboard\Commands\" />
   </ItemGroup>
   <ItemGroup>

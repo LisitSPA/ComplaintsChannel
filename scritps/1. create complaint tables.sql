@@ -84,9 +84,9 @@ CREATE TABLE dbo.ComplaintHistory (
 
 CREATE TABLE dbo.Parameters (
     Id INT PRIMARY KEY IDENTITY(1,1),
-	Code int NOT NULL,
+	Code VARCHAR(150) NOT NULL,
 	Value int NULL,
 	TextValue VARCHAR(300) NULL,
 	CreatedOn DateTime NOT NULL,
-	CreatedBy int not null,
+	CreatedBy int null,
 );
