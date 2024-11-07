@@ -20,8 +20,8 @@ namespace Api.Controllers
     public class ConfigurationController : ControllerBase
     {
 
-        [HttpGet("", Name = "GetAll")]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("getAll", Name = "GetAllConfiguration")]
+        public async Task<IActionResult> GetAllConfiguration()
         {
             var result = await Mediator.Send(new GetConfiguration {});
             return HandleResult(result.Result, result.ErrorProvider);

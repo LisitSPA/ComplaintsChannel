@@ -89,4 +89,5 @@ CREATE TABLE dbo.Parameters (
 	TextValue VARCHAR(300) NULL,
 	CreatedOn DateTime NOT NULL,
 	CreatedBy int null,
+	Active bit NOT NULL
 );
