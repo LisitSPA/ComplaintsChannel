@@ -29,6 +29,7 @@ namespace Application.Complaints.Queries.DTOs
         public List<PersonInvolvedDto> Involved { get; set; }
         public List<ComplaintType> Reasons { get; set; }
         public List<Attachment> Attachments { get; set; }
+        public List<ComplaintHistory> ComplaintHistory { get; set; }
 
         public void Mapping(Profile profile)
         {
