@@ -45,7 +45,7 @@ export class ChatAdminComponent implements OnInit {
       this.complaintId = parseInt(params.get('id')??"0");     
     });
 
-    this.loadAllChats('es');
+    // this.loadAllChats('es');
     await this.loadAllComplaints();
   
     if(this.complaintId)
