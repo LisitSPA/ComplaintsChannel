@@ -109,20 +109,21 @@
 
 @media (max-width: 768px) {
   .overlay-image {
-    width: 70%;
+    width: 80%;
   }
 
   .overlay-image2 {
     width: 16%;
     bottom: -10px;
-    right: 13%;
+    right: 8%;
   }
 
   .highlight-text {
     color: white !important;
     font-family: 'Open Sans';
     text-align: center;
-    font-size: 22px !important;
+    font-size: 20px !important;
+    margin: 0;
   }
 
   .highlight-subtitle {
@@ -134,16 +135,25 @@
   }
 
   .text-container {
-    padding-top: 0;
+    position: relative;
+    margin-top: 190px;
     min-height: 80vh;
+    padding: 50px 0 0 0 !important;
   }
 
   .content {
+    background-image: url('/images/BG_landing_page_mobile.png');
     flex-direction: column;
-    height: auto;
+    background-size: cover;
+    background-color: #f0effb;
+    height: 85vh;
     padding: 10px;
     align-items: center;
     text-align: center;
+  }
+
+  .text-container{
+    justify-content: flex-start;
   }
 
   .highlight-content {
@@ -161,7 +171,8 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 20px;
+    bottom: 155px;
+    position: absolute;
   }
   
   .btn {
@@ -178,7 +189,7 @@
   }
 
   .image-container {
-    bottom: 80px !important;
+    bottom: 120px !important;
   }
 }
 
