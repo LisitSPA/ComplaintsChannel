@@ -52,7 +52,7 @@ export class ChangePasswordComponent implements OnInit{
       this.submit = true;
       
        const request = {
-          username: localStorage.getItem("email"),
+          username: sessionStorage.getItem("email"),
           oldPassword: this.changePasswordForm.controls['currentPassword'].value,
           newPassword: this.changePasswordForm.controls['newPassword'].value,
       }
@@ -61,12 +61,14 @@ export class ChangePasswordComponent implements OnInit{
         .subscribe(
           (response: any) => {
             this.mensajeExito = "Contraseña cambiada exitosamente"
+            this.mensajeError = ""
             this.submit = false;
            
           },
           (error) => {
             this.submit = false;
             this.mensajeError = "Contraseña incorrecta"
+            this.mensajeExito = ""
           }
         );
     }

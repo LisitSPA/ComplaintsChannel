@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-user-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatButtonModule],
+  imports: [CommonModule, FormsModule, MatButtonModule, MatRadioModule],
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css']
 })

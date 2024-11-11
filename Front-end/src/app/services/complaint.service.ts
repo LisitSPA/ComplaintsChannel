@@ -63,7 +63,7 @@ export class ComplaintService {
 
     formData.append('ComplaintId', data.complaintId); 
     formData.append('eComplaintStatus', data.eComplaintStatus);
-    formData.append('notes', data.notes);
+    formData.append('Notes', data.notes);
     if(data.attachments?.length){
       data.attachments.forEach((file: any) => {
         formData.append('Attachments', file, file.name);
@@ -86,6 +86,7 @@ export class ComplaintService {
           `${environment.apiUrl}/complaints/${code}/${language}`
       ));
 
+      console.log({res});
       return res?.content;
 
   }

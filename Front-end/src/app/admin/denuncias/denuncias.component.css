@@ -274,10 +274,12 @@ app-sidebar-admin {
   justify-content: center; 
 }
 
+.header-title {
+  cursor: pointer;
+}
 
 .header-title.active {
-  font-weight: bold; 
-  text-decoration: underline; 
+  font-weight: bold;
   color: rgb(78, 65, 188);
 }
 @media (max-width: 768px) {

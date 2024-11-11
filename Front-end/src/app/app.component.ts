@@ -1,4 +1,4 @@
-  import { Component } from '@angular/core';
+  import { Component, ViewEncapsulation } from '@angular/core';
   import { Router, RouterOutlet,NavigationEnd  } from '@angular/router'; 
   import { FaqComponent } from './user/faq/faq.component';
   import { FooterComponent } from './user/footer/footer.component';
@@ -41,6 +41,7 @@
     ],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
+    encapsulation: ViewEncapsulation.None
   })
 
   export class AppComponent {

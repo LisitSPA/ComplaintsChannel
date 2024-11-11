@@ -36,6 +36,7 @@ namespace Application.Complaints.Queries.DTOs
             profile.CreateMap<Complaint, ComplaintDto>()
                 .ForMember(x => x.Involved, opt => opt.MapFrom(s => s.ComplaintInvolved.Select(x => x.PersonInvolved)))
                 .ForMember(x => x.Reasons, opt => opt.MapFrom(s => s.ComplaintReasons.Select(x => x.ComplaintType)))
+                .ForMember(x => x.ComplaintHistory, opt => opt.MapFrom(s => s.ComplaintHistory))
                 .ForMember(x => x.Status, opt => opt.MapFrom(s => s.EStatus.GetDescriptionByVal() ))
                 ;
 

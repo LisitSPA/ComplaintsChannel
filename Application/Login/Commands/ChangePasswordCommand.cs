@@ -50,18 +50,20 @@ public class ChangePasswordCommandHandler : IRequestHandler<ChangePasswordComman
         Response<bool> result = new();
         try
         {
+            if (string.IsNullOrEmpty(command.Username) || string.IsNullOrEmpty(command.OldPassword) || string.IsNullOrEmpty(command.NewPassword))
+                throw new Exception("Data is required");
+
             var user = _repository.GetAllActive()
                  .FirstOrDefault(x => x.UserName == command.Username);
 
-            if (user is not null && _passwordHasher.VerifyPassword(command.OldPassword, user?.Password))
-            {
-                user.Password = _passwordHasher.HashPassword(command.NewPassword);
-                user.ChangePassword = false;
+            if (user is null || !_passwordHasher.VerifyPassword(command.OldPassword, user?.Password))
+                throw new Exception("Invalid user or password");
 
-                _repository.Update(user);
-                _repository.Save();
-            }
-             
+            user.Password = _passwordHasher.HashPassword(command.NewPassword);
+            user.ChangePassword = false;
+
+            _repository.Update(user);
+            _repository.Save();
             result.Result = true;
 
         }
@@ -72,8 +74,8 @@ public class ChangePasswordCommandHandler : IRequestHandler<ChangePasswordComman
         return result;
     }
 
-    
-   
+
+
 
 
 

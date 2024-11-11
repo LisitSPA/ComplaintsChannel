@@ -100,6 +100,7 @@ namespace Utility.Extensions
         public static string GetDescriptionByVal<T>(this T e) where T : IConvertible
         {
             string description = "";
+            if (e == null) return description;
 
             if (e is Enum)
             {

@@ -28,6 +28,15 @@ export class LoginComponent {
      private userData: UserDataService
     ) {}
 
+  ngOnInit(): void {
+    const isReloaded = sessionStorage?.getItem('isReloaded');
+
+    if(window !== undefined && !isReloaded){
+      sessionStorage.setItem('isReloaded', 'true');
+      window.location.reload();
+    }
+  }
+
   gotoHome() {
     const loginCommand = {
       username: this.usuario.email,

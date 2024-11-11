@@ -124,6 +124,7 @@ h3 {
 .mantenedor-item > ul {
   list-style-type: circle;
   padding-left: 16px;
+  margin-bottom: 0;
 }
 
 .form-row {

@@ -141,12 +141,10 @@ app-sidebar-admin {
   padding-left: 20px; 
 }
 
-
 .denuncia-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .time, .date, .anonymous, .reason {
@@ -154,7 +152,13 @@ app-sidebar-admin {
   color: #6c757d;
 }
 
-
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  padding: 0;
+  align-items: center;
+}
 
 .container-denuncias {
   display: flex;
@@ -182,7 +186,6 @@ app-sidebar-admin {
 .desestimar-btn {
   color: white;
   background-color: rgb(78, 65, 188);
-  margin-left: 8px;
 }
 
 .desestimar-btn:hover {

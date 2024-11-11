@@ -58,8 +58,8 @@
         </div>
       </div>
 
-      <div class="file-list" *ngIf="archivosSeleccionados.length > 0">
-        <button mat-raised-button *ngFor="let file of archivosSeleccionados" class="file-item">{{ file.name }}</button>
+      <div class="badge-container" *ngIf="archivosSeleccionados.length > 0">
+        <button mat-raised-button *ngFor="let file of archivosSeleccionados" class="badge-btn badge-purple-btn">{{ file.name }}</button>
       </div>
 
       <button class="next-btn" [disabled]="submit" (click)="onSubmit()">

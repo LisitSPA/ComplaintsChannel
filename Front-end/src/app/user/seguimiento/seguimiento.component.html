@@ -18,14 +18,13 @@
   </div>
 
   <h2 style="font-size: x-large">Mi denuncia</h2>
-  <p>
-    Estado: <b>{{ complaint.status }}</b>
-  </p>
-  <p>Datos de la denuncia</p>
+  <p>Estado: <b>{{ complaint.status }}</b></p>
+  <p *ngIf="complaint.complaintHistory?.length > 0">Notas: {{ complaint.complaintHistory[0].notes }}</p>
 </div>
 <div class="container">
   <div class="section-container">
     <div class="section-containers">
+      <h2 class="title">Datos de la denuncia</h2>
       <div class="mantenedores-grid">
         <div class="mantenedor-item">
           <p class="title">Motivos</p>

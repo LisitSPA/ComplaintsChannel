@@ -14,6 +14,7 @@ import { ComplaintDataService } from '../../../services/complaint-data.service';
 import { requestStates } from '../../../../constants/requestState';
 import { ChangeStatePopupComponent } from '../../../common/change-state/changeState.component';
 
+export type ViewMode = 'realizadas' | 'desestimadas';
 @Component({
   selector: 'app-denuncias-table',
   standalone: true,
@@ -36,12 +37,12 @@ export class DenunciasTableComponent implements OnInit {
   paginated: any[] = [];
   currentPage = 1;
   itemsPerPage = 7;
-  selectedEstado: string = '';
+  selectedStatus: string = '';
   selectedFiltro: string = '';
   isListView = false;
   states = requestStates;
 
-  viewMode: 'realizadas' | 'desestimadas' = 'realizadas';
+  viewMode: ViewMode = 'realizadas';
   filesUrl: any;
   allComplaints: any[] = [];
   showRejectPopup: boolean = false;
@@ -66,6 +67,7 @@ export class DenunciasTableComponent implements OnInit {
   async loadAll() {
     this.showRejectPopup = false;
     this.showChangeStatePopup = false;
+    let selectedViewMode = null;
     let params = new HttpParams();
     //.set('RequireTotalCount', true)
     this.allComplaints = (
@@ -79,11 +81,15 @@ export class DenunciasTableComponent implements OnInit {
     else this.loadRealizadas();
 
     this.route.paramMap.subscribe((params) => {
-      this.selectedEstado = params.get('state') ?? '';
+      this.selectedStatus = params.get('status') ?? '';
+      selectedViewMode = (params.get('viewMode') as ViewMode);
     });
-    if (this.selectedEstado) {
+    
+    if (selectedViewMode)
+      this.changeViewMode(selectedViewMode)
+
+    if (this.selectedStatus) 
       this.filtrarPorEstado();
-    }
   }
 
   loadRealizadas() {
@@ -108,7 +114,7 @@ export class DenunciasTableComponent implements OnInit {
     this.paginated = this.denuncias.slice(start, end);
   }
 
-  changeViewMode(mode: 'realizadas' | 'desestimadas') {
+  changeViewMode(mode: ViewMode = 'realizadas') {
     this.viewMode = mode;
     this.currentPage = 1;
     if (mode === 'realizadas') {
@@ -146,9 +152,9 @@ export class DenunciasTableComponent implements OnInit {
   }
 
   filtrarPorEstado() {
-    if (this.selectedEstado) {
+    if (this.selectedStatus) {
       this.denuncias = this.allComplaints.filter(
-        (x) => x.eStatus == this.selectedEstado
+        (x) => x.eStatus == this.selectedStatus
       );
       this.updatePaginated();
     } else {
@@ -176,5 +182,20 @@ export class DenunciasTableComponent implements OnInit {
 
   goToChat(denunciaId: any) {
     this.router.navigate(['chatadmin', denunciaId]);
+  }
+
+  getBadgeClass(status: number) {
+    switch (status) {
+      case 1:
+        return 'badge-blue-btn';
+      case 2:
+        return 'badge-yellow-btn';
+      case 3:
+        return 'badge-green-btn';
+      case 31:
+        return 'badge-purple-btn';
+      default:
+        return 'badge-red-btn';
+    }
   }
 }

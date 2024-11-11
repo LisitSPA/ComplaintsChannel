@@ -164,17 +164,6 @@ textarea {
   gap: 5px;
 }
 
-.file-item {
-  color: #7270d5 !important;
-  background-color: #d1d0fa !important;
-  height: 26px;
-}
-
-::ng-deep .file-item span {
-  font-size: 14px !important;
-  height: 26px;
-}
-
 .incident-description {
   flex: 1;
 }

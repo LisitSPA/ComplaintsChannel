@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderAdmin } from '../header-component/header-admin.component';
 import { SidebarAdmin } from '../admin/sidebar-component/sidebar-admin.component';
-import { ComplaintService } from '../../services/complaint.service';
 import { FormsModule } from '@angular/forms';
-import { HttpParams } from '@angular/common/http';
-import { DenunciasTableComponent } from "./denuncias-table/denuncias-table.component";
+import { DenunciasTableComponent, ViewMode } from "./denuncias-table/denuncias-table.component";
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-denuncias',
@@ -23,16 +22,26 @@ export class DenunciasComponent implements OnInit {
   selectedFiltro: string = ''; 
   isListView = false;
 
-  viewMode: 'realizadas' | 'desestimadas' = 'realizadas';
+  viewMode: ViewMode = 'realizadas';
   status : number = 0;
 
-  constructor(private complaintService: ComplaintService) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
+    let selectedViewMode = null;
+
+    this.route.paramMap.subscribe((params) => {
+      selectedViewMode = (params.get('viewMode') as ViewMode);
+    });
+
+    if (!!selectedViewMode)
+      this.changeViewMode(selectedViewMode, false);
   }
 
 
-  changeViewMode(mode: 'realizadas' | 'desestimadas') {
+  changeViewMode(mode: ViewMode, updateUrl = true) {
+    if (updateUrl)
+      this.router.navigate(['/denunciasadmin', mode]);
     this.viewMode = mode; 
     this.currentPage = 1; 
     if (mode === 'realizadas') {

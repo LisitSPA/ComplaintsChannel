@@ -14,9 +14,9 @@ namespace Domain.Entities
         public string Position { get; set; }
         public string Area { get; set; }
         public string PersonDescription { get; set; }
-        public EGenre EGenre { get; set; }
+        public EGenre? EGenre { get; set; }
         public EUserType EUserType { get; set; }
-        public ECompanyStatus ECompanyStatus { get; set; }
+        public ECompanyStatus? ECompanyStatus { get; set; }
         public string ContactPhone { get; set; }
         public string ContactEmail { get; set; }
         public string UserName { get; set; }
