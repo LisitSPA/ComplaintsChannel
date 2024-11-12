@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-denuncias',
   standalone: true,
-  imports: [CommonModule, SidebarAdmin, HeaderAdmin, FormsModule, DenunciasComponent, DenunciasTableComponent],
+  imports: [CommonModule, SidebarAdmin, HeaderAdmin, FormsModule, DenunciasTableComponent],
   templateUrl: './denuncias.component.html',
   styleUrl: './denuncias.component.css'
 })
