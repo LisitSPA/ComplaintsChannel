@@ -9,7 +9,7 @@ import { environment } from '../../environment/environment';
 export class ConfigurationService {
   private apiUrl = environment.apiUrl+'/configuration';
   private color = '#4C3DB2';
-  private logo = '/icons/Logo_adm.svg';
+  private logoUrl = '/icons/Logo_adm.svg';
   headers: HttpHeaders;
 
   constructor(private http: HttpClient) {
@@ -25,8 +25,14 @@ export class ConfigurationService {
 
   updateConfiguration(data: any): Observable<any> {    
     const headers = this.headers;
+    const formData = new FormData();
 
-    return this.http.post<any>(this.apiUrl, data, {headers});
+    formData.append('color', data.color);
+
+    if (data.logo)
+      formData.append('logo', data.logo, data.logo.fileName);
+
+    return this.http.post<any>(this.apiUrl, formData, {headers});
   }
   
   updateDefaultColor(color?: string): void {
@@ -42,11 +48,11 @@ export class ConfigurationService {
     this.color = color;
   }
 
-  public get getLogo(): string {
-    return this.logo;
+  public get getLogoUrl(): string {
+    return this.logoUrl;
   }
 
-  public set setLogo(logo: string) {
-    this.logo = logo;
+  public set setLogoUrl(logoUrl: string) {
+    this.logoUrl = logoUrl;
   }
 }

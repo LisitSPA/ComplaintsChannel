@@ -1,16 +1,7 @@
 using Application.Configuration.Commands.Creates;
 using Application.Configuration.Queries;
-using Application.Users.Commands;
-using Application.Users.Commands.Creates;
-using Application.Users.Commands.Deletions;
-using Application.Users.Commands.Updates;
-using Application.Users.Queries;
-using Domain.Common;
-using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Update.Internal;
 using System.Threading.Tasks;
 namespace Api.Controllers
 {
@@ -28,11 +19,10 @@ namespace Api.Controllers
         }
                 
         [HttpPost("", Name = "SaveConfiguration")]
-        public async Task<IActionResult> SaveConfiguration(UpdateConfigurationCommand command)
+        public async Task<IActionResult> SaveConfiguration([FromForm] UpdateConfigurationCommand command)
         {
             var result = await Mediator.Send(command);
             return HandleResult(result.Result, result.ErrorProvider);
         }
-
     }
 }

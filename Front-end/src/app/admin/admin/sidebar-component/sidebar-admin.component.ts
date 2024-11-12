@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { ConfigurationService } from '../../../services/configuration.service';
+import { environment } from '../../../../environment/environment';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { ConfigurationService } from '../../../services/configuration.service';
   styleUrls: ['./sidebar-admin.component.css'] 
 })
 export class SidebarAdmin {
-
+  logoUrl: string = '/icons/Logo_adm.svg';
   isActive: boolean = false; 
   selectedSection: string = '';
 
@@ -35,7 +36,10 @@ export class SidebarAdmin {
           this.configurationService.setColor = data.content.color;
         }
 
-        // TODO add logo
+        if (data?.content?.logo) {
+          this.logoUrl = `${environment.filesUrl}Logo/${data.content.logo}`;
+          this.configurationService.setLogoUrl = this.logoUrl;
+        }
       },
       (error: any) => {
         console.error('Error al obtener la configuración:', error);

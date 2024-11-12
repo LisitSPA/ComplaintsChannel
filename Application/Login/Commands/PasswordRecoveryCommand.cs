@@ -44,6 +44,9 @@ public class PasswordRecoveryCommandHandler
             var user = _repository.GetAllActive()
                  .FirstOrDefault(x => x.UserName == command.Username);
 
+            if (user is null)
+                throw new Exception("Usuario no encontrado");
+
             if (user is not null)
             {
                 var tempPass = RandomStringGenerator.GenerateRandomString(8);

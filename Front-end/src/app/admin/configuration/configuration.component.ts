@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ConfigurationService } from '../../services/configuration.service';
+import { environment } from '../../../environment/environment';
 
 @Component({
   selector: 'app-configuration',
@@ -43,11 +44,9 @@ export class ConfigurationComponent {
     this.configurationService.updateDefaultColor(color);
   }
 
-
   onFileSelected(event: Event): void {
     const file = (event.target as HTMLInputElement).files?.[0];
-    if (file)
-      this.logoFile = file;
+    if (file) this.logoFile = file;
   }
 
   guardarConfiguracion(): void {
@@ -55,17 +54,20 @@ export class ConfigurationComponent {
     this.successMessage = '';
 
     const data = {
-      logo: this.logoFile?.name || '',
+      logo: this.logoFile,
       color: this.customColor,
     };
 
     this.configurationService.updateConfiguration(data).subscribe(
       (response) => {
-        console.log('Configuración actualizada:', {file: this.logoFile});
-        if (this.logoFile){
-          // TODO Upload logo file
+        if (this.customColor)
+          this.configurationService.setColor = response.content.color;
+
+        if (this.logoFile) {
+          this.configurationService.setLogoUrl = `${environment.filesUrl}Logo/${this.logoFile.name}`;
+          window.location.reload();
         }
-          
+
         this.successMessage = 'Configuración actualizada con éxito';
         this.errorMessage = '';
       },
