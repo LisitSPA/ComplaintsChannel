@@ -86,7 +86,7 @@
 }
 
 .pagination button.active {
-  background-color: #007bff;
+  background-color: var(--primary-color);
   color: white;
 }
 
@@ -105,7 +105,7 @@
   cursor: pointer;
   margin: 0 10px; 
   font-size: xx-large; 
-  color: #007bff;
+  color: var(--primary-color);
 }
 
 .arrow.disabled {
@@ -181,7 +181,7 @@ app-sidebar-admin {
 
 .desestimar-btn {
   color: white;
-  background-color: rgb(78, 65, 188);
+  background-color: var(--primary-color);
   width: 15%; 
   height: 40px; 
   border: none;
@@ -195,7 +195,7 @@ app-sidebar-admin {
 }
 
 .desestimar-btn:hover {
-  background-color: #5d54c2; 
+  opacity: 0.8; 
 }
 
 .btn-icon {
@@ -224,7 +224,7 @@ app-sidebar-admin {
   border: 1px solid #ccc;
   font-size: 14px;
   margin-left: 10px;
-  color: rgb(78, 65, 188);
+  color: var(--primary-color);
   background-color: rgb(180, 176, 212);
 }
 
@@ -260,7 +260,7 @@ app-sidebar-admin {
 }  
 
 .evidencia-btn {
-  color: rgb(78, 65, 188);
+  color: var(--primary-color);
   background-color: rgb(180, 176, 212);
   width: 80px; 
   height: 40px; 
@@ -280,7 +280,7 @@ app-sidebar-admin {
 
 .header-title.active {
   font-weight: bold;
-  color: rgb(78, 65, 188);
+  color: var(--primary-color);
 }
 @media (max-width: 768px) {
 

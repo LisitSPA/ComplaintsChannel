@@ -19,34 +19,16 @@
       <p>Personaliza el color de tu canal de denuncias</p>
       <div class="color-options">
         <div *ngFor="let color of predefinedColors" [ngStyle]="{ 'background-color': color }" class="color-circle" (click)="setColor(color)"></div>
-        <div>
-          <input type="color" [(ngModel)]="customColor" (change)="setColor(customColor)" />
-          <span>Custom color: {{ customColor }}</span>
-        </div>
+      </div>
+      <div class="custom-color-container">
+        <span>Custom color: {{ customColor }}</span>
+        <input type="color" class="color-circle" [(ngModel)]="customColor" (change)="setColor(customColor)" />
       </div>
     </div>
-  
-    <!-- <div class="input-group">
-      <label>Barra de navegación</label>
-      <label class="switch">
-        <input type="checkbox" [(ngModel)]="showNavBar">
-        <span class="slider round"></span>
-      </label>
-    </div>
-     -->
-<!--   
-    <div class="input-group">
-      <label>Identificador</label>
-      <input type="text" [(ngModel)]="companyName" placeholder="Nombre de la empresa" />
-    </div>
-  
-    <div class="input-group">
-      <label>Estado del canal</label>
-      <select [(ngModel)]="channelStatus">
-        <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
-      </select>
-    </div> -->
-  
+    <br>
+    <p *ngIf="errorMessage" class="text-danger mt-3">{{ errorMessage }}</p>
+    <p *ngIf="successMessage" class="text-success mt-3">{{ successMessage }}</p>  
+    
     <button class="btn btn-primary" (click)="guardarConfiguracion()">Guardar</button>
 </div>
 

@@ -40,12 +40,12 @@
 }
 
 .step.active {
-  background-color: #371ec2;
+  background-color: var(--primary-color);
 }
 
 .back-btn {
   align-self: flex-end;
-  background: linear-gradient(to bottom, #605b75, #4f4880);
+  background: linear-gradient(to right, rgba(255, 255, 255, .25), rgba(255, 255, 255, .3)), var(--primary-color);
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
@@ -79,7 +79,7 @@
 }
 
 .upload-box {
-  border: 2px dashed #371ec2;
+  border: 2px dashed var(--primary-color);
   padding: 20px;
   width: 200px;
   height: 200px;
@@ -97,7 +97,7 @@
   padding: 10px 20px;
   cursor: pointer;
   background-color: transparent;
-  color: #371ec2;
+  color: var(--primary-color);
   border: none;
   font-size: 16px;
   text-decoration: none;
@@ -168,7 +168,7 @@ p {
 }
 .next-btn {
   align-self: flex-end;
-  background: linear-gradient(to bottom, #6653aa, #371ec2);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, .25)), var(--primary-color);
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
@@ -181,7 +181,8 @@ p {
 }
 
 .next-btn:hover {
-  background-color: #6653aa;
+  background-color: var(--primary-color);
+  opacity: 0.9;
 }
 
 @media (max-width: 768px) {

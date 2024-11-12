@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-dashboard-summary',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, MatIconModule],
   templateUrl: './dashboard-summary.component.html',
   styleUrl: './dashboard-summary.component.css'
 })
@@ -14,10 +15,7 @@ export class DashboardSummaryComponent implements OnInit {
   denunciasEnProceso: number = 0;
   accionesPendientes: number = 0;
 
-  
-  constructor(private dashboardService: DashboardService) {
-
-  }
+  constructor(private dashboardService: DashboardService) {}
 
   ngOnInit() {
     this.dashboardService.getCountComplaints().subscribe(

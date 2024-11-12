@@ -98,7 +98,7 @@ font-weight: bold;
 .respuesta-btn{
 
 color: white;
-background-color: rgb(78, 65, 188);
+background-color: var(--primary-color);
 width: 20%; 
 height: 40px; 
 border: none;
@@ -124,7 +124,7 @@ font-size: medium;
 
 .tabs a.active {
 font-weight: bold; 
-color: rgb(78, 65, 188);
+color: var(--primary-color);
 }
 @media (max-width: 768px) {
   .chat-admin-container {

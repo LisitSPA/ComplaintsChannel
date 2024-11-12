@@ -50,8 +50,8 @@
   font-size: large;
 }
 
-.sidebar .violet-section {
-  background-color: #4C3DB2;
+.sidebar .sidebar-section {
+  background-color: var(--primary-color);
   width: 100%;
   color: white;
   padding: 20px;
@@ -100,7 +100,7 @@ a {
     margin-bottom: 5px; 
   }
 
-  .sidebar .violet-section {
+  .sidebar .sidebar-section {
     padding: 10px; 
   }
 
@@ -146,7 +146,7 @@ a {
     margin-bottom: 5px; 
   }
 
-  .sidebar .violet-section {
+  .sidebar .sidebar-section {
     padding: 10px; 
   }
 

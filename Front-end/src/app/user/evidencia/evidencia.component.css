@@ -40,7 +40,7 @@
 }
 
 .step.active {
-  background-color: #371ec2;
+  background-color: var(--default-color);
 }
 
 .content-section {
@@ -57,7 +57,7 @@
 }
 
 .upload-box {
-  border: 2px dashed #371ec2;
+  border: 2px dashed var(--default-color);
   width: 220px;
   height: 220px;
   text-align: center;
@@ -79,7 +79,7 @@
   cursor: pointer;
   text-align: center;
   background-color: transparent;
-  color: #371ec2;
+  color: var(--default-color);
   border: none;
   font-size: 14px;
   text-decoration: none;
@@ -133,7 +133,8 @@
   width: 70px;
   height: 70px;
   align-self: center;
-  color: #d2d1fb;
+  color: var(--default-color);
+  opacity: 0.2;
 }
 
 .incident-description {
@@ -186,7 +187,7 @@ p {
 .next-btn {
   margin-top: 10px;
   align-self: flex-end;
-  background: linear-gradient(to bottom, #6653aa, #371ec2);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, .25)), var(--default-color);
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
@@ -199,12 +200,13 @@ p {
 }
 
 .next-btn:hover {
-  background-color: #6653aa;
+  background-color: var(--default-color);
+  opacity: 0.9;
 }
 
 @media (max-width: 768px) {
   .upload-box {
-    border: 2px dashed #371ec2;
+    border: 2px dashed var(--default-color);
     width: 120px;
     height: 120px;
     text-align: center;

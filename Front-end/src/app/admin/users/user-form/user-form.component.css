@@ -76,7 +76,7 @@
     bottom: 20px;
     right: 20px;
     padding: 12px 30px;
-    background-color: #5c6bc0;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 5px;
@@ -86,7 +86,7 @@
   }
   
   button.next-btn:hover {
-    background-color: #3949ab;
+    opacity: 0.9;
   }
   
   .close-btn {

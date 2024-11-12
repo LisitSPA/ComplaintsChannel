@@ -42,7 +42,7 @@
   }
 
   .step.active {
-    background-color: #371ec2;
+    background-color: var(--default-color);
   }
 
   .content-section {
@@ -126,7 +126,7 @@
   }
   .next-btn {
     align-self: flex-end;
-    background: linear-gradient(to bottom, #6653aa, #371ec2);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, .25)), var(--default-color);
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
@@ -140,7 +140,7 @@
 
   .back-btn {
     align-self: flex-end;
-    background: linear-gradient(to bottom, #605b75, #4f4880);
+    background: linear-gradient(to right, rgba(255, 255, 255, .25), rgba(255, 255, 255, .3)), var(--default-color);
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
@@ -154,12 +154,13 @@
   }
 
   .next-btn:hover {
-    background-color: #6653aa;
+    background-color: var(--default-color);
+    opacity: 0.9;
   }
 
   .selected {
-    /* background-color: #371ec2; */
-    background: linear-gradient(to right, #6a67f4, #2320a8);
+    /* background-color: var(--default-color); */
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, .25)), var(--default-color);
     color: white;
   }
   @media (max-width: 768px) {

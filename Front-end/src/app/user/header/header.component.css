@@ -78,19 +78,14 @@
 }
 
 .denunciar {
-    color: rgb(43, 27, 187); 
+    color: var(--default-color); 
     background-color: white; 
     transition: background-color 0.3s;
 }
 
-.denunciar:hover {
-    background-color: rgb(78, 65, 188);
-    color: white;
-}
-
 .desestimar {
     color: white;
-    background-color: rgb(78, 65, 188);
+    background-color: var(--default-color);
 }
 
 .desestimar:hover {

@@ -8,7 +8,7 @@
 
 .card {
   position: relative;
-  background-color: #4C3DB2;;
+  background-color: var(--primary-color);
   border-radius: 8px;
   text-align: center;
   width: 10%;
@@ -32,7 +32,8 @@
   position: absolute;
   top: 110%;
   font-size: 14px;
-  color: #4C3DB2;
+  color: black;
+  /* color: var(--primary-color); */
 }
 .icon {
   width: 40px; 

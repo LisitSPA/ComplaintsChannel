@@ -78,7 +78,7 @@
   
   
   .user {
-    background-color: #6256d1;
+    background-color: var(--primary-color);
     color: white;
     align-self: flex-end;
     margin-left: auto;
@@ -93,12 +93,12 @@
     right: -15px; 
     border-width: 10px;
     border-style: solid;
-    border-color: transparent transparent transparent #6256d1;
+    border-color: transparent transparent transparent var(--primary-color);
   }
   
   .message-time {
     font-size: 0.8rem;
-    color: #888;
+    color: #c2c2c2;
     margin-top: 5px;
   }
   
@@ -138,13 +138,13 @@
     height: 80px;
     text-align: center;
     background-color: #ffffff;
-    border: 2px dashed #6256d1;
+    border: 2px dashed var(--primary-color);
     border-radius: 10px;
     cursor: pointer;
   }
   
   .custom-file-upload {
-    color: #6256d1;
+    color: var(--primary-color);
     font-size: 14px;
     display: flex;
     align-items: center;
@@ -161,7 +161,7 @@
   }
   
   .send-btn {
-    background-color: #6256d1;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 5px;

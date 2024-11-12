@@ -8,8 +8,6 @@
     display: flex;
     flex-direction: column;
     background-color: rgb(245, 238, 252);
-
-    
   }
   
 .container {
@@ -19,6 +17,9 @@
   }
   .input-group {
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
   
   .logo-upload {
@@ -48,11 +49,27 @@
     cursor: pointer;
     border: 1px solid #ccc;
   }
-  
+
+  .custom-color-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
   input[type="color"] {
-    width: 40px;
-    height: 40px;
+    -webkit-appearance: none;
     border: none;
+    padding: 0;
+    width: 30px;
+    height: 30px;    
+    border-radius: 50%;
+  }
+  input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;    
+    border-radius: 50%;
+  }
+  input[type="color"]::-webkit-color-swatch {
+    border-radius: 50%;
   }
   
   button {
@@ -112,12 +129,12 @@
   }
   
   .btn-primary {
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: white;
   }
   
   .btn-primary:hover {
-    background-color: #0056b3;
+    opacity: 0.8;
   }
   @media (max-width: 768px) {
     .container {

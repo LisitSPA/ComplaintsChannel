@@ -37,7 +37,7 @@
 }
 
 .user-info img:hover {
-  border-color: #4C3DB2; 
+  border-color: var(--primary-color); 
 }
 .user-info {
   display: flex;

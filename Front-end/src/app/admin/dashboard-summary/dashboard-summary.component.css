@@ -6,7 +6,6 @@
 
 .summary-card {
   background-color: #fdfdfd;
-  
   border-radius: 8px;
   flex: 1;
   display: flex;
@@ -16,26 +15,51 @@
   margin-top: 30px;
 }
 
+.active-card{
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, .25)), var(--primary-color);
+  color: #fff !important;
+}
+
 .summary-card:last-child {
   margin-right: 0;
 }
 
 .summary-content {
-  text-align: left;
-  margin-left: 24px;
- 
+  display: flex; 
+  align-items: center; 
+  flex-direction: row; 
+  justify-content: space-between;
+  padding: 10px 30px;
+  gap: 20px;
+  flex: 1;
 }
 
-.icon-container {
-  display: flex;
-  align-items: center; 
+.icon-selected {
+  --mat-icon-color: #fff !important;
+  color: #fff !important;
 }
 
 .summary-icon {
-  width: 50px; 
-  height: 50px; 
-  margin-right: 20px;
+  font-size: 50px;
+  width: 50px;
+  height: 50px;
+  overflow: visible; 
 }
+
+.summary-values-container {
+  display: flex;
+  padding: 0 20px;
+  flex-direction: column; 
+  align-items: flex-start;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.summary-values-container h2 {
+  margin: 0 !important;
+  color: var(--primary-color);
+}
+
 @media (max-width: 768px) {
   .summary-container {
     flex-direction: column; 

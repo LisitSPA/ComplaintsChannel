@@ -5,12 +5,15 @@
   box-sizing: border-box;
 }
 
-::ng-deep :root {
-  --mdc-radio-selected-focus-icon-color: #4C3DB2 !important;
-  --mdc-radio-selected-hover-icon-color: #4C3DB2 !important;
-  --mdc-radio-selected-icon-color: #4C3DB2 !important;
-  --mdc-radio-selected-pressed-icon-color: #4C3DB2 !important;
-  --mat-radio-checked-ripple-color: #4C3DB2 !important;
+:root {
+  --default-color: #4C3DB2;
+  --primary-color: var(--default-color);
+  --mat-icon-color: var(--primary-color);
+  --mdc-radio-selected-focus-icon-color: var(--primary-color) !important;
+  --mdc-radio-selected-hover-icon-color: var(--primary-color) !important;
+  --mdc-radio-selected-icon-color: var(--primary-color) !important;
+  --mdc-radio-selected-pressed-icon-color: var(--primary-color) !important;
+  --mat-radio-checked-ripple-color: var(--primary-color) !important;
 }
 
 .modal {
@@ -147,7 +150,7 @@ label {
 
 .next-btn {
   align-self: flex-end;
-  background: linear-gradient(to bottom, #786ca1, #371ec2);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, .25)), var(--primary-color);
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
@@ -214,7 +217,7 @@ button:disabled {
 
 .back-btn {
   align-self: flex-end;
-  background: linear-gradient(to bottom, #605b75, #4f4880);
+  background: linear-gradient(to right, rgba(255, 255, 255, .25), rgba(255, 255, 255, .3)), var(--primary-color);
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
@@ -228,21 +231,20 @@ button:disabled {
 }
 
 .next-btn:hover {
-  background-color: #6653aa;
+  background-color: var(--primary-color);
+  opacity: 0.9;
 }
 
 .denuncia-btn,
 .ver-mas-btn {
-  border: 1px solid #371ec2;
+  border: 1px solid var(--primary-color);
   background-color: white;
   padding: 10px 20px;
   border-radius: 20px;
-  color: #371ec2;
+  color: var(--primary-color);
   cursor: pointer;
   font-family: 'Open Sans';
-
 }
-
 
 section {
   display: table;
@@ -277,7 +279,7 @@ section {
 }
 
 .denuncia-btn:hover {
-  background-color: #371ec2;
+  background-color: var(--primary-color);
   color: white;
 }
 
@@ -331,7 +333,7 @@ input[type="date"] {
 }
 
 .violet {
-  color: #371ec2;
+  color: var(--primary-color);
   font-weight: 500;
   text-decoration: underline;
 }
