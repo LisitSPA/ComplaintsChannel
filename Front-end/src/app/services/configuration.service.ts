@@ -32,7 +32,7 @@ export class ConfigurationService {
     if (data.logo)
       formData.append('logo', data.logo, data.logo.fileName);
 
-    return this.http.post<any>(this.apiUrl, formData, {headers});
+    return this.http.post<any>('https://cdd-api.lisit-digital.cl/api/configuration', formData, {headers});
   }
   
   updateDefaultColor(color?: string): void {

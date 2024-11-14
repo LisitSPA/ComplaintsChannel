@@ -56,7 +56,7 @@
 
       <div class="example-button-row flex-end">
         <!-- <button class="back-btn" mat-raised-button>Volver</button> -->
-        <button class="next-btn" mat-raised-button [disabled]="!reasons.length && !incidentDate && !description" (click)="guardarYRedirigir()">Siguiente</button>
+        <button class="next-btn" [disabled]="!reasons.length && !incidentDate && !description" (click)="guardarYRedirigir()">Siguiente</button>
       </div>
 
       <br>

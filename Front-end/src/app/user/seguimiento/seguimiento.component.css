@@ -67,18 +67,6 @@ h3 {
   margin-top: 10px;
 }
 
-.step {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #e0e0e0;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 10px;
-}
-
 .step_ok {
   width: 40px;
   height: 40px;
@@ -90,10 +78,6 @@ h3 {
   justify-content: center;
   align-items: center;
   margin-right: 10px;
-}
-
-.step.active {
-  background-color: #4c3db2;
 }
 
 .divider {
@@ -170,18 +154,13 @@ h3 {
   color: green;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   body {
     margin: 20px 10px;
   }
 
   .mantenedor-item {
     width: 100%;
-  }
-
-  .step {
-    width: 30px;
-    height: 30px;
   }
 
   h2 {
@@ -204,7 +183,7 @@ input[type="text"] {
   box-sizing: border-box;
   height: 40px;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   body {
     margin: 10px 10px;
   }
@@ -212,11 +191,6 @@ input[type="text"] {
   .mantenedor-item {
     width: 100%;
     margin-bottom: 15px;
-  }
-
-  .step {
-    width: 30px;
-    height: 30px;
   }
 
   h2 {
@@ -241,14 +215,9 @@ input[type="text"] {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   body {
     margin: 5px;
-  }
-
-  .step {
-    width: 25px;
-    height: 25px;
   }
 
   h2 {

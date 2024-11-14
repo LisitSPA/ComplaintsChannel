@@ -185,7 +185,7 @@ body {
   height: 20px;
   margin-right: 8px; 
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .table-container {
     width: 100%;
     margin-left: 0;
@@ -229,7 +229,7 @@ body {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   .table th, .table td {
     font-size: 10px;
     padding: 5px;

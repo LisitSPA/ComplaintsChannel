@@ -1,16 +1,10 @@
 .container {
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 100vh;
   background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
-  padding: 20px;
-  box-sizing: border-box;
 }
-.step.active {
-  background-color: var(--default-color);
-  font-family: 'Open Sans';
-}
+
 .report-card {
   position: relative;
   display: flex;
@@ -21,9 +15,10 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 80%;
   max-width: 1200px;
-  max-height: 80vh; 
-  overflow-y: auto; 
+  max-height: 85vh;
+  overflow-y: auto;
   box-sizing: border-box;
+  margin-top: 100px;
 }
 
 .back-btn {
@@ -134,7 +129,7 @@ textarea {
   text-decoration: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .container {
       flex-direction: column;
       justify-content: flex-start;
@@ -165,7 +160,7 @@ textarea {
 }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   .container {
       padding: 10px;
   }

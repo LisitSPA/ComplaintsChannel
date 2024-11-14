@@ -27,7 +27,7 @@ export type ViewMode = 'realizadas' | 'desestimadas';
     ChangeStatePopupComponent,
     RouterLink,
     MatMenuModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   templateUrl: './denuncias-table.component.html',
   styleUrl: './denuncias-table.component.css',
@@ -82,14 +82,12 @@ export class DenunciasTableComponent implements OnInit {
 
     this.route.paramMap.subscribe((params) => {
       this.selectedStatus = params.get('status') ?? '';
-      selectedViewMode = (params.get('viewMode') as ViewMode);
+      selectedViewMode = params.get('viewMode') as ViewMode;
     });
-    
-    if (selectedViewMode)
-      this.changeViewMode(selectedViewMode)
 
-    if (this.selectedStatus) 
-      this.filtrarPorEstado();
+    if (selectedViewMode) this.changeViewMode(selectedViewMode);
+
+    if (this.selectedStatus) this.filtrarPorEstado();
   }
 
   loadRealizadas() {
@@ -163,12 +161,9 @@ export class DenunciasTableComponent implements OnInit {
   }
 
   filtrarPorOtro() {
-    if (this.selectedFiltro) {
-      this.denuncias = this.denuncias.sort((a, b) => b.id - a.id);
-      this.updatePaginated();
-    } else {
-      this.loadRealizadas();
-    }
+    this.denuncias = this.denuncias.sort((a, b) => b.id - a.id);
+    this.updatePaginated();
+    this.goToPage(1);
   }
 
   initChangeState(id: number, isReject: boolean) {

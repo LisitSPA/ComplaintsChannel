@@ -91,7 +91,7 @@
 .desestimar:hover {
     background-color: #5d54c2;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .header {
       flex-direction: column; 
       height: auto; 

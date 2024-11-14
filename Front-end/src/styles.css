@@ -269,6 +269,7 @@ section {
 .example-flex-container {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -314,8 +315,15 @@ input[type="date"] {
   justify-content: center;
   align-items: center;
   margin-right: 10px;
-  font-family: 'Open Sans';
+}
 
+.step.active {
+  background-color: var(--default-color);
+}
+
+.step.passed {
+  background-color: var(--default-color);
+  opacity: 0.75;
 }
 
 .separator {
@@ -346,4 +354,18 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@media (max-width: 767px) {
+  .step {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 479px) {
+  .step {
+    width: 25px;
+    height: 25px;
+  }
 }

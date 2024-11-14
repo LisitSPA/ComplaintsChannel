@@ -83,7 +83,7 @@
   
 
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .informacion {
       margin-left: 20px;
       margin-right: 20px;
@@ -121,7 +121,7 @@
     }
   }
   
-  @media (max-width: 480px) {
+  @media (max-width: 479px) {
     .informacion {
       margin-left: 10px;
       margin-right: 10px;

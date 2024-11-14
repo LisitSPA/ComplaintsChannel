@@ -67,7 +67,7 @@ p {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .funcionamiento-tittle {
     font-size: 2em;
     padding-top: 18%;
@@ -87,7 +87,7 @@ p {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   .funcionamiento-tittle {
     font-size: 1.5em; 
   }

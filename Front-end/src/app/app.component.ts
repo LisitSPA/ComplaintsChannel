@@ -80,18 +80,18 @@
         }
 
     
-        translatePage() {
-          const elementsToTranslate = document.querySelectorAll('body *');  
+        // translatePage() {
+        //   const elementsToTranslate = document.querySelectorAll('body *');  
       
-          elementsToTranslate.forEach(element => {
-            if (element.textContent && element.textContent.trim()) {
-              this.translateService.translateText(element.textContent, this.selectedLanguage)
-                .subscribe(translatedText => {
-                  element.textContent = translatedText;
-                }, error => {
-                  console.error('Error en la traducción:', error);
-                });
-            }
-          });
-        }
+        //   elementsToTranslate.forEach(element => {
+        //     if (element.textContent && element.textContent.trim()) {
+        //       this.translateService.translateText(element.textContent, this.selectedLanguage)
+        //         .subscribe(translatedText => {
+        //           element.textContent = translatedText;
+        //         }, error => {
+        //           console.error('Error en la traducción:', error);
+        //         });
+        //     }
+        //   });
+        // }
   }

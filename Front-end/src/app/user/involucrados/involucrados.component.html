@@ -1,7 +1,7 @@
 <div class="container">
   <div class="report-card">
     <div class="progress-indicator">
-      <div class="step">1</div><label>Información general</label>
+      <a href="/report"><div class="step passed">1</div></a><label>Información general</label>
       <div class="separator"></div> 
       <div class="step active">2</div> <label style="color:var(--default-color); font-weight: bold;">Involucrados</label>
       <div class="separator"></div> 
@@ -70,9 +70,9 @@
         <textarea id="incident-details" placeholder="Esta persona es alta de tes blanca..." [(ngModel)]="personDescription"></textarea>
       </div>
      
-      <div class="example-button-row flex-end">
-        <button class="back-btn" mat-raised-button (click)="goBack()">Volver</button>
-        <button class="next-btn" [disabled]="!personDescription && !personasSeleccionadas.length" mat-raised-button (click)="guardarDatosYRedirigir($event)" href="javascript:void(0)">Siguiente</button>
+      <div class="example-flex-container flex-end">
+        <button class="back-btn" (click)="goBack()">Volver</button>
+        <button class="next-btn" [disabled]="!personDescription && !personasSeleccionadas.length" (click)="guardarDatosYRedirigir($event)" href="javascript:void(0)">Siguiente</button>
       </div>
       <br>
     </div>

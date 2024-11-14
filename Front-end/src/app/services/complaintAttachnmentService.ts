@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComplaintAttachmentService {
-  private apiUrl = 'https://cdd-api.lisit-digital.cl/api/complaints/attachments';
+  private apiUrl = `${environment.apiUrl}/complaints/attachments/`;
 
   constructor(private http: HttpClient) {}
 

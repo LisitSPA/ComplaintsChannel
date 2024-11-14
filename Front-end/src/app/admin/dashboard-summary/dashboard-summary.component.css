@@ -13,6 +13,7 @@
   align-items: center; 
   margin-right: 22px;
   margin-top: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
 }
 
 .active-card{
@@ -60,7 +61,7 @@
   color: var(--primary-color);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .summary-container {
     flex-direction: column; 
     align-items: center; 
@@ -78,7 +79,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   .summary-card {
     padding: 15px; 
   }

@@ -1,5 +1,5 @@
 import { CommonModule, NgFor } from '@angular/common';
-import { Component, Input, input, OnInit } from '@angular/core';
+import { Component, Input, input, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChatService } from '../../services/chat.service';
 import { MatIcon } from '@angular/material/icon';
@@ -12,20 +12,22 @@ import { MatDialogModule} from '@angular/material/dialog';
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css'
 })
-export class ChatComponent implements OnInit{
-
-  
+export class ChatComponent implements OnInit, OnDestroy {
   @Input() complaint : any = []
   @Input() chat : any[] = []
   @Input() fromUser : boolean = false;
   message: string = '';
   filesUrl: any = 'Evidences/';
   file: any;
+  timeout: any;
 
   constructor(
     private chatService : ChatService
   ){
 
+  }
+  ngOnDestroy(): void {
+    clearTimeout(this.timeout);
   }
   
   ngOnInit(): void {
@@ -48,7 +50,7 @@ export class ChatComponent implements OnInit{
   async getChat() {
    
     this.chat = await this.chatService.getChatByComplaintCode(this.complaint.trackingCode);
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.getChat();
     }, 2000)
   }

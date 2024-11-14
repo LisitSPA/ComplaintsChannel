@@ -282,7 +282,7 @@ app-sidebar-admin {
   font-weight: bold;
   color: var(--primary-color);
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 
   .toolbar {
     flex-direction: column;
@@ -342,7 +342,7 @@ app-sidebar-admin {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   .table th, .table td {
     font-size: 12px; 
     padding: 6px;

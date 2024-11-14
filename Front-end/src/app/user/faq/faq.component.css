@@ -38,7 +38,7 @@
   max-width: 50%; 
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .faq-title {
     font-size: 1em; 
     padding: 15px 10px; 

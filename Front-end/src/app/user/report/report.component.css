@@ -1,7 +1,6 @@
 .container {
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 100vh;
   background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
 }
@@ -15,8 +14,11 @@
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 80%;
-  height: 70%;
-  overflow-y: scroll;
+  max-width: 1200px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  margin-top: 100px;
 }
 
 .progress-indicator {
@@ -25,11 +27,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-.step.active {
-  background-color: var(--default-color);
-  font-family: 'Open Sans';
 }
 
 .separator {
@@ -190,7 +187,7 @@ textarea {
   padding-left: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .container {
     flex-direction: column;
     justify-content: flex-start;
@@ -221,7 +218,7 @@ textarea {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   .container {
     padding: 10px;
   }

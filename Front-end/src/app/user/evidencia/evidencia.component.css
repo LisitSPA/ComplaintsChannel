@@ -1,10 +1,8 @@
 .container {
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 100vh;
-  background: url("/images/Bg_usuario.png") no-repeat top left / 100% 60%,
-    white 40%;
+  background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
 }
 
 .report-card {
@@ -17,6 +15,10 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 80%;
   max-width: 1200px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  margin-top: 100px;
 }
 
 .progress-indicator {
@@ -27,25 +29,9 @@
   align-items: center;
 }
 
-.step {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #e0e0e0;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 10px;
-}
-
-.step.active {
-  background-color: var(--default-color);
-}
-
 .content-section {
   flex: 1;
-  padding: 30px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
   margin-left: 20px;
   display: flex;
   flex-direction: column;
@@ -204,7 +190,7 @@ p {
   opacity: 0.9;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .upload-box {
     border: 2px dashed var(--default-color);
     width: 120px;
@@ -242,11 +228,6 @@ p {
     justify-content: center;
   }
 
-  .step {
-    width: 30px;
-    height: 30px;
-  }
-
   .info-section {
     width: 100%;
     margin-top: 20px;
@@ -257,7 +238,7 @@ p {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 479px) {
   .container {
     padding: 10px;
   }
@@ -266,11 +247,6 @@ p {
     width: 100%;
     padding: 10px;
     height: auto;
-  }
-
-  .step {
-    width: 25px;
-    height: 25px;
   }
 
   .info-section {

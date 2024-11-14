@@ -107,7 +107,7 @@
   font-family: 'Rubik', sans-serif;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .overlay-image {
     width: 80%;
   }
@@ -193,7 +193,7 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .image-container {
     bottom: 20px;
   }

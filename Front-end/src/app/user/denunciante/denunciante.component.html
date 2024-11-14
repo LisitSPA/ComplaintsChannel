@@ -1,9 +1,9 @@
 <div class="container">
   <div class="report-card">
     <div class="progress-indicator">
-      <div class="step">1</div><label>Información general</label>
+      <a href="/report"><div class="step passed">1</div></a><label>Información general</label>
       <div class="separator"></div> 
-      <div class="step">2</div><label>Involucrados</label>
+      <a href="/involucrados"><div class="step passed">2</div></a><label>Involucrados</label>
       <div class="separator"></div> 
       <div class="step active">3</div><label style="color:var(--default-color); font-weight: bold;">Denunciante</label>
       <div class="separator"></div> 
@@ -43,8 +43,8 @@
         </div> -->
       </div>
       <div class="example-button-row flex-end">
-        <button class="back-btn" mat-raised-button (click)="goBack()">Volver</button>
-        <button class="next-btn"  mat-raised-button [disabled]="submit || !contactEmail" (click)="guardarYRedirigir()">
+        <button class="back-btn" (click)="goBack()">Volver</button>
+        <button class="next-btn" [disabled]="submit || !contactEmail" (click)="guardarYRedirigir()">
           <span *ngIf="!submit">Siguiente</span>
           <mat-progress-spinner *ngIf="submit" [diameter]="24" mode="indeterminate"></mat-progress-spinner>
         </button>
