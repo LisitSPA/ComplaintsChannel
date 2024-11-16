@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import { ConfigurationService } from '../../../services/configuration.service';
-import { environment } from '../../../../environment/environment';
+import { ConfigurationService } from '../../services/configuration.service';
+import { environment } from '../../../environment/environment';
 
 
 @Component({
@@ -31,7 +31,6 @@ export class SidebarAdmin {
   getConfiguration(): void {
     this.configurationService.getConfiguration().subscribe(
       (data: any) => {
-        console.log('data:', { data });
         if (data?.content?.color) {
           this.configurationService.setColor = data.content.color;
         }

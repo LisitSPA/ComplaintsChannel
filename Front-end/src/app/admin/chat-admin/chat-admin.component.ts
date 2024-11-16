@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SidebarAdmin } from '../admin/sidebar-component/sidebar-admin.component';
+import { SidebarAdmin } from '../sidebar-component/sidebar-admin.component';
 import { ChatService } from '../../services/chat.service';
 import { ComplaintService } from '../../services/complaint.service';
 import { HttpParams } from '@angular/common/http';

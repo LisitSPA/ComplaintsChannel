@@ -33,7 +33,6 @@ export class ComplaintService {
       `${environment.apiUrl}/complaints/getAll`,{headers, params}
     )));
 
-    console.log({res});
     return res?.content;
   }
   
@@ -86,9 +85,7 @@ export class ComplaintService {
           `${environment.apiUrl}/complaints/${code}/${language}`
       ));
 
-      console.log({res});
       return res?.content;
-
   }
 
   getAllEvidences(code: string){

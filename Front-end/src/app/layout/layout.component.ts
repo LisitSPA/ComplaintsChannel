@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarAdmin } from "../admin/admin/sidebar-component/sidebar-admin.component";
+import { SidebarAdmin } from "../admin/sidebar-component/sidebar-admin.component";
 import { HeaderAdmin } from "../admin/header-component/header-admin.component";
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 

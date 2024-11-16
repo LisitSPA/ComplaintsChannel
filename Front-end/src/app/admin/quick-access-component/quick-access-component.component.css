@@ -1,17 +1,24 @@
 .quick-access {
   display: flex;
-  justify-content: flex-start; 
-  gap: 5px; 
+  justify-content: flex-start;
   align-items: flex-start;
   margin-bottom: 20px;
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  max-width: 110px;
+  padding: 14px;
+  flex: 1;
+  text-decoration: none;
+}
+
+.icon-container {
   position: relative;
-  background-color: var(--primary-color);
-  border-radius: 8px;
+  background-color: white;
+  border-radius: 4px;
   text-align: center;
-  width: 10%;
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
@@ -22,21 +29,20 @@
   margin: 5px; 
 }
 
-
-.card:hover {
+.icon-container:hover {
   transform: translateY(-5px);
 }
 
-
-.label {
-  position: absolute;
-  top: 110%;
-  font-size: 14px;
-  color: black;
-  /* color: var(--primary-color); */
-}
 .icon {
+  background-color: var(--primary-color);
   width: 40px; 
   height: 40px;
-  margin-bottom: 10px;
+  border-radius: 50%;
+  padding:7px;
+}
+
+.card p {
+  align-self: center;
+  text-align: center;
+  color: #000;
 }

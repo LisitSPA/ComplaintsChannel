@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserDataService } from '../../services/user-data.service';
 
 @Component({
   selector: 'app-header-admin',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderAdmin } from '../header-component/header-admin.component';
-import { SidebarAdmin } from '../admin/sidebar-component/sidebar-admin.component';
+import { SidebarAdmin } from '../sidebar-component/sidebar-admin.component';
 import { FormsModule } from '@angular/forms';
 import { DenunciasTableComponent, ViewMode } from "./denuncias-table/denuncias-table.component";
 import { ActivatedRoute, Router } from '@angular/router';

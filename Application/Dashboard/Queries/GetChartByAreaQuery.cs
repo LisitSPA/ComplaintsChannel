@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using Application.Dashboard.Queries.DTOs;
 using System.Linq.Dynamic.Core;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
+using Domain.Enums;
 
 
 
@@ -22,7 +22,7 @@ public record GetChartByAreaQuery : IRequest<Response<List<ChartDataDto>>>
 
 //HANDLER
 public class ChartByAreaQueryHandler(
-    IRepository<User> _repo
+    IRepository<ComplaintInvolved> _repo
     ) 
     : IRequestHandler<GetChartByAreaQuery, Response<List<ChartDataDto>>>
 {
@@ -33,14 +33,14 @@ public class ChartByAreaQueryHandler(
         try
         {
             var source = _repo.GetAll()
-                            .Where(x => x.EUserType == Domain.Enums.EUserType.Complainant)
-                            .GroupBy(x => x.Area)
-                            .Select(x => new ChartDataDto
-                            {
-                                Total = x.Count(),
-                                Name = x.Key
-                            })
-                            .ToList();
+                .Where(x => x.PersonInvolved.EUserType != EUserType.Complainant)
+                .GroupBy(x => x.PersonInvolved.Area)
+                .Select(x => new ChartDataDto
+                {
+                    Total = x.Count(),
+                    Name = x.Key
+                })
+                .ToList();
 
 
             result.Result = source;

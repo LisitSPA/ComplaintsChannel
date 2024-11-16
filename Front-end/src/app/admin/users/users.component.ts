@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderAdmin } from '../header-component/header-admin.component';
 import { EliminarUsuarioComponent } from '../../eliminar-usuario/eliminar-usuario.component';
 import { FormsModule } from '@angular/forms';  
-import { SidebarAdmin } from '../admin/sidebar-component/sidebar-admin.component';
+import { SidebarAdmin } from '../sidebar-component/sidebar-admin.component';
 import { UserService } from '../../services/user.service';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpParams } from '@angular/common/http';

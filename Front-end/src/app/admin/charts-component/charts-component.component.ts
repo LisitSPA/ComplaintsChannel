@@ -1,8 +1,9 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { ChartConfiguration, ChartData, ChartEvent } from 'chart.js';
+import { ChartConfiguration, ChartData, Colors } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { CommonModule } from '@angular/common';
 import { DashboardService } from '../../services/dashboard.service';
+import getPoolColors from '../../../utilities/getPoolColors';
 
 @Component({
   selector: 'app-charts-component',
@@ -15,22 +16,20 @@ export class ChartsAdmin implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective<'bar'> | undefined;
 
   public barChartData: ChartData<'bar'> = {
-    labels: [], 
-    datasets: [
-      { data: [], label: 'Denuncias por Área' },  
-    ],
+    labels: [],
+    datasets: [{ data: [], label: 'Denuncias por Área' }],
   };
 
   public doughnutChartData: ChartData<'doughnut'> = {
-    labels: [],  
-    datasets: [{ data: [] }], 
+    labels: [],
+    datasets: [{ data: [] }],
   };
 
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {
     scales: {
       x: {},
       y: {
-        min: 0, 
+        min: 0,
       },
     },
     plugins: {
@@ -42,51 +41,45 @@ export class ChartsAdmin implements OnInit {
   public barChartType = 'bar' as const;
 
   public doughnutChartType: 'doughnut' = 'doughnut';
- 
-  constructor(
-    private dashboardService: DashboardService
-  ) {}
 
+  constructor(private dashboardService: DashboardService) {}
 
   ngOnInit(): void {
     this.loadChartData();
     this.loadDoughnutChartData();
   }
-  
+
   loadChartData() {
-    this.dashboardService.getChartByArea().subscribe(
-      res => {
+    this.dashboardService.getChartByArea().subscribe((res) => {
+      let labels = res.content.map((x: any) =>
+        x.name == null ? 'Desconocida' : x.name
+      );
+      let data = res.content.map((x: any) => x.total);
 
-        let labels = res.content.map((x : any) => (x.name ));
-        let data = res.content.map((x : any) => ( x.total ))
-
-        this.barChartData = {
-          labels: labels, 
-          datasets: [
-            { data: data, label: 'Denuncias por Área' },  
-          ],
-        };
-         
-      }
-    )
+      this.barChartData = {
+        labels: labels,
+        datasets: [
+          {
+            data: data,
+            label: 'Denuncias por Área',
+            backgroundColor: getPoolColors(data.length),
+          },
+        ],
+      };
+    });
   }
 
-  loadDoughnutChartData(){
-    this.dashboardService.getChartByPosition().subscribe(
-      res => {
-      
-        let labels = res.content.map((x : any) => (x.name ));
-        let data = res.content.map((x : any) => ( x.total ))
+  loadDoughnutChartData() {
+    this.dashboardService.getChartByPosition().subscribe((res) => {
+      let labels = res.content.map((x: any) =>
+        x.name == null ? 'Desconocid' : x.name
+      );
+      let data = res.content.map((x: any) => x.total);
 
-        this.doughnutChartData = {
-          labels: labels,  
-          datasets: [{ data: data }], 
-        };
-      }
-    )
-
-    
+      this.doughnutChartData = {
+        labels: labels,
+        datasets: [{ data: data }],
+      };
+    });
   }
-
-
 }

@@ -14,7 +14,6 @@
   import { DenuncianteComponent } from './user/denunciante/denunciante.component';
   import { MisdatosComponent } from './user/misdatos/misdatos.component';
   import { FormsModule } from '@angular/forms'; 
-  import { ChartComponent } from 'chart.js';
   import { ReactiveFormsModule } from '@angular/forms';
   import { TrackingCodeComponent } from './user/tracking-code/tracking-code.component';
   import { SeguimientoComponent } from './user/seguimiento/seguimiento.component';
@@ -27,7 +26,7 @@
   import { ChatAdminComponent } from './admin/chat-admin/chat-admin.component';
   import { QuickAccessAdmin } from './admin/quick-access-component/quick-access-component.component';
   import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
-  import { SidebarAdmin } from './admin/admin/sidebar-component/sidebar-admin.component';
+  import { SidebarAdmin } from './admin/sidebar-component/sidebar-admin.component';
   import { HttpClientModule } from '@angular/common/http';
   import { TranslateService } from './services/translate.service';
 
@@ -59,8 +58,6 @@
           this.showHeaderFooter = !event.url.includes('admin');
           this.showAdminHeader = event.url.includes('admin');
           this.showAdminSidebar = event.url.includes('admin');
-
-         
         }
       });
 
