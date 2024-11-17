@@ -6,16 +6,16 @@ import { Router } from '@angular/router';
 import { ComplaintService } from '../../services/complaint.service';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatButtonModule} from '@angular/material/button';
+import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
 
 @Component({
   selector: 'app-report',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatGridListModule, MatButtonModule],
+  imports: [CommonModule, FormsModule, MatGridListModule, MatButtonModule, NotifierModule],
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
-  
   reasons: number[] = [];  
   description: string = '';
   incidentDate: string | undefined;
@@ -36,7 +36,8 @@ export class ReportComponent implements OnInit {
 
   constructor(
     private complaintDataService: ComplaintDataService, 
-    private complaintService: ComplaintService, 
+    private complaintService: ComplaintService,
+    private notifier: NotifierService,
     private router: Router,
   ) {
    
@@ -85,12 +86,21 @@ export class ReportComponent implements OnInit {
     }
   }
   
-  guardarYRedirigir() {
-    console.log('Datos que se van a guardar:', {
-      reasons: this.reasons,
-      description: this.description,
-      incidentDate: this.incidentDate
-    });
+  saveAndNext() {
+    if (!this.reasons.length) {
+      this.notifier.notify('error', 'Por favor selecciona al menos un motivo');
+      return;
+    }
+
+    if (!this.description) {
+      this.notifier.notify('error', 'Por favor ingresa una descripción');
+      return;
+    }
+
+    if (!this.incidentDate) {
+      this.notifier.notify('error', 'Por favor ingresa una fecha');
+      return;
+    }
 
     this.complaintDataService.setComplaintData({
       reasons: this.reasons,

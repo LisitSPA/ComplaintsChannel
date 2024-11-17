@@ -36,7 +36,7 @@
     standalone: true,
     imports: [  HttpClientModule, ChatAdminComponent, ConfigurationComponent,  DenunciasComponent, RouterOutlet,FaqComponent, FooterComponent,HeaderComponent,HomeComponent, HowItWorksComponent, InformationComponent, LoginComponent, CommonModule,ReportComponent,InvolucradosComponent,
       EvidenciaComponent, DenuncianteComponent, MisdatosComponent, FormsModule, HomeAdminComponent, ChartsAdmin, QuickAccessAdmin, SidebarAdmin,
-      ReactiveFormsModule, TrackingCodeComponent, SeguimientoComponent, HeaderAdmin, BaseChartDirective,  UsersComponent,
+      ReactiveFormsModule, TrackingCodeComponent, SeguimientoComponent, HeaderAdmin, BaseChartDirective,  UsersComponent, 
     ],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],

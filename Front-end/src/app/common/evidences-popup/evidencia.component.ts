@@ -8,13 +8,14 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { ComplaintService } from '../../services/complaint.service';
 import { MatIconModule } from '@angular/material/icon';
+import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
 
 @Component({
   selector: 'app-evidencia-popup',
   standalone: true,
   templateUrl: './evidencia.component.html',
   styleUrl: './evidencia.component.css',
-  imports: [CommonModule, MatProgressSpinnerModule, FormsModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, MatProgressSpinnerModule, FormsModule, MatButtonModule, MatIconModule, NotifierModule],
 
 })
 export class EvidenciaPopupComponent {
@@ -28,7 +29,7 @@ export class EvidenciaPopupComponent {
   notes: any;
 
   constructor(
-    private complaintAttachmentService: ComplaintAttachmentService,
+    private notifier: NotifierService,
     private complaintService: ComplaintService,
     private dataService : ComplaintDataService,
     private router: Router
@@ -47,7 +48,12 @@ export class EvidenciaPopupComponent {
 
   onSubmit(): void {
     if (this.archivosSeleccionados.length === 0) {
-      alert('Por favor selecciona archivos');
+      this.notifier.notify('error', 'Por favor selecciona al menos un archivo');
+      return;
+    }
+
+    if (!this.notes) {
+      this.notifier.notify('error', 'Por favor ingresa una nota');
       return;
     }
 
@@ -61,27 +67,15 @@ export class EvidenciaPopupComponent {
       attachments: this.archivosSeleccionados
     };
 
-    // this.complaintAttachmentService.uploadAttachments(complaint.Id, this.archivosSeleccionados, ["evidencia al desestimar la denuncia"])
-    // .subscribe(
-    //   (response) => {
-    //     console.log('Archivos subidos con éxito:', response);
-    //   },
-    //   (error) => {
-    //     console.error('Error al subir archivos:', error);
-    //     this.submit = false;
-    //   }
-    // );
-
     this.complaintService.updateStatus(data).subscribe(
       (response) => {
-        console.log('Denuncia actualizada correctamente:', response);
+        this.notifier.notify('success', 'Denuncia actualizada correctamente');
         this.guardar.emit();
       },
       (error) => {
+        this.notifier.notify('error', 'Error al actualizar la denuncia');
         console.error('Error al actulizar la denuncia:', error);
       }
     );
-
-
   }
 }

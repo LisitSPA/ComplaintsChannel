@@ -73,7 +73,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 50px;
+  margin-top: 10px;
 }
 
 .pagination button {
@@ -184,8 +184,14 @@ app-sidebar-admin {
 }
 
 .desestimar-btn {
+  --mat-icon-color: #fff !important;
   color: white;
   background-color: var(--primary-color);
+}
+
+.btn-link {
+  --mat-icon-color: var(--mdc-text-button-label-text-color) !important;
+  color: var(--mdc-text-button-label-text-color) !important;
 }
 
 .desestimar-btn:hover {
@@ -325,6 +331,7 @@ app-sidebar-admin {
   }
 
   .pagination {
+    margin-top: 10px;
     flex-direction: column;
     gap: 10px;
   }

@@ -25,12 +25,9 @@
         <input type="color" class="color-circle" [(ngModel)]="customColor" (change)="setColor(customColor)" />
       </div>
     </div>
-    <br>
-    <p *ngIf="errorMessage" class="text-danger mt-3">{{ errorMessage }}</p>
-    <p *ngIf="successMessage" class="text-success mt-3">{{ successMessage }}</p>  
     
     <button class="btn btn-primary" (click)="guardarConfiguracion()">Guardar</button>
 </div>
 
-
+<notifier-container />
   

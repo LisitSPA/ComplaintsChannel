@@ -72,7 +72,7 @@
      
       <div class="example-flex-container flex-end">
         <button class="back-btn" (click)="goBack()">Volver</button>
-        <button class="next-btn" [disabled]="!personDescription && !personasSeleccionadas.length" (click)="guardarDatosYRedirigir($event)" href="javascript:void(0)">Siguiente</button>
+        <button class="next-btn" (click)="saveAndNext($event)">Siguiente</button>
       </div>
       <br>
     </div>
@@ -84,3 +84,5 @@
     </div>
   </div>
 </div>
+
+<notifier-container />

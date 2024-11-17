@@ -6,6 +6,7 @@
 }
 
 :root {
+  --text-link-color: #538bc5;
   --default-color: #4C3DB2;
   --primary-color: var(--default-color);
   --mat-icon-color: var(--primary-color);
@@ -49,7 +50,6 @@ select {
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 14px;
-  margin-left: 10px;
 }
 
 
@@ -304,6 +304,16 @@ input[type="date"] {
 
 }
 
+.notifier__container {
+  position: absolute !important;
+}
+
+.notifier__container,
+.notifier__container-list,
+.notifier__container-list-item,
+.notifier__notification {
+  z-index: 1000 !important;
+}
 
 .step {
   width: 40px;

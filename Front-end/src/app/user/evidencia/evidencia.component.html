@@ -62,14 +62,17 @@
         <button mat-raised-button *ngFor="let file of archivosSeleccionados" class="badge-btn badge-purple-btn">{{ file.name }}</button>
       </div>
 
-      <button class="next-btn" [disabled]="submit" (click)="onSubmit()">
-        <span *ngIf="!submit">Siguiente</span>
-        <mat-progress-spinner
-          *ngIf="submit"
-          [diameter]="24"
-          mode="indeterminate"
-        ></mat-progress-spinner>
-      </button>
+      <div class="btn-container">
+        <button class="back-btn" [disabled]="submit" (click)="goBack()">Volver</button>
+        <button class="next-btn" [disabled]="submit" (click)="onSubmit()">
+          <span *ngIf="!submit">Siguiente</span>
+          <mat-progress-spinner
+            *ngIf="submit"
+            [diameter]="24"
+            mode="indeterminate"
+          ></mat-progress-spinner>
+        </button>
+      </div>
       <br />
     </div>
 
@@ -87,3 +90,5 @@
     </div>
   </div>
 </div>
+
+<notifier-container />

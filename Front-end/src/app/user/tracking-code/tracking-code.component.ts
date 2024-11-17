@@ -1,20 +1,26 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormsModule, FormControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormsModule,
+  FormControl,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ComplaintService } from '../../services/complaint.service';
+import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
 
 @Component({
   selector: 'app-tracking-code',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, NotifierModule],
   templateUrl: './tracking-code.component.html',
-  styleUrl: './tracking-code.component.css'
+  styleUrl: './tracking-code.component.css',
 })
 export class TrackingCodeComponent {
   trackForm: FormGroup;
-  mensajeError: any;
   complaint: any = [];
 
   @ViewChild('input1') input1!: ElementRef;
@@ -23,12 +29,14 @@ export class TrackingCodeComponent {
   @ViewChild('input4') input4!: ElementRef;
   @ViewChild('input5') input5!: ElementRef;
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private route: Router,
-    private complaintService: ComplaintService
+    private complaintService: ComplaintService,
+    private notifier: NotifierService
   ) {
     this.trackForm = this.fb.group({
-      trackCode: ['', [Validators.required, Validators.minLength(6)]]
+      trackCode: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
   trackingForm = new FormGroup({
@@ -36,22 +44,20 @@ export class TrackingCodeComponent {
     digit2: new FormControl(''),
     digit3: new FormControl(''),
     digit4: new FormControl(''),
-    digit5: new FormControl('')
+    digit5: new FormControl(''),
   });
 
   async onSubmit() {
     let code = `${this.trackingForm.value.digit1}${this.trackingForm.value.digit2}${this.trackingForm.value.digit3}${this.trackingForm.value.digit4}${this.trackingForm.value.digit5}`;
-   
-    this.mensajeError = ""
 
-    if(code)
-      this.complaint = await this.complaintService.getComplaintByCode(code, "es");
-     
-     if(this.complaint)
-        this.route.navigate(['seguimiento/'+code]);
-      else
-        this.mensajeError = "Código incorrecto" 
-   
+    if (code)
+      this.complaint = await this.complaintService.getComplaintByCode(
+        code,
+        'es'
+      );
+
+    if (this.complaint) this.route.navigate(['seguimiento/' + code]);
+    else this.notifier.notify('error', 'Código de seguimiento incorrecto');
   }
 
   onInput(event: Event, inputNumber: number) {
@@ -62,22 +68,22 @@ export class TrackingCodeComponent {
   }
 
   onKeydown(event: KeyboardEvent, inputNumber: number) {
-    if (event.key === 'Backspace' && (event.target as HTMLInputElement).value === '') {
+    if (
+      event.key === 'Backspace' &&
+      (event.target as HTMLInputElement).value === ''
+    ) {
       this.focusPreviousInput(inputNumber);
     }
   }
 
   focusNextInput(inputNumber: number) {
     const nextInput = document.querySelectorAll('input')[inputNumber + 1];
-      if (nextInput) 
-        (nextInput as HTMLInputElement).focus();
+    if (nextInput) (nextInput as HTMLInputElement).focus();
   }
 
-  
   focusPreviousInput(inputNumber: number) {
     const nextInput = document.querySelectorAll('input')[inputNumber + 1];
-    if (nextInput) 
-      (nextInput as HTMLInputElement).focus();
+    if (nextInput) (nextInput as HTMLInputElement).focus();
   }
 
   onPaste(event: ClipboardEvent) {
@@ -96,5 +102,4 @@ export class TrackingCodeComponent {
     if (otpArray[3]) this.trackingForm.controls.digit4.setValue(otpArray[3]);
     if (otpArray[4]) this.trackingForm.controls.digit5.setValue(otpArray[4]);
   }
-
 }

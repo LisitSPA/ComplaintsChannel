@@ -13,6 +13,7 @@ import { EvidenciaPopupComponent } from '../../../common/evidences-popup/evidenc
 import { ComplaintDataService } from '../../../services/complaint-data.service';
 import { requestStates } from '../../../../constants/requestState';
 import { ChangeStatePopupComponent } from '../../../common/change-state/changeState.component';
+import { NotifierService } from 'gramli-angular-notifier';
 
 export type ViewMode = 'realizadas' | 'desestimadas';
 @Component({
@@ -52,6 +53,7 @@ export class DenunciasTableComponent implements OnInit {
   constructor(
     private complaintService: ComplaintService,
     private complaintDataService: ComplaintDataService,
+    private notifier: NotifierService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -177,6 +179,10 @@ export class DenunciasTableComponent implements OnInit {
 
   goToChat(denunciaId: any) {
     this.router.navigate(['chatadmin', denunciaId]);
+  }
+
+  showDetail(denunciaId: number) {
+    this.notifier.notify('success', `You are awesome! I mean it! ${denunciaId}`);
   }
 
   getBadgeClass(status: number) {

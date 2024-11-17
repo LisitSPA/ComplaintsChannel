@@ -50,6 +50,11 @@
   font-size: large;
 }
 
+.notifier-container {
+  z-index: 1000 !important;
+  position: absolute;
+}
+
 .sidebar .sidebar-section {
   background-color: var(--primary-color);
   width: 100%;

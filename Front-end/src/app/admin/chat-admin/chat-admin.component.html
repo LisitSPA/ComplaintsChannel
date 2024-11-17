@@ -48,9 +48,7 @@
 
         <textarea placeholder="Escribe tu respuesta aquí" [(ngModel)]="responseMessage"></textarea>
 
-        <button class="respuesta-btn" [disabled]="!status && responseMessage"  (click)="updateComplaint()">Actualizar denuncia</button>
-        <span *ngIf="mensajeError" class="text-danger mt-3">{{ mensajeError }}</span>
-        <span *ngIf="mensajeExito" class="text-success mt-3">{{ mensajeExito }}</span>
+        <button class="respuesta-btn" [disabled]="!status && responseMessage"  (click)="updateComplaint()" [disabled]="isLoading">Actualizar denuncia</button>
       </div>
     </div>
   </div>

@@ -21,21 +21,18 @@
       <div class="denuncia-options" *ngIf="reasonsList.length ">
         <div>
           <button class="denuncia-btn" *ngFor="let reason of reasonsList.slice(0,3)"
-                  [ngClass]="{'selected': reasons.includes(reason.id)}"
-                  (click)="toggleReasonSelection(reason.id)">
+            [ngClass]="{'selected': reasons.includes(reason.id)}" (click)="toggleReasonSelection(reason.id)">
             {{ reason.description }}
           </button>
         </div>
 
-      <button class="ver-mas-btn" (click)="toggleDropdown()">
-        {{ mostrarDropdown ? 'Ver menos' : 'Ver más' }}
-      </button>
+        <button class="ver-mas-btn" (click)="toggleDropdown()">
+          {{ mostrarDropdown ? 'Ver menos' : 'Ver más' }}
+        </button>
 
         <div *ngIf="mostrarDropdown" class="more-reasons">
           <label *ngFor="let reason of reasonsList.slice(3)">
-            <input type="checkbox" 
-                  [checked]="reasons.includes(reason.id)"
-                  (change)="toggleReasonSelection(reason.id)">
+            <input type="checkbox" [checked]="reasons.includes(reason.id)" (change)="toggleReasonSelection(reason.id)">
             {{ reason.description }}
           </label>
         </div>
@@ -46,7 +43,8 @@
       <div class="incident-description">
         <h2>Descripción del incidente</h2>
         <h3 for="incident-details">Cuéntanos qué ha sucedido</h3>
-        <textarea id="incident-details" [(ngModel)]="description" placeholder="He presenciado una desviación contable..."></textarea>
+        <textarea id="incident-details" [(ngModel)]="description"
+          placeholder="He presenciado una desviación contable..."></textarea>
 
         <div class="incident-date">
           <h3 for="incident-date">Fecha del Incidente</h3>
@@ -55,8 +53,7 @@
       </div>
 
       <div class="example-button-row flex-end">
-        <!-- <button class="back-btn" mat-raised-button>Volver</button> -->
-        <button class="next-btn" [disabled]="!reasons.length && !incidentDate && !description" (click)="guardarYRedirigir()">Siguiente</button>
+        <button class="next-btn" (click)="saveAndNext()">Siguiente</button>
       </div>
 
       <br>
@@ -69,3 +66,5 @@
     </div>
   </div>
 </div>
+
+<notifier-container />

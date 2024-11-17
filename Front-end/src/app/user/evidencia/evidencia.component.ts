@@ -1,37 +1,55 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ComplaintAttachmentService } from '../../services/complaintAttachnmentService';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ComplaintDataService } from '../../services/complaint-data.service';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { ComplaintService } from '../../services/complaint.service';
+import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
 
 @Component({
   selector: 'app-evidencia',
   standalone: true,
   templateUrl: './evidencia.component.html',
   styleUrl: './evidencia.component.css',
-  imports: [CommonModule, MatProgressSpinnerModule, MatIconModule, FormsModule, MatButtonModule],
-
+  imports: [
+    CommonModule,
+    MatProgressSpinnerModule,
+    MatIconModule,
+    FormsModule,
+    MatButtonModule,
+    NotifierModule,
+  ],
 })
-export class EvidenciaComponent {
+export class EvidenciaComponent implements OnInit {
   archivosSeleccionados: File[] = [];
-  descripcionesArchivos: string = "";
+  descripcionesArchivos: string = '';
   descripcionGeneral: string = '';
   submit: boolean = false;
 
   constructor(
     private complaintAttachmentService: ComplaintAttachmentService,
-    private dataService : ComplaintDataService,
+    private complaintDataService: ComplaintDataService,
+    private complaintService: ComplaintService,
+    private notifier: NotifierService,
     private router: Router
   ) {}
+
+  ngOnInit(): void {
+    var currentComplaintData = this.complaintDataService.getComplaintData();
+    if (!currentComplaintData || !currentComplaintData.contactEmail)
+      this.goBack();
+  }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input?.files) {
-      this.archivosSeleccionados = this.archivosSeleccionados.concat(Array.from(input.files));
+      this.archivosSeleccionados = this.archivosSeleccionados.concat(
+        Array.from(input.files)
+      );
     }
   }
 
@@ -41,29 +59,51 @@ export class EvidenciaComponent {
 
   onSubmit(): void {
     if (this.archivosSeleccionados.length === 0) {
-      alert('Por favor selecciona archivos');
+      this.notifier.notify('error', 'Por favor selecciona archivos');
       return;
-      // this.router.navigate(['/successreport']);
     }
 
     if (!this.descripcionesArchivos) {
-      alert('Por favor ingresa una descripción');
+      this.notifier.notify('error', 'Por favor ingresa una descripción');
       return;
     }
 
-    let complaint = this.dataService.getComplaintData();
+    let complaint = this.complaintDataService.getComplaintData();
     this.submit = true;
 
-    this.complaintAttachmentService.uploadAttachments(complaint.Id, this.archivosSeleccionados, this.descripcionesArchivos)
+    this.complaintService.createComplaint(complaint).subscribe(
+      (response) => {
+        this.complaintDataService.setId(response.content);
+        this.saveAttachments(response.content);
+      },
+      (error) => {
+        this.notifier.notify('error', 'Error al enviar la denuncia');
+        console.error('Error al enviar la denuncia:', error);
+        this.submit = false;
+      }
+    );
+  }
+
+  saveAttachments(complaintId: number): void {
+    this.complaintAttachmentService
+      .uploadAttachments(
+        complaintId,
+        this.archivosSeleccionados,
+        this.descripcionesArchivos
+      )
       .subscribe(
         (response) => {
-          console.log('Archivos subidos con éxito:', response);
           this.router.navigate(['/successreport']);
         },
         (error) => {
+          this.notifier.notify('error', 'Error al subir archivos');
           console.error('Error al subir archivos:', error);
           this.submit = false;
         }
       );
+  }
+
+  goBack() {
+    this.router.navigate(['/denunciante']);
   }
 }

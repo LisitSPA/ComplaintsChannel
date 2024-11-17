@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { ConfigurationService } from '../../services/configuration.service';
 import { environment } from '../../../environment/environment';
+import { NotifierModule } from 'gramli-angular-notifier';
 
 
 @Component({
   selector: 'app-sidebar-admin',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, NotifierModule],
   templateUrl: './sidebar-admin.component.html',
   styleUrls: ['./sidebar-admin.component.css'] 
 })

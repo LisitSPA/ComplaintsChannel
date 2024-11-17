@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';  
+import { Component, OnInit } from '@angular/core';  
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';  
 import { MisdatosComponent } from '../misdatos/misdatos.component';
@@ -7,38 +7,44 @@ import { ComplaintService } from '../../services/complaint.service';
 import { Router } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
+import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
 
 @Component({
   selector: 'app-denunciante',
   standalone: true,
-  imports: [CommonModule, FormsModule, MisdatosComponent, MatProgressSpinnerModule, MatButtonModule],
+  imports: [CommonModule, FormsModule, MisdatosComponent, MatProgressSpinnerModule, MatButtonModule, NotifierModule],
   templateUrl: './denunciante.component.html',
   styleUrls: ['./denunciante.component.css']
 })
-export class DenuncianteComponent {
-
-
+export class DenuncianteComponent implements OnInit {
   mostrarFormulario: boolean = false;
   contactEmail: string = '';
   deseoCodigoSeguimiento: boolean = false;
   isAnonymous: boolean = true;
   eCompanyStatus: number = 1;  // Estado en la empresa
   selectedSex: string = '';  // Sexo seleccionado
-  submit: boolean = false;
 
   constructor(
-    private complaintDataService: ComplaintDataService, 
-    private complaintService: ComplaintService,  
+    private complaintDataService: ComplaintDataService,
+    private notifier: NotifierService,
     private router: Router
   ) {}
+
+  ngOnInit(): void {
+    var currentComplaintData = this.complaintDataService.getComplaintData();
+
+    if (!currentComplaintData || !currentComplaintData.personInvolveds?.length)
+      this.goBack();
+  }
 
   abrirFormulario() {
     this.mostrarFormulario = true;
     this.isAnonymous = false;  
   }
 
-  cerrarFormulario() {
+  cerrarFormulario(isAnonymous: boolean) {
     this.mostrarFormulario = false;
+    this.isAnonymous = isAnonymous;
   }
 
   setDenunciaAnonima() {
@@ -46,29 +52,11 @@ export class DenuncianteComponent {
     this.mostrarFormulario = false;  
   }
 
-  // enviarDenuncia() {
-  //   const datosCompletos = this.complaintDataService.getComplaintData();
-
-  //   console.log('Datos enviados al backend:', datosCompletos);
-
-  //   this.complaintService.submitComplaint(datosCompletos).subscribe(
-  //     (response) => {
-  //       console.log('Denuncia enviada con éxito:', response);
-  //       this.router.navigate(['/evidencias']);  
-  //     },
-  //     (error) => {
-  //       console.error('Error al enviar la denuncia:', error);
-  //     }
-  //   );
-  // }
-
   guardarYRedirigir() {
-    console.log('Tipo de denuncia:', this.isAnonymous ? 'Anónima' : 'Identificada');
-    console.log('Correo electrónico ingresado:', this.contactEmail);
-    console.log('Estado en la empresa:', this.eCompanyStatus);
-    console.log('Sexo (si es anónima):', this.selectedSex);
-
-    this.submit = true
+    if (!this.contactEmail) {
+      this.notifier.notify('error', 'Por favor ingresa un correo electrónico');
+      return;
+    }
 
     // Guardar los datos incluyendo el estado de la empresa y el sexo (si es anónima)
     this.complaintDataService.setComplaintData({
@@ -79,19 +67,7 @@ export class DenuncianteComponent {
       eGenre: this.selectedSex  // Guardar el sexo seleccionado
     });
 
-    let data = this.complaintDataService.getComplaintData();
-
-    this.complaintService.createComplaint(data).subscribe(
-      (response) => {
-        console.log('Denuncia enviada con éxito:', response);
-        this.complaintDataService.setId(response.content)
-        this.router.navigate(['/evidencia']);  
-      },
-      (error) => {
-        console.error('Error al enviar la denuncia:', error);
-        this.submit = false
-      }
-    );
+    this.router.navigate(['/evidencia']);
   }
 
   goBack() {

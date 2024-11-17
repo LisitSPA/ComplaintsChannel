@@ -6,21 +6,20 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { ComplaintService } from '../../services/complaint.service';
 import { requestStates } from '../../../constants/requestState';
+import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
 
 @Component({
   selector: 'app-change-state-popup',
   standalone: true,
   templateUrl: './changeState.component.html',
   styleUrl: './changeState.component.css',
-  imports: [CommonModule, MatProgressSpinnerModule, FormsModule, MatButtonModule],
+  imports: [CommonModule, MatProgressSpinnerModule, FormsModule, MatButtonModule, NotifierModule],
  
 })
 export class ChangeStatePopupComponent {
   descripcionesArchivos: string[] = [];
   descripcionGeneral: string = '';
   complaint: any;
-  mensajeError: string | undefined;
-  mensajeExito: string | undefined;
   status : number | undefined;
   submit: boolean = false;
   states = requestStates;  
@@ -31,7 +30,8 @@ export class ChangeStatePopupComponent {
 
   constructor(
     private complaintService: ComplaintService, 
-    private dataService : ComplaintDataService
+    private dataService : ComplaintDataService,
+    private notifier: NotifierService,
   ) {
     this.complaint = this.dataService.getComplaintData();
   }
@@ -42,12 +42,12 @@ export class ChangeStatePopupComponent {
 
   onSubmit(): void {
     if (!this.status || !requestStates.some(x => x.value == this.status)) {
-      this.mensajeError = 'Por favor selecciona un estado';
+      this.notifier.notify('error', 'Por favor selecciona un estado');
       return;
     }
 
     if (!this.notes) {
-      this.mensajeError = 'Por favor ingresa una nota';
+      this.notifier.notify('error', 'Por favor ingresa una nota');
       return;
     }
 
@@ -61,13 +61,12 @@ export class ChangeStatePopupComponent {
 
     this.complaintService.updateStatus(data).subscribe(
       (response) => {
-        console.log('Denuncia actualizada correctamente:', response);
-        this.mensajeExito = 'Denuncia actualizada correctamente';   
+        this.notifier.notify('success', 'Denuncia actualizada correctamente'); 
         this.guardar.emit();  
       },
       (error) => {
         console.error('Error al actulizar la denuncia:', error);
-        this.mensajeError = 'Error al actualizar la denuncia';
+        this.notifier.notify('success', 'Error al actulizar la denuncia');
         this.submit = false;   
       }
     );   

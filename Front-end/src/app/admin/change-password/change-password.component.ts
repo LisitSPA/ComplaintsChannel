@@ -8,24 +8,21 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environment/environment';
 import { UserService } from '../../services/user.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
 
 @Component({
   selector: 'app-change-password',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, MatFormFieldModule, MatFormFieldModule, MatProgressSpinnerModule],
+  imports: [ReactiveFormsModule, CommonModule, MatFormFieldModule, MatFormFieldModule, MatProgressSpinnerModule, NotifierModule],
   templateUrl: './change-password.component.html',
   styleUrl: './change-password.component.css'
 })
 export class ChangePasswordComponent implements OnInit{
-
-  mensajeError: any;
-  mensajeExito: any;
-
   changePasswordForm: FormGroup;
   submit: boolean = false;
 
   constructor(private fb: FormBuilder, 
-    private userData: UserDataService,
+    private notifier: NotifierService,
     private userService: UserService,
     private http: HttpClient,
   ) {
@@ -56,19 +53,18 @@ export class ChangePasswordComponent implements OnInit{
           oldPassword: this.changePasswordForm.controls['currentPassword'].value,
           newPassword: this.changePasswordForm.controls['newPassword'].value,
       }
-      console.log(request)
+
       this.userService.changePassword(request)
         .subscribe(
           (response: any) => {
-            this.mensajeExito = "Contraseña cambiada exitosamente"
-            this.mensajeError = ""
+            this.notifier.notify('success', 'Contraseña cambiada exitosamente');
             this.submit = false;
            
           },
           (error) => {
             this.submit = false;
-            this.mensajeError = "Contraseña incorrecta"
-            this.mensajeExito = ""
+            console.error('Error en el cambio de contraseña:', error);
+            this.notifier.notify('error', 'Contraseña incorrecta');
           }
         );
     }

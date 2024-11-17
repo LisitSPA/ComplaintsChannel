@@ -11,12 +11,13 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { UserService } from '../../services/user.service';
 import { map, Observable, startWith } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
 
 @Component({
   selector: 'app-involucrados',
   standalone: true,
   imports: [CommonModule, FormsModule, MatButtonModule, MatInputModule, MatAutocompleteModule, 
-    MatFormFieldModule, ReactiveFormsModule,  AsyncPipe],
+    MatFormFieldModule, ReactiveFormsModule,  AsyncPipe, NotifierModule],
   templateUrl: './involucrados.component.html',
   styleUrls: ['./involucrados.component.css']
 })
@@ -34,7 +35,7 @@ export class InvolucradosComponent implements OnInit {
     private complaintDataService: ComplaintDataService, 
     private userService: UserService, 
     private router: Router,
-    private location: Location
+    private notifier: NotifierService,
   ) {
 
     this.complaint = this.complaintDataService.getComplaintData();
@@ -54,6 +55,13 @@ export class InvolucradosComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    var currentComplaintData = this.complaintDataService.getComplaintData();
+
+    if (!currentComplaintData || !currentComplaintData.reasons?.length) {
+      this.goBack();
+      return;
+    }
+
     this.filteredEmployees = this.employeeControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),
@@ -86,20 +94,29 @@ export class InvolucradosComponent implements OnInit {
   }
 
   guardarCausal() {
-    if (this.manualName) {
-      const newCausal = `${this.manualName}`;
-      this.personasSeleccionadas.push(newCausal);
-
-      this.manualName = '';
-
-      console.log('Causal agregado manualmente:', newCausal);  
-    } else {
-      console.log('Debe ingresar un nombre y apellido');
+    if (!this.manualName) {
+      this.notifier.notify('error', 'Debe ingresar el nombre completo');
+      return;
     }
+
+    const newCausal = `${this.manualName}`;
+    this.personasSeleccionadas.push(newCausal);
+
+    this.manualName = '';
   }
 
-  guardarDatosYRedirigir(event: Event) {
-    event.preventDefault();  
+  saveAndNext(event: Event) {
+    event.preventDefault();
+
+    if (!this.personasSeleccionadas.length) {
+      this.notifier.notify('error', 'Debe seleccionar al menos una persona involucrada');
+      return;
+    }
+    
+    if (!this.personDescription) {
+      this.notifier.notify('error', 'Debe ingresar una descripción');
+      return;
+    }
 
     const personInvolveds = this.personasSeleccionadas.map(persona => ({
       names: persona,   
@@ -109,8 +126,6 @@ export class InvolucradosComponent implements OnInit {
     this.complaintDataService.setComplaintData({
       personInvolveds: personInvolveds
     });
-
-    console.log('Datos guardados de personas involucradas:', personInvolveds);
 
     this.router.navigate(['/denunciante']);
   }

@@ -4,10 +4,11 @@ import { QuickAccessAdmin } from '../quick-access-component/quick-access-compone
 import { ChartsAdmin } from '../charts-component/charts-component.component';
 import { DashboardSummaryComponent } from '../dashboard-summary/dashboard-summary.component';
 import { DenunciasTableComponent } from "../denuncias/denuncias-table/denuncias-table.component";
+import { NotifierModule } from 'gramli-angular-notifier';
 @Component({
   selector: 'app-home-admin',
   standalone: true,
-  imports: [CommonModule, DashboardSummaryComponent, QuickAccessAdmin, ChartsAdmin, DenunciasTableComponent],
+  imports: [CommonModule, DashboardSummaryComponent, QuickAccessAdmin, ChartsAdmin, DenunciasTableComponent, NotifierModule],
   templateUrl: './home-admin.component.html',
   styleUrl: './home-admin.component.css'
 })

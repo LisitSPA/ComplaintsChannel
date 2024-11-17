@@ -9,12 +9,13 @@
                            placeholder="Correo electrónico" 
                            [(ngModel)]="username" name="username" required>
                 </div>
-                <button type="submit" class="track-button" style="font-family: 'Open Sans'; font-size: medium;">
-                    Enviar instrucciones
+                <button type="submit" [disabled]="submit" class="track-button" style="font-family: 'Open Sans'; font-size: medium;">
+                    <span *ngIf="!submit">Enviar instrucciones</span>
+                    <mat-spinner *ngIf="submit" [diameter]="24" mode="indeterminate"></mat-spinner>
                 </button>
             </form>
-            <div *ngIf="mensajeError" class="text-danger mt-3">{{ mensajeError }}</div>
-            <div *ngIf="mensajeExito" class="text-success mt-3">{{ mensajeExito }}</div>
         </div>
     </div>
 </div>
+
+<notifier-container />

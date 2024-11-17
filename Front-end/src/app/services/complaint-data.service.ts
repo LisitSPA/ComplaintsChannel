@@ -28,13 +28,10 @@ export class ComplaintDataService {
   }
 
   setComplaintData(data: any) {
-    console.log()
     this.complaintData = { ...this.complaintData, ...data };
    
     if(!this.complaintData.isAnonymous)
       this.complaintData = { ...this.complaintData, ...this.complainant };
-    
-    console.log('Datos actualizados en ComplaintDataService:', this.complaintData);
   }
 
   setId(id: number){
@@ -49,18 +46,20 @@ export class ComplaintDataService {
     this.complainant = data;
   }
 
+  getDenunciante(){
+    return this.complainant;
+  }
+
   getComplaintData() {
     return this.complaintData;
   }
 
   getReasons(){
-    console.log(this.resons)
     return this.resons;
   }
 
   setReasons(data: any){
     this.resons = [...data];
-    console.log(this.resons)
   }
 
   clearData() {
@@ -82,6 +81,5 @@ export class ComplaintDataService {
       },
       contactEmail: ''
     };
-    console.log('Datos reiniciados en ComplaintDataService');
   }
 }

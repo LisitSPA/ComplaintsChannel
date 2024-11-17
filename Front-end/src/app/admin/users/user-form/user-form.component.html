@@ -21,8 +21,8 @@
         <div class="form-group">
           <h3>Estado</h3>
           <select [(ngModel)]="estado" name="estado" required>
-            <option value="1">Activo</option>
-            <option value="2">Inactivo</option>
+            <option value="{{1}}">Activo</option>
+            <option value="{{2}}">Inactivo</option>
           </select>
         </div>
       </div>
@@ -34,9 +34,9 @@
 
         <div class="form-group">
           <h3>Sexo:</h3>
-          <div [(ngModel)]="sexo">
-            <mat-radio-button value="1" name="sexo" [checked]="sexo == 1" required>Femenino</mat-radio-button>
-            <mat-radio-button value="2" name="sexo" [checked]="sexo == 2" required>Masculino</mat-radio-button>
+          <div class="form-group">
+            <input type="radio" class="form-control"  [(ngModel)]="sexo" name="sexo" value="Masculino"> Masculino
+            <input type="radio" class="form-control"  [(ngModel)]="sexo" name="sexo" value="Femenino"> Femenino
           </div>
         </div>
       </div>
@@ -48,3 +48,5 @@
     </form>
   </div>
 </div>
+
+<notifier-container />

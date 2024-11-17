@@ -8,9 +8,6 @@
       </select>
 
       <textarea class="note-text-area" placeholder="Escribe tu respuesta aquí" [(ngModel)]="notes"></textarea>
-
-      <span *ngIf="mensajeError" class="text-danger mt-3">{{ mensajeError }}</span>
-      <span *ngIf="mensajeExito" class="text-success mt-3">{{ mensajeExito }}</span>
     </div>
 
     <div class="btn-container">
@@ -25,3 +22,5 @@
 
   </div>
 </div>
+
+<notifier-container />

@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ConfigurationService } from '../../services/configuration.service';
 import { environment } from '../../../environment/environment';
+import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
 
 @Component({
   selector: 'app-configuration',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NotifierModule],
   templateUrl: './configuration.component.html',
   styleUrl: './configuration.component.css',
 })
@@ -17,8 +18,6 @@ export class ConfigurationComponent {
   customColor: string = '#2324f5';
   logoFile: File | null = null;
   showNavBar: boolean = true;
-  errorMessage: string = '';
-  successMessage: string = '';
 
   predefinedColors: string[] = [
     '#4C3DB2',
@@ -29,7 +28,7 @@ export class ConfigurationComponent {
   ];
   statuses: string[] = ['Activo', 'Inactivo'];
 
-  constructor(private configurationService: ConfigurationService) {}
+  constructor(private configurationService: ConfigurationService, private notifier: NotifierService) {}
 
   ngOnInit(): void {
     this.getConfiguration();
@@ -50,9 +49,6 @@ export class ConfigurationComponent {
   }
 
   guardarConfiguracion(): void {
-    this.errorMessage = '';
-    this.successMessage = '';
-
     const data = {
       logo: this.logoFile,
       color: this.customColor,
@@ -68,20 +64,12 @@ export class ConfigurationComponent {
           window.location.reload();
         }
 
-        this.successMessage = 'Configuración actualizada con éxito';
-        this.errorMessage = '';
+        this.notifier.notify('success', 'Configuración actualizada con éxito');
       },
       (error) => {
-        this.errorMessage = 'Error al actualizar la configuración';
-        this.successMessage = '';
+        this.notifier.notify('error', 'Error al actualizar la configuración');
         console.error('Error al actualizar la configuración:', error);
       }
     );
-    console.log('Configuración guardada:', {
-      companyName: this.companyName,
-      channelStatus: this.channelStatus,
-      customColor: this.customColor,
-      showNavBar: this.showNavBar,
-    });
   }
 }

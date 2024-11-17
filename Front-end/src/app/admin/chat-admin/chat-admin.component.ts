@@ -9,67 +9,77 @@ import { ChatComponent } from '../../common/chat/chat.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute } from '@angular/router';
 import { requestStates } from '../../../constants/requestState';
-
+import { NotifierService } from 'gramli-angular-notifier';
 
 @Component({
   selector: 'app-chat-admin',
   standalone: true,
-  imports: [CommonModule, FormsModule, SidebarAdmin, ChatComponent, MatIconModule ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    SidebarAdmin,
+    ChatComponent,
+    MatIconModule,
+  ],
   templateUrl: './chat-admin.component.html',
-  styleUrls: ['./chat-admin.component.css']
+  styleUrls: ['./chat-admin.component.css'],
 })
 export class ChatAdminComponent implements OnInit {
-  chatList: any[] = [];  
-  chat: any[] = [];  
-  filteredComplaints: any[] = []; 
+  chatList: any[] = [];
+  chat: any[] = [];
+  filteredComplaints: any[] = [];
   selectedComplaint: any;
-  activeTab = 'todos'; 
+  activeTab = 'todos';
   responseMessage = '';
-  status : number | undefined;
+  status: number | undefined;
   complaints: any[] = [];
   message: any;
-  mensajeError: any;
-  mensajeExito: any;
   showChat: any = false;
+  isLoading: any = false;
   complaintId: number = 0;
   states = requestStates;
 
-  constructor(private chatService: ChatService,
+  constructor(
+    private chatService: ChatService,
     private complaintService: ComplaintService,
-    private route: ActivatedRoute,
+    private notifier: NotifierService,
+    private route: ActivatedRoute
   ) {}
 
   async ngOnInit(): Promise<void> {
-
-    this.route.paramMap.subscribe(params => {
-      this.complaintId = parseInt(params.get('id')??"0");     
+    this.route.paramMap.subscribe((params) => {
+      this.complaintId = parseInt(params.get('id') ?? '0');
     });
 
     // this.loadAllChats('es');
     await this.loadAllComplaints();
-  
-    if(this.complaintId)
-      this.filteredComplaints = this.complaints.filter(x=> x.id == this.complaintId)
 
+    if (this.complaintId)
+      this.filteredComplaints = this.complaints.filter(
+        (x) => x.id == this.complaintId
+      );
   }
 
-  async loadAllComplaints(){
-    let params = new HttpParams()
-    this.complaints = (await this.complaintService.getAllComplaintsPromise(params)).data;
+  async loadAllComplaints() {
+    let params = new HttpParams();
+    this.complaints = (
+      await this.complaintService.getAllComplaintsPromise(params)
+    ).data;
     this.filterComplaints(this.activeTab);
   }
 
-  getLastMessage(complaintId: number): string{
-    var chat = this.chatList.filter(x => x.complaintId == complaintId).sort((a, b) => a - b);
-    if(chat.length)
-      return chat[0].message
-    
-    return ""
+  getLastMessage(complaintId: number): string {
+    var chat = this.chatList
+      .filter((x) => x.complaintId == complaintId)
+      .sort((a, b) => a - b);
+    if (chat.length) return chat[0].message;
+
+    return '';
   }
 
   loadAllChats(language: string) {
     this.chatService.getAllChats(language).subscribe(
-      (data: any) => {  
+      (data: any) => {
         this.chatList = data.content;
       },
       (error) => {
@@ -79,55 +89,55 @@ export class ChatAdminComponent implements OnInit {
   }
 
   filterComplaints(filter: string) {
-    this.activeTab = filter; 
+    this.activeTab = filter;
     if (filter === 'todos') {
       this.filteredComplaints = [...this.complaints];
-    } else if(filter === 'pendientes') {
-      this.filteredComplaints = this.complaints.filter(x => x.eStatus < 3);
+    } else if (filter === 'pendientes') {
+      this.filteredComplaints = this.complaints.filter((x) => x.eStatus < 3);
     } else {
-      this.filteredComplaints = this.complaints.filter(x => x.eStatus > 3);
+      this.filteredComplaints = this.complaints.filter((x) => x.eStatus > 3);
     }
   }
 
-
   async selectChat(complaint: any) {
-    
-    this.selectedComplaint = undefined
+    this.selectedComplaint = undefined;
     setTimeout(() => {
-      this.selectedComplaint = complaint
-    },500)
-   
-   
+      this.selectedComplaint = complaint;
+    }, 500);
   }
-  
+
   updateComplaint() {
-      let data = {
-      complaintId : this.selectedComplaint.id,
-      eComplaintStatus : this.status,
-      notes: this.responseMessage,        
+    if (!this.status || !requestStates.some((x) => x.value == this.status)) {
+      this.notifier.notify('error', 'Por favor selecciona un estado');
+      return;
+    }
+    if (!this.responseMessage) {
+      this.notifier.notify('error', 'Por favor ingresa una respuesta');
+      return;
+    }
+
+    this.isLoading = true;
+
+    let data = {
+      complaintId: this.selectedComplaint.id,
+      eComplaintStatus: this.status,
+      notes: this.responseMessage,
     };
-   
+
     this.complaintService.updateStatus(data).subscribe(
       (response) => {
-       this.responseMessage = ""
-       this.status = 0
-       this.mensajeExito = 'Denuncia actualizada correctamente';    
-       this.loadAllComplaints();    
+        this.responseMessage = '';
+        this.status = 0;
+        this.notifier.notify('success', 'Denuncia actualizada correctamente');
+        this.loadAllComplaints();
       },
       (error) => {
-        console.log(error)
-        this.mensajeError = 'Error al actualizar la denuncia';      
+        console.error('Error al actualizar la denuncia', error);
+        this.notifier.notify('error', 'Error al actualizar la denuncia');
+      },
+      () => {
+        this.isLoading = false;
       }
     );
-    
   }
-
-
 }
-
-
-
-
-
-
-

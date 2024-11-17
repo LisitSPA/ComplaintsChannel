@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
+import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
 
 @Component({
   selector: 'app-user-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatButtonModule, MatRadioModule],
+  imports: [CommonModule, FormsModule, MatButtonModule, MatRadioModule, NotifierModule],
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css']
 })
@@ -18,55 +19,59 @@ export class UserFormComponent implements OnInit{
   @Output() cerrar = new EventEmitter<void>();
 
   nombre = ""
-  tipo = 0;  
-  estado = 0;  
-  sexo =  0; 
+  tipo = 1;  
+  estado = 1;  
+  sexo =  ""; 
   email = "";
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, private notifier: NotifierService) {
     
   }
 
   ngOnInit(): void {
-    console.log(this.usuario)
-
-    this.nombre = this.usuario.completeName;
-    this.tipo = this.usuario.eUserType;  
-    this.estado = this.usuario.eCompanyStatus;  
-    this.sexo =  this.usuario.eGenre; 
-    this.email = this.usuario.contactEmail;
+    this.nombre = this.usuario.completeName || '';
+    this.tipo = this.usuario.eUserType || 0;  
+    this.estado = this.usuario.eCompanyStatus || 0;  
+    this.sexo =  this.usuario.eGenre === 1 ? 'Femenino' : 'Masculino'; 
+    this.email = this.usuario.contactEmail || "";
 
   }
 
   guardarDatos() {
+    if (!this.nombre || !this.tipo || !this.estado || !this.sexo || !this.email) {
+      this.notifier.notify('error', 'Por favor ingresa todos los campos');
+      return;
+    }
+
     const userData = {
       name: this.nombre,
       eUserType: this.tipo,  
       status: this.estado,  
-      eGenre: this.sexo, 
+      eGenre: this.sexo === 'Masculino' ? 2 : 1, 
       email: this.email,
       id: this.usuario.id
     };
 
-    console.log('Datos del usuario antes de enviar:', userData);
 
     if(this.usuario?.id)
       this.userService.updateUser(userData).subscribe(
         response => {
-          console.log('Usuario actualizado con éxito:', response); 
+          this.notifier.notify('success', 'Usuario actualizado con éxito');
           this.cerrar.emit()
         },
         error => {
+          this.notifier.notify('error', 'Error al actualizar usuario');
           console.error('Error al actualizar usuario:', error);  
         }
       );
     else
       this.userService.createUser(userData).subscribe(
         response => {
-          console.log('Usuario creado con éxito:', response); 
+          this.notifier.notify('success', 'Usuario creado con éxito'); 
           this.cerrar.emit() 
         },
         error => {
+          this.notifier.notify('error', 'Error al crear usuario');
           console.error('Error al crear usuario:', error);  
         }
       );
