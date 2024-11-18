@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ComplaintService } from '../../services/complaint.service';
 import { ELanguageType } from '../../../types/language.type';
 import { environment } from '../../../environment/environment';
@@ -21,7 +21,8 @@ export class SeguimientoComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private complaintService: ComplaintService
+    private complaintService: ComplaintService,
+    private router: Router
   ) {
    
   }
@@ -47,6 +48,10 @@ export class SeguimientoComponent {
 
   async getComplaint(){
     this.complaint = await this.complaintService.getComplaintByCode(this.code??"", this.language);
+
+    if(!this.complaint)
+      this.router.navigate(['/seguimiento']);
+
     this.complainant = this.complaint?.complainant
     this.showChat = true
   }

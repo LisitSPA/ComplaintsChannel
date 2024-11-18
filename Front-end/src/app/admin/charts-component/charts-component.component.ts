@@ -30,17 +30,36 @@ export class ChartsAdmin implements OnInit {
       x: {},
       y: {
         min: 0,
+      }
+    },
+    responsive: true,
+    datasets: {
+      bar: {
+        barPercentage: 0.9,
+      }
+    },
+    plugins: {
+      legend: {
+        display: false,
       },
     },
+  };
+
+  public barChartType = 'bar' as const;
+  
+  public doughnutChartType: 'doughnut' = 'doughnut';
+  public doughnutChartOptions: ChartConfiguration<'doughnut'>['options'] = {
     plugins: {
       legend: {
         display: true,
       },
     },
-  };
-  public barChartType = 'bar' as const;
-
-  public doughnutChartType: 'doughnut' = 'doughnut';
+    datasets: {
+      doughnut: {
+        hidden: true,
+      }
+    },
+  }
 
   constructor(private dashboardService: DashboardService) {}
 
@@ -72,7 +91,7 @@ export class ChartsAdmin implements OnInit {
   loadDoughnutChartData() {
     this.dashboardService.getChartByPosition().subscribe((res) => {
       let labels = res.content.map((x: any) =>
-        x.name == null ? 'Desconocid' : x.name
+        x.name == null ? 'Desconocido' : x.name
       );
       let data = res.content.map((x: any) => x.total);
 

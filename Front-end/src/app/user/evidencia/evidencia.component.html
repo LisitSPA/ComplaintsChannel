@@ -1,13 +1,13 @@
 <div class="container">
   <div class="report-card">
     <div class="progress-indicator">
-      <a href="/report"><div class="step passed">1</div></a>
+      <div class="step passed" (click)="goBack('/report')">1</div>
       <label>Información general</label>
       <div class="separator"></div>
-      <a href="/involucrados"><div class="step passed">2</div></a>
+      <div class="step passed"  (click)="goBack('/involucrados')">2</div>
       <label>Involucrados</label>
       <div class="separator"></div>
-      <a href="/denunciante"><div class="step passed">3</div></a>
+      <div class="step passed"  (click)="goBack('/denunciante')">3</div>
       <label>Denunciante</label>
       <div class="separator"></div>
       <div class="step active">4</div>
@@ -63,9 +63,9 @@
       </div>
 
       <div class="btn-container">
-        <button class="back-btn" [disabled]="submit" (click)="goBack()">Volver</button>
+        <button class="back-btn" [disabled]="submit" (click)="goBack('/denunciante')">Volver</button>
         <button class="next-btn" [disabled]="submit" (click)="onSubmit()">
-          <span *ngIf="!submit">Siguiente</span>
+          <span *ngIf="!submit">Guardar</span>
           <mat-progress-spinner
             *ngIf="submit"
             [diameter]="24"

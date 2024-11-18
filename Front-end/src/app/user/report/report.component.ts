@@ -56,6 +56,7 @@ export class ReportComponent implements OnInit {
       }
     
     this.complaint = this.complaintDataService.getComplaintData();
+
     if(this.complaint)
     {
       this.reasons = [...this.complaint.reasons];

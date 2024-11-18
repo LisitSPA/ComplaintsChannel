@@ -1,61 +1,33 @@
 <div class="modal">
   <div class="modal-content">
+    <button class="close-btn" (click)="cerrar.emit()">✖</button>
     <h2>Desestimar denuncia</h2>
-
-    <input
-      type="file"
-      id="file-upload"
-      (change)="onFileSelected($event)"
-      multiple
-      accept=".png,.pdf"
-      class="hide"
-    />
+    <input type="file" id="file-upload" (change)="onFileSelected($event)" multiple accept=".png,.pdf" class="hide" />
     <label for="file-upload" style="cursor: pointer">
       <div class="upload-and-description">
         <div class="upload-box">
-          <mat-icon
-            aria-hidden="false"
-            class="upload-icon"
-            aria-label="cloud upload icon"
-            fontIcon="cloud_upload"
-          />
+          <mat-icon aria-hidden="false" class="upload-icon" aria-label="cloud upload icon" fontIcon="cloud_upload" />
           <p for="file-upload" class="custom-file-upload">
             Sube los documentos
           </p>
           <p class="custom-file-description">Se permiten archivos png o pdf</p>
         </div>
-        <textarea
-          placeholder="Deseo desestimar la denuncia realizada..."
-          [(ngModel)]="notes"
-        ></textarea>
+        <textarea placeholder="Deseo desestimar la denuncia realizada..." [(ngModel)]="notes"></textarea>
       </div>
     </label>
 
     <div class="badge-container" *ngIf="archivosSeleccionados.length > 0">
-      <button mat-raised-button *ngFor="let file of archivosSeleccionados" class="badge-btn badge-purple-btn">{{ file.name }}</button>
+      <button mat-raised-button *ngFor="let file of archivosSeleccionados" class="badge-btn badge-purple-btn">{{
+        file.name }}</button>
     </div>
 
     <div class="btn-container">
-      <button
-        class="back-btn"
-        mat-button
-        [disabled]="submit"
-        (click)="cerrar.emit()"
-      >
+      <button class="back-btn" mat-button [disabled]="submit" (click)="cerrar.emit()">
         Cancelar
       </button>
-      <button
-        class="next-btn"
-        mat-button
-        [disabled]="submit"
-        (click)="onSubmit()"
-      >
+      <button class="next-btn" mat-button [disabled]="submit" (click)="onSubmit()">
         <span *ngIf="!submit">Siguiente</span>
-        <mat-progress-spinner
-          *ngIf="submit"
-          [diameter]="24"
-          mode="indeterminate"
-        ></mat-progress-spinner>
+        <mat-progress-spinner *ngIf="submit" [diameter]="24" mode="indeterminate"></mat-progress-spinner>
       </button>
     </div>
 

@@ -1,35 +1,35 @@
 body {
-    height: 100vh;
-    margin: 0;
-    background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
+	height: 100vh;
+	margin: 0;
+	background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
 }
 
 .login-container {
-    height: 100%;
+	height: 100%;
 }
 
 .login-card {
-    border-radius: 10px;
-    padding: 20px;
-    width: 100%;
-    max-width: 400px;
+	border-radius: 10px;
+	padding: 20px;
+	width: 100%;
+	max-width: 400px;
 }
 
 .form-control {
-    border-radius: 5px;
+	border-radius: 5px;
 }
 
 .btn-primary {
-    background-color: hsl(255, 72%, 47%);
-    border-color: hsl(255, 72%, 47%);
+	background-color: var(--default-color);
+	border-color: var(--default-color);
 }
 
 .btn-link {
-    text-align: center;
-    display: block;
-    margin: 0 auto;
+	text-align: center;
+	display: block;
+	margin: 0 auto;
 }
 
 .mt-5 {
-    margin-top: 5rem;
+	margin-top: 5rem;
 }

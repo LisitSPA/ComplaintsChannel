@@ -41,7 +41,7 @@ export class EvidenciaComponent implements OnInit {
   ngOnInit(): void {
     var currentComplaintData = this.complaintDataService.getComplaintData();
     if (!currentComplaintData || !currentComplaintData.contactEmail)
-      this.goBack();
+      this.goBack('/denunciante');
   }
 
   onFileSelected(event: Event): void {
@@ -103,7 +103,7 @@ export class EvidenciaComponent implements OnInit {
       );
   }
 
-  goBack() {
-    this.router.navigate(['/denunciante']);
+  goBack(route: string): void {
+    this.router.navigate([route]);
   }
 }

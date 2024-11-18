@@ -52,7 +52,7 @@ export class ComplaintService {
     return this.http.get<any>(`${this.apiUrl}/filterByField?field=${field}&value=${value}`);
   }
 
-  createComplaint(data: RequestComplaint): Observable<any> {    
+  createComplaint(data: RequestComplaint): Observable<any> { 
     return this.http.post<any>(this.apiUrl+'/complaints', data);
   }
 

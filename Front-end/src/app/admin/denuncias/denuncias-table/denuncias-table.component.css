@@ -8,7 +8,7 @@
 }
 
 .table tbody tr:nth-child(odd) {
-  background-color: white; 
+  background-color: white;
 }
 
 .table tbody tr:nth-child(even) {
@@ -18,9 +18,9 @@
 .toolbar {
   display: flex;
   align-items: center;
-  gap: 20px; 
-  margin-bottom: 50px; 
-  margin-top: 5%; 
+  gap: 20px;
+  margin-bottom: 50px;
+  margin-top: 5%;
 }
 
 .search-bar {
@@ -31,29 +31,46 @@
   border: 1px solid #ccc;
 }
 
+.badge-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.mat-mdc-mini-fab {
+  width: 34px;
+  height: 34px;
+}
+
+.mat-mdc-mini-fab mat-icon {
+  font-size: 24px;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed; 
+  table-layout: fixed;
   background-color: rgb(238, 238, 238);
 }
 
-.table th, .table td {
+.table th,
+.table td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #ddd;
-  height: 50px; 
+  height: 50px;
 }
 
 .table th {
-    background-color: #384146; 
-    color: white;
+  background-color: #384146;
+  color: white;
 }
 
 .table td {
-  overflow: hidden; 
-  text-overflow: ellipsis; 
-  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .btn-secondary {
@@ -96,49 +113,50 @@
 }
 
 .label {
-  margin: 0 10px; 
-  font-size: small; 
-  align-self: center; 
+  margin: 0 10px;
+  font-size: small;
+  align-self: center;
 }
 
 .arrow {
   cursor: pointer;
-  margin: 0 10px; 
-  font-size: xx-large; 
+  margin: 0 10px;
+  font-size: xx-large;
   color: var(--primary-color);
 }
 
 .arrow.disabled {
-  color: gray; 
-  cursor: not-allowed; 
+  color: gray;
+  cursor: not-allowed;
 }
 
 .container {
-  display: flex; 
-  height: 100%; 
-  background-color:#f1f1f1;
+  display: flex;
+  height: 100%;
+  background-color: #f1f1f1;
 }
 
 app-sidebar-admin {
-  width: 370px; 
-  background-color: #f1f1f1; 
-  height: 100%; 
+  width: 370px;
+  background-color: #f1f1f1;
+  height: 100%;
   position: fixed;
 }
 
 .main-content {
-  margin-left: calc(330px + 20px); 
-  flex-grow: 1; 
-  padding: 20px; 
-  background-color:#f1f1f1;
+  margin-left: calc(330px + 20px);
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #f1f1f1;
 }
+
 .header-container {
   display: flex;
-  align-items: center; 
-  justify-content: flex-start; 
-  gap: 40px; 
-  margin-bottom: 20px; 
-  padding-left: 20px; 
+  align-items: center;
+  justify-content: flex-start;
+  gap: 40px;
+  margin-bottom: 20px;
+  padding-left: 20px;
 }
 
 .denuncia-header {
@@ -147,7 +165,10 @@ app-sidebar-admin {
   align-items: center;
 }
 
-.time, .date, .anonymous, .reason {
+.time,
+.date,
+.anonymous,
+.reason {
   font-size: 14px;
   color: #6c757d;
 }
@@ -189,19 +210,25 @@ app-sidebar-admin {
   background-color: var(--primary-color);
 }
 
+.desestimar-btn img {
+  width: 24px;
+  margin-top: 2px;
+  margin-left: -1px;
+}
+
 .btn-link {
   --mat-icon-color: var(--mdc-text-button-label-text-color) !important;
   color: var(--mdc-text-button-label-text-color) !important;
 }
 
 .desestimar-btn:hover {
-  opacity: 0.8; 
+  opacity: 0.8;
 }
 
 .btn-icon {
-  width: 20px; 
-  height: 20px; 
-  margin-right: 8px; 
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
 }
 
 
@@ -231,24 +258,22 @@ app-sidebar-admin {
 .evidencia-btn {
   color: rgb(41, 24, 193);
   background-color: rgb(234 238 250);
-  width: 90px; 
-  height: 40px; 
+  width: 90px;
+  height: 40px;
   border: none;
-  border-radius: 5px; 
+  border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center !important;
   text-decoration: none;
 }
 
-
-
 .icon-small {
-  width: 16px; 
+  width: 16px;
   height: 16px;
   margin-right: 5px;
 }
@@ -257,33 +282,34 @@ app-sidebar-admin {
   display: flex;
   align-items: center;
   cursor: pointer;
-}  
+}
 
 .list-view {
   display: flex;
   flex-direction: column;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .denuncia-item {
-  background-color: #fff; 
-  border: 1px solid #ddd; 
-  border-radius: 8px; 
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.denuncia-status, .denuncia-note {
-  font-size: 14px; 
-  color: #6c757d; 
-}  
-
+.denuncia-status,
+.denuncia-note {
+  font-size: 14px;
+  color: #6c757d;
+}
 
 .header-title.active {
-  font-weight: bold; 
-  text-decoration: underline; 
+  font-weight: bold;
+  text-decoration: underline;
   color: var(--primary-color);
 }
+
 @media (max-width: 767px) {
 
   .toolbar {
@@ -293,41 +319,42 @@ app-sidebar-admin {
   }
 
   .search-bar {
-    width: 100%; 
+    width: 100%;
   }
 
   .table-container {
-    overflow-x: auto; 
+    overflow-x: auto;
   }
 
-  .table th, .table td {
+  .table th,
+  .table td {
     padding: 8px;
     font-size: 14px;
   }
 
   .table {
-    width: 100%; 
+    width: 100%;
   }
 
   .container {
-    display: block; 
-    height: 100%; 
+    display: block;
+    height: 100%;
   }
 
   app-sidebar-admin {
-    width: 100%; 
-    position: relative; 
+    width: 100%;
+    position: relative;
   }
 
   .main-content {
-    margin-left: 0; 
-    padding: 10px; 
+    margin-left: 0;
+    padding: 10px;
   }
 
   .header-container {
-    flex-direction: column; 
-    gap: 10px; 
-    padding: 10px; 
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
   }
 
   .pagination {
@@ -337,23 +364,26 @@ app-sidebar-admin {
   }
 
   .denuncia-item {
-    font-size: 14px; 
+    font-size: 14px;
   }
 
-  .evidencia-btn, .desestimar-btn {
-    width: 100%; 
+  .evidencia-btn,
+  .desestimar-btn {
+    width: 100%;
   }
 }
 
 @media (max-width: 479px) {
-  .table th, .table td {
-    font-size: 12px; 
+
+  .table th,
+  .table td {
+    font-size: 12px;
     padding: 6px;
   }
 
   .icon {
-    width: 16px; 
-    height: 16px; 
+    width: 16px;
+    height: 16px;
   }
 
   .toolbar .btn {

@@ -1,22 +1,30 @@
 :host {
-    display: block;
-    width: 80%;
-    height: 80%;
-  }
-  
-  .char-container {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .char-card {
-    background-color: #fdfdfd;
-    padding: 20px;
-    border-radius: 8px;
-    /* flex: 1; */
-    display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    width: 100%;
-  }
+  display: block;
+  width: 320px;
+  height: max-content;
+}
+
+.char-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.char-content h2 {
+  font-size: 20px !important;
+  text-align: center;
+}
+
+.char-card {
+  background-color: #fdfdfd;
+  border-radius: 8px;
+  /* flex: 1; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.chart {
+  width: 300px;
+}

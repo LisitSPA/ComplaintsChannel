@@ -125,7 +125,7 @@ public class CreateComplaintCommandHandler
 
     private User SetComplainant(UserDto complainant)
     {
-        var person = _repoPerson.GetAllActive().Where(x => x.Names.Contains(complainant.Names)).FirstOrDefault();
+        var person = _repoPerson.GetAllActive().Where(x => x.Names.Contains(complainant.Names) && x.RUT == complainant.RUT).FirstOrDefault();
         person ??= _repoPerson.Add(_mapper.Map<User>(complainant));
         person.EUserType = person.EUserType.HasFlag(EUserType.Complainant) ? person.EUserType : EUserType.Complainant;
               

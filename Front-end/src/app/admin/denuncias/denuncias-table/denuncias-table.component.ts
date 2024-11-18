@@ -14,6 +14,7 @@ import { ComplaintDataService } from '../../../services/complaint-data.service';
 import { requestStates } from '../../../../constants/requestState';
 import { ChangeStatePopupComponent } from '../../../common/change-state/changeState.component';
 import { NotifierService } from 'gramli-angular-notifier';
+import { ViewDetailPopupComponent } from '../../../common/view-details/viewDetail.component';
 
 export type ViewMode = 'realizadas' | 'desestimadas';
 @Component({
@@ -26,6 +27,7 @@ export type ViewMode = 'realizadas' | 'desestimadas';
     MatButtonModule,
     EvidenciaPopupComponent,
     ChangeStatePopupComponent,
+    ViewDetailPopupComponent,
     RouterLink,
     MatMenuModule,
     MatTooltipModule,
@@ -48,6 +50,7 @@ export class DenunciasTableComponent implements OnInit {
   allComplaints: any[] = [];
   showRejectPopup: boolean = false;
   showChangeStatePopup: boolean = false;
+  showViewDetailPopup: boolean = false;
   showActions: boolean = true;
 
   constructor(
@@ -69,6 +72,7 @@ export class DenunciasTableComponent implements OnInit {
   async loadAll() {
     this.showRejectPopup = false;
     this.showChangeStatePopup = false;
+    this.showViewDetailPopup = false;
     let selectedViewMode = null;
     let params = new HttpParams();
     //.set('RequireTotalCount', true)
@@ -177,12 +181,22 @@ export class DenunciasTableComponent implements OnInit {
     }
   }
 
+  initViewDetail(id: number, isReject: boolean) {
+    this.complaintDataService.setId(id);
+    if (isReject) {
+      this.showRejectPopup = true;
+    } else {
+      this.showChangeStatePopup = true;
+    }
+  }
+
   goToChat(denunciaId: any) {
     this.router.navigate(['chatadmin', denunciaId]);
   }
 
-  showDetail(denunciaId: number) {
-    this.notifier.notify('success', `You are awesome! I mean it! ${denunciaId}`);
+  showDetail(code: string) {
+    this.complaintDataService.setCode(code);
+    this.showViewDetailPopup = true;
   }
 
   getBadgeClass(status: number) {

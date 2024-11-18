@@ -50,11 +50,12 @@ export class TrackingCodeComponent {
   async onSubmit() {
     let code = `${this.trackingForm.value.digit1}${this.trackingForm.value.digit2}${this.trackingForm.value.digit3}${this.trackingForm.value.digit4}${this.trackingForm.value.digit5}`;
 
-    if (code)
-      this.complaint = await this.complaintService.getComplaintByCode(
-        code,
-        'es'
-      );
+    if (!code || code.length < 5) {
+      this.notifier.notify('error', 'Por favor, ingrese un código válido');
+      return;
+    }
+
+    this.complaint = await this.complaintService.getComplaintByCode(code, 'es');
 
     if (this.complaint) this.route.navigate(['seguimiento/' + code]);
     else this.notifier.notify('error', 'Código de seguimiento incorrecto');

@@ -34,7 +34,13 @@ export class DenuncianteComponent implements OnInit {
     var currentComplaintData = this.complaintDataService.getComplaintData();
 
     if (!currentComplaintData || !currentComplaintData.personInvolveds?.length)
-      this.goBack();
+      this.goBack('/involucrados');
+
+    this.contactEmail = currentComplaintData.contactEmail || '';
+    this.isAnonymous = !currentComplaintData.isAnonymous ? false : true;
+    this.deseoCodigoSeguimiento = currentComplaintData.deseoCodigoSeguimiento || false;
+    this.eCompanyStatus = currentComplaintData.eCompanyStatus || 1;
+    this.selectedSex = currentComplaintData.eGenre || '';
   }
 
   abrirFormulario() {
@@ -70,7 +76,7 @@ export class DenuncianteComponent implements OnInit {
     this.router.navigate(['/evidencia']);
   }
 
-  goBack() {
-    this.router.navigate(['/involucrados']);  
+  goBack(route: string) {
+    this.router.navigate([route]);  
   }
 }

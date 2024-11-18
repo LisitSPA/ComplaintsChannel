@@ -54,7 +54,7 @@ export class MisdatosComponent implements OnInit {
         position: this.cargo,
         area: this.area,
         eGenre: this.sexo === 'Masculino' ? 2 : 1,  
-        contactPhone: this.contacto,
+        contactPhone: this.contacto.toString(),
         rut: this.rut
       }
     });

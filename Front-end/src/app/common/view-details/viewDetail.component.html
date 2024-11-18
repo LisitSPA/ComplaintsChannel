@@ -1,0 +1,51 @@
+<div class="modal">
+  <div class="modal-content">
+    <button class="close-btn" (click)="cerrar.emit()">✖</button>
+    <h2>Detalle de la denuncia #{{complaint?.id}}</h2>
+    <div class="table-container">
+      <table class="table-list">
+        <thead>
+          <tr>
+            <th>Motivo</th>
+            <th>Descripción del incidente</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <ul>
+                <li *ngFor="let reason of complaint.reasons">{{reason.description}}</li>
+              </ul>
+            </td>
+            <td>{{complaint.description}}</td>
+          </tr>
+      </table>
+      <div class="completed"></div>
+    </div>
+    <hr class="divider">
+    <h2>Detalle del denunciado</h2>
+    <div class="table-container">
+      <table class="table-list">
+        <thead>
+          <tr>
+            <th>Identificacion</th>
+            <th>Descripción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let involved of complaint.involved">
+            <td>{{involved.names}}</td>
+            <td>{{involved.description}}</td>
+          </tr>
+      </table>
+      <div class="completed"></div>
+    </div>
+
+    <div class="btn-container">
+      <a class="next-btn" mat-button (click)="cerrar.emit()">Ir a la tabla >></a>
+    </div>
+
+    <br>
+
+  </div>
+</div>

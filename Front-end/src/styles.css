@@ -39,7 +39,6 @@
   position: relative;
 }
 
-
 .mt-5 {
   margin-top: 5rem;
 }
@@ -332,6 +331,7 @@ input[type="date"] {
 }
 
 .step.passed {
+  cursor: pointer;
   background-color: var(--default-color);
   opacity: 0.75;
 }

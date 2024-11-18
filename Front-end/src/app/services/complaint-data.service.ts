@@ -42,6 +42,14 @@ export class ComplaintDataService {
     return this.complaintData.Id;
   }
 
+  setCode(code: string){
+    this.complaintData.Code = code;
+  }
+
+  getCode(): string{
+    return this.complaintData.Code;
+  }
+
   setDenunciante(data: any){
     this.complainant = data;
   }

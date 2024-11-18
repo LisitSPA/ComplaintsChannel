@@ -57,7 +57,8 @@
         <button mat-raised-button class="badge-btn {{ getBadgeClass(denuncia.eStatus) }}">
           {{ denuncia.status }}
         </button>
-        <button mat-button matTooltipPosition="above" matTooltip="Ver detalles" class="btn-link" (click)="showDetail(denuncia.id)">
+        <button mat-button matTooltipPosition="above" matTooltip="Ver detalles" class="btn-link"
+          (click)="showDetail(denuncia.trackingCode)">
           Ver detalles
           <mat-icon>visibility</mat-icon>
         </button>
@@ -103,7 +104,8 @@
             </a>
           </td>
           <td *ngIf="!isDashboard" class="buttons-container">
-            <button mat-mini-fab matTooltipPosition="above" matTooltip="Ver detalles" class="desestimar-btn" (click)="showDetail(denuncia.id)">
+            <button mat-mini-fab matTooltipPosition="above" matTooltip="Ver detalles" class="desestimar-btn"
+              (click)="showDetail(denuncia.trackingCode)">
               <!-- (click)="initChangeState(denuncia.id, true)" -->
               <mat-icon>visibility</mat-icon>
             </button>
@@ -140,3 +142,5 @@
   *ngIf="showRejectPopup"></app-evidencia-popup>
 <app-change-state-popup (cerrar)="showChangeStatePopup = !showChangeStatePopup" (guardar)="loadAll()"
   *ngIf="showChangeStatePopup"></app-change-state-popup>
+<app-view-detail-popup (cerrar)="showViewDetailPopup = !showViewDetailPopup" (guardar)="loadAll()"
+  *ngIf="showViewDetailPopup"></app-view-detail-popup>
