@@ -117,16 +117,11 @@ export class InvolucradosComponent implements OnInit {
   saveAndNext(event: Event) {
     event.preventDefault();
 
-    if (!this.personasSeleccionadas.length) {
+    if (!this.personasSeleccionadas.length && !this.personDescription) {
       this.notifier.notify(
         'error',
-        'Debe seleccionar al menos una persona involucrada'
+        'Debe seleccionar al menos una persona o ingresar una descripción'
       );
-      return;
-    }
-
-    if (!this.personDescription) {
-      this.notifier.notify('error', 'Debe ingresar una descripción');
       return;
     }
 

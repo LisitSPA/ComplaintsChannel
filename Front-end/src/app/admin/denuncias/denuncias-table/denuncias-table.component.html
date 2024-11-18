@@ -80,6 +80,7 @@
           <th>Evidencia</th>
           <th>Chat</th>
           <th *ngIf="!isDashboard">Acciones</th>
+          <th *ngIf="isDashboard">Detalle</th>
         </tr>
       </thead>
       <tbody>
@@ -103,17 +104,17 @@
               <mat-icon aria-hidden="false" fontIcon="chat"></mat-icon>
             </a>
           </td>
-          <td *ngIf="!isDashboard" class="buttons-container">
+          <td class="buttons-container">
             <button mat-mini-fab matTooltipPosition="above" matTooltip="Ver detalles" class="desestimar-btn"
               (click)="showDetail(denuncia.trackingCode)">
               <!-- (click)="initChangeState(denuncia.id, true)" -->
               <mat-icon>visibility</mat-icon>
             </button>
-            <button mat-mini-fab matTooltipPosition="above" matTooltip="Cambiar estado"
+            <button *ngIf="!isDashboard" mat-mini-fab matTooltipPosition="above" matTooltip="Cambiar estado"
               (click)="initChangeState(denuncia.id, false)">
               <mat-icon>published_with_changes</mat-icon>
             </button>
-            <button *ngIf="showActions && denuncia.eStatus < 3" mat-mini-fab matTooltipPosition="above"
+            <button *ngIf="showActions && denuncia.eStatus < 3 && !isDashboard" mat-mini-fab matTooltipPosition="above"
               matTooltip="Desestimar" (click)="initChangeState(denuncia.id, true)" class="desestimar-btn">
               <img src="/icons/desestimados.svg" alt="Ícono" />
             </button>

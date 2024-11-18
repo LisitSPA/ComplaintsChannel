@@ -3,15 +3,92 @@ body {
   padding: 20px;
   background-color: #ffffffd1;
 }
-
+.timeline-container,
 .container {
-
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.container {
   background: #e6e6fa;
   margin-top: 20px;
 }
+
+.timeline {
+  display: block !important;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.timeline-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #436285 !important;
+  position: relative;
+}
+
+.timeline li:before {
+  content: "";
+  width: 0.2rem;
+  height: 100%;
+  background-color: rgb(169 169 169);
+  position: absolute;
+  left: 16px;
+}
+
+.timeline li:first-child:before {
+  top: 50%;
+  height: 50%;
+}
+
+.timeline li:last-child:before {
+  bottom: 50%;
+  height: 50%;
+}
+.timeline-title {
+  margin-bottom: 0.5rem;
+}
+
+.circle-custom {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 3px solid var(--default-color);
+  transform: translateX(50%);
+  z-index: 1;
+}
+
+.circle-custom.active {
+  background-color: var(--default-color);
+}
+
+.subcard {
+  padding: 0 30px;
+  color: black;
+  border-bottom: 1px solid #e0e0e0;
+  width: 100%;
+}
+
+.subcard h3 {
+  font-size: 18px !important;
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+  margin-bottom: 20px !important;
+}
+.subcard h3 p {
+  font-size: 14px !important;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  color: #535353;
+  font-weight: 300;
+  line-height: 0;
+}
+
 
 .content-section {
   padding: 27px;
@@ -42,7 +119,7 @@ body {
 }
 
 h2, h3 {
-  margin: 10px 0;
+  margin: 0 0 10px 0 !important;
 }
 
 h2 {
@@ -59,25 +136,15 @@ h3 {
   background-color: #fff;
 }
 
-
 .progress-indicator {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 10px;
+  margin: 20px 0;
 }
 
-.step_ok {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: white;
-  color: green;
-  border: 2px solid green;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 10px;
+::ng-deep .mat-vertical-content {
+  padding: 0 !important;
 }
 
 .divider {
@@ -102,7 +169,7 @@ h3 {
   text-decoration: none;
   color: inherit;
   margin-bottom: 10px;
-  border: 1px solid #4c3db2;
+  border: 1px solid var(--default-color);
 }
 
 .mantenedor-item > ul {
@@ -150,8 +217,8 @@ h3 {
   text-decoration: underline;
 }
 
-.text-green{
-  color: green;
+.active-text{
+  color: var(--default-color);
 }
 
 @media (max-width: 767px) {
@@ -166,8 +233,6 @@ h3 {
   h2 {
     font-size: 1.5em;
   }
-
-
 
   .form-group {
     margin-right: 0;

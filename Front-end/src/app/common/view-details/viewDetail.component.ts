@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ComplaintService } from '../../services/complaint.service';
 import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
 import { ELanguageType } from '../../../types/language.type';
+import { requestStates } from '../../../constants/requestState';
 
 @Component({
   selector: 'app-view-detail-popup',
@@ -40,7 +41,12 @@ export class ViewDetailPopupComponent implements OnInit {
     }    
   }
 
+  getStateLabel(state: number) {
+    return requestStates.find((item) => item.value === state)?.label;
+  }
+
   async getComplaint(){
     this.complaint = await this.complaintService.getComplaintByCode(this.code??"", this.language);
+    console.log('--------',this.complaint);
   }
 }

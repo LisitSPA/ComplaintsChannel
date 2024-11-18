@@ -56,7 +56,9 @@ export class LoginComponent {
         sessionStorage.setItem('name', response.user.completeName);
         sessionStorage.setItem('role', response.user.userType);
 
-        this.router.navigate(['/homeadmin']);
+        this.router.navigate(['/homeadmin']).then(() => {
+          window.location.reload();
+        });
       },
       (error) => {
         console.error('Error en el login:', error);

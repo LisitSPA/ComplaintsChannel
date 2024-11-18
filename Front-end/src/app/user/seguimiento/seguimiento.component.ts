@@ -7,14 +7,21 @@ import { ELanguageType } from '../../../types/language.type';
 import { environment } from '../../../environment/environment';
 import { ChatComponent } from '../../common/chat/chat.component';
 import { MatGridListModule } from '@angular/material/grid-list';
-
+import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
+import { requestStates } from '../../../constants/requestState';
 
 @Component({
   selector: 'app-seguimiento',
   standalone: true,
-  imports: [CommonModule, FormsModule, ChatComponent, MatGridListModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ChatComponent,
+    MatGridListModule,
+    NotifierModule,
+  ],
   templateUrl: './seguimiento.component.html',
-  styleUrl: './seguimiento.component.css'
+  styleUrl: './seguimiento.component.css',
 })
 export class SeguimientoComponent {
   showChat: boolean = false;
@@ -22,38 +29,47 @@ export class SeguimientoComponent {
   constructor(
     private route: ActivatedRoute,
     private complaintService: ComplaintService,
+    private notifier: NotifierService,
     private router: Router
-  ) {
-   
-  }
+  ) {}
 
   code: string | undefined;
   language: string = ELanguageType.español;
   complaint: any = [];
   complainant: any = [];
-  filesUrl: string = "";
+  filesUrl: string = '';
 
   ngOnInit(): void {
     // Capturando el parámetro de la URL
-    this.route.paramMap.subscribe(params => {
-      this.code = params.get('code')??"";     
+    this.route.paramMap.subscribe((params) => {
+      this.code = params.get('code') ?? '';
     });
 
-    if(this.code){
-      this.getComplaint()
+    if (this.code) {
+      this.getComplaint();
     }
     this.filesUrl = environment.filesUrl;
-    
   }
 
-  async getComplaint(){
-    this.complaint = await this.complaintService.getComplaintByCode(this.code??"", this.language);
+  getStateLabel(state: number) {
+    return requestStates.find((item) => item.value === state)?.label;
+  }
 
-    if(!this.complaint)
+  async getComplaint() {
+    this.complaint = await this.complaintService.getComplaintByCode(
+      this.code ?? '',
+      this.language
+    );
+
+    if (!this.complaint) {
+      this.notifier.show({
+        type: 'error',
+        message: 'No se encontró la denuncia',
+      });
       this.router.navigate(['/seguimiento']);
+    }
 
-    this.complainant = this.complaint?.complainant
-    this.showChat = true
+    this.complainant = this.complaint?.complainant;
+    this.showChat = true;
   }
-
 }

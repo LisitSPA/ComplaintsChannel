@@ -10,7 +10,7 @@ import getPoolColors from '../../../utilities/getPoolColors';
   standalone: true,
   imports: [CommonModule, BaseChartDirective],
   templateUrl: './charts-component.component.html',
-  styleUrls: ['./charts-component.component.css'],
+  styleUrls: ['./charts-component.component.css']
 })
 export class ChartsAdmin implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective<'bar'> | undefined;
