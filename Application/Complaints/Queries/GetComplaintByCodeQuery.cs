@@ -37,11 +37,11 @@ public class GetComplaintByCodeQueryHandler : IRequestHandler<GetComplaintByCode
         try
         {
             var source = _repository.GetAll()
-                            .Include(x=>x.Complainant)
-                            .Include(x=>x.Attachments)
-                            .Include(x=>x.ComplaintInvolved)
-                            .Include(x=>x.ComplaintHistory)
-                            .Include(x=>x.ComplaintReasons)
+                            .Include(x => x.Complainant)
+                            .Include(x => x.Attachments)
+                            .Include(x => x.ComplaintInvolved)
+                            .Include(x => x.ComplaintHistory.OrderByDescending(ch => ch.Id))
+                            .Include(x => x.ComplaintReasons)
                             .Where(x => x.TrackingCode == request.code)
                            .ProjectTo<ComplaintDto>(_mapper.ConfigurationProvider)
                            .FirstOrDefault();

@@ -101,12 +101,11 @@
       <div class="content-section">
         <h2 style="font-size: x-large">Historial</h2>
         <div class="historyContainer" *ngIf="complaint.complaintHistory?.length > 0">
-
           <ul class="timeline">
-            <li class="timeline-card" *ngFor="let history of complaint.complaintHistory; let i = index">
+            <li class="timeline-card" *ngFor="let history of sortHistoryList(complaint.complaintHistory); let i = index">
               <span aria-hidden="true" class="circle-custom" [ngClass]="{active: i == 0}"></span>
               <div class="subcard">
-                <h3>{{getStateLabel(history.eStatus)}}<p>{{history.createdOn | date: 'dd/MMM/yyyy'}}</p></h3>
+                <h3>{{getStateLabel(history.eStatus)}}<p>{{history.createdOn | date: 'dd/MMM/yyyy - HH:MM'}}</p></h3>
                 <p>{{history.notes}}</p>
               </div>
             </li>

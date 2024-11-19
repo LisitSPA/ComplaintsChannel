@@ -44,9 +44,12 @@ export class ViewDetailPopupComponent implements OnInit {
   getStateLabel(state: number) {
     return requestStates.find((item) => item.value === state)?.label;
   }
+  
+  sortHistoryList(historyList: any) {
+    return historyList.sort((a: any, b: any) => b.id - a.id);
+  }
 
   async getComplaint(){
     this.complaint = await this.complaintService.getComplaintByCode(this.code??"", this.language);
-    console.log('--------',this.complaint);
   }
 }
