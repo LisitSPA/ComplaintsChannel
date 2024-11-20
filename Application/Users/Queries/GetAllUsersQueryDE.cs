@@ -37,7 +37,11 @@ public class GetAllUsersQueryDEHandler(
 
             var source = _repo.GetAllActive()
                 .AsNoTracking()
-                .Where(x=> !x.Deleted)
+                .Where(x => 
+                   !x.Deleted
+                    && x.EUserType != Domain.Enums.EUserType.Complainant
+                    && x.ECompanyStatus == Domain.Enums.ECompanyStatus.Active
+                )
                 .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
                 .OrderByDescending(x => x.Id);
 

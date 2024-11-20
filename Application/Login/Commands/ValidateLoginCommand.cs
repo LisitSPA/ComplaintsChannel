@@ -48,7 +48,9 @@ public class ValidateLoginCommandHandler : IRequestHandler<ValidateLoginCommand,
         try
         {
             var user = _repository.GetAllActive()
-                 .Where(x => x.UserName == command.Username)
+                 .Where(x => x.UserName == command.Username 
+                    && x.EUserType.HasFlag(Domain.Enums.EUserType.Administrator) || x.EUserType.HasFlag(Domain.Enums.EUserType.Investigator)
+                 )
                  .ProjectTo<UserLoginDto>(_mapper.ConfigurationProvider)
                  .FirstOrDefault();
 
