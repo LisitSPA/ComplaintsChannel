@@ -1,4 +1,4 @@
-<nav class="sidebar">
+<nav class="sidebar" [ngClass]="{ showing: isShowing }">
   <div class="white-section" [ngClass]="{ 'active': isActive }">
     <ng-container *ngIf="selectedSection === 'home'">
       <h2>Home</h2>

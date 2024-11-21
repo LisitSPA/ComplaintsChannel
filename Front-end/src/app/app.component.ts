@@ -46,18 +46,14 @@
   export class AppComponent {
     title = 'test';
     isExpanded = false;
-    showAdminHeader: boolean = false;
-    showAdminSidebar: boolean = false;
-    showHeaderFooter: boolean = true;
+    showAdmin: boolean = false;
     selectedLanguage = 'en';  
 
 
     constructor(private router: Router,  private translateService: TranslateService) {
       this.router.events.subscribe(event => {
         if (event instanceof NavigationEnd) {
-          this.showHeaderFooter = !event.url.includes('admin');
-          this.showAdminHeader = event.url.includes('admin');
-          this.showAdminSidebar = event.url.includes('admin');
+          this.showAdmin = event.url.includes('admin');
         }
       });
 

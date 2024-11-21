@@ -7,15 +7,15 @@
     <form (ngSubmit)="guardarDatos()">
       <div class="form-row">
         <div class="form-group">
-          <h3>Nombre completo:</h3>
+          <h3>Nombre completo: <span class="text-danger">*</span></h3>
           <input type="text" class="form-control" [(ngModel)]="nombre" name="nombre" required>
         </div>
         <div class="form-group">
-          <h3>RUT:</h3>
+          <h3>RUT: <span class="text-danger">*</span></h3>
           <input type="text" class="form-control"  [(ngModel)]="rut" name="rut" required>
         </div>
         <div class="form-group">
-          <h3>Estado en la Empresa:</h3>
+          <h3>Estado en la Empresa: <span class="text-danger">*</span></h3>
           <select [(ngModel)]="eCompanyStatus" class="form-control" name="eCompanyStatus" required>
             <option value="1">Activo</option>
             <option value="2">Inactivo</option>
@@ -25,26 +25,24 @@
 
       <div class="form-row">
         <div class="form-group">
-          <h3>Cargo:</h3>
+          <h3>Cargo: <span class="text-danger">*</span></h3>
           <input type="text" class="form-control"  [(ngModel)]="cargo" name="cargo" required>
         </div>
         <div class="form-group">
-          <h3>Área:</h3>
+          <h3>Área: <span class="text-danger">*</span></h3>
           <input type="text" class="form-control"  [(ngModel)]="area" name="area" required>
         </div>
         <div class="form-group">
-          <h3>Sexo:</h3>
-          
-            <input type="radio" class="form-control"  [(ngModel)]="sexo" name="sexo" value="Masculino"> Masculino
-            <br>
-            <input type="radio" class="form-control"  [(ngModel)]="sexo" name="sexo" value="Femenino"> Femenino
-         
+          <h3>Sexo: <span class="text-danger">*</span></h3>
+          <select [(ngModel)]="sexo" name="sexo" required>
+            <option *ngFor="let genre of genreTypeValues" value="{{genre.id}}">{{genre.name}}</option>
+          </select>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <h3>Telefono de contacto:</h3>
+          <h3>Telefono de contacto: <span class="text-danger">*</span></h3>
           <input type="number" class="form-control"  [(ngModel)]="contacto" name="contacto" required>
         </div>
       </div>

@@ -103,6 +103,15 @@ export class ReportComponent implements OnInit {
       return;
     }
 
+    const dateArray = this.incidentDate.split('-');
+    const incidentDate = new Date(Number(dateArray[0]), Number(dateArray[1]) - 1, Number(dateArray[2])).getTime();
+    const currentDate = new Date().setHours(0,0,0,0);
+    
+    if (incidentDate > currentDate) {
+      this.notifier.notify('error', 'La fecha del incidente no puede ser mayor a la fecha actual');
+      return;
+    }
+
     this.complaintDataService.setComplaintData({
       reasons: this.reasons,
       description: this.description,

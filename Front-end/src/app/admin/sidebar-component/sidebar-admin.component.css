@@ -8,14 +8,19 @@
   display: flex;
   flex-direction: column;
   background-color: rgb(245, 238, 252);
-
 }
 
 .sidebar {
   display: flex;
   height: 100%;
-  width: 100%;
+  width: 0 !important;
+  transition: width 0.5s ease;
   flex-direction: row-reverse;
+  overflow: hidden; 
+}
+
+.sidebar.showing {
+  width: 100% !important;
 }
 
 .sidebar .white-section {
@@ -35,7 +40,7 @@
 }
 
 .sidebar .white-section h2 {
-  margin: 0 0 30px 0; 
+  margin: 0 0 30px 0;
   font-family: 'Open Sans';
   font-size: x-large;
   margin-top: 350px;
@@ -43,9 +48,9 @@
 }
 
 .sidebar .white-section a {
-  color: black; 
-  text-decoration: none; 
-  margin-bottom: 10px; 
+  color: black;
+  text-decoration: none;
+  margin-bottom: 10px;
   font-family: 'Open Sans';
   font-size: large;
 }
@@ -77,17 +82,17 @@ a {
 }
 
 .sidebar ul li {
-  margin: 20px 0;  
+  margin: 20px 0;
 }
 
 .logo img {
-  width: 150px; 
-  margin-top: 40px; 
+  width: 150px;
+  margin-top: 40px;
 }
 
 @media (max-width: 767px) {
   .sidebar {
-    flex-direction: column; 
+    flex-direction: column;
 
   }
 
@@ -96,36 +101,37 @@ a {
   }
 
   .sidebar .white-section h2 {
-    font-size: 16px; 
-    margin-top: 50px; 
+    font-size: 16px;
+    margin-top: 50px;
   }
 
   .sidebar .white-section a {
-    font-size: 14px; 
-    margin-bottom: 5px; 
+    font-size: 14px;
+    margin-bottom: 5px;
   }
 
   .sidebar .sidebar-section {
-    padding: 10px; 
+    padding: 10px;
   }
 
   .logo img {
     width: 100px;
-    margin-top: 20px; 
+    margin-top: 20px;
   }
 
   .sidebar ul {
-    margin-top: 50px; 
+    margin-top: 50px;
   }
 
   .sidebar ul li {
-    margin: 10px 0; 
+    margin: 10px 0;
   }
 }
+
 @media (max-width: 767px) {
   .container {
-    grid-template-columns: 1fr; 
-    height: auto; 
+    grid-template-columns: 1fr;
+    height: auto;
   }
 
   .main-content {
@@ -133,39 +139,39 @@ a {
   }
 
   .sidebar {
-    flex-direction: column; 
-    width: 50%; 
+    flex-direction: column;
+    width: 50%;
   }
 
   .sidebar .white-section.active {
-    width: 40%; 
+    width: 40%;
   }
 
   .sidebar .white-section h2 {
-    font-size: 16px; 
-    margin-top: 50px; 
+    font-size: 16px;
+    margin-top: 50px;
   }
 
   .sidebar .white-section a {
-    font-size: 14px; 
-    margin-bottom: 5px; 
+    font-size: 14px;
+    margin-bottom: 5px;
   }
 
   .sidebar .sidebar-section {
-    padding: 10px; 
+    padding: 10px;
   }
 
   .logo img {
     width: 100px;
-    margin-top: 20px; 
+    margin-top: 20px;
   }
 
   .sidebar ul {
-    margin-top: 50px; 
+    margin-top: 50px;
   }
 
   .sidebar ul li {
-    margin: 10px 0; 
+    margin: 10px 0;
   }
 }
 

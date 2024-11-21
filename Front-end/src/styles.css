@@ -8,7 +8,8 @@
 :root {
   --text-link-color: #538bc5;
   --default-color: #4C3DB2;
-  --primary-color: var(--default-color);
+  --primary-color: #f1f1f1;
+  /* --primary-color: var(--default-color); */
   --mat-icon-color: var(--primary-color);
   --mdc-radio-selected-focus-icon-color: var(--primary-color) !important;
   --mdc-radio-selected-hover-icon-color: var(--primary-color) !important;
@@ -312,6 +313,10 @@ input[type="date"] {
 .notifier__container-list-item,
 .notifier__notification {
   z-index: 1000 !important;
+}
+
+app-sidebar-admin {
+  background-color: #f1f1f1;
 }
 
 .step {

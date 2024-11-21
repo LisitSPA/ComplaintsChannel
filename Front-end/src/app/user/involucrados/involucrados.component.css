@@ -23,7 +23,7 @@
 
 .back-btn {
   align-self: flex-end;
-  background: linear-gradient(to right, rgba(255, 255, 255, .25), rgba(255, 255, 255, .3)), var(--primary-color);
+  background: linear-gradient(to right, rgba(255, 255, 255, .25), rgba(255, 255, 255, .3)), var(--default-color);
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;

@@ -6,6 +6,7 @@ import { UserService } from '../../../services/user.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
+import genreTypes from '../../../../types/genreTypes';
 
 @Component({
   selector: 'app-user-form',
@@ -23,6 +24,7 @@ export class UserFormComponent implements OnInit{
   estado = 1;  
   sexo =  ""; 
   email = "";
+  genreTypeValues = genreTypes;
 
   constructor(private userService: UserService, private router: Router, private notifier: NotifierService) {
     
@@ -32,7 +34,7 @@ export class UserFormComponent implements OnInit{
     this.nombre = this.usuario.completeName || '';
     this.tipo = this.usuario.eUserType || 0;  
     this.estado = this.usuario.eCompanyStatus || 0;  
-    this.sexo =  this.usuario.eGenre === 1 ? 'Femenino' : 'Masculino'; 
+    this.sexo = this.usuario.eGenre || 0;
     this.email = this.usuario.contactEmail || "";
 
   }
@@ -47,7 +49,7 @@ export class UserFormComponent implements OnInit{
       name: this.nombre,
       eUserType: this.tipo,  
       status: this.estado,  
-      eGenre: this.sexo === 'Masculino' ? 2 : 1, 
+      eGenre: this.sexo, 
       email: this.email,
       id: this.usuario.id
     };
