@@ -42,7 +42,10 @@ public class PasswordRecoveryCommandHandler
         try
         {
             var user = _repository.GetAllActive()
-                 .FirstOrDefault(x => x.UserName == command.Username);
+                 .FirstOrDefault(x => x.UserName == command.Username
+                 && (
+                    x.EUserType.HasFlag(Domain.Enums.EUserType.Administrator) || x.EUserType.HasFlag(Domain.Enums.EUserType.Investigator
+                    )));
 
             if (user is null)
                 throw new Exception("Usuario no encontrado");
