@@ -4,12 +4,6 @@
   height: 100%;
 }
 
-.main-content {
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(245, 238, 252);
-}
-
 .sidebar {
   display: flex;
   height: 100%;
@@ -134,10 +128,6 @@ a {
     height: auto;
   }
 
-  .main-content {
-    padding: 10px;
-  }
-
   .sidebar {
     flex-direction: column;
     width: 50%;
@@ -192,9 +182,5 @@ a {
 
   .sidebar ul li {
     margin: 5px 0;
-  }
-
-  .main-content {
-    padding: 5px;
   }
 }

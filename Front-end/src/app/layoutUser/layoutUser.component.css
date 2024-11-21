@@ -1,3 +1,6 @@
+body{
+  min-height: 100vh;
+}
 
 .container {
   display: grid;
@@ -12,14 +15,10 @@
   gap: 20px;
 }
 
-app-denuncias-table {
-  background-color: #f1f1f1;
-}
-
 @media (max-width: 1023px) {
   .container {
     grid-template-columns: 1fr;
-    height: auto; 
+    height: auto;
   }
 
   .dashboard {

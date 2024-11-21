@@ -1,6 +1,15 @@
+::ng-deep .main-content {
+  background: #fff !important;
+}
+
 .chat-admin-container {
   display: flex; 
-  height: 100vh; 
+  height: 100vh;
+}
+
+.chat-items-container {
+  max-height: 100vh;
+  overflow: auto;
 }
 
 .chat-list {
@@ -56,31 +65,16 @@ textarea {
   padding: 10px 20px;
   cursor: pointer;
   border: none;
-  background-color: white;
 }
-
 
 .tabs button.active {
   background-color: #ff4d4f;
-  color: white;
 }
-app-sidebar-admin {
-  width: 370px; 
-  background-color: #f1f1f1; 
-  height: 100%; 
-  position: fixed; 
-}
-.main-content {
-  margin-left: calc(330px + 20px); 
-  flex-grow: 1; 
-  padding: 20px; 
-  background-color: #fff; 
-}
+
 a{
 font-family: 'Open Sans';
 font-weight: 500;
 font-size: large;
-
 }
 
 p.chat-name{
@@ -116,7 +110,6 @@ margin-top: 20px;
 padding: 10px 5px;
 cursor: pointer;
 border: none;
-background-color: white;
 text-decoration: none; 
 font-size: medium;
 }
@@ -139,11 +132,6 @@ color: var(--primary-color);
   .chat-detail {
     width: 100%; 
     padding: 10px; 
-  }
-
-  .main-content {
-    margin-left: 0; 
-    padding: 10px;
   }
 
   .respuesta-btn {

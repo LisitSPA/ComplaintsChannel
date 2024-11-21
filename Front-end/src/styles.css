@@ -18,6 +18,10 @@
   --mat-radio-checked-ripple-color: var(--primary-color) !important;
 }
 
+.mat-display-medium, .mat-typography .mat-display-medium, .mat-typography h2 {
+  margin: 0 0 .5em 0 !important;
+}
+
 .modal {
   display: flex;
   justify-content: center;
@@ -217,7 +221,7 @@ button:disabled {
 
 .back-btn {
   align-self: flex-end;
-  background: linear-gradient(to right, rgba(255, 255, 255, .25), rgba(255, 255, 255, .3)), var(--primary-color);
+  background: linear-gradient(to right, rgba(255, 255, 255, .25), rgba(255, 255, 255, .4)), var(--primary-color);
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
@@ -237,11 +241,11 @@ button:disabled {
 
 .denuncia-btn,
 .ver-mas-btn {
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--default-color);
   background-color: white;
   padding: 10px 20px;
   border-radius: 20px;
-  color: var(--primary-color);
+  color: var(--default-color);
   cursor: pointer;
   font-family: 'Open Sans';
 }
@@ -280,7 +284,8 @@ section {
 }
 
 .denuncia-btn:hover {
-  background-color: var(--primary-color);
+  background-color: var(--default-color) !important;
+  opacity: 0.5;
   color: white;
 }
 
@@ -356,7 +361,7 @@ app-sidebar-admin {
 }
 
 .violet {
-  color: var(--primary-color);
+  color: var(--default-color);
   font-weight: 500;
   text-decoration: underline;
 }

@@ -1,7 +1,3 @@
 <main>
-  <app-header *ngIf="!showAdmin" class="component" [ngClass]="{ active: !showAdmin }"></app-header>
-
   <router-outlet></router-outlet>
-
-  <app-footer *ngIf="!showAdmin" class="component" [ngClass]="{ active: !showAdmin }"></app-footer>
 </main>

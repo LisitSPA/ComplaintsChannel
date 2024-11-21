@@ -1,86 +1,67 @@
-<body>
-  <div class="container">
-    <app-sidebar-admin></app-sidebar-admin>
+<div class="table-container">
+  <h2>Usuarios y privilegios</h2>
 
-    <div class="main-content">
-      <app-header-admin></app-header-admin>
-     
-      <div class="table-container">
-        <h2>Usuarios y privilegios</h2>
-
-        <div class="toolbar">
-          <div class="botones-usuario">
-            <!-- <div class="eliminar-option" (click)="eliminarUsuarios()">
+  <div class="toolbar">
+    <div class="botones-usuario">
+      <!-- <div class="eliminar-option" (click)="eliminarUsuarios()">
               <img src="/icons/basurero.svg" alt="Eliminar Icono" class="icono-eliminar">
               <span>Eliminar</span>
             </div> -->
-            
-            
-            <button class="usuario-option" mat-button (click)="abrirFormulario()">
-              <span> Crear usuario </span>
-            </button>
-          </div>
-        </div>
 
-        <div class="table-wrapper">
-          <table class="table">
-            <thead>
-              <tr>
-                <!-- <th><input type="checkbox"></th> -->
-                <th>Id</th>
-                <th>Nombre </th>
-                <th>Tipo</th>
-                <th>Estado</th>
-                <th>Edición</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let usuario of paginatedColaboradores">
-                <!-- <td><input type="checkbox" (change)="seleccionarUsuario(usuario, $event)"></td> -->
-                <td>{{ usuario.id }}</td>
-                <td>{{ usuario.completeName }}</td>
-                <td>{{ usuario.userType }}</td>
-                <td [ngClass]="usuario.eCompanyStatus == 1 ? 'estado-activo' : 'estado-inactivo'">{{ usuario.companyStatus != 0 ? usuario.companyStatus : 'Activo' }}</td>
-                <td>
-                  <button class="btn-edit" (click)="editarUsuario(usuario)">Editar</button>
-                  <button class="btn-delete" (click)="eliminarUsuario(usuario)"> Eliminar</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
 
-        <div class="pagination">
-          <span class="label">Principio</span>
-          <span (click)="previousPage()" [class.disabled]="currentPage === 1" class="arrow">‹</span>
-
-          <div class="page-numbers">
-            <button *ngFor="let page of pages()" (click)="goToPage(page)" [class.active]="currentPage === page">
-              {{ page }}
-            </button>
-          </div>
-          <span (click)="nextPage()" [class.disabled]="currentPage === totalPages" class="arrow">›</span>
-          <span class="label">Final</span>
-        </div>
-        <br>
-      </div>
+      <button class="usuario-option" mat-button (click)="abrirFormulario()">
+        <span> Crear usuario </span>
+      </button>
     </div>
   </div>
 
-  <app-user-form 
-    *ngIf="mostrarEditar" 
-    [usuario]="usuarioSeleccionado" 
-    (cerrar)="cerrarFormulario()">
-  </app-user-form>
+  <div class="table-wrapper">
+    <table class="table">
+      <thead>
+        <tr>
+          <!-- <th><input type="checkbox"></th> -->
+          <th>Id</th>
+          <th>Nombre </th>
+          <th>Tipo</th>
+          <th>Estado</th>
+          <th>Edición</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of paginatedColaboradores">
+          <!-- <td><input type="checkbox" (change)="seleccionarUsuario(usuario, $event)"></td> -->
+          <td>{{ usuario.id }}</td>
+          <td>{{ usuario.completeName }}</td>
+          <td>{{ usuario.userType }}</td>
+          <td [ngClass]="usuario.eCompanyStatus == 1 ? 'estado-activo' : 'estado-inactivo'">{{ usuario.companyStatus !=
+            0 ? usuario.companyStatus : 'Activo' }}</td>
+          <td>
+            <button class="btn-edit" (click)="editarUsuario(usuario)">Editar</button>
+            <button class="btn-delete" (click)="eliminarUsuario(usuario)"> Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-  <app-eliminar-usuario 
-    *ngIf="mostrarEliminar && usuarioSeleccionado" 
-    (cerrar)="cerrarEliminar()" 
-    (usuarioEliminado)="confirmarEliminarUsuario()"
-    [usuarioId]="usuarioSeleccionado!.id">
+  <div class="pagination">
+    <span class="label">Principio</span>
+    <span (click)="previousPage()" [class.disabled]="currentPage === 1" class="arrow">‹</span>
+
+    <div class="page-numbers">
+      <button *ngFor="let page of pages()" (click)="goToPage(page)" [class.active]="currentPage === page">
+        {{ page }}
+      </button>
+    </div>
+    <span (click)="nextPage()" [class.disabled]="currentPage === totalPages" class="arrow">›</span>
+    <span class="label">Final</span>
+  </div>
+  <br>
+</div>
+
+<app-user-form *ngIf="mostrarEditar" [usuario]="usuarioSeleccionado" (cerrar)="cerrarFormulario()">
+</app-user-form>
+
+<app-eliminar-usuario *ngIf="mostrarEliminar && usuarioSeleccionado" (cerrar)="cerrarEliminar()"
+  (usuarioEliminado)="confirmarEliminarUsuario()" [usuarioId]="usuarioSeleccionado!.id">
 </app-eliminar-usuario>
-
-
-
-
-</body>
