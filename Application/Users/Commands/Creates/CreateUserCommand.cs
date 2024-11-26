@@ -27,7 +27,7 @@ public record CreateUserCommand : IRequest<Response<bool>>
     public EGenre EGenre { get; set; }
     public ECompanyStatus Status { get; set; }
     public string Email { get; set; }
-    public string UserName { get; set; }
+    //public string UserName { get; set; }
     public string Password { get; set; }
 
 }
@@ -52,7 +52,7 @@ public class CreateUserCommandHandler(
             if (exists != null)
                 throw new Exception("El usuario ya existe");
 
-            if (command.Password != null && command.UserName != null)
+            if (command.Password != null)
                 password = _passwordHasher.HashPassword(command.Password);
 
             var user = new User
@@ -64,7 +64,7 @@ public class CreateUserCommandHandler(
                 ContactEmail = command.Email,
                 EGenre = command.EGenre,
                 Password = password,
-                UserName = command.UserName
+                UserName = command.EUserType >= EUserType.Administrator ? command.Email : null
             };
 
             _repository.Add(user);
