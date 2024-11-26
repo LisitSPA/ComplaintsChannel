@@ -9,7 +9,7 @@ import { ChatComponent } from '../../common/chat/chat.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute } from '@angular/router';
 import { requestStates } from '../../../constants/requestState';
-import { NotifierService } from 'gramli-angular-notifier';
+import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
 
 @Component({
   selector: 'app-chat-admin',
@@ -17,7 +17,7 @@ import { NotifierService } from 'gramli-angular-notifier';
   imports: [
     CommonModule,
     FormsModule,
-    SidebarAdmin,
+    NotifierModule,
     ChatComponent,
     MatIconModule,
   ],

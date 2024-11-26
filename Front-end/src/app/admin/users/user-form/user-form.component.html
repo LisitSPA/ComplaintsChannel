@@ -6,11 +6,11 @@
     <form (ngSubmit)="guardarDatos()">
       <div class="form-row">
         <div class="form-group">
-          <h3>Nombre:</h3>
+          <h3>Nombre: <span class="text-danger">*</span></h3>
           <input type="text" [(ngModel)]="nombre" name="nombre" required>
         </div>
         <div class="form-group">
-          <h3>Tipo de usuario:</h3>
+          <h3>Tipo de usuario: <span class="text-danger">*</span></h3>
           <select [(ngModel)]="tipo" name="tipo" required>
             <option value="{{5}}">Investigador</option>
             <option value="{{4}}">Administrador</option>
@@ -18,7 +18,7 @@
           </select>
         </div>
         <div class="form-group">
-          <h3>Estado</h3>
+          <h3>Estado <span class="text-danger">*</span></h3>
           <select [(ngModel)]="estado" name="estado" required>
             <option value="{{1}}">Activo</option>
             <option value="{{2}}">Inactivo</option>
@@ -27,15 +27,16 @@
       </div>
       <div class="form-row">
         <div class="form-group">
-          <h3>E-mail de usuario:</h3>
+          <h3>E-mail de usuario: <span class="text-danger">*</span></h3>
           <input type="email" [(ngModel)]="email" name="email" required>
         </div>
 
         <div class="form-group">
-          <h3>Sexo:</h3>
+          <h3>Sexo: <span class="text-danger">*</span></h3>
           <div class="form-group">
-            <input type="radio" class="form-control"  [(ngModel)]="sexo" name="sexo" value="Masculino"> Masculino
-            <input type="radio" class="form-control"  [(ngModel)]="sexo" name="sexo" value="Femenino"> Femenino
+            <select [(ngModel)]="sexo" name="sexo" required>
+              <option *ngFor="let genre of genreTypeValues" value="{{genre.id}}">{{genre.name}}</option>
+            </select>
           </div>
         </div>
       </div>

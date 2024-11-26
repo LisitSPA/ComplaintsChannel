@@ -4,7 +4,7 @@
             <h2>Recuperar Contraseña</h2>
             <form (ngSubmit)="recuperarContrasenia()">
                 <div class="form-group">
-                    <h3>Escriba su correo electrónico</h3>
+                    <h3>Escriba su correo electrónico <span class="text-danger">*</span></h3>
                     <input type="email" class="form-control" 
                            placeholder="Correo electrónico" 
                            [(ngModel)]="username" name="username" required>

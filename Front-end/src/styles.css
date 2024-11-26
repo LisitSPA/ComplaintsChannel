@@ -8,13 +8,18 @@
 :root {
   --text-link-color: #538bc5;
   --default-color: #4C3DB2;
-  --primary-color: var(--default-color);
+  --primary-color: #f1f1f1;
+  /* --primary-color: var(--default-color); */
   --mat-icon-color: var(--primary-color);
   --mdc-radio-selected-focus-icon-color: var(--primary-color) !important;
   --mdc-radio-selected-hover-icon-color: var(--primary-color) !important;
   --mdc-radio-selected-icon-color: var(--primary-color) !important;
   --mdc-radio-selected-pressed-icon-color: var(--primary-color) !important;
   --mat-radio-checked-ripple-color: var(--primary-color) !important;
+}
+
+.mat-display-medium, .mat-typography .mat-display-medium, .mat-typography h2 {
+  margin: 0 0 .5em 0 !important;
 }
 
 .modal {
@@ -216,7 +221,7 @@ button:disabled {
 
 .back-btn {
   align-self: flex-end;
-  background: linear-gradient(to right, rgba(255, 255, 255, .25), rgba(255, 255, 255, .3)), var(--primary-color);
+  background: linear-gradient(to right, rgba(255, 255, 255, .25), rgba(255, 255, 255, .4)), var(--primary-color);
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
@@ -236,11 +241,11 @@ button:disabled {
 
 .denuncia-btn,
 .ver-mas-btn {
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--default-color);
   background-color: white;
   padding: 10px 20px;
   border-radius: 20px;
-  color: var(--primary-color);
+  color: var(--default-color);
   cursor: pointer;
   font-family: 'Open Sans';
 }
@@ -279,7 +284,8 @@ section {
 }
 
 .denuncia-btn:hover {
-  background-color: var(--primary-color);
+  background-color: var(--default-color) !important;
+  opacity: 0.5;
   color: white;
 }
 
@@ -312,6 +318,10 @@ input[type="date"] {
 .notifier__container-list-item,
 .notifier__notification {
   z-index: 1000 !important;
+}
+
+app-sidebar-admin {
+  background-color: #f1f1f1;
 }
 
 .step {
@@ -351,7 +361,7 @@ input[type="date"] {
 }
 
 .violet {
-  color: var(--primary-color);
+  color: var(--default-color);
   font-weight: 500;
   text-decoration: underline;
 }

@@ -16,37 +16,48 @@ import { ChatAdminComponent } from './admin/chat-admin/chat-admin.component';
 import { RecuperarComponent } from './recuperar/recuperar.component';
 import { ChangePasswordComponent } from './admin/change-password/change-password.component';
 import { LayoutComponent } from './layout/layout.component';
+import { LayoutUserComponent } from './layoutUser/layoutUser.component';
 
 export const routes: Routes = [
-  { path: 'home', component: HomeComponent},
-  { path: '', component: HomeComponent },
-  { path: 'report', component: ReportComponent},
-  { path: 'evidencia', component: EvidenciaComponent},
-  { path: 'involucrados', component: InvolucradosComponent},
-  { path: 'denunciante', component:DenuncianteComponent}, 
-  { path: 'seguimiento', component: TrackingCodeComponent},
-  { path: 'seguimiento/:code', component: SeguimientoComponent },
-  {path:'successreport', component:SuccessreportComponent},
-  {path:'login', component:LoginComponent},
-  {path:'recuperar', component: RecuperarComponent},  
-  //{path: 'chat', component: ChatUserComponent},
-  {path: 'usersadmin', component: UsersComponent},  
-  { path: 'denunciasadmin', component: DenunciasComponent},
-  { path: 'denunciasadmin/:viewMode/:status', component: DenunciasComponent},
-  { path: 'denunciasadmin/:viewMode', component: DenunciasComponent},
-  {path:'chatadmin', component: ChatAdminComponent},
-  {path:'chatadmin/:id', component: ChatAdminComponent},
+  {
+    path: '',
+    component: LayoutUserComponent,
+    data: {
+      layout: 'empty',
+    },
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'home', component: HomeComponent },
+      { path: 'report', component: ReportComponent },
+      { path: 'evidencia', component: EvidenciaComponent },
+      { path: 'involucrados', component: InvolucradosComponent },
+      { path: 'denunciante', component: DenuncianteComponent },
+      { path: 'seguimiento', component: TrackingCodeComponent },
+      { path: 'seguimiento/:code', component: SeguimientoComponent },
+      { path: 'successreport', component: SuccessreportComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'recuperar', component: RecuperarComponent },
+    ],
+  },
   {
     path: '',
     component: LayoutComponent,
     data: {
-        layout: 'empty'
+      layout: 'empty',
     },
     children: [
-      { path: 'homeadmin', component: HomeAdminComponent},   
-      { path:'cambiarcontrasenaadmin', component: ChangePasswordComponent},
-      { path:'configurationadmin', component: ConfigurationComponent },
-    ]
+      { path: 'homeadmin', component: HomeAdminComponent },
+      { path: 'cambiarcontrasenaadmin', component: ChangePasswordComponent },
+      { path: 'configurationadmin', component: ConfigurationComponent },
+      { path: 'usersadmin', component: UsersComponent },
+      { path: 'denunciasadmin', component: DenunciasComponent },
+      {
+        path: 'denunciasadmin/:viewMode/:status',
+        component: DenunciasComponent,
+      },
+      { path: 'denunciasadmin/:viewMode', component: DenunciasComponent },
+      { path: 'chatadmin', component: ChatAdminComponent },
+      { path: 'chatadmin/:id', component: ChatAdminComponent },
+    ],
   },
-
 ];

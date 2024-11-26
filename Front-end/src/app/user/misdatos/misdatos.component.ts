@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ComplaintDataService } from '../../services/complaint-data.service';
 import { NotifierService } from 'gramli-angular-notifier';
+import genreTypes from '../../../types/genreTypes';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class MisdatosComponent implements OnInit {
   rut: string = '';
   eCompanyStatus: number = 1;
   currentComplaint: any = {};
+  genreTypeValues = genreTypes;
 
 
   @Input() cerrar!: Function;
@@ -36,7 +38,7 @@ export class MisdatosComponent implements OnInit {
     this.estado = this.currentComplaint?.eCompanyStatus || '';
     this.cargo = this.currentComplaint?.position || '';
     this.area = this.currentComplaint?.area || '';
-    this.sexo = this.currentComplaint?.eGenre === 1 ? 'Femenino' : 'Masculino';
+    this.sexo =  this.currentComplaint?.eGenre || 0;
     this.contacto = this.currentComplaint?.contactPhone || '';
     this.rut = this.currentComplaint?.rut || '';
   }
@@ -53,7 +55,7 @@ export class MisdatosComponent implements OnInit {
         eCompanyStatus: this.eCompanyStatus,  
         position: this.cargo,
         area: this.area,
-        eGenre: this.sexo === 'Masculino' ? 2 : 1,  
+        eGenre: this.sexo,
         contactPhone: this.contacto.toString(),
         rut: this.rut
       }

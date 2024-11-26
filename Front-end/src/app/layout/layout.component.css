@@ -1,62 +1,86 @@
-
 .container {
-    display: grid;
-    grid-template-columns: 370px 1fr;
-    height: 100vh;
+  display: grid;
+  grid-template-columns: 370px 1fr;
+  background-color: #f1f1f1;
+  height: 100vh;
+}
+
+::ng-deep .header {
+  width: 100% !important;
+}
+
+app-sidebar-admin {
+  width: 370px;
+  background-color: #f1f1f1;
+  height: 100%;
+  position: fixed;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.main-content {
+  margin-left: calc(330px + 20px);
+  padding: 0 20px;
+  background-color: #f1f1f1;
+  width: calc(100vw - 370px);
+}
+
+::ng-deep .main-content {
+  background-color: #f1f1f1;
+}
+
+.dashboard {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+::ng-deep .page-numbers {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+::ng-deep .quick-access-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f1f1f1;
+  gap: 20px;
+}
+
+@media (max-width: 1023px) {
+  .container {
+    grid-template-columns: 1fr;
+    height: auto;
   }
-  
-  .main-content {
-    display: flex;
-    flex-direction: column;
-    background-color:#f1f1f1;
-  
-  }
- 
 
   .dashboard {
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr;
+    padding: 10px;
+    gap: 10px;
   }
+
+  .main-content {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
   .quick-access-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; 
+    gap: 10px;
   }
-  @media (max-width: 1023px) {
-    .container {
-      grid-template-columns: 1fr;
-      height: auto; 
-    }
-  
-    .dashboard {
-      grid-template-columns: 1fr;
-      padding: 10px;
-      gap: 10px;
-    }
-  
-    .main-content {
-      padding: 10px;
-    }
+
+  .main-content {
+    padding: 5px;
   }
-  
-  @media (max-width: 767px) {
-    .container {
-      grid-template-columns: 1fr;
-      height: auto;
-    }
-  
-    .dashboard {
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-  
-    .quick-access-container {
-      gap: 10px;
-    }
-  
-    .main-content {
-      padding: 5px;
-    }
-  }
+}

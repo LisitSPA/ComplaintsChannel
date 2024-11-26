@@ -1,25 +1,19 @@
-<div class="container">
-  <app-sidebar-admin></app-sidebar-admin>
+<div class="header-container">
+  <h2 class="header-title" [class.active]="viewMode === 'realizadas'" (click)="changeViewMode('realizadas')">Acciones
+    realizadas</h2>
+  <h2 class="header-title" [class.active]="viewMode === 'desestimadas'" (click)="changeViewMode('desestimadas')">
+    Acciones desestimadas</h2>
+</div>
+<hr>
 
-  <div class="main-content">
-    <app-header-admin></app-header-admin>
-    
-    <div class="header-container">
-      <h2 class="header-title" [class.active]="viewMode === 'realizadas'" (click)="changeViewMode('realizadas')">Acciones realizadas</h2>
-      <h2 class="header-title" [class.active]="viewMode === 'desestimadas'" (click)="changeViewMode('desestimadas')">Acciones desestimadas</h2>
-    </div>
-    <hr>
-
-    <div class="container-denuncias">
-      <div class="sidebar-denuncias">
-        <h2>Denuncias</h2>
-        <p class="bold" style="color: var(--primary-color);">Supervisión de denuncias</p>
-        <p *ngIf="viewMode === 'desestimadas'">Desestimadas</p>
-        <p *ngIf="viewMode === 'realizadas'">Realizadas</p>
-      </div>
-
-      <app-denuncias-table *ngIf="viewMode === 'desestimadas'" [filterStatus]="31"></app-denuncias-table>
-      <app-denuncias-table *ngIf="viewMode !== 'desestimadas'" [filterStatus]="0"></app-denuncias-table>
-    </div>
+<div class="container-denuncias">
+  <div class="sidebar-denuncias">
+    <h2>Denuncias</h2>
+    <p class="bold" style="color: var(--primary-color);">Supervisión de denuncias</p>
+    <p *ngIf="viewMode === 'desestimadas'">Desestimadas</p>
+    <p *ngIf="viewMode === 'realizadas'">Realizadas</p>
   </div>
+
+  <app-denuncias-table *ngIf="viewMode === 'desestimadas'" [filterStatus]="31"></app-denuncias-table>
+  <app-denuncias-table *ngIf="viewMode !== 'desestimadas'" [filterStatus]="0"></app-denuncias-table>
 </div>

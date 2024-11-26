@@ -1,195 +1,195 @@
 .configuracion-empresa {
-    padding: 20px;
-    max-width: 600px;
-    margin: auto;
-  }
-  
-  .main-content {
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(245, 238, 252);
-  }
-  
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
 .container {
-    display: grid;
-    grid-template-columns: 350px 1fr;
-    height: 100%;
-  }
-  .input-group {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .logo-upload {
-    display: flex;
-    align-items: center;
-    border: 2px dashed #ccc;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .upload-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .color-options {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .color-circle {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 1px solid #ccc;
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  height: 100%;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.logo-upload {
+  display: flex;
+  align-items: center;
+  border: 2px dashed #ccc;
+  padding: 20px;
+  text-align: center;
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.color-options {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.color-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid #ccc;
+}
+
+.custom-color-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+input[type="color"] {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border-radius: 50%;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border-radius: 50%;
+}
+
+button {
+  margin-top: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:checked+.slider:before {
+  transform: translateX(26px);
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 767px) {
+  .container {
+    grid-template-columns: 1fr;
+    height: auto;
   }
 
-  .custom-color-container {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+  .configuracion-empresa {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .logo-upload {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .color-options {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .color-circle {
+    width: 25px;
+    height: 25px;
   }
 
   input[type="color"] {
-    -webkit-appearance: none;
-    appearance: none;
-    border: none;
-    padding: 0;
     width: 30px;
-    height: 30px;    
-    border-radius: 50%;
+    height: 30px;
   }
-  input[type="color"]::-webkit-color-swatch-wrapper {
-    padding: 0;    
-    border-radius: 50%;
+}
+
+@media (max-width: 479px) {
+  .configuracion-empresa {
+    padding: 5px;
   }
-  input[type="color"]::-webkit-color-swatch {
-    border-radius: 50%;
+
+  .upload-placeholder span {
+    font-size: 12px;
   }
-  
-  button {
-    margin-top: 20px;
-  }
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-  }
-  
-  input:checked + .slider {
-    background-color: #2196F3;
-  }
-  
-  input:checked + .slider:before {
-    transform: translateX(26px);
-  }
+
   .btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    font-size: 14px;
+    padding: 8px 16px;
   }
-  
-  .btn-primary {
-    background-color: var(--primary-color);
-    color: white;
+
+  .switch {
+    width: 50px;
+    height: 30px;
   }
-  
-  .btn-primary:hover {
-    opacity: 0.8;
+
+  .slider:before {
+    height: 22px;
+    width: 22px;
   }
-  @media (max-width: 767px) {
-    .container {
-      grid-template-columns: 1fr;
-      height: auto; 
-    }
-  
-    .configuracion-empresa {
-      max-width: 100%; 
-      padding: 10px; 
-    }
-  
-    .logo-upload {
-      flex-direction: column; 
-      padding: 10px; 
-    }
-  
-    .color-options {
-      flex-wrap: wrap; 
-      gap: 5px; 
-    }
-  
-    .color-circle {
-      width: 25px;
-      height: 25px; 
-    }
-  
-    input[type="color"] {
-      width: 30px;
-      height: 30px; 
-    }
-  }
-  
-  @media (max-width: 479px) {
-    .configuracion-empresa {
-      padding: 5px; 
-    }
-  
-    .upload-placeholder span {
-      font-size: 12px; 
-    }
-  
-    .btn {
-      font-size: 14px; 
-      padding: 8px 16px; 
-    }
-  
-    .switch {
-      width: 50px; 
-      height: 30px;
-    }
-  
-    .slider:before {
-      height: 22px;
-      width: 22px;
-    }
-  }
+}

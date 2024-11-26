@@ -12,7 +12,7 @@
 }
 
 .table tbody tr:nth-child(even) {
-  background-color: eee5e675;
+  background-color: #eee5e675;
 }
 
 .toolbar {
@@ -133,20 +133,6 @@
 .container {
   display: flex;
   height: 100%;
-  background-color: #f1f1f1;
-}
-
-app-sidebar-admin {
-  width: 370px;
-  background-color: #f1f1f1;
-  height: 100%;
-  position: fixed;
-}
-
-.main-content {
-  margin-left: calc(330px + 20px);
-  flex-grow: 1;
-  padding: 20px;
   background-color: #f1f1f1;
 }
 
@@ -339,16 +325,6 @@ app-sidebar-admin {
   .container {
     display: block;
     height: 100%;
-  }
-
-  app-sidebar-admin {
-    width: 100%;
-    position: relative;
-  }
-
-  .main-content {
-    margin-left: 0;
-    padding: 10px;
   }
 
   .header-container {

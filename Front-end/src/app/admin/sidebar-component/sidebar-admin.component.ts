@@ -14,8 +14,9 @@ import { NotifierModule } from 'gramli-angular-notifier';
   styleUrls: ['./sidebar-admin.component.css'] 
 })
 export class SidebarAdmin {
-  logoUrl: string = '/icons/Logo_adm.svg';
-  isActive: boolean = false; 
+  logoUrl: string = '';
+  isActive: boolean = false;
+  isShowing: boolean = false;
   selectedSection: string = '';
 
   constructor(
@@ -46,6 +47,7 @@ export class SidebarAdmin {
       },
       () => {
         this.configurationService.updateDefaultColor();
+        this.isShowing = true;
       }
     );
   }

@@ -16,7 +16,7 @@
 
     <div class="content-section">
       <h2>Por favor, selecciona una o más opciones</h2>
-      <h3>Motivos de denuncia</h3>
+      <h3>Motivos de denuncia <span class="text-danger">*</span></h3>
 
       <div class="denuncia-options" *ngIf="reasonsList.length ">
         <div>
@@ -42,12 +42,12 @@
 
       <div class="incident-description">
         <h2>Descripción del incidente</h2>
-        <h3 for="incident-details">Cuéntanos qué ha sucedido</h3>
+        <h3 for="incident-details">Cuéntanos qué ha sucedido <span class="text-danger">*</span></h3>
         <textarea id="incident-details" [(ngModel)]="description"
           placeholder="He presenciado una desviación contable..."></textarea>
 
         <div class="incident-date">
-          <h3 for="incident-date">Fecha del Incidente</h3>
+          <h3 for="incident-date">Fecha del Incidente <span class="text-danger">*</span></h3>
           <input type="date" id="incident-date" [(ngModel)]="incidentDate" />
         </div>
       </div>
