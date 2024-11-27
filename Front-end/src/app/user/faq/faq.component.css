@@ -31,7 +31,7 @@
 }
 
 .faq-answer.expanded {
-  max-height: 100px; 
+  max-height: max-content; 
   background-color: #f0effb;
   margin: 10px auto;
   padding: 10px; 
@@ -49,6 +49,7 @@
   }
 
   .faq-answer.expanded {
-    max-height: 150px; 
+    max-height: max-content; 
+    width: 90%;
   }
 }
