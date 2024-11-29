@@ -142,8 +142,33 @@ export class DenunciasTableComponent implements OnInit {
     }
   }
 
+  
+  lastPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage = this.totalPages;
+      this.updatePaginated();
+    }
+  }
+
+  firstPage() {
+    if (this.currentPage > 1) {
+      this.currentPage = 1;
+      this.updatePaginated();
+    }
+  }
+
   pages() {
-    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    let pages = [];
+    const initialPage = this.currentPage - 3 > 0 ? this.currentPage - 3 : 1;
+    const finalPage =
+      this.currentPage + 3 < this.totalPages
+        ? this.currentPage + 3
+        : this.totalPages;
+
+    for (let i = initialPage; i <= finalPage; i++) {
+      pages.push(i);
+    }
+    return pages;
   }
 
   goToPage(page: number) {
@@ -161,6 +186,7 @@ export class DenunciasTableComponent implements OnInit {
         (x) => x.eStatus == this.selectedStatus
       );
       this.updatePaginated();
+      this.goToPage(1);
     } else {
       this.loadRealizadas();
     }

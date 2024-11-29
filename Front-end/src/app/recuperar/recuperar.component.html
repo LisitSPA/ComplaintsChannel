@@ -6,8 +6,8 @@
                 <div class="form-group">
                     <h3>Escriba su correo electrónico <span class="text-danger">*</span></h3>
                     <input type="email" class="form-control" 
-                           placeholder="Correo electrónico" 
-                           [(ngModel)]="username" name="username" required>
+                        placeholder="Correo electrónico" 
+                        [(ngModel)]="username" name="username" required>
                 </div>
                 <button type="submit" [disabled]="submit" class="track-button" style="font-family: 'Open Sans'; font-size: medium;">
                     <span *ngIf="!submit">Enviar instrucciones</span>

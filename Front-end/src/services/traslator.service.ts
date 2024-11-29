@@ -4,21 +4,17 @@ import { environment } from '../environment/environment';
 import { lastValueFrom } from 'rxjs';
 import { ELanguageType } from '../types/language.type';
 
-
 @Injectable({ providedIn: 'root' })
 export class TraslatorService {
-    constructor(private _httpClient: HttpClient, ) { }
-   
+  constructor(private _httpClient: HttpClient) {}
 
-    traslateText(text: string[], language: ELanguageType): Promise<any> {
-        var data = {
-            text,
-            language 
-        }
-        return lastValueFrom(this._httpClient.post(
-            `${environment.apiUrl}/complaints/`, data
-        ));
-    }
-
-   
+  traslateText(text: string[], language: ELanguageType): Promise<any> {
+    var data = {
+      text,
+      language,
+    };
+    return lastValueFrom(
+      this._httpClient.post(`${environment.apiUrl}/complaints/`, data)
+    );
+  }
 }

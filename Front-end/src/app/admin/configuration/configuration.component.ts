@@ -20,8 +20,9 @@ export class ConfigurationComponent {
   showNavBar: boolean = true;
 
   predefinedColors: string[] = [
-    '#4C3DB2',
+    '#0500BA',
     '#32cd32',
+    '#4C3DB2',
     '#ff69b4',
     '#ffcc00',
     '#00ff7f',

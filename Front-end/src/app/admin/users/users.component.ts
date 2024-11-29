@@ -1,28 +1,27 @@
-import { Component } from '@angular/core';  
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderAdmin } from '../header-component/header-admin.component';
 import { EliminarUsuarioComponent } from '../../eliminar-usuario/eliminar-usuario.component';
-import { FormsModule } from '@angular/forms';  
-import { SidebarAdmin } from '../sidebar-component/sidebar-admin.component';
+import { FormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpParams } from '@angular/common/http';
 import { UserFormComponent } from './user-form/user-form.component';
-
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-users',
   standalone: true,
   imports: [
-    CommonModule, 
-    SidebarAdmin, 
-    HeaderAdmin, 
+    CommonModule,
     UserFormComponent,
-    EliminarUsuarioComponent, 
-    FormsModule, MatButtonModule
-  ], 
+    EliminarUsuarioComponent,
+    FormsModule,
+    MatButtonModule,
+    MatIconModule,
+  ],
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'],
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersComponent {
   usuarios: any[] = [];
@@ -30,18 +29,18 @@ export class UsersComponent {
   currentPage = 1;
   itemsPerPage = 7;
   mostrarFormulario: boolean = false;
-  mostrarEditar: boolean = false; 
+  mostrarEditar: boolean = false;
   mostrarEliminar: boolean = false;
-  usuarioSeleccionado: any | null = null; 
+  usuarioSeleccionado: any | null = null;
 
   constructor(private userService: UserService) {
     this.obtenerUsuarios();
   }
 
   obtenerUsuarios() {
-    let params = new HttpParams()
+    let params = new HttpParams();
     this.userService.getUsers(params).subscribe((data: any) => {
-      this.usuarios = data.content.data; 
+      this.usuarios = data.content.data;
       this.updatePaginatedColaboradores();
     });
   }
@@ -70,8 +69,32 @@ export class UsersComponent {
     }
   }
 
+  lastPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage = this.totalPages;
+      this.updatePaginatedColaboradores();
+    }
+  }
+
+  firstPage() {
+    if (this.currentPage > 1) {
+      this.currentPage = 1;
+      this.updatePaginatedColaboradores();
+    }
+  }
+
   pages() {
-    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    let pages = [];
+    const initialPage = this.currentPage - 3 > 0 ? this.currentPage - 3 : 1;
+    const finalPage =
+      this.currentPage + 3 < this.totalPages
+        ? this.currentPage + 3
+        : this.totalPages;
+
+    for (let i = initialPage; i <= finalPage; i++) {
+      pages.push(i);
+    }
+    return pages;
   }
 
   goToPage(page: number) {
@@ -80,7 +103,7 @@ export class UsersComponent {
   }
 
   abrirFormulario() {
-    this.usuarioSeleccionado = []
+    this.usuarioSeleccionado = [];
     this.mostrarEditar = true;
     this.mostrarEliminar = false;
   }
@@ -99,10 +122,10 @@ export class UsersComponent {
 
   eliminarUsuario(usuario: any) {
     this.usuarioSeleccionado = usuario;
-    // if (this.usuarioSeleccionado) {  
-      this.mostrarEliminar = true; 
-      this.mostrarFormulario = false;
-      this.mostrarEditar = false;
+    // if (this.usuarioSeleccionado) {
+    this.mostrarEliminar = true;
+    this.mostrarFormulario = false;
+    this.mostrarEditar = false;
     // } else {
     //   alert("Por favor selecciona un usuario antes de eliminar");
     // }
@@ -113,20 +136,18 @@ export class UsersComponent {
   }
 
   confirmarEliminarUsuario() {
-   
-      // this.usuarios = this.usuarios.filter(usuario => usuario.id !== this.usuarioSeleccionado!.id);
-      this.obtenerUsuarios();
-      // this.mostrarEliminar = false;
-    
+    // this.usuarios = this.usuarios.filter(usuario => usuario.id !== this.usuarioSeleccionado!.id);
+    this.obtenerUsuarios();
+    // this.mostrarEliminar = false;
   }
 
   seleccionarUsuario(usuario: any, event: Event) {
     const checked = (event.target as HTMLInputElement).checked;
-    
+
     if (checked) {
-      this.usuarioSeleccionado = usuario; 
+      this.usuarioSeleccionado = usuario;
     } else {
-      this.usuarioSeleccionado = null; 
+      this.usuarioSeleccionado = null;
     }
   }
 }

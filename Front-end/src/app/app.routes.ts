@@ -60,4 +60,8 @@ export const routes: Routes = [
       { path: 'chatadmin/:id', component: ChatAdminComponent },
     ],
   },
+  {
+    path: '**',
+    redirectTo: '',
+  }
 ];

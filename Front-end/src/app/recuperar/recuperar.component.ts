@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { EMAIL_REGEX } from '../../constants/globalConstants';
 
 @Component({
   selector: 'app-recuperar',
@@ -21,6 +22,11 @@ export class RecuperarComponent {
   recuperarContrasenia() {
     if (!this.username) {
       this.notifier.notify('error', 'Por favor, ingresa tu correo electrónico.');
+      return;
+    }
+
+    if (!EMAIL_REGEX.test(this.username)) {
+      this.notifier.notify('error', 'Por favor, ingresa un correo electrónico válido.');
       return;
     }
 

@@ -125,17 +125,25 @@
   </div>
 
   <div class="pagination">
-    <span class="label">Principio</span>
-    <span (click)="previousPage()" [class.disabled]="currentPage === 1" class="arrow">‹</span>
-
     <div class="page-numbers">
+      <button (click)="firstPage()" [disabled]="currentPage === 1" class="label">
+        <mat-icon>first_page</mat-icon>
+      </button>
+      <button (click)="previousPage()" [disabled]="currentPage === 1"class="label">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <span *ngIf="currentPage - 3 > 1">...</span>
       <button *ngFor="let page of pages()" (click)="goToPage(page)" [class.active]="currentPage === page">
         {{ page }}
       </button>
+      <span *ngIf="currentPage + 3 < totalPages">...</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="label">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+      <button (click)="lastPage()" [disabled]="currentPage === totalPages" class="label">
+        <mat-icon>last_page</mat-icon>
+      </button>
     </div>
-
-    <span (click)="nextPage()" [class.disabled]="currentPage === totalPages" class="arrow">›</span>
-    <span class="label">Final</span>
   </div>
 </div>
 
