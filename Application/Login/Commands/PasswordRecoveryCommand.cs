@@ -47,9 +47,6 @@ public class PasswordRecoveryCommandHandler
                     x.EUserType.HasFlag(Domain.Enums.EUserType.Administrator) || x.EUserType.HasFlag(Domain.Enums.EUserType.Investigator
                     )));
 
-            if (user is null)
-                throw new Exception("Usuario no encontrado");
-
             if (user is not null)
             {
                 var tempPass = RandomStringGenerator.GenerateRandomString(8);
@@ -66,7 +63,8 @@ public class PasswordRecoveryCommandHandler
                         { "TITLE", "Contraseña recuperada exitosamente" },
                         { "TEXT", $"Ingresa con la siguiente contraseña temporal: <br><br> {tempPass}  <br><br>Te solicitará cambio al ingresar." }
                     },
-                    ToEmail = user.ContactEmail
+                    ToEmail = user.ContactEmail,
+                    TemplateName = "PasswordTemplate.html"
                 });
             }
              
