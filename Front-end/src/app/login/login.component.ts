@@ -36,10 +36,10 @@ export class LoginComponent {
   ngOnInit(): void {
     const isReloaded = sessionStorage?.getItem('isReloaded');
 
-    if (window !== undefined && !isReloaded) {
-      sessionStorage.setItem('isReloaded', 'true');
-      window.location.reload();
-    }
+    // if (window !== undefined && !isReloaded) {
+    //   sessionStorage.setItem('isReloaded', 'true');
+    //   window.location.reload();
+    // }
   }
 
   gotoHome() {
