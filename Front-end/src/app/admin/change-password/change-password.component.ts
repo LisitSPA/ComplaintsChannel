@@ -47,7 +47,7 @@ export class ChangePasswordComponent implements OnInit{
     if (this.changePasswordForm.valid) {
      
       this.submit = true;
-      
+    
        const request = {
           username: sessionStorage.getItem("email"),
           oldPassword: this.changePasswordForm.controls['currentPassword'].value,
@@ -59,7 +59,8 @@ export class ChangePasswordComponent implements OnInit{
           (response: any) => {
             this.notifier.notify('success', 'Contraseña cambiada exitosamente');
             this.submit = false;
-           
+            sessionStorage.removeItem("mustChangePassword");
+            this.changePasswordForm.reset();
           },
           (error) => {
             this.submit = false;

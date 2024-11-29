@@ -55,6 +55,9 @@ export class LoginComponent {
         sessionStorage.setItem('email', this.usuario.email);
         sessionStorage.setItem('name', response.user.completeName);
         sessionStorage.setItem('role', response.user.userType);
+        
+        if(response.user.changePassword)
+          sessionStorage.setItem('mustChangePassword', response.user.changePassword);
 
         this.router.navigate(['/homeadmin']).then(() => {
           window.location.reload();

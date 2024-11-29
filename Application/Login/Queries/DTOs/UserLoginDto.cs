@@ -29,6 +29,7 @@ namespace Application.Users.Queries.DTOs
         public EUserType EUserType { get; set; }
         public string UserType { get; set; }
         public ECompanyStatus ECompanyStatus { get; set; }
+        public bool ChangePassword { get; set; }
 
         public void Mapping(Profile profile)
         {
