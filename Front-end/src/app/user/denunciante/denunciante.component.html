@@ -1,13 +1,25 @@
 <div class="container">
   <div class="report-card">
     <div class="progress-indicator">
-      <div class="step passed" (click)="goBack('/report');">1</div><label>Información general</label>
-      <div class="separator"></div> 
-      <div class="step passed" (click)="goBack('/involucrados')">2</div><label>Involucrados</label>
-      <div class="separator"></div> 
-      <div class="step active">3</div><label style="color:var(--default-color); font-weight: bold;">Denunciante</label>
-      <div class="separator"></div> 
-      <div class="step">4</div><label>Evidencias</label>
+      <div>
+        <div class="step passed" (click)="goBack('/report');">1</div>
+        <label>Información general</label>
+        <div class="separator"></div>
+      </div>
+      <div>
+        <div class="step passed" (click)="goBack('/involucrados')">2</div>
+        <label>Involucrados</label>
+        <div class="separator"></div>
+      </div>
+      <div>
+        <div class="step active">3</div>
+        <label style="color:var(--default-color); font-weight: bold;">Denunciante</label>
+        <div class="separator"></div>
+      </div>
+      <div>
+        <div class="step">4</div>
+        <label>Evidencias</label>
+      </div>
     </div>
 
     <div class="content-section">
@@ -27,7 +39,7 @@
       </div>
 
       <app-misdatos *ngIf="mostrarFormulario" [cerrar]="cerrarFormulario.bind(this)"></app-misdatos>
-      
+
       <hr class="divider">
 
       <div class="incident-description">

@@ -1,7 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
 }
 
@@ -15,7 +15,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 80%;
   max-width: 1200px;
-  max-height: 85vh;
+  min-height: 85vh;
   overflow-y: auto;
   box-sizing: border-box;
   margin-top: 100px;
@@ -27,6 +27,15 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
+  row-gap: 5px;
+}
+
+.progress-indicator>div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .separator {
@@ -38,16 +47,22 @@
 
 .content-section {
   flex: 1;
-  padding: 30px 20px 20px 20px;
+  padding: 50px 20px 20px 20px;
   margin-left: 20px;
   display: flex;
   flex-direction: column;
 }
 
 .denuncia-options {
-  /* display: flex; */
   gap: 10px;
   margin-bottom: 20px;
+}
+
+.reasons-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .ver-mas-btn {
@@ -121,7 +136,7 @@ textarea {
 }
 
 .info-section {
-  padding: 20px;
+  padding: 50px 20px 20px;
   background-color: #fdfdfd;
   border-radius: 10px;
   width: 240px;
@@ -129,13 +144,20 @@ textarea {
 }
 
 .info-section .title {
-  font-size: 24px;
-  margin-bottom: 10px;
+  line-height: 36px;
 }
 
 .info-section .subtitle {
   font-size: 18px;
   color: #888;
+}
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-top: 10px;
+  justify-content: flex-end;
 }
 
 .next-btn {
@@ -152,7 +174,7 @@ textarea {
   transition: background-color 0.3s;
 }
 
-.flex-end{
+.flex-end {
   align-self: flex-end;
   justify-content: space-between;
 }
@@ -176,6 +198,7 @@ textarea {
   background-color: var(--default-color);
   opacity: 0.9;
 }
+
 .ver-mas-btn {
   display: block;
   margin-top: 10px;
@@ -185,6 +208,13 @@ textarea {
   border: none;
   text-align: left;
   padding-left: 0;
+}
+
+@media (max-width: 1024px) {
+  .content-section {
+    padding: 90px 10px;
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 767px) {
@@ -203,12 +233,9 @@ textarea {
     padding: 15px;
   }
 
-  .content-section {
-    padding: 20px 10px;
-    margin-left: 0;
-  }
-
-  .denuncia-btn, textarea, .incident-date input[type="date"] {
+  .denuncia-btn,
+  textarea,
+  .incident-date input[type="date"] {
     width: 100%;
   }
 
@@ -216,9 +243,21 @@ textarea {
     width: 100%;
     margin-top: 20px;
   }
+
+  .btn-container>button {
+    width: 49%;
+  }
 }
 
 @media (max-width: 479px) {
+  .next-btn {
+    width: 49%;
+  }
+
+  .progress-indicator {
+    left: 20px;
+  }
+
   .container {
     padding: 10px;
   }
@@ -228,8 +267,8 @@ textarea {
     height: auto;
   }
 
-  .content-section {
-    padding: 10px;
+  .content-section h2 {
+    line-height: 36px;
   }
 
   .info-section {
@@ -246,11 +285,13 @@ textarea {
   }
 
   .next-btn {
-    width: 100%;
-    text-align: center;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-top: 0;
   }
 
-  textarea, .denuncia-btn {
+  textarea,
+  .denuncia-btn {
     width: 100%;
   }
 }

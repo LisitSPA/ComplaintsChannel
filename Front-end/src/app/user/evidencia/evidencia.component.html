@@ -1,17 +1,25 @@
 <div class="container">
   <div class="report-card">
     <div class="progress-indicator">
-      <div class="step passed" (click)="goBack('/report')">1</div>
-      <label>Información general</label>
-      <div class="separator"></div>
-      <div class="step passed"  (click)="goBack('/involucrados')">2</div>
-      <label>Involucrados</label>
-      <div class="separator"></div>
-      <div class="step passed"  (click)="goBack('/denunciante')">3</div>
-      <label>Denunciante</label>
-      <div class="separator"></div>
-      <div class="step active">4</div>
-      <label style="color: var(--default-color); font-weight: bold">Evidencias</label>
+      <div>
+        <div class="step passed" (click)="goBack('/report')">1</div>
+        <label>Información general</label>
+        <div class="separator"></div>
+      </div>
+      <div>
+        <div class="step passed"  (click)="goBack('/involucrados')">2</div>
+        <label>Involucrados</label>
+        <div class="separator"></div>
+      </div>
+      <div>
+        <div class="step passed"  (click)="goBack('/denunciante')">3</div>
+        <label>Denunciante</label>
+        <div class="separator"></div>
+      </div>
+      <div>
+        <div class="step active">4</div>
+        <label style="color: var(--default-color); font-weight: bold">Evidencias</label>
+      </div>
     </div>
 
     <div class="content-section">

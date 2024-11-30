@@ -1,13 +1,25 @@
 <div class="container">
   <div class="report-card">
     <div class="progress-indicator">
-      <div class="step passed" (click)="goBack()">1</div><label>Información general</label>
-      <div class="separator"></div> 
-      <div class="step active">2</div> <label style="color:var(--default-color); font-weight: bold;">Involucrados</label>
-      <div class="separator"></div> 
-      <div class="step">3</div> <label>Denunciante</label>
-      <div class="separator"></div> 
-      <div class="step">4</div><label>Evidencias</label>
+      <div>
+        <div class="step passed" (click)="goBack()">1</div>
+        <label>Información general</label>
+        <div class="separator"></div>
+      </div>
+      <div>
+        <div class="step active">2</div>
+        <label style="color:var(--default-color); font-weight: bold;">Involucrados</label>
+        <div class="separator"></div>
+      </div>
+      <div>
+        <div class="step">3</div>
+        <label>Denunciante</label>
+        <div class="separator"></div>
+      </div>
+      <div>
+        <div class="step">4</div>
+        <label>Evidencias</label>
+      </div>
     </div>
 
     <div class="content-section">
@@ -20,20 +32,14 @@
         <form class="example-form">
           <mat-form-field class="form-selection">
             <!-- <mat-label>Nombre Completo</mat-label> -->
-            <input type="text"
-                   placeholder="Buscar por nombre o cargo"
-                   aria-label="Number"
-                   matInput
-                   [formControl]="employeeControl"
-                   [matAutocomplete]="auto"
-                   (focus)="addSelection()"
-                   >
-            <mat-autocomplete   #auto="matAutocomplete">
+            <input type="text" placeholder="Buscar por nombre o cargo" aria-label="Number" matInput
+              [formControl]="employeeControl" [matAutocomplete]="auto" (focus)="addSelection()">
+            <mat-autocomplete #auto="matAutocomplete">
               @for (option of filteredEmployees | async; track option) {
-                <mat-option [value]="option.names">
-                  <!-- <img alt="" class="example-option-img" [src]="state.flag" height="25"> -->
-                  <span>{{option.names}}</span> <br>
-                  <small>{{option.position}}</small>
+              <mat-option [value]="option.names">
+                <!-- <img alt="" class="example-option-img" [src]="state.flag" height="25"> -->
+                <span>{{option.names}}</span> <br>
+                <small>{{option.position}}</small>
               </mat-option>
               }
             </mat-autocomplete>
@@ -52,7 +58,8 @@
         <div class="form-group">
           <div class="input-field">
             <h3 for="manualName">Nombre Completo:</h3>
-            <input type="text" matInput class="form-control" id="manualName" [(ngModel)]="manualName" placeholder="Ingrese nombre completo">
+            <input type="text" matInput class="form-control" id="manualName" [(ngModel)]="manualName"
+              placeholder="Ingrese nombre completo">
           </div>
           <!-- <div class="input-field">
             <h3 for="manualLastName">Apellido:</h3>
@@ -61,16 +68,17 @@
         </div>
         <button class="guardarCausal-btn" style="margin-top: 20px;" (click)="guardarCausal()">Guardar al causal</button>
       </div>
-      
+
       <hr class="divider">
 
       <div class="incident-description">
         <h2>Describe al denunciado</h2>
         <h3 for="incident-details">Por favor, de no encontrarlo en la lista describe al causal del siniestro</h3>
-        <textarea id="incident-details" placeholder="Esta persona es alta de tes blanca..." [(ngModel)]="personDescription"></textarea>
+        <textarea id="incident-details" placeholder="Esta persona es alta de tes blanca..."
+          [(ngModel)]="personDescription"></textarea>
       </div>
-     
-      <div class="example-flex-container flex-end">
+
+      <div class="btn-container">
         <button class="back-btn" (click)="goBack()">Volver</button>
         <button class="next-btn" (click)="saveAndNext($event)">Siguiente</button>
       </div>

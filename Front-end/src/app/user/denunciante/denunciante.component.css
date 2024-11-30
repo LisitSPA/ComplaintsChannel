@@ -1,7 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
 }
 
@@ -15,7 +15,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 80%;
   max-width: 1200px;
-  max-height: 85vh;
+  min-height: 85vh;
   overflow-y: auto;
   box-sizing: border-box;
   margin-top: 100px;
@@ -27,11 +27,20 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
+  row-gap: 5px;
+}
+
+.progress-indicator > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .content-section {
   flex: 1;
-  padding: 20px 20px 20px 20px;
+  padding: 50px 20px 20px 20px;
   margin-left: 20px;
   display: flex;
   flex-direction: column;
@@ -84,11 +93,15 @@ textarea {
 
 
 .info-section {
-  padding: 20px;
+  padding: 50px 20px 20px;
   background-color: #fdfdfd;
   border-radius: 10px;
   width: 240px;
   text-align: center;
+}
+
+.info-section .title {
+  line-height: 36px;
 }
 
 .divider {
@@ -138,6 +151,10 @@ textarea {
   justify-content: space-between;
 }
 
+.back-btn:hover {
+  opacity: 0.9;
+}
+
 .next-btn:hover {
   background-color: var(--default-color);
   opacity: 0.9;
@@ -147,6 +164,13 @@ textarea {
   /* background-color: var(--default-color); */
   background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, .25)), var(--default-color);
   color: white;
+}
+
+@media (max-width: 1024px) {
+  .content-section {
+    padding: 90px 10px;
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 767px) {
@@ -165,22 +189,13 @@ textarea {
     overflow: visible;
   }
 
-  .progress-indicator {
-    left: 0;
-    position: relative;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-
-  .content-section {
-    padding: 15px;
-    margin-left: 0;
-  }
-
   .denuncia-option {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .denuncia-options {
+    justify-content: center;
   }
 
   .option-icon {
@@ -192,13 +207,13 @@ textarea {
   .info-section {
     width: 100%;
     margin-top: 20px;
+    padding: 20px;
   }
 
   textarea,
   .input-email,
   .next-btn {
     width: 100%;
-    margin-top: 10px;
   }
 
   .reportlogo {
@@ -207,8 +222,29 @@ textarea {
 }
 
 @media (max-width: 479px) {
-  .report-card {
+  .btn-container {
+    justify-content: center;
+  }
+
+  .btn-container>button {
+    width: 49%;
+  }
+
+  .progress-indicator {
+    left: 20px;
+  }
+
+  .container {
     padding: 10px;
+  }
+
+  .report-card {
+    width: 100%;
+    height: auto;
+  }
+
+  .content-section h2 {
+    line-height: 36px;
   }
 
   .info-section {
@@ -225,8 +261,9 @@ textarea {
   }
 
   .next-btn {
-    font-size: 14px;
-    padding: 8px 16px;
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-top: 0;
   }
 
   .reportlogo {

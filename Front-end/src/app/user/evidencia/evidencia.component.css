@@ -1,7 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   background: url('/images/Bg_usuario.png') no-repeat top left / 100% 60%, white 40%;
 }
 
@@ -15,7 +15,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 80%;
   max-width: 1200px;
-  max-height: 85vh;
+  min-height: 85vh;
   overflow-y: auto;
   box-sizing: border-box;
   margin-top: 100px;
@@ -27,17 +27,29 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
+  row-gap: 5px;
+}
+
+.progress-indicator>div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .content-section {
   flex: 1;
-  padding: 20px 20px 20px 20px;
+  padding: 50px 20px 20px 20px;
   margin-left: 20px;
   display: flex;
   flex-direction: column;
 }
+
 .upload-and-description {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 20px;
   margin-top: 20px;
 }
@@ -90,17 +102,17 @@
   gap: 10px;
 }
 
-.description-container > h2,
-.description-container > p,
-.description-container > textarea {
+.description-container>h2,
+.description-container>p,
+.description-container>textarea {
   margin: 0 !important;
 }
 
-.description-container > h2 {
+.description-container>h2 {
   line-height: inherit;
 }
 
-.description-container > textarea {
+.description-container>textarea {
   flex: 1;
 }
 
@@ -137,16 +149,21 @@ textarea {
   resize: vertical;
   max-height: 200px;
 }
+
 .form-control {
   border-radius: 5px;
 }
 
 .info-section {
-  padding: 20px;
+  padding: 50px 20px 20px;
   background-color: #fdfdfd;
   border-radius: 10px;
   width: 240px;
   text-align: center;
+}
+
+.info-section .title {
+  line-height: 36px;
 }
 
 .divider {
@@ -166,6 +183,7 @@ textarea {
 .incident-description {
   flex: 1;
 }
+
 p {
   font-family: "Open Sans";
   font-size: small;
@@ -177,6 +195,25 @@ p {
   width: 100%;
   margin-top: 10px;
   justify-content: flex-end;
+}
+
+.back-btn {
+  align-self: flex-end;
+  background: linear-gradient(to right, rgba(255, 255, 255, .25), rgba(255, 255, 255, .3)), var(--default-color);
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: white !important;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  justify-content: space-between;
+}
+
+.back-btn:hover {
+  opacity: 0.9;
 }
 
 .next-btn {
@@ -197,21 +234,14 @@ p {
   opacity: 0.9;
 }
 
-@media (max-width: 767px) {
-  .upload-box {
-    border: 2px dashed var(--default-color);
-    width: 120px;
-    height: 120px;
-    text-align: center;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    gap: 5px;
+@media (max-width: 1024px) {
+  .content-section {
+    padding: 90px 10px;
+    margin-left: 0;
   }
+}
 
+@media (max-width: 767px) {
   .container {
     flex-direction: column;
     justify-content: flex-start;
@@ -228,32 +258,51 @@ p {
     overflow-y: auto;
   }
 
-  .progress-indicator {
-    left: 0;
-    top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
   .info-section {
     width: 100%;
     margin-top: 20px;
+    padding: 20px;
   }
 
   .reportlogo {
     display: none;
   }
+
+  .upload-and-description {
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  .upload-and-description>div {
+    display: flex;
+    margin: auto;
+  }
 }
 
 @media (max-width: 479px) {
+  .btn-container {
+    justify-content: center;
+  }
+
+  .btn-container>button {
+    width: 49%;
+  }
+
+  .progress-indicator {
+    left: 20px;
+  }
+
   .container {
     padding: 10px;
   }
 
   .report-card {
     width: 100%;
-    padding: 10px;
     height: auto;
+  }
+
+  .content-section h2 {
+    line-height: 36px;
   }
 
   .info-section {
@@ -269,10 +318,15 @@ p {
     font-size: 14px;
   }
 
+  .next-btn {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-top: 0;
+  }
+
   textarea,
   .denuncia-btn,
-  .dropbtn,
-  .next-btn {
+  .dropbtn {
     width: 100%;
   }
 

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
+import { EMAIL_REGEX } from '../../../constants/globalConstants';
 
 @Component({
   selector: 'app-denunciante',
@@ -61,6 +62,11 @@ export class DenuncianteComponent implements OnInit {
   guardarYRedirigir() {
     if (!this.contactEmail) {
       this.notifier.notify('error', 'Por favor ingresa un correo electrónico');
+      return;
+    }
+
+    if(!EMAIL_REGEX.test(this.contactEmail)) {
+      this.notifier.notify('error', 'Por favor ingresa un correo electrónico válido');
       return;
     }
 

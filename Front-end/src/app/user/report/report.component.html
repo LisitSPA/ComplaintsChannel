@@ -1,17 +1,25 @@
 <div class="container">
   <div class="report-card">
     <div class="progress-indicator">
-      <div class="step active">1</div>
-      <label style="color:var(--default-color); font-weight: bold;">Información general</label>
-      <div class="separator"></div>
-      <div class="step">2</div>
-      <label>Involucrados</label>
-      <div class="separator"></div>
-      <div class="step">3</div>
-      <label>Denunciante</label>
-      <div class="separator"></div>
-      <div class="step">4</div>
-      <label>Evidencias</label>
+      <div>
+        <div class="step active">1</div>
+        <label style="color:var(--default-color); font-weight: bold;">Información general</label>
+        <div class="separator"></div>
+      </div>
+      <div>
+        <div class="step">2</div>
+        <label>Involucrados</label>
+        <div class="separator"></div>
+      </div>
+      <div>
+        <div class="step">3</div>
+        <label>Denunciante</label>
+        <div class="separator"></div>
+      </div>
+      <div>
+        <div class="step">4</div>
+        <label>Evidencias</label>
+      </div>
     </div>
 
     <div class="content-section">
@@ -19,7 +27,7 @@
       <h3>Motivos de denuncia <span class="text-danger">*</span></h3>
 
       <div class="denuncia-options" *ngIf="reasonsList.length ">
-        <div>
+        <div class="reasons-container">
           <button class="denuncia-btn" *ngFor="let reason of reasonsList.slice(0,3)"
             [ngClass]="{'selected': reasons.includes(reason.id)}" (click)="toggleReasonSelection(reason.id)">
             {{ reason.description }}
@@ -52,7 +60,7 @@
         </div>
       </div>
 
-      <div class="example-button-row flex-end">
+      <div class="btn-container">
         <button class="next-btn" (click)="saveAndNext()">Siguiente</button>
       </div>
 
