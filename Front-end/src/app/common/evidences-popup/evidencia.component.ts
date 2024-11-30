@@ -75,6 +75,9 @@ export class EvidenciaPopupComponent {
       (error) => {
         this.notifier.notify('error', 'Error al actualizar la denuncia');
         console.error('Error al actulizar la denuncia:', error);
+      },
+      () => {
+        this.submit = false;
       }
     );
   }
