@@ -45,11 +45,11 @@ public class UpdateUserCommandHandler(
         {
             var user = _repository.GetAll().First(x => x.Id == command.Id);
 
-            if(command.Email != null)
+            if(command.Email != null && command.Email != user.ContactEmail)
             {
-                var exists = _repository.GetAll().FirstOrDefault(x => x.ContactEmail == command.Email && x.Id != command.Id);
-                if (exists != null)
-                    throw new Exception("El correo ya existe");
+                var exists = _repository.GetAll().Any(x => x.ContactEmail == command.Email && x.Id != command.Id);
+                if (exists)
+                    throw new Exception("El correo ingresado ya existe");
             }
 
             user.Names = command.Name;

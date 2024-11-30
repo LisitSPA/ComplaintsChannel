@@ -36,10 +36,10 @@ export class LoginComponent {
   ngOnInit(): void {
     const isReloaded = sessionStorage?.getItem('isReloaded');
 
-    if (window !== undefined && !isReloaded) {
-      sessionStorage.setItem('isReloaded', 'true');
-      window.location.reload();
-    }
+    // if (window !== undefined && !isReloaded) {
+    //   sessionStorage.setItem('isReloaded', 'true');
+    //   window.location.reload();
+    // }
   }
 
   gotoHome() {
@@ -55,6 +55,9 @@ export class LoginComponent {
         sessionStorage.setItem('email', this.usuario.email);
         sessionStorage.setItem('name', response.user.completeName);
         sessionStorage.setItem('role', response.user.userType);
+        
+        if(response.user.changePassword)
+          sessionStorage.setItem('mustChangePassword', response.user.changePassword);
 
         this.router.navigate(['/homeadmin']).then(() => {
           window.location.reload();

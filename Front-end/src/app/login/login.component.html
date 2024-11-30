@@ -24,7 +24,7 @@
                                placeholder="Contraseña"
                                [(ngModel)]="usuario.password" name="password" required>
                     </div>
-                    <button type="submit" [disabled]="submit" class="btn btn-primary btn-block">
+                    <button type="submit" [disabled]="submit || (!usuario.email || !usuario.password)" class="btn btn-primary btn-block">
                         <span *ngIf="!submit">Acceder</span>
                         <mat-spinner *ngIf="submit" [diameter]="24" mode="indeterminate"></mat-spinner>
                     </button>

@@ -53,6 +53,9 @@ public class ChangePasswordCommandHandler : IRequestHandler<ChangePasswordComman
             if (string.IsNullOrEmpty(command.Username) || string.IsNullOrEmpty(command.OldPassword) || string.IsNullOrEmpty(command.NewPassword))
                 throw new Exception("Data is required");
 
+            if(command.OldPassword == command.NewPassword)
+                throw new Exception("Passwords cannot be the same");
+
             var user = _repository.GetAllActive()
                  .FirstOrDefault(x => x.UserName == command.Username);
 

@@ -47,6 +47,9 @@ public class ValidateLoginCommandHandler : IRequestHandler<ValidateLoginCommand,
         Response<UserLoginDto> result = new();
         try
         {
+            if (String.IsNullOrEmpty(command.Username) || String.IsNullOrEmpty(command.Password))
+                throw new Exception("Data is required");
+
             var user = _repository.GetAllActive()
                  .Where(x => x.UserName == command.Username 
                     && (

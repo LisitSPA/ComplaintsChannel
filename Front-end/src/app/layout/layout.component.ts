@@ -20,6 +20,8 @@ export class LayoutComponent implements OnInit{
       if (event instanceof NavigationEnd) {
         if(!sessionStorage.getItem('token'))
           router.navigate(["/login"]) 
+        if(sessionStorage.getItem('mustChangePassword'))
+          router.navigate(["/cambiarcontrasenaadmin"]) 
       }
     })
   }
