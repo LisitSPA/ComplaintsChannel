@@ -13,19 +13,24 @@
       <div *ngFor="let complaint of filteredComplaints" class="chat-item"
         [ngClass]="{'selected': complaint.id === selectedComplaint?.id}" (click)="selectChat(complaint)">
         <div class="chat-preview">
-          <p class="chat-name">{{ complaint.complainant ? complaint.complainant.names : 'Anónimo' | titlecase }}</p>
+          <p># {{ complaint.complaintNumber }} - {{complaint.status}}</p>
+          <p class="chat-name">{{ complaint.complainant ? complaint.complainant.names : 'Anónimo' | titlecase }}</p> 
           <p class="chat-subject">{{ complaint.reasons[0].description }}</p>
           <p class="chat-subject">{{ getLastMessage(complaint) }}</p>
-          <p class="chat-time">{{ complaint.createdOn | date:'shortTime'}}</p>
+          <span class="chat-time">{{ complaint.createdOn | date:'shortTime'}}</span>
         </div>
       </div>
     </div>
   </div>
 
   <div class="chat-detail" *ngIf="selectedComplaint?.id">
-    <h2 *ngIf="selectedComplaint.eStatus == 1"><mat-icon>error_outline</mat-icon> Sin respuesta</h2>
-    <h2 *ngIf="selectedComplaint.eStatus != 1"><mat-icon>check_outline</mat-icon> Atendido</h2>
-
+    
+    <span class="text-bold">Denuncia # {{selectedComplaint.complaintNumber}} </span>
+    <h2 *ngIf="selectedComplaint.eStatus == 1"><mat-icon>error_outline</mat-icon> Sin respuesta <span>({{selectedComplaint.status}})</span></h2>
+    <h2 *ngIf="selectedComplaint.eStatus != 1"><mat-icon>check_outline</mat-icon> Atendido <span>({{selectedComplaint.status}})</span></h2>
+   
+    
+    
     <!-- <div class="chat-message">
         <div *ngFor="let message of chat">
           <h3>{{ message.user ? message.user.names + ' ' + message.user.lastName: 'Anónimo' }}</h3>
@@ -43,8 +48,8 @@
 
       <textarea placeholder="Escribe tu respuesta aquí" [(ngModel)]="responseMessage"></textarea>
 
-      <button class="respuesta-btn" [disabled]="!status && responseMessage" (click)="updateComplaint()"
-        [disabled]="isLoading">Actualizar denuncia</button>
+      <button class="respuesta-btn" [disabled]="(!status || !responseMessage) || isLoading" (click)="updateComplaint()"
+       >Actualizar denuncia</button>
     </div>
   </div>
 </div>

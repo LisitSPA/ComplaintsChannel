@@ -15,6 +15,7 @@
 
   <h2 style="font-size: x-large">Mi denuncia</h2>
   <p>Estado: <b>{{ complaint.status }}</b></p>
+  <p>Número de denuncia: <b>{{ complaint.complaintNumber }}</b></p>
   <p *ngIf="complaint.complaintHistory?.length > 0">Notas: {{ complaint.complaintHistory[0].notes }}</p>
 </div>
 <div class="container">

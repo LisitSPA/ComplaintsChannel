@@ -125,15 +125,17 @@ export class ChatAdminComponent implements OnInit {
     };
 
     this.complaintService.updateStatus(data).subscribe(
-      (response) => {
+      async (response) => {
         this.responseMessage = '';
         this.status = 0;
         this.notifier.notify('success', 'Denuncia actualizada correctamente');
-        this.loadAllComplaints();
+        await this.loadAllComplaints();
+        this.selectChat(this.complaints.filter(x=> x.id == this.selectedComplaint.id)[0])
       },
       (error) => {
         console.error('Error al actualizar la denuncia', error);
         this.notifier.notify('error', 'Error al actualizar la denuncia');
+        this.isLoading = false;
       },
       () => {
         this.isLoading = false;

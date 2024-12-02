@@ -79,6 +79,8 @@ public class CreateComplaintCommandHandler
             _repository.Add(complaint);
             _repository.Save();
 
+            complaint.ComplaintNumber = "DNC0" + complaint.Id;
+
             SetInvolveds(command.PersonInvolveds, complaint.Id);
             _repository.Save();
 
@@ -90,7 +92,7 @@ public class CreateComplaintCommandHandler
                 },
                 ToEmail = complaint.TrackingEmail,
                 TemplateName = "CreateComplaint.html"
-            }); ;
+            });
 
             result.Result = complaint.Id;
 

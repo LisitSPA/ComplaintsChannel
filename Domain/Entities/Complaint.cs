@@ -18,6 +18,8 @@ namespace Domain.Entities
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
         public string TrackingEmail { get; set; }
+        public string ComplaintNumber { get; set; }
+        
         public User Complainant { get; set; }
         public List<ComplaintHistory> ComplaintHistory { get; set; }
         public List<ComplaintInvolved> ComplaintInvolved { get; set; }

@@ -12,7 +12,7 @@ namespace Domain.Enums
         InProcess = 2,       
         [Description("Finalizada")]
         Completed = 3,
-        [Description("Desistimada")]
+        [Description("Desestimada")]
         Rejected = 31,
         [Description("Sanción Aplicada")]
         SanctionApplied = 32,

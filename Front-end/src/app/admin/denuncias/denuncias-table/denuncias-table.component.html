@@ -72,7 +72,7 @@
     <table class="table">
       <thead>
         <tr>
-          <!-- <th><input type="checkbox"></th> -->
+          <th>Número</th>
           <th>Motivo</th>
           <th>Fecha</th>
           <th>Denunciante</th>
@@ -85,6 +85,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let denuncia of paginated">
+          <td>{{ denuncia.complaintNumber }}</td>
           <td>{{ denuncia.reasons?.[0]?.description }}</td>
           <td>{{ denuncia.createdOn | date }}</td>
           <td>

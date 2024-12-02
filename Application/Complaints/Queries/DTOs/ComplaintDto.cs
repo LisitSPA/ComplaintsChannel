@@ -25,6 +25,7 @@ namespace Application.Complaints.Queries.DTOs
         //public string ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
         public string TrackingEmail { get; set; }
+        public string ComplaintNumber { get; set; }
         public UserDto Complainant { get; set; }
         public List<PersonInvolvedDto> Involved { get; set; }
         public List<ComplaintType> Reasons { get; set; }
