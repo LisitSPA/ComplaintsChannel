@@ -9,6 +9,7 @@ import { environment } from '../../../environment/environment';
 import { UserService } from '../../services/user.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-change-password',
@@ -25,6 +26,7 @@ export class ChangePasswordComponent implements OnInit{
     private notifier: NotifierService,
     private userService: UserService,
     private http: HttpClient,
+    private router : Router
   ) {
     this.changePasswordForm = this.fb.group({
       currentPassword: ['', [Validators.required]],
@@ -59,7 +61,11 @@ export class ChangePasswordComponent implements OnInit{
           (response: any) => {
             this.notifier.notify('success', 'Contraseña cambiada exitosamente');
             this.submit = false;
-            sessionStorage.removeItem("mustChangePassword");
+            if(sessionStorage.getItem("mustChangePassword"))
+            {
+              sessionStorage.removeItem("mustChangePassword")
+              this.router.navigate(['/homeadmin'])
+            }
             this.changePasswordForm.reset();
           },
           (error) => {
