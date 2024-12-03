@@ -15,6 +15,10 @@
   text-align: center;
 }
 
+.char-content {
+  padding: 10px;
+}
+
 .char-card {
   background-color: #fdfdfd;
   border-radius: 8px;
@@ -23,8 +27,10 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
 }
 
 .chart {
   width: 300px;
+  height: max-content;
 }

@@ -41,6 +41,7 @@
 .container {
   display: flex;
   justify-content: center;
+  margin-top: 80px;
   align-items: center;
   height: 80vh;
   background: url('/images/Bg_usuario.png') no-repeat top left / 100% 70%, white 30%;
@@ -82,7 +83,10 @@
   cursor: pointer; 
 }
 
-@media (max-width: 600px) {
+@media (max-width: 596px) {
+  .track-container {
+      padding: 0;
+  }
   .track-container input {
       width: 20%;
   }
@@ -90,5 +94,4 @@
   .track-container h2, .track-container h3 {
       font-size: 16px; 
   }
-
 }

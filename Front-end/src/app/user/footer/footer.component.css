@@ -57,3 +57,21 @@ footer {
   max-width: 60%; 
   height: auto; 
 }
+
+@media screen and (max-width: 768px) {
+  .content-footer{
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .content-footer > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+
+
+  
+}

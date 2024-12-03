@@ -130,6 +130,13 @@ export class InvolucradosComponent implements OnInit {
       personDescription: this.personDescription,
     }));
 
+    if (personInvolveds.length === 0 && this.personDescription) {
+      personInvolveds.push({
+        names: 'Otra persona',
+        personDescription: this.personDescription,
+      });
+    }
+
     this.complaintDataService.setComplaintData({
       personInvolveds: personInvolveds,
     });

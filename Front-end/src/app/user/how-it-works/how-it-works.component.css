@@ -70,7 +70,7 @@ p {
 @media (max-width: 767px) {
   .funcionamiento-tittle {
     font-size: 2em;
-    padding-top: 18%;
+    padding-top: 120px;
   }
 
   .steps-container {

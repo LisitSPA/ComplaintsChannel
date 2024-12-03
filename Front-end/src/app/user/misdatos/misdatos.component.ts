@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ComplaintDataService } from '../../services/complaint-data.service';
 import { NotifierService } from 'gramli-angular-notifier';
 import genreTypes from '../../../types/genreTypes';
+import { PHONE_NUMBER_REGEX } from '../../../constants/globalConstants';
 
 
 @Component({
@@ -46,6 +47,11 @@ export class MisdatosComponent implements OnInit {
   guardarDatos() {
     if (!this.nombre || !this.cargo || !this.area || !this.sexo || !this.contacto || !this.rut || !this.eCompanyStatus) {
       this.notifier.notify('error', 'Por favor completa todos los campos');
+      return;
+    }
+
+    if (!PHONE_NUMBER_REGEX.test(this.contacto)) {
+      this.notifier.notify('error', 'Por favor ingresa un número de teléfono válido');
       return;
     }
 

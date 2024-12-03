@@ -1,15 +1,25 @@
 <header>
-    <div class="header"> 
-        <div class="header-title">
-            <a routerLink="/home"><img src="/icons/Logotipo_canal.png" alt="Logotipo Canal" class="logo"></a>
-        </div>
-        <ul class="nav">
-            <li><a routerLink="/home">Home</a></li> 
-            <li><a routerLink="report">Denunciar</a></li> 
-            <li><a routerLink="seguimiento">Seguimiento</a></li> 
-            <li><a routerLink="login" class="btn denunciar">Acceso Administradores</a></li>
-        </ul>
+  <div class="header">
+    <div class="header-title">
+      <a routerLink="/home"><img src="/icons/Logotipo_canal.png" alt="Logotipo Canal" class="logo"></a>
+      <mat-icon class="mobile-icon" (click)="toggleMobileMenu()">menu</mat-icon>
     </div>
+    <ul class="nav">
+      <li><a routerLink="/home">Home</a></li>
+      <li><a routerLink="report">Denunciar</a></li>
+      <li><a routerLink="seguimiento">Seguimiento</a></li>
+      <li><a routerLink="login" class="btn denunciar">Acceso Administradores</a></li>
+    </ul>
+  </div>
 </header>
+
+<div class="mobile-menu-container" [ngClass]="{hidden: !isMobileMenuOpen}">
+  <ul class="mobile-menu">
+    <li><a routerLink="/home" (click)="toggleMobileMenu()">Home</a></li>
+    <li><a routerLink="/report" (click)="toggleMobileMenu()">Denunciar</a></li>
+    <li><a routerLink="/seguimiento" (click)="toggleMobileMenu()">Seguimiento</a></li>
+  </ul>
+  <a routerLink="/login" (click)="toggleMobileMenu()" class="btn denunciar">Acceso Administradores</a>
+</div>
 
 <notifier-container />

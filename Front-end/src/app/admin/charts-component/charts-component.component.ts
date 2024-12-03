@@ -50,13 +50,37 @@ export class ChartsAdmin implements OnInit {
   public doughnutChartType: 'doughnut' = 'doughnut';
   public doughnutChartOptions: ChartConfiguration<'doughnut'>['options'] = {
     plugins: {
+      tooltip: {
+        callbacks: {
+          title: () => "",
+          label: (context) => {
+            const label = context.label || '';
+            const value = context.parsed || 0;
+            const percent = value / context.dataset.data.reduce((a, b) => a + b, 0) * 100;
+            return ` ${label}: ${value} (${percent.toFixed(2)}%)`;
+          },
+        }
+      },
       legend: {
+        maxHeight: 300,
         display: true,
+        fullSize: true,
+        labels: {
+          sort: (a, b) => {
+            return a.text.localeCompare(b.text);
+          },
+          boxWidth:10,
+          useBorderRadius: true,
+          borderRadius: 10,
+          font: {
+            size: 10,
+          }
+        }
       },
     },
     datasets: {
       doughnut: {
-        hidden: true,
+        hidden: false,
       }
     },
   }
