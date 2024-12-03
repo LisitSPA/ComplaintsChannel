@@ -136,9 +136,8 @@
 
   .text-container {
     position: relative;
-    margin-top: 190px;
     min-height: 80vh;
-    padding: 50px 0 0 0 !important;
+    padding: 75px 0 0 0 !important;
   }
 
   .content {
@@ -146,6 +145,7 @@
     flex-direction: column;
     background-size: cover;
     background-color: #f0effb;
+    margin-top: 70px;
     height: 85vh;
     padding: 10px;
     align-items: center;
@@ -171,7 +171,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-    bottom: 155px;
+    bottom: 0;
     position: absolute;
   }
   
@@ -189,7 +189,7 @@
   }
 
   .image-container {
-    bottom: 120px !important;
+    bottom: -30px !important;
   }
 }
 

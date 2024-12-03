@@ -165,7 +165,6 @@ h3 {
   padding: 20px;
   border-radius: 8px ;
   width: 27%;
-  cursor: pointer;
   text-decoration: none;
   color: inherit;
   margin-bottom: 10px;
@@ -213,7 +212,7 @@ h3 {
   margin: 0;
 }
 
-.item-link:hover {
+a.item-link:hover {
   text-decoration: underline;
 }
 
@@ -335,7 +334,7 @@ input[type="text"] {
   padding: 20px;
   display: grid;
   grid-template-columns: 1fr 55%;
-  height: 550px;
+  min-height: 550px;
 }
 
 
@@ -409,7 +408,7 @@ input[type="text"] {
 }
 
 .div-chat{
-  height: 550px;
+  min-height: 550px;
 }
 
 .messages-list {

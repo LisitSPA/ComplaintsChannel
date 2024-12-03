@@ -48,8 +48,10 @@
     font-size: 0.9em; 
   }
 
-  .faq-answer.expanded {
-    max-height: max-content; 
+  .faq-answer.expanded,
+  .faq-title {
+    max-height: max-content;
+    max-width: 90%;
     width: 90%;
   }
 }

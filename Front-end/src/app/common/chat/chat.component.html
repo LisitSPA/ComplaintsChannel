@@ -1,4 +1,4 @@
-<div class="messages-list" *ngIf="fromUser">
+<div class="messages-list" *ngIf="fromUser" [ngClass]="{primary: !fromUser}">
   <div class="message" *ngFor="let message of chat" [ngClass]="message.createdBy ? 'investigator' : 'user'">
     <span>{{message.message}} </span>
     <a *ngIf="message.attachment" class="evidencia-btn"
@@ -12,7 +12,7 @@
 </div>
 
 <!-- from chat admin -->
-<div class="messages-list" *ngIf="!fromUser">
+<div class="messages-list" *ngIf="!fromUser" [ngClass]="{primary: !fromUser}">
   <div class="message" *ngFor="let message of chat" [ngClass]="!message.createdBy ? 'investigator' : 'user'">
     <span class="chat-name"><b>{{getName(message) | titlecase}}</b></span>
     <span>{{message.message}}</span>
@@ -26,7 +26,7 @@
   </div>
 </div>
 
-<div class="message-input-container">
+<div class="message-input-container" [ngClass]="{primary: !fromUser}">
   <div class="message-input">
     <textarea [(ngModel)]="message" placeholder="Escribe tu mensaje aquí..."></textarea>
     <div class="upload-box">
