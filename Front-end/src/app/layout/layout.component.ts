@@ -11,8 +11,6 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
   styleUrl: './layout.component.css'
 })
 export class LayoutComponent implements OnInit{
-
-
   constructor(
     private router: Router
   ){

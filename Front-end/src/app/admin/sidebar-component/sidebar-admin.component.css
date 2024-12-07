@@ -4,17 +4,24 @@
   height: 100%;
 }
 
+.mobile-menu-container {
+  display: none;
+}
+
 .sidebar {
   display: flex;
   height: 100%;
+  background-color: #f1f1f1;
+  position: fixed;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
   width: 0 !important;
   transition: width 0.5s ease;
   flex-direction: row-reverse;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .sidebar.showing {
-  width: 100% !important;
+  width: 370px !important;
 }
 
 .sidebar .white-section {
@@ -85,9 +92,25 @@ a {
 }
 
 @media (max-width: 767px) {
+  .mobile-menu-container {
+    display: block;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 101;
+  }
+
+  .mobile-icon {
+    color: var(--default-color);
+    display: block;
+    font-size: 36px;
+    height: 36px;
+    width: 36px;
+  }
+
   .sidebar {
     flex-direction: column;
-
+    height: 0;
   }
 
   .sidebar .white-section.active {
@@ -129,12 +152,24 @@ a {
   }
 
   .sidebar {
-    flex-direction: column;
-    width: 50%;
+    width: 70% !important;
+    transition: height 0.5s ease;
+    transition: width 0;
+  }
+
+  .sidebar.appear {
+    height: 100vh;
+    position: fixed;
+    margin-top: 45px;
+    padding-top: 25px;
+    z-index: 99;
+    flex-direction: row;
   }
 
   .sidebar .white-section.active {
     width: 40%;
+    min-width: 200px;
+    order: 2;
   }
 
   .sidebar .white-section h2 {
@@ -149,6 +184,7 @@ a {
 
   .sidebar .sidebar-section {
     padding: 10px;
+    height: 100%;
   }
 
   .logo img {
@@ -178,9 +214,5 @@ a {
   .logo img {
     width: 80px;
     margin-top: 10px;
-  }
-
-  .sidebar ul li {
-    margin: 5px 0;
   }
 }

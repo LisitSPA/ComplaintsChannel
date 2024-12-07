@@ -1,24 +1,27 @@
-<nav class="sidebar" [ngClass]="{ showing: isShowing }">
+<div class="mobile-menu-container">
+  <mat-icon class="mobile-icon" (click)="toggleMobileMenu()">menu</mat-icon>
+</div>
+<nav class="sidebar" [ngClass]="{ showing: isShowing, appear: isMobileMenuOpen }">
   <div class="white-section" [ngClass]="{ 'active': isActive }">
     <ng-container *ngIf="selectedSection === 'home'">
       <h2>Home</h2>
-      <a style="font-size: small;" routerLink="/homeadmin">Dashboard</a>      
+      <a style="font-size: small;" routerLink="/homeadmin" (click)="toggleMobileMenu()">Dashboard</a>      
     </ng-container>
     <ng-container *ngIf="selectedSection === 'denuncias'">
       <h2>Denuncias</h2>
       <!-- <a style="font-size: small;" routerLink="/acciones-realizadas">Acciones realizadas</a> -->
-      <a style="font-size: small;" routerLink="/denunciasadmin">Supervisión de denuncias</a>
+      <a style="font-size: small;" routerLink="/denunciasadmin" (click)="toggleMobileMenu()">Supervisión de denuncias</a>
     </ng-container>
     <ng-container *ngIf="selectedSection === 'chat'">
       <h2>Chats</h2>
-      <a style="font-size: small;" routerLink="/chatadmin">Mis chats</a>
+      <a style="font-size: small;" routerLink="/chatadmin" (click)="toggleMobileMenu()">Mis chats</a>
       <!-- <a style="font-size: small;" routerLink="/acciones-realizadas">Desestimados</a> -->
     </ng-container>
     <ng-container *ngIf="selectedSection === 'administrar'">
       <h2>Administrar</h2>
-      <a style="font-size: small;" routerLink="/usersadmin">Usuarios y privilegios</a>
-      <a style="font-size: small;" routerLink="/configurationadmin">Configuración</a>
-      <a style="font-size: small;" routerLink="/cambiarcontrasenaadmin">Cambiar contraseña</a>
+      <a style="font-size: small;" routerLink="/usersadmin" (click)="toggleMobileMenu()">Usuarios y privilegios</a>
+      <a style="font-size: small;" routerLink="/configurationadmin" (click)="toggleMobileMenu()">Configuración</a>
+      <a style="font-size: small;" routerLink="/cambiarcontrasenaadmin" (click)="toggleMobileMenu()">Cambiar contraseña</a>
     </ng-container>
     <!-- <ng-container *ngIf="selectedSection === 'logout'">
       <h2>Cerra sesión</h2>

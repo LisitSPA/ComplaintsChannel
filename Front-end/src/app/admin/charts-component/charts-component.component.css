@@ -34,3 +34,21 @@
   width: 300px;
   height: max-content;
 }
+
+@media (max-width: 767px) {
+  :host {
+    width: 100%;
+  }
+
+  .char-container {
+    flex-direction: column;
+  }
+
+  .char-card {
+    width: 100%;
+  }
+
+  .chart {
+    width: 100%;
+  }
+}

@@ -4,12 +4,13 @@ import { Router, RouterLink } from '@angular/router';
 import { ConfigurationService } from '../../services/configuration.service';
 import { environment } from '../../../environment/environment';
 import { NotifierModule } from 'gramli-angular-notifier';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-sidebar-admin',
   standalone: true,
-  imports: [CommonModule, RouterLink, NotifierModule],
+  imports: [CommonModule, RouterLink, NotifierModule, MatIconModule],
   templateUrl: './sidebar-admin.component.html',
   styleUrls: ['./sidebar-admin.component.css'] 
 })
@@ -17,7 +18,9 @@ export class SidebarAdmin {
   logoUrl: string = '';
   isActive: boolean = false;
   isShowing: boolean = false;
+  isMobileMenuOpen: boolean = false;
   selectedSection: string = '';
+
 
   constructor(
     private router: Router,
@@ -50,6 +53,10 @@ export class SidebarAdmin {
         this.isShowing = true;
       }
     );
+  }
+
+  toggleMobileMenu(){
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
   toggleSection(section: string) {

@@ -46,3 +46,15 @@
   text-align: center;
   color: #000;
 }
+
+@media (max-width: 767px) {
+  .quick-access {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    padding: 0;
+    max-width: 85px;
+  }
+}

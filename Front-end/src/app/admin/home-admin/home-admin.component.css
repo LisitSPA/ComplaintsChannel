@@ -36,7 +36,8 @@ app-denuncias-table {
   }
 
   .dashboard {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
   }
 }

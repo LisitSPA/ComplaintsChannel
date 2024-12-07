@@ -159,10 +159,10 @@ export class DenunciasTableComponent implements OnInit {
 
   pages() {
     let pages = [];
-    const initialPage = this.currentPage - 3 > 0 ? this.currentPage - 3 : 1;
+    const initialPage = this.currentPage - 2 > 0 ? this.currentPage - 2 : 1;
     const finalPage =
-      this.currentPage + 3 < this.totalPages
-        ? this.currentPage + 3
+      this.currentPage + 2 < this.totalPages
+        ? this.currentPage + 2
         : this.totalPages;
 
     for (let i = initialPage; i <= finalPage; i++) {
