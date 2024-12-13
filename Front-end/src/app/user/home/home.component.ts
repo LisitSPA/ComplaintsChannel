@@ -5,11 +5,12 @@ import { InformationComponent } from '../information/information.component';
 import { FaqComponent } from '../faq/faq.component';
 import { ComplaintDataService } from '../../services/complaint-data.service';
 import { ComplaintService } from '../../services/complaint.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HowItWorksComponent, InformationComponent, FaqComponent],
+  imports: [CommonModule, HowItWorksComponent, InformationComponent, FaqComponent, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
