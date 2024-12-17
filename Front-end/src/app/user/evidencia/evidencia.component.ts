@@ -42,6 +42,8 @@ export class EvidenciaComponent implements OnInit {
     var currentComplaintData = this.complaintDataService.getComplaintData();
     if (!currentComplaintData || !currentComplaintData.contactEmail)
       this.goBack('/denunciante');
+
+    window.scrollTo(0, 0);
   }
 
   onFileSelected(event: Event): void {

@@ -234,6 +234,11 @@ p {
   opacity: 0.9;
 }
 
+.btn-files {
+  height: auto !important;
+  padding: 12px 24px;
+}
+
 @media (max-width: 1024px) {
   .content-section {
     padding: 90px 10px;

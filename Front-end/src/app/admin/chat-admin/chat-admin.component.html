@@ -6,7 +6,13 @@
       <a (click)="filterComplaints('finalizados')" [ngClass]="{'active': activeTab === 'finalizados'}">Finalizados</a>
     </div>
 
-    <input type="text" placeholder="Buscar chat..." class="search-box" />
+    <div class="search-box-container">
+      <input type="text" placeholder="Buscar chat..." class="search-box" [(ngModel)]="textFilter" (keyup)="filterComplaints()" />
+      <button mat-mini-fab matTooltip="Puedes buscar por número de denuncia, estado, nombre o asunto" class="info-icon" mat-mini-fab aria-label="Example icon button with a menu icon">
+        <mat-icon>info</mat-icon>
+      </button>
+    </div>
+
     <div class="divider"></div>
 
     <div class="chat-items-container">
