@@ -20,8 +20,8 @@
     <ng-container *ngIf="selectedSection === 'administrar'">
       <h2>Administrar</h2>
       <a style="font-size: small;" routerLink="/usersadmin" (click)="toggleMobileMenu()">Usuarios y privilegios</a>
-      <a style="font-size: small;" routerLink="/configurationadmin" (click)="toggleMobileMenu()">Configuración</a>
-      <a style="font-size: small;" routerLink="/cambiarcontrasenaadmin" (click)="toggleMobileMenu()">Cambiar contraseña</a>
+      <a *ngIf="isAdmin" style="font-size: small;" routerLink="/configurationadmin" (click)="toggleMobileMenu()">Configuración</a>
+      <a *ngIf="isAdmin" style="font-size: small;" routerLink="/cambiarcontrasenaadmin" (click)="toggleMobileMenu()">Cambiar contraseña</a>
     </ng-container>
     <!-- <ng-container *ngIf="selectedSection === 'logout'">
       <h2>Cerra sesión</h2>

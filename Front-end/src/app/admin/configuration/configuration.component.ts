@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ConfigurationService } from '../../services/configuration.service';
 import { environment } from '../../../environment/environment';
 import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-configuration',
@@ -29,9 +30,12 @@ export class ConfigurationComponent {
   ];
   statuses: string[] = ['Activo', 'Inactivo'];
 
-  constructor(private configurationService: ConfigurationService, private notifier: NotifierService) {}
+  constructor(private configurationService: ConfigurationService, private notifier: NotifierService, private router: Router) {}
 
   ngOnInit(): void {
+    const isAdmin = sessionStorage.getItem('role') === 'Administrador';
+    if (!isAdmin) this.router.navigate(['/homeadmin']);
+
     this.getConfiguration();
   }
 

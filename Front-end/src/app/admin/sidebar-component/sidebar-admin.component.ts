@@ -20,6 +20,7 @@ export class SidebarAdmin {
   isShowing: boolean = false;
   isMobileMenuOpen: boolean = false;
   selectedSection: string = '';
+  isAdmin: boolean = false;
 
 
   constructor(
@@ -31,6 +32,7 @@ export class SidebarAdmin {
 
   ngOnInit(): void {
     this.getConfiguration();
+    this.isAdmin = sessionStorage.getItem('role') === 'Administrador';
   }
 
   getConfiguration(): void {
