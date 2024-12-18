@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SidebarAdmin } from '../sidebar-component/sidebar-admin.component';
 import { ChatService } from '../../services/chat.service';
 import { ComplaintService } from '../../services/complaint.service';
 import { HttpParams } from '@angular/common/http';
@@ -10,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute } from '@angular/router';
 import { requestStates } from '../../../constants/requestState';
 import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-chat-admin',
@@ -20,6 +20,7 @@ import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
     NotifierModule,
     ChatComponent,
     MatIconModule,
+    MatTooltip,
   ],
   templateUrl: './chat-admin.component.html',
   styleUrls: ['./chat-admin.component.css'],
@@ -38,6 +39,7 @@ export class ChatAdminComponent implements OnInit {
   isLoading: any = false;
   complaintId: number = 0;
   states = requestStates;
+  textFilter = '';
 
   constructor(
     private chatService: ChatService,
@@ -88,14 +90,28 @@ export class ChatAdminComponent implements OnInit {
     );
   }
 
-  filterComplaints(filter: string) {
-    this.activeTab = filter;
-    if (filter === 'todos') {
+  filterComplaints(category?: string) {
+    
+    if (category) this.activeTab = category;
+
+    if (this.activeTab === 'todos') {
       this.filteredComplaints = [...this.complaints];
-    } else if (filter === 'pendientes') {
+    } else if (this.activeTab === 'pendientes') {
       this.filteredComplaints = this.complaints.filter((x) => x.eStatus < 3);
     } else {
       this.filteredComplaints = this.complaints.filter((x) => x.eStatus > 3);
+    }
+
+    if (this.textFilter) {
+      const textToSearch = this.textFilter.toLowerCase();
+      this.filteredComplaints = this.filteredComplaints.filter(
+        (x) => 
+          x.complaintNumber.toLowerCase().includes(textToSearch)
+          || x.status.toLowerCase().includes(textToSearch)
+          || x.complainant?.names?.toLowerCase()?.includes(textToSearch)
+          || (x.complainant == null && ('anónimo'.includes(textToSearch) || 'anonimo'.includes(textToSearch)))
+          || x.reasons[0].description.toLowerCase().includes(textToSearch)
+      );
     }
   }
 

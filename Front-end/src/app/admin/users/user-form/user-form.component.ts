@@ -62,7 +62,7 @@ export class UserFormComponent implements OnInit{
           this.cerrar.emit()
         },
         error => {
-          this.notifier.notify('error', 'Error al actualizar usuario');
+          this.notifier.notify('error', `Error al actualizar usuario. ${error?.error?.errorList?.[0]?.message || ''}`);
           console.error('Error al actualizar usuario:', error);  
         }
       );
@@ -73,7 +73,7 @@ export class UserFormComponent implements OnInit{
           this.cerrar.emit() 
         },
         error => {
-          this.notifier.notify('error', 'Error al crear usuario');
+          this.notifier.notify('error', `Error al crear usuario. ${error?.error?.errorList?.[0]?.message || ''}`);
           console.error('Error al crear usuario:', error);  
         }
       );

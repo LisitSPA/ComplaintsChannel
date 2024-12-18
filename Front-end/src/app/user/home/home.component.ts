@@ -5,32 +5,28 @@ import { InformationComponent } from '../information/information.component';
 import { FaqComponent } from '../faq/faq.component';
 import { ComplaintDataService } from '../../services/complaint-data.service';
 import { ComplaintService } from '../../services/complaint.service';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HowItWorksComponent, InformationComponent, FaqComponent, RouterModule],
+  imports: [
+    CommonModule,
+    HowItWorksComponent,
+    InformationComponent,
+    FaqComponent,
+    RouterLink,
+  ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit{
-
+export class HomeComponent implements OnInit {
   constructor(
-    private complaintDataService: ComplaintDataService, 
-    private complaintService: ComplaintService, 
-  ) {
-   
-  }
+    private complaintDataService: ComplaintDataService,
+    private complaintService: ComplaintService
+  ) {}
 
-  async ngOnInit(): Promise<void> { 
-   
-  }
+  async ngOnInit(): Promise<void> {}
 
-  async getData(){
-    
-  }
-
-
-
+  async getData() {}
 }

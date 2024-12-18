@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { UserDataService } from '../services/user-data.service';
 import { environment } from '../../environment/environment';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
@@ -18,6 +17,7 @@ import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
     FormsModule,
     MatProgressSpinnerModule,
     NotifierModule,
+    RouterLink
   ],
 })
 export class LoginComponent {

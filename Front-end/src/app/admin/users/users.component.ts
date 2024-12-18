@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EliminarUsuarioComponent } from '../../eliminar-usuario/eliminar-usuario.component';
 import { FormsModule } from '@angular/forms';
@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpParams } from '@angular/common/http';
 import { UserFormComponent } from './user-form/user-form.component';
 import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -23,7 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./users.component.css'],
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit {
   usuarios: any[] = [];
   paginatedColaboradores: any[] = [];
   currentPage = 1;
@@ -33,8 +34,13 @@ export class UsersComponent {
   mostrarEliminar: boolean = false;
   usuarioSeleccionado: any | null = null;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     this.obtenerUsuarios();
+  }
+
+  ngOnInit(): void {
+    const isAdmin = sessionStorage.getItem('role') === 'Administrador';
+    if (!isAdmin) this.router.navigate(['/homeadmin']);
   }
 
   obtenerUsuarios() {
