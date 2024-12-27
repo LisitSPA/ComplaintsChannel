@@ -56,21 +56,26 @@
 
 .table th,
 .table td {
-  padding: 10px;
-  text-align: left;
   border-bottom: 1px solid #ddd;
   height: 50px;
 }
 
 .table th {
   background-color: #384146;
+  padding: 10px 0;
+  text-align: center;
   color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .table td {
+  padding: 10px;
+  text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-align: center;
 }
 
 .btn-secondary {
@@ -179,6 +184,7 @@
   flex-direction: row;
   gap: 5px;
   padding: 0;
+  justify-content: center;
   align-items: center;
 }
 

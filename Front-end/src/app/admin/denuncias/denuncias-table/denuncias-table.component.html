@@ -72,36 +72,36 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Número</th>
-          <th>Motivo</th>
-          <th>Fecha</th>
-          <th>Denunciante</th>
-          <th>Estado</th>
-          <th>Evidencia</th>
-          <th>Chat</th>
-          <th *ngIf="!isDashboard">Acciones</th>
-          <th *ngIf="isDashboard">Detalle</th>
+          <th matTooltip="Número">Número</th>
+          <th matTooltip="Motivo">Motivo</th>
+          <th matTooltip="Fecha">Fecha</th>
+          <th matTooltip="Denunciante">Denunciante</th>
+          <th matTooltip="Estado">Estado</th>
+          <th matTooltip="Evidencia">Evidencia</th>
+          <th matTooltip="Chat">Chat</th>
+          <th matTooltip="Acciones" *ngIf="!isDashboard">Acciones</th>
+          <th matTooltip="Detalle" *ngIf="isDashboard">Detalle</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let denuncia of paginated">
-          <td>{{ denuncia.complaintNumber }}</td>
-          <td>{{ denuncia.reasons?.[0]?.description }}</td>
-          <td>{{ denuncia.createdOn | date }}</td>
-          <td>
+          <td matTooltip="{{ denuncia.complaintNumber }}">{{ denuncia.complaintNumber }}</td>
+          <td matTooltip="{{ denuncia.reasons?.[0]?.description }}">{{ denuncia.reasons?.[0]?.description }}</td>
+          <td matTooltip="{{ denuncia.createdOn | date }}">{{ denuncia.createdOn | date }}</td>
+          <td matTooltip="{{denuncia.complainant ? denuncia.complainant.names : 'Anónimo'}}" >
             {{ denuncia.complainant ? denuncia.complainant.names : "Anónimo" }}
           </td>
-          <td>{{ denuncia.status }}</td>
+          <td matTooltip="{{ denuncia.status }}">{{ denuncia.status }}</td>
           <td>
             <a href="{{ filesUrl }}{{ denuncia?.trackingCode }}/{{
                 denuncia?.attachments[0]?.fileName
               }}" download="{{ denuncia?.attachments[0]?.fileName }}" *ngIf="denuncia?.attachments.length"
-              target="_blank" class="primary-text">
+              target="_blank" class="primary-text" matTooltip="Ver evidencias">
               <mat-icon aria-hidden="false" fontIcon="attach_file"></mat-icon>
             </a>
           </td>
           <td>
-            <a [routerLink]="'/chatadmin/' + denuncia.id" class="primary-text">
+            <a [routerLink]="'/chatadmin/' + denuncia.id" class="primary-text" matTooltip="Ver Chat" >
               <mat-icon aria-hidden="false" fontIcon="chat"></mat-icon>
             </a>
           </td>
