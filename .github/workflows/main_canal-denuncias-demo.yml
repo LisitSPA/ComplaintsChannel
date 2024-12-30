@@ -22,16 +22,23 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build Api/Api.csproj --configuration Release
+        run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish Api/Api.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish -c Release
+
+      - name: List files current directory 
+        run: dir
+
+      - name: List files in publish directory
+        run: |
+          ls ./Api/bin/Release/net8.0/publish/
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ./Api/bin/Release/net8.0/publish/
 
   deploy:
     runs-on: ubuntu-latest
@@ -55,6 +62,9 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_14A64C7DDCD54466B887969244F253A7 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D8DDF89ABB7042F1ACE00135035C08B6 }}
 
+      - name: List Deploy 
+        run: dir
+            
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
