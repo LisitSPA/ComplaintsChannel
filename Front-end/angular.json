@@ -40,6 +40,7 @@
           },
           "configurations": {
             "production": {
+              "outputPath" :"dist/test",
               "budgets": [
                 {
                   "type": "initial",
@@ -88,7 +89,7 @@
               "zone.js/testing"
             ],
             "tsConfig": "tsconfig.spec.json",
-           
+
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"

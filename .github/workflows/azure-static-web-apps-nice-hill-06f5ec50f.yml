@@ -32,16 +32,21 @@ jobs:
       - name: Install dependencies
         run: npm install
         working-directory: Front-end
-      
+
       - name: Clean build directory
         run: rm -rf Front-end/dist || true
 
       - name: Build Angular App
-        run: npm run build -- --output-path=dist/test
+        run: npm run build -- --output-path=dist/test --configuration=production
         working-directory: Front-end
 
-      - name: Verify build directory
-        run: ls -la Front-end/dist/test || echo "Directorio no existe"
+      - name: Verify build output
+        run: ls -la Front-end/dist/test || echo "Directory not found"
+
+      - name: Copy build files (if needed)
+        run: |
+          mkdir -p Front-end/dist/test
+          cp -r Front-end/dist/* Front-end/dist/test/
 
       - name: Build And Deploy
         id: builddeploy
