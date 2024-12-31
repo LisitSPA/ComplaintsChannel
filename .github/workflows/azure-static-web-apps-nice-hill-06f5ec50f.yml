@@ -33,13 +33,16 @@ jobs:
         run: npm install
         working-directory: Front-end
       
+      - name: Clean build directory
+        run: rm -rf Front-end/dist || true
+
       - name: Build Angular App
         run: npm run build -- --output-path=dist/test
         working-directory: Front-end
 
-      - name: List build output
-        run: ls -la Front-end/dist/test || echo "Output directory not found"  
-      
+      - name: Verify build directory
+        run: ls -la Front-end/dist/test || echo "Directorio no existe"
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
