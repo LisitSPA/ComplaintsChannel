@@ -43,11 +43,6 @@ jobs:
       - name: Verify build output
         run: ls -la Front-end/dist/test || echo "Directory not found"
 
-      - name: Copy build files (if needed)
-        run: |
-          mkdir -p Front-end/dist/test
-          cp -r Front-end/dist/* Front-end/dist/test/
-
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
