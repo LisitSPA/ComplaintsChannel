@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'Front-end/**'
+    #paths:
+      #- 'Front-end/**'
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
