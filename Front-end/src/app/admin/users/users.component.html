@@ -2,6 +2,12 @@
   <h2>Usuarios y privilegios</h2>
 
   <div class="toolbar">
+    <div class="search-box-container">
+      <input type="text" placeholder="Buscar chat..." class="search-box" [(ngModel)]="textFilter" (keyup)="filterUsers()" />
+      <button mat-mini-fab matTooltip="Puedes buscar por nombre o por email" class="info-icon" mat-mini-fab aria-label="Example icon button with a menu icon">
+        <mat-icon>info</mat-icon>
+      </button>
+    </div>
     <div class="botones-usuario">
       <!-- <div class="eliminar-option" (click)="eliminarUsuarios()">
               <img src="/icons/basurero.svg" alt="Eliminar Icono" class="icono-eliminar">
@@ -68,9 +74,11 @@
   <br>
 </div>
 
-<app-user-form *ngIf="mostrarEditar" [usuario]="usuarioSeleccionado" (cerrar)="cerrarFormulario()">
+<app-user-form *ngIf="mostrarEditar" [usuario]="usuarioSeleccionado" [cerrar]="cerrarFormulario.bind(this)">
 </app-user-form>
 
 <app-eliminar-usuario *ngIf="mostrarEliminar && usuarioSeleccionado" (cerrar)="cerrarEliminar()"
   (usuarioEliminado)="confirmarEliminarUsuario()" [usuarioId]="usuarioSeleccionado!.id">
 </app-eliminar-usuario>
+
+<notifier-container />

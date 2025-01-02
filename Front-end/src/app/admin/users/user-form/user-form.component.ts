@@ -17,7 +17,7 @@ import genreTypes from '../../../../types/genreTypes';
 })
 export class UserFormComponent implements OnInit{
   @Input() usuario: any;  
-  @Output() cerrar = new EventEmitter<void>();
+  @Input() cerrar!: Function;
 
   nombre = ""
   tipo = 1;  
@@ -58,8 +58,8 @@ export class UserFormComponent implements OnInit{
     if(this.usuario?.id)
       this.userService.updateUser(userData).subscribe(
         response => {
-          this.notifier.notify('success', 'Usuario actualizado con éxito');
-          this.cerrar.emit()
+          // this.notifier.notify('success', 'Usuario actualizado con éxito');
+          this.cerrar('Usuario actualizado con éxito')
         },
         error => {
           this.notifier.notify('error', `Error al actualizar usuario. ${error?.error?.errorList?.[0]?.message || ''}`);
@@ -69,8 +69,8 @@ export class UserFormComponent implements OnInit{
     else
       this.userService.createUser(userData).subscribe(
         response => {
-          this.notifier.notify('success', 'Usuario creado con éxito'); 
-          this.cerrar.emit() 
+          // this.notifier.notify('success', ''); 
+          this.cerrar('Usuario creado con éxito') 
         },
         error => {
           this.notifier.notify('error', `Error al crear usuario. ${error?.error?.errorList?.[0]?.message || ''}`);

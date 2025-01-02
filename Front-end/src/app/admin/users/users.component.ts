@@ -8,6 +8,8 @@ import { HttpParams } from '@angular/common/http';
 import { UserFormComponent } from './user-form/user-form.component';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { NotifierModule, NotifierService } from 'gramli-angular-notifier';
 
 @Component({
   selector: 'app-users',
@@ -19,12 +21,15 @@ import { Router } from '@angular/router';
     FormsModule,
     MatButtonModule,
     MatIconModule,
+    MatTooltipModule,
+    NotifierModule
   ],
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css'],
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersComponent implements OnInit {
+  usuariosIniciales: any[] = [];
   usuarios: any[] = [];
   paginatedColaboradores: any[] = [];
   currentPage = 1;
@@ -33,8 +38,9 @@ export class UsersComponent implements OnInit {
   mostrarEditar: boolean = false;
   mostrarEliminar: boolean = false;
   usuarioSeleccionado: any | null = null;
+  textFilter = '';
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, private notifier: NotifierService) {
     this.obtenerUsuarios();
   }
 
@@ -46,7 +52,8 @@ export class UsersComponent implements OnInit {
   obtenerUsuarios() {
     let params = new HttpParams();
     this.userService.getUsers(params).subscribe((data: any) => {
-      this.usuarios = data.content.data;
+      this.usuariosIniciales = data.content.data;
+      this.usuarios = this.usuariosIniciales;
       this.updatePaginatedColaboradores();
     });
   }
@@ -108,15 +115,26 @@ export class UsersComponent implements OnInit {
     this.updatePaginatedColaboradores();
   }
 
+  
+  filterUsers() {
+    this.usuarios = this.usuariosIniciales.filter((usuario) => 
+      usuario.names.toLowerCase().includes(this.textFilter.toLowerCase()) ||
+      usuario.contactEmail?.toLowerCase().includes(this.textFilter.toLowerCase())
+    );
+    this.updatePaginatedColaboradores();
+    this.goToPage(1);
+  }
+
   abrirFormulario() {
     this.usuarioSeleccionado = [];
     this.mostrarEditar = true;
     this.mostrarEliminar = false;
   }
 
-  cerrarFormulario() {
+  cerrarFormulario(message?: string) {
+    if(message) this.notifier.notify('success', message);
     this.mostrarEditar = false;
-    this.obtenerUsuarios();
+    // this.obtenerUsuarios();
   }
 
   editarUsuario(usuario: any) {

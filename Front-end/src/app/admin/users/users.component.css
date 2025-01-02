@@ -172,9 +172,38 @@ body {
   overflow-y: auto;
 }
 
+.search-box-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: calc(100% - 140px);
+  max-width: 350px;
+}
+
+.search-box-container input {
+  height: 40px;
+}
+
+.search-box {
+  width: 100%;
+  padding: 8px;
+  position: relative;
+}
+
+.info-icon{
+  position: absolute;
+  background: none;
+  border: none;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: none;
+}
+
 .toolbar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-bottom: 20px;
 }
 
@@ -202,9 +231,9 @@ body {
   }
 
   .toolbar {
-    flex-direction: column;
+    margin-top: 30px;
     gap: 10px;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
   }
 
@@ -243,11 +272,24 @@ body {
 }
 
 @media (max-width: 479px) {
-
   .table th,
   .table td {
     font-size: 10px;
     padding: 5px;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .search-box-container {
+    width: 100%;
+  }
+
+  .botones-usuario {
+    width: 100%;
+    max-width: 350px;
   }
 
   .pagination button {

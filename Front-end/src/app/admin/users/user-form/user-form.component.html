@@ -1,6 +1,6 @@
 <div class="modal">
   <div class="modal-content">
-    <button class="close-btn" (click)="cerrar.emit()">✖</button>
+    <button class="close-btn" (click)="cerrar()">✖</button>
     <h2 *ngIf="usuario?.id">Editar usuario</h2>
     <h2 *ngIf="!usuario?.id">Crear usuario</h2>
     <form (ngSubmit)="guardarDatos()">
@@ -42,7 +42,7 @@
       </div>
 
       <div class="example-button-row flex-end">
-        <button class="back-btn" mat-button (click)="cerrar.emit()"> Cancelar</button>
+        <button class="back-btn" mat-button (click)="cerrar()"> Cancelar</button>
         <button class="next-btn">Guardar</button>
       </div>
     </form>
